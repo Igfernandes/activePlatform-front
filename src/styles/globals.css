@@ -1,9 +1,9 @@
+@import "./settings/colors/palette.css";
+@import "./settings/colors/default.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "./settings/fonts/poppins.css";
-@import "./settings/colors/palette.css";
-@import "./settings/colors/default.css";
 
 body {
   color: var(--foreground);
