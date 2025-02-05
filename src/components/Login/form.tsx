@@ -4,7 +4,7 @@ import { Input } from "@components/shared/form/input";
 import { Password } from "@components/shared/form/password";
 import Link from "next/link";
 
-export function FormLogin() {
+export function LoginForm() {
   return (
     <form action="">
       <div className="form-group">
