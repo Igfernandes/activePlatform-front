@@ -3,8 +3,11 @@ import { loginFormSchema } from "../schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PostAuthPayload } from "../../../services/Authentications/Auth/type";
 import usePostAuth from "../../../services/Authentications/Auth/usePostAuth";
+import { useRecaptcha } from "@hooks/useRecaptcha";
 
 type Payload = PostAuthPayload;
+
+const RECAPTCHA_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_KEY;
 
 export function useForm() {
   const formMethods = useFormReactHook<Payload>({
@@ -17,12 +20,14 @@ export function useForm() {
     formState: { errors, isSubmitting },
   } = formMethods;
   const { mutateAsync: postAuth } = usePostAuth();
+  const { token } = useRecaptcha(RECAPTCHA_KEY ?? "", "login");
 
   const onSubmit = async ({ login, password, rememberMe }: PostAuthPayload) => {
     postAuth({
       login,
       password,
       rememberMe,
+      "g-recaptcha-response": token,
     });
   };
 

@@ -18,7 +18,7 @@ export function Button({
     disabled || isLoadingForm
   );
   const { isBtnSubmit } = useButton();
-  const styledBtn = `${className} flex items-center justify-center text-white bg-red active:scale-[95%] duration-75 w-[82.98%]  px-3 min-h-[48] rounded-md mx-auto disabled:bg-disable disabled:text-disabled cursor-pointer`;
+  const styledBtn = `${className} flex items-center justify-center text-white bg-red active:scale-[95%] duration-75 w-[82.98%]  px-3 min-h-[48px] rounded-md mx-auto disabled:bg-disable disabled:text-disabled cursor-pointer`;
 
   useEffect(() => {
     setIsDisabled(disabled || isLoadingForm);

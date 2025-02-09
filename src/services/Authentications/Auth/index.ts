@@ -7,11 +7,17 @@ export function usePostAuthService() {
   const { axios } = useAxios();
   const { auth } = authenticationRoutes;
 
-  async function postAuth({ login, password, rememberMe }: PostAuthPayload) {
+  async function postAuth({
+    login,
+    password,
+    rememberMe,
+    ...restPayload
+  }: PostAuthPayload) {
     const payload = {
       login,
       password,
       rememberMe: rememberMe,
+      ...restPayload,
     };
 
     if (!rememberMe) {

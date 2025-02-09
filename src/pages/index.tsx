@@ -21,7 +21,7 @@ export default function Home() {
       mutateAsync(referenceToken).then((data) => {
         console.log(data);
       });
-  }, [mutateAsync, getReferenceToken]);
+  }, []);
 
   return (
     <main className="bg-[url(/imgs/backgrounds/3d-wave.png)] bg-cover bg-no-repeat h-[90vh] flex items-center font-poppins">
