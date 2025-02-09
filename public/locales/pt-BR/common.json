@@ -1,0 +1,15 @@
+{
+  "errors": {
+    "credentials_invalid": {
+      "title": "Não foi possível acessar a sua conta",
+      "message": "Verifique se sua senha ou seu e-mail estão corretos."
+    },
+    "default": {
+      "title": "Ocorreu um problema",
+      "message": "Estamos analisando o problema. Tente novamente mais tarde."
+    }
+  },
+  "words": {
+    "send": "Enviar"
+  }
+}
