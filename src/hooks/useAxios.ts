@@ -1,6 +1,7 @@
 import { Axios, AxiosError } from "axios";
 import { useSnackbar } from "./useSnackbar";
 import { env } from "@configs/variables";
+import { useTranslation } from "react-i18next";
 
 type CustomAxiosError = AxiosError<{
   error?: string;
@@ -8,6 +9,7 @@ type CustomAxiosError = AxiosError<{
 
 export function useAxios() {
   const { dispatchSnackbar } = useSnackbar();
+  const { t } = useTranslation();
 
   const axios = new Axios({
     baseURL: env.API_URL,
@@ -18,20 +20,21 @@ export function useAxios() {
   });
 
   function handleAxiosError(error: unknown) {
-    let messageError = "";
+    const shapeError = {
+      title: t("errors.default.title"),
+      message: t("errors.default.message"),
+    };
     const typedError = error as CustomAxiosError;
     const responseData = typedError.response?.data;
 
     const responseError = (!!responseData && responseData.error) as string;
     if (responseError) {
-      messageError = responseError;
-    } else {
-      messageError = "response.error.default";
+      shapeError["message"] = responseError;
     }
 
-    dispatchSnackbar({ message: messageError, type: "error" });
+    dispatchSnackbar({ ...shapeError, type: "error" });
 
-    return { messageError };
+    return { shapeError };
   }
   return {
     axios,
