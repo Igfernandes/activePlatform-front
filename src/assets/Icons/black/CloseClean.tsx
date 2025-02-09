@@ -15,7 +15,7 @@ export function Close({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_202_3384)">
+      <g clipPath="url(#clip0_202_3384)">
         <path
           d="M18 6L6 18"
           stroke={fill}
