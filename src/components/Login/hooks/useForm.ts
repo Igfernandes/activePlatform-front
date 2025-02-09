@@ -8,7 +8,7 @@ type Payload = PostAuthPayload;
 
 export function useForm() {
   const formMethods = useFormReactHook<Payload>({
-    resolver: zodResolver(loginFormSchema)
+    resolver: zodResolver(loginFormSchema),
   });
   const {
     register,
@@ -18,11 +18,11 @@ export function useForm() {
   } = formMethods;
   const { mutateAsync: postAuth } = usePostAuth();
 
-  const onSubmit = async ({ login, password }: PostAuthPayload) => {
-    
+  const onSubmit = async ({ login, password, rememberMe }: PostAuthPayload) => {
     postAuth({
       login,
       password,
+      rememberMe,
     });
   };
 
@@ -38,6 +38,6 @@ export function useForm() {
     errors,
     formMethods,
     hasAllFilledFields,
-    isLoading: isSubmitting
+    isLoading: isSubmitting,
   };
 }

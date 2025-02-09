@@ -32,6 +32,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               type={type}
               defaultChecked={isChecked}
               data-testid={IdCurrent}
+              id={IdCurrent}
               className={`${
                 isChecked ? "bg-red" : "bg-textDisabled"
               } w-[.95rem] h-[.9rem] appearance-none rounded-[.2rem] cursor-pointer`}

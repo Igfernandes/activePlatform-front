@@ -7,6 +7,8 @@ export function getPayloadFormData<PayloadShape extends object>(
 ): FormData {
   const payload = new FormData();
   Object.entries(data).forEach(([key, value]) => {
+    if (value == "") return;
+
     payload.append(key, value.toString());
   });
 

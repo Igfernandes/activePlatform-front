@@ -4,6 +4,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Footer } from "@components/Footer";
 import { poppins } from "@assets/fonts/poppins";
 import SnackbarProvider from "@contexts/Snackbar";
+import { appWithTranslation } from "next-i18next";
+import nextI18next from "../../next-i18next.config";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,6 +17,8 @@ const queryClient = new QueryClient({
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
+
+
   return (
     <QueryClientProvider client={queryClient}>
       <SnackbarProvider>
@@ -27,4 +31,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp, nextI18next);

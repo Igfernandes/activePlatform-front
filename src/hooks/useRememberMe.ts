@@ -1,16 +1,13 @@
-import { getCookie, setCookie } from "cookies-next/client";
+import { setCookie, getCookie } from "cookies-next/client";
 import { useState } from "react";
 
-export function useRememberMe<ShapeFields extends Record<string, string>>(
-  prefix: string | undefined = ""
-) {
+export function useRememberMe<ShapeFields extends Record<string, unknown>>() {
   const [fields, setFields] = useState<ShapeFields>();
-  const cookieKey = `${prefix}_remember`;
+  const cookiePrefix = `remember`;
 
-  const handleSaveCredentials = (props: ShapeFields) => {
+  const saveReferenceToken = (props: ShapeFields) => {
     Object.entries(props).forEach(([key, value]) => {
-      setCookie(key, value, {
-        httpOnly: true,
+      setCookie(`${cookiePrefix}_${key}`, value, {
         secure: process.env.NEXT_AMBIENT == "PROD",
       });
     });
@@ -18,22 +15,30 @@ export function useRememberMe<ShapeFields extends Record<string, string>>(
     setFields(props);
   };
 
-  const handleUpdateCredentials = (props: ShapeFields) => {
-    setCookie(cookieKey, props);
-
+  const updateReferenceToken = (props: ShapeFields) => {
+    saveReferenceToken(props);
     setFields(props);
   };
 
-  const getCredentials = (props: ShapeFields) => {
-    if (!fields) getCookie(cookieKey);
+  const getReferenceToken = (keys: string[]) => {
+    const cookieFields = {} as Record<string, unknown>;
 
-    setFields(props);
+    keys.forEach((key) => {
+      const cookieValue = getCookie(`${cookiePrefix}_${key}`);
+
+      if (cookieValue) {
+        cookieFields[key] = cookieValue;
+      }
+    });
+
+    setFields(cookieFields as ShapeFields);
+    return cookieFields;
   };
 
   return {
-    handleSaveCredentials,
-    handleUpdateCredentials,
-    getCredentials,
+    saveReferenceToken,
+    updateReferenceToken,
+    getReferenceToken,
     fields,
   };
 }
