@@ -7,7 +7,11 @@
     "default": {
       "title": "Ocorreu um problema",
       "message": "Estamos analisando o problema. Tente novamente mais tarde."
-    }
+    },
+    "fields": {
+      "invalid_email": "Digite um e-mail válido"
+    },
+    "required": "O campo é obrigatório"
   },
   "words": {
     "send": "Enviar"

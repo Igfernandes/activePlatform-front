@@ -12,11 +12,14 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       id,
       dataTestId,
       errors,
+      onChecked,
       ...props
     }: CheckboxProps,
     ref
   ) {
-    const { handleChecked, isChecked } = useCheckbox();
+    const { handleChecked, isChecked } = useCheckbox({
+      onChecked,
+    });
     const IdCurrent = id ?? dataTestId;
 
     return (

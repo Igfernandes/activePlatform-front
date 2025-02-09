@@ -17,6 +17,7 @@ export function useForm() {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors, isSubmitting },
   } = formMethods;
   const { mutateAsync: postAuth } = usePostAuth();
@@ -31,10 +32,27 @@ export function useForm() {
     });
   };
 
+  /**
+   * @function hasAllFilledFields
+   * - A função irá retornar o status em boolean sobre o preenchimento de todos os campos obrigatórios.
+   *
+   * @returns {boolean}
+   */
   const hasAllFilledFields = (): boolean => {
     if (watch("login") && watch("password")) return true;
 
     return false;
+  };
+
+  /**
+   * @function updateValueRememberMe
+   * - A função é responsável por atualizar o valor no campo "rememberMe" com base na alteração de valores referentes ao
+   * botão do tipo checkbox.
+   *
+   * @param {boolean} isChecked
+   */
+  const updateValueRememberMe = (isChecked: boolean) => {
+    setValue("rememberMe", isChecked);
   };
 
   return {
@@ -44,5 +62,6 @@ export function useForm() {
     formMethods,
     hasAllFilledFields,
     isLoading: isSubmitting,
+    updateValueRememberMe,
   };
 }

@@ -1,11 +1,8 @@
-import { Axios, AxiosError } from "axios";
-import { useSnackbar } from "./useSnackbar";
+import { Axios } from "axios";
+import { useSnackbar } from "../useSnackbar";
 import { env } from "@configs/variables";
 import { useTranslation } from "react-i18next";
-
-type CustomAxiosError = AxiosError<{
-  error?: string;
-}>;
+import { CustomAxiosError, ShapeError } from "./type";
 
 export function useAxios() {
   const { dispatchSnackbar } = useSnackbar();
@@ -19,7 +16,15 @@ export function useAxios() {
     },
   });
 
-  function handleAxiosError(error: unknown) {
+  /**
+   * @function handleAxiosError
+   * - Irá analisar o erro e tratar baseado no modelo de resposta do axios.
+   *
+   * @param { AxiosError} error O objeto de erro retornado pelo axios.
+   *
+   * @returns {ShapeError} error
+   */
+  function handleAxiosError(error: unknown): ShapeError {
     const shapeError = {
       title: t("errors.default.title"),
       message: t("errors.default.message"),
@@ -34,7 +39,7 @@ export function useAxios() {
 
     dispatchSnackbar({ ...shapeError, type: "error" });
 
-    return { shapeError };
+    return shapeError;
   }
   return {
     axios,

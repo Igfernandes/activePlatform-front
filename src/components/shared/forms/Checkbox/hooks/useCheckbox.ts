@@ -1,14 +1,17 @@
 import { useState } from "react";
-import { useFormContext } from "react-hook-form";
 
-export function useCheckbox() {
+type Props = {
+  onChecked?: (prop: boolean) => void;
+};
+
+export function useCheckbox({ onChecked }: Props = {}) {
   const [isChecked, setIsChecked] = useState<boolean>(false);
-  const { setValue } = useFormContext();
 
   const handleChecked = () => {
     setIsChecked(!isChecked);
-    setValue("rememberMe", !isChecked);
+    if (onChecked) onChecked(!isChecked);
   };
+
   return {
     handleChecked,
     isChecked,

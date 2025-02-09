@@ -16,6 +16,7 @@ export function LoginForm() {
     hasAllFilledFields,
     isLoading,
     errors,
+    updateValueRememberMe,
   } = useForm();
   const { forgotPassword } = userRoutes;
   const { t: tLogin } = useTranslation("login");
@@ -25,7 +26,12 @@ export function LoginForm() {
     <FormProvider {...formMethods}>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <Input  errors={errors.login} {...register("login")} dataTestId="login" label={"E-mail"} />
+          <Input
+            errors={errors.login}
+            {...register("login")}
+            dataTestId="login"
+            label={"E-mail"}
+          />
         </div>
         <div className="form-group my-4">
           <Password
@@ -38,10 +44,11 @@ export function LoginForm() {
         <div className="flex justify-between items-center">
           <div>
             <Checkbox
-             errors={errors.rememberMe}
+              errors={errors.rememberMe}
               dataTestId="remember-me"
               {...register("rememberMe")}
               label={tLogin("remember_me")}
+              onChecked={updateValueRememberMe}
             />
           </div>
           <div>
