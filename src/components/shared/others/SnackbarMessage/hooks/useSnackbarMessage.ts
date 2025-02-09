@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { SnackbarProps } from "@contexts/Snackbar/types";
 
 type SnackbarHookProps = {
@@ -17,10 +17,10 @@ export default function useSnackbarMessage({
   >(snackbar.type);
   const [show, setShow] = useState(true);
 
-  function handleDeleteSnackbar() {
+  const handleDeleteSnackbar = useCallback(() => {
     setShow(false);
     deleteSnackbar();
-  }
+  }, [deleteSnackbar]);
 
   useEffect(() => {
     if (!snackbar.message) return;
@@ -38,7 +38,12 @@ export default function useSnackbarMessage({
 
     setTypeSnackbar(snackbar.type);
     return () => clearInterval(interval);
-  }, [snackbar.message]);
+  }, [
+    snackbar.message,
+    TIME_TO_LIVE_NOTIFICATION_IN_MS,
+    handleDeleteSnackbar,
+    snackbar,
+  ]);
 
   return { show, handleDeleteSnackbar, typeSnackbar };
 }
