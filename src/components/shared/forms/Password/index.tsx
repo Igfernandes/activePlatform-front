@@ -6,6 +6,7 @@ import { EyeClosed } from "@assets/Icons/black/EyeClosed";
 import { PasswordProps } from "./type";
 import { usePassword } from "./hooks/usePassword";
 import { useFormContext } from "react-hook-form";
+import ErrorMessage from "@components/shared/others/ErrorMessage";
 
 export const Password = React.forwardRef<HTMLInputElement, PasswordProps>(
   function Password(
@@ -50,7 +51,9 @@ export const Password = React.forwardRef<HTMLInputElement, PasswordProps>(
             onBlur={handleTransitionLabel}
             ref={ref}
             name={name}
-            className={`${className} w-full h-12 px-3 pb-4 pt-8 bg-white border-secondary border-2 rounded-lg text-textPrimary`}
+            className={`${className} ${
+              !!errors ? "border-amber-500 outline-amber-500" : ""
+            } w-full h-12 px-3 pb-4 pt-8 bg-white border-secondary border-2 rounded-lg text-textPrimary`}
             data-testid={dataTestId}
             id={IdCurrent}
             type={isShowPassword ? "text" : "password"}
@@ -74,11 +77,7 @@ export const Password = React.forwardRef<HTMLInputElement, PasswordProps>(
             />
           </When>
         </div>
-        <When value={!!errors}>
-          <div>
-            <span>{errors?.message}</span>
-          </div>
-        </When>
+        <ErrorMessage errors={errors?.message} />
       </>
     );
   }

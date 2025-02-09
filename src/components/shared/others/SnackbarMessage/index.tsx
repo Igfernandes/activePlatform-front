@@ -35,7 +35,7 @@ const SnackbarMessage = ({ deleteSnackbar, snackbar }: Props) => {
         <h5 className={"w-full"}>
           <strong>{snackbar.title}</strong>
         </h5>
-        <p>{snackbar.message}</p>
+        <p className="text-sm">{snackbar.message}</p>
       </div>
       <div style={{marginLeft: "auto"}}>
         <span

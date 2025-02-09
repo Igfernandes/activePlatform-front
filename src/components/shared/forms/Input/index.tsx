@@ -4,6 +4,7 @@ import { InputProps } from "./type";
 import { RotateClockwise } from "@assets/Icons/white/RotateClockwise";
 import React, { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
+import ErrorMessage from "@components/shared/others/ErrorMessage";
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   function Input(
@@ -43,7 +44,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             name={name}
             onFocus={handleTransitionLabel}
             onBlur={handleTransitionLabel}
-            className={`${className} w-full px-3 pt-5 pb-2 bg-white border-secondary border-2 rounded-lg text-primary text-sm`}
+            className={`${className} ${
+              !!errors ? "border-amber-500 outline-amber-500" : ""
+            } w-full px-3 pt-5 pb-2 bg-white border-secondary border-2 rounded-lg text-primary text-sm`}
             data-testid={dataTestId}
             id={IdCurrent}
           />
@@ -54,11 +57,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             />
           </When>
         </div>
-        <When value={!!errors}>
-          <div>
-            <span>{errors?.message}</span>
-          </div>
-        </When>
+        <ErrorMessage errors={errors?.message} />
       </>
     );
   }
