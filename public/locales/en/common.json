@@ -14,6 +14,7 @@
     }
   },
   "words": {
-    "send": "Send"
+    "send": "Send",
+    "enter_email": "Enter the your e-mail"
   }
 }

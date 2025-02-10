@@ -27,6 +27,8 @@ export function useInput() {
     const input = ev.currentTarget;
     const currentValue = input.value;
 
+    if (input.placeholder) return changeLabelClass("UP");
+
     if (currentValue || ev.type == "focus") return changeLabelClass("UP");
 
     changeLabelClass("DOWN");

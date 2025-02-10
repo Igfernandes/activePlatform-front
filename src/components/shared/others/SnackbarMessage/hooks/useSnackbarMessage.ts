@@ -13,7 +13,7 @@ export default function useSnackbarMessage({
   const TIME_TO_LIVE_NOTIFICATION_IN_MS =
     TIME_TO_LIVE_NOTIFICATION_IN_SECONDS * 1000;
   const [typeSnackbar, setTypeSnackbar] = useState<
-    "error" | "success" | undefined
+    "error" | "success" | "notice" | undefined
   >(snackbar.type);
   const [show, setShow] = useState(true);
 

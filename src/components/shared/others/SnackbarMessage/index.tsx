@@ -10,6 +10,11 @@ interface Props {
 }
 
 const SnackbarMessage = ({ deleteSnackbar, snackbar }: Props) => {
+  const colors = {
+    success: "border-l-green",
+    notice: "border-l-indigo",
+    error: "border-l-yellow",
+  };
   const { handleDeleteSnackbar, show, typeSnackbar } = useSnackbarMessage({
     deleteSnackbar,
     snackbar,
@@ -17,9 +22,7 @@ const SnackbarMessage = ({ deleteSnackbar, snackbar }: Props) => {
 
   return (
     <div
-      className={`bg-white ${
-        typeSnackbar === "error" ? "border-l-yellow" : "border-l-green"
-      } border-l-[6px]
+      className={`bg-white ${colors[typeSnackbar ?? "notice"]} border-l-[6px]
             transition-opacity duration-200 animate-fadeInAnimation ${
               show ? "opacity-1" : "opacity-0"
             }
@@ -37,7 +40,7 @@ const SnackbarMessage = ({ deleteSnackbar, snackbar }: Props) => {
         </h5>
         <p className="text-sm">{snackbar.message}</p>
       </div>
-      <div style={{marginLeft: "auto"}}>
+      <div style={{ marginLeft: "auto" }}>
         <span
           data-testid={"closeIcon"}
           className={"flex cursor-pointer rounded-xl w-fit h-fit "}
