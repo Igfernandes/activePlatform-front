@@ -1,0 +1,20 @@
+{
+  "errors": {
+    "default": {
+      "title": "A problem occurred",
+      "message": "We are analyzing the problem. Please try again later."
+    },
+    "credentials_invalid": {
+      "title": "Unable to access your account",
+      "message": "Check that your password or email is correct."
+    },
+    "fields": {
+      "invalid_email": "Enter a valid email",
+      "required": "The field is required"
+    }
+  },
+  "words": {
+    "send": "Send",
+    "enter_email": "Enter the your e-mail"
+  }
+}

@@ -1,0 +1,40 @@
+/* RED */
+:root {
+  --red-text: #d50245;
+  --red-bg: #b6053b;
+  --red-hover: #980031;
+  --red-border: #720228;
+  --red-brand: #eb034c;
+}
+
+/* GREEN */
+:root {
+  --green-text: #018c75;
+  --green-bg: #017664;
+  --green-hover: #01594b;
+  --green-complementary: #5dc2b4;
+  --green-border: #003d34;
+  --green-brand: #01a38b;
+}
+
+/* ORANGE */
+:root {
+  --orange-text: #e88601;
+  --orange-bg: #d17800;
+  --orange-hover: #be660f;
+  --orange-complementary: #feb95e;
+  --orange-border: #9d5410;
+  --orange-brand: #fe9100;
+}
+
+/* ORANGE */
+:root {
+  --purple: #895ef6;
+  --indigo: #6984ed;
+  --blue: #4da1f7;
+  --teal: #20cbdd;
+  --green: #7ae3aa;
+  --yellow: #ffc63b;
+  --orange: #ff7640;
+  --pink: #f03063;
+}
