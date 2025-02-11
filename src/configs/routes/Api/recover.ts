@@ -1,3 +1,3 @@
 export const recoverRoutes = {
-  recoverPasswordRequest: "/recover/password",
+  recoverPassword: "/recover/password",
 };
