@@ -13,8 +13,23 @@
       "required": "The field is required"
     }
   },
+  "success": {
+    "already_conecte_redirect": "You are logged in and will be redirected"
+  },
+  "texts": {
+    "has_min_eight_letters": "At least 8 characters.",
+    "has_min_one_uppercase": "At least 1 capital letter.",
+    "has_min_one_lowercase": "Pelo menos  1 letra minúscula.",
+    "has_min_one_number": "At least 1 lowercase letter.",
+    "has_min_one_special_character": "At least 1 special character.",
+    "password_need_equal": "The password entered must be identical."
+  },
   "words": {
     "send": "Send",
-    "enter_email": "Enter the your e-mail"
+    "enter_email": "Enter the your e-mail",
+    "created_new_password": "Create new password",
+    "await": "Await",
+    "password": "Password",
+    "password_confirmation": "Password Confirmation"
   }
 }

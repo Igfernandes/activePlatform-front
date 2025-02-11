@@ -2,5 +2,9 @@
   "welcome": "Seja bem-vindo!",
   "text_presentation": "Entre com sua conta de e-mail cadastrada",
   "forgot_password": "Esqueci a minha senha",
-  "remember_me": "Lembre de mim"
+  "remember_me": "Lembre de mim",
+  "success": {
+    "will_redirect": "Você será redirecionado",
+    "already_conecte": "Conectado com Sucesso"
+  }
 }

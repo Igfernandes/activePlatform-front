@@ -9,7 +9,7 @@ import { RecoverPasswordForm } from "@components/ForgotPassword/Form";
 
 export default function ForgotPassword() {
   const { login } = userRoutes;
-  const { t } = useTranslation("forgot-password");
+  const { t } = useTranslation("recover-password");
 
   return (
     <ExternalContainer>
@@ -20,11 +20,11 @@ export default function ForgotPassword() {
           </div>
           <div className="mb-1">
             <h2 className="text-2xl">
-              <strong>{t("title")}</strong>
+              <strong>{t("forgot-password.title")}</strong>
             </h2>
           </div>
           <div className="mb-6">
-            <p className="text-sm">{t("text")}</p>
+            <p className="text-sm">{t("forgot-password.text")}</p>
           </div>
           <RecoverPasswordForm />
           <div className="px-8 mt-4">
@@ -33,7 +33,7 @@ export default function ForgotPassword() {
               href={login}
             >
               <SquareRoundedChevronLeft className="mr-2" />
-              <strong>{t("back_page")}</strong>
+              <strong>{t("forgot-password.back_page")}</strong>
             </Link>
           </div>
         </div>
@@ -45,7 +45,7 @@ export default function ForgotPassword() {
 export async function getStaticProps({ locale }: Record<string, string>) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common", "forgot-password"])),
+      ...(await serverSideTranslations(locale, ["common", "recover-password"])),
       // Will be passed to the page component as props
     },
   };
