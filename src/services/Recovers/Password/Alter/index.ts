@@ -1,19 +1,19 @@
 import { useAxios } from "@hooks/useAxios";
-import { PostRecoverPasswordPayload } from "./type";
+import { PostRecoverPasswordAlterPayload } from "./type";
 import { getPayloadJSON } from "@helpers/payload";
 import { recoverRoutes } from "@configs/routes/Api/recover";
 
-export function usePostRecoverPasswordRequestService() {
+export function usePostRecoverPasswordAlterService() {
   const { axios } = useAxios();
   const { recoverPassword } = recoverRoutes;
 
-  async function postRecoverPasswordRequest(
-    payload: PostRecoverPasswordPayload
+  async function postRecoverPasswordAlter(
+    payload: PostRecoverPasswordAlterPayload
   ) {
     return axios.post(recoverPassword, getPayloadJSON(payload));
   }
 
   return {
-    postRecoverPasswordRequest,
+    postRecoverPasswordAlter,
   };
 }
