@@ -37,6 +37,7 @@
     "password_confirmation": "Confirmação de senha",
     "new_password": "Nova senha",
     "created_account": "Conta criada",
-    "created_password": "Senha criada"
+    "created_password": "Senha criada",
+    "unknown_operation": "Operação desconhecida"
   }
 }

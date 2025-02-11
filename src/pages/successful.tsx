@@ -18,7 +18,7 @@ export default function Successful({ title }: Record<string, unknown>) {
           </div>
           <div className="mb-1">
             <h2 className="text-2xl">
-              <strong>{t(`words.${title}`)}</strong>
+              <strong>{t(`words.${title ?? "unknown_operation"}`)}</strong>
             </h2>
           </div>
           <div className="mb-6">
