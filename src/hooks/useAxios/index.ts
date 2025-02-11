@@ -1,7 +1,7 @@
 import { Axios } from "axios";
 import { useSnackbar } from "../useSnackbar";
 import { env } from "@configs/variables";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { CustomAxiosError, ShapeError } from "./type";
 
 export function useAxios() {
