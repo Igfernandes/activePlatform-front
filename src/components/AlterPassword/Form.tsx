@@ -5,18 +5,18 @@ import { useTranslation } from "next-i18next";
 import { PasswordValidation } from "@components/shared/forms/PasswordValidation";
 
 export function AlterPasswordForm() {
-  const { register, formMethods, hasAllFilledFields, isLoading, onSubmit } =
+  const { formMethods, hasAllFilledFields, isLoading, handleSubmit } =
     useForm();
   const { t: tCommon } = useTranslation("common");
 
   return (
     <FormProvider {...formMethods}>
-      <form onSubmit={formMethods.handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit}>
         <div className="form-group my-4">
           <PasswordValidation
             dataTestId="password"
             label={tCommon("words.password")}
-            {...register("password")}
+            name="password"
           />
         </div>
         <div className="form-submit mt-6">

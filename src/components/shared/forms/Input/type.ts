@@ -8,6 +8,6 @@ export type InputProps = DetailedHTMLProps<
   dataTestId: string;
   isLoading?: boolean;
   label: string;
-  type?: "text" | "email" | "search" | "hidden" | "tel" | "url";
   errors?: FieldError;
+  handledChange?: (ev: React.ChangeEvent<HTMLInputElement> | undefined) => void;
 };

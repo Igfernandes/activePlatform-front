@@ -1,10 +1,10 @@
 import { When } from "@components/utilities/When";
-import { useInput } from "./hooks/useInput";
 import { InputProps } from "./type";
 import { RotateClockwise } from "@assets/Icons/white/RotateClockwise";
 import React, { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import ErrorMessage from "@components/shared/others/ErrorMessage";
+import { useFieldsAnimation } from "@hooks/Forms/useFieldsAnimation";
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   function Input(
@@ -17,12 +17,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       errors,
       name,
       placeholder,
+      handledChange,
       ...rest
     }: InputProps,
     ref
   ) {
     const { labelClassState, handleTransitionLabel, changeLabelClass } =
-      useInput();
+      useFieldsAnimation();
     const IdCurrent = id ?? dataTestId;
     const { watch } = useFormContext();
 
@@ -47,6 +48,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {...rest}
             ref={ref}
             name={name}
+            onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
+              if (rest.onChange) rest.onChange(ev);
+              if (handledChange) handledChange(ev);
+            }}
             onFocus={handleTransitionLabel}
             onBlur={handleTransitionLabel}
             placeholder={placeholder}

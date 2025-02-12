@@ -6,13 +6,13 @@ import { PasswordValidation } from "@components/shared/forms/PasswordValidation"
 import { Input } from "@components/shared/forms/Input";
 
 export function CreateUserForm() {
-  const { register, formMethods, hasAllFilledFields, isLoading, onSubmit } =
+  const { register, formMethods, hasAllFilledFields, isLoading, handleSubmit } =
     useForm();
   const { t: tCommon } = useTranslation("common");
 
   return (
     <FormProvider {...formMethods}>
-      <form onSubmit={formMethods.handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <Input
             {...register("name")}
@@ -24,7 +24,6 @@ export function CreateUserForm() {
           <PasswordValidation
             dataTestId="password"
             label={tCommon("words.password")}
-            {...register("password")}
           />
         </div>
         <div className="form-submit mt-6">

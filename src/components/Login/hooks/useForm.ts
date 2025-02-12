@@ -1,27 +1,26 @@
-import { useForm as useFormReactHook } from "react-hook-form";
 import { loginFormSchema } from "../schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { PostAuthPayload } from "../../../services/Authentications/Auth/type";
 import usePostAuth from "../../../services/Authentications/Auth/usePostAuth";
 import { useRecaptcha } from "@hooks/useRecaptcha";
+import { useFormRules } from "@hooks/Forms/useFormRules";
 
 type Payload = PostAuthPayload;
 
 const RECAPTCHA_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_KEY;
 
 export function useForm() {
-  const formMethods = useFormReactHook<Payload>({
-    resolver: zodResolver(loginFormSchema),
-  });
-  const {
-    register,
-    handleSubmit,
-    watch,
-    setValue,
-    formState: { errors, isSubmitting },
-  } = formMethods;
   const { mutateAsync: postAuth } = usePostAuth();
   const { token } = useRecaptcha(RECAPTCHA_KEY ?? "", "login");
+  const { formMethods, hasAllFilledFields } = useFormRules<Payload>({
+    schema: loginFormSchema,
+    exclude: ["rememberMe"],
+  });
+  const {
+    setValue,
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = formMethods;
 
   const onSubmit = async ({ login, password, rememberMe }: PostAuthPayload) => {
     postAuth({
@@ -30,18 +29,6 @@ export function useForm() {
       rememberMe,
       "g-recaptcha-response": token,
     });
-  };
-
-  /**
-   * @function hasAllFilledFields
-   * - A função irá retornar o status em boolean sobre o preenchimento de todos os campos obrigatórios.
-   *
-   * @returns {boolean}
-   */
-  const hasAllFilledFields = (): boolean => {
-    if (watch("login") && watch("password")) return true;
-
-    return false;
   };
 
   /**

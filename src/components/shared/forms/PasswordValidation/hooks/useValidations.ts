@@ -1,9 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import {
-  CriteriaStatusShape,
-  StatusValidation,
-  ValidationProps,
-} from "../type";
+import { CriteriaStatusShape, StatusValidation } from "../type";
 import {
   hasMinLength,
   hasSomeLetterLowercase,
@@ -11,8 +7,11 @@ import {
   hasSomeNumber,
   hasSomeSpecialCharacter,
 } from "@helpers/string";
+import { useFormContext } from "react-hook-form";
 
-export function useValidations({ password }: ValidationProps) {
+export function useValidations() {
+  const { watch } = useFormContext();
+  const password = watch("password");
   const [validationsStatus, setValidationsStatus] =
     useState<StatusValidation>("void");
   const fieldsAllEmpties = useMemo(() => {
@@ -28,13 +27,15 @@ export function useValidations({ password }: ValidationProps) {
     useState<CriteriaStatusShape>(fieldsAllEmpties);
 
   const handleChangeValidationsStatus = () => {
+    const password = watch("password");
+   
     if (!password) return setValidationsStatus("void");
 
+   
     const criteriaFiltered = Object.entries(criteriaStatus).filter(
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       ([key, value]) => value !== "success"
     );
-
     setValidationsStatus(criteriaFiltered.length == 0 ? "success" : "error");
   };
 
@@ -50,7 +51,7 @@ export function useValidations({ password }: ValidationProps) {
       hasNumber: getStatus(hasSomeNumber(password)),
       hasSpecialLetter: getStatus(hasSomeSpecialCharacter(password)),
     });
-  }, [password, fieldsAllEmpties]);
+  }, [password, fieldsAllEmpties, watch]);
 
   return {
     handleChangeValidationsStatus,

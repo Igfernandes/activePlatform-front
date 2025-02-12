@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 
-export function usePassword() {
+export function useFieldsAnimation() {
   const [labelClassState, setLabelStateClass] =
     useState<string>("left-3 top-3");
 
@@ -27,11 +27,12 @@ export function usePassword() {
     const input = ev.currentTarget;
     const currentValue = input.value;
 
+    if (input.placeholder) return changeLabelClass("UP");
+
     if (currentValue || ev.type == "focus") return changeLabelClass("UP");
 
     changeLabelClass("DOWN");
   };
-
 
   return {
     labelClassState,

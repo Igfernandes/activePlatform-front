@@ -1,19 +1,17 @@
-import { useForm as useFormReactHook } from "react-hook-form";
 import { RecoverPasswordRequestFormSchema } from "../schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
 import usePostRecoverPasswordRequest from "../../../services/Recovers/Password/Request/usePostRecoverPasswordRequest";
 import { PostRecoverPasswordPayload } from "../../../services/Recovers/Password/Request/type";
+import { useFormRules } from "@hooks/Forms/useFormRules";
 
 type Payload = PostRecoverPasswordPayload;
 
 export function useForm() {
-  const formMethods = useFormReactHook<Payload>({
-    resolver: zodResolver(RecoverPasswordRequestFormSchema),
+  const { formMethods, hasAllFilledFields } = useFormRules<Payload>({
+    schema: RecoverPasswordRequestFormSchema,
   });
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors, isSubmitting },
   } = formMethods;
   const { mutateAsync: postRecoverPasswordRequest } =
@@ -23,18 +21,6 @@ export function useForm() {
     postRecoverPasswordRequest({
       email,
     });
-  };
-
-  /**
-   * @function hasAllFilledFields
-   * - A função irá retornar o status em boolean sobre o preenchimento de todos os campos obrigatórios.
-   *
-   * @returns {boolean}
-   */
-  const hasAllFilledFields = (): boolean => {
-    if (watch("email")) return true;
-
-    return false;
   };
 
   return {

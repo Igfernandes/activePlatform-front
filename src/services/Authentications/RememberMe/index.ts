@@ -8,7 +8,6 @@ export function usePostRememberMeService() {
   const { rememberMe } = authenticationRoutes;
 
   async function postRememberMe({ referenceToken }: PostRememberMePayload) {
-    console.log(referenceToken)
     return axios.post(
       rememberMe,
       getPayloadJSON({
