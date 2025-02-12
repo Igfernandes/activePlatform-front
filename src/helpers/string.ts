@@ -1,7 +1,7 @@
 import { REGEXES } from "@constants/regexes";
 
 export function hasMinLength(minLength: number, word: string): boolean {
-  return word.length > minLength;
+  return word.length >= minLength;
 }
 
 export function hasMaxLength(maxLength: number, word: string): boolean {

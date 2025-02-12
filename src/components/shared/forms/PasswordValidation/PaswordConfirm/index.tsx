@@ -1,8 +1,8 @@
-import { usePasswordConfirm } from "./hooks/usePasswordConfirm";
 import { useTranslation } from "next-i18next";
 import { useValidations } from "./hooks/useValidations";
 import { statusColors } from "@assets/colors/default";
 import { useFormContext } from "react-hook-form";
+import { Input } from "../../Input";
 
 type Props = {
   password: string;
@@ -12,7 +12,6 @@ export function PasswordConfirm({ password }: Props) {
   const { validationsStatus } = useValidations({
     password,
   });
-  const { labelClassState, handleTransitionLabel } = usePasswordConfirm();
   const { t } = useTranslation("common");
   const colorStatus =
     validationsStatus == "void" ? "#6a6a6a" : statusColors[validationsStatus];
@@ -21,21 +20,13 @@ export function PasswordConfirm({ password }: Props) {
   return (
     <div>
       <div className="mt-2 relative">
-        <label
-          htmlFor={"password_confirm"}
-          className={`absolute transition-all duration-350 ${labelClassState}`}
-        >
-          {t("words.password_confirmation")}
-        </label>
-        <input
+        <Input
+          label={t("words.password_confirmation")}
           {...register("passwordConfirm")}
-          onFocus={handleTransitionLabel}
-          onBlur={handleTransitionLabel}
-          className={`border-gray-500 outline-gray-500
-          } w-full h-12 px-3 pb-4 pt-8 bg-white border-secondary border-2 rounded-lg text-textPrimary`}
-          data-testid={"password_confirm"}
-          id={"password_confirm"}
           type={"text"}
+          dataTestId={"password_confirm"}
+          id={"password_confirm"}
+          className="border-gray-500 outline-gray-500"
           style={{
             outlineColor: colorStatus,
             borderColor: colorStatus,

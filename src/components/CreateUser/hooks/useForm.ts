@@ -1,19 +1,17 @@
-import { useForm as useFormReactHook } from "react-hook-form";
 import { createUserFormSchema } from "../schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { PostCreateUserPayload } from "../../../services/Users/Post/type";
 import usePostCreateUser from "../../../services/Users/Post/usePostCreateUser";
+import { useFormRules } from "@hooks/Forms/useFormRules";
 
 type Payload = PostCreateUserPayload;
 
 export function useForm() {
-  const formMethods = useFormReactHook<Payload>({
-    resolver: zodResolver(createUserFormSchema),
-    mode: "onSubmit",
+  const { formMethods, hasAllFilledFields } = useFormRules<Payload>({
+    schema: createUserFormSchema,
   });
   const {
     register,
-    watch,
+    handleSubmit,
     formState: { isSubmitting },
   } = formMethods;
   const { mutateAsync: postCreateUser } = usePostCreateUser();
@@ -22,21 +20,9 @@ export function useForm() {
     postCreateUser(payload);
   };
 
-  /**
-   * @function hasAllFilledFields
-   * - A função irá retornar o status em boolean sobre o preenchimento de todos os campos obrigatórios.
-   *
-   * @returns {boolean}
-   */
-  const hasAllFilledFields = (): boolean => {
-    if (watch("password") && watch("name")) return true;
-
-    return false;
-  };
-
   return {
     register,
-    onSubmit,
+    handleSubmit: handleSubmit(onSubmit),
     formMethods,
     hasAllFilledFields,
     isLoading: isSubmitting,
