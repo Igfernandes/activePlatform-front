@@ -8,7 +8,7 @@ export default function ForgotPassword() {
   const { t } = useTranslation("recover-password");
 
   return (
-    <ExternalContainer>
+    <ExternalContainer className={"my-2 sm:my-0"}>
       <div className="row">
         <div className="column text-center">
           <div className="mb-4">

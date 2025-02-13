@@ -22,7 +22,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     }: InputProps,
     ref
   ) {
-    const { labelClassState, handleTransitionLabel, changeLabelClass } =
+    const { labelStyledState, handleTransitionLabel, changeLabelClass } =
       useFieldsAnimation();
     const IdCurrent = id ?? dataTestId;
     const { watch } = useFormContext();
@@ -40,7 +40,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <div className="relative">
           <label
             htmlFor={IdCurrent}
-            className={`absolute transition-all duration-350 ${labelClassState}`}
+            className={`absolute transition-all duration-350`}
+            style={{
+              ...labelStyledState
+            }}
           >
             {label}
           </label>

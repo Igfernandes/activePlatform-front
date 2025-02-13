@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 export function Button({
   text,
-  className,
+  className = "",
   LeftIcon,
   rightIcon,
   isLoading = false,
@@ -18,7 +18,10 @@ export function Button({
     disabled || isLoadingForm
   );
   const { isBtnSubmit } = useButton();
-  const styledBtn = `${className} flex items-center justify-center text-white bg-red active:scale-[95%] duration-75 w-[82.98%]  px-3 min-h-[48px] rounded-md mx-auto disabled:bg-disable disabled:text-disabled cursor-pointer`;
+  const classNameBtn = `${className} flex items-center 
+  justify-center text-white bg-red active:scale-[95%] 
+  duration-75 w-full sm:w-[82.98%] px-3 min-h-[48px] rounded-md mx-auto 
+  disabled:bg-disable disabled:text-disabled cursor-pointer`;
 
   useEffect(() => {
     setIsDisabled(disabled || isLoadingForm);
@@ -47,12 +50,12 @@ export function Button({
         <input
           type="submit"
           value={isLoadingForm ? "Carregando" : text}
-          className={styledBtn}
+          className={classNameBtn}
           disabled={disabled || isLoadingForm}
         />
       </When>
       <When value={!isBtnSubmit(props.type)}>
-        <button {...props} disabled={isDisabled} className={styledBtn}>
+        <button {...props} disabled={isDisabled} className={classNameBtn}>
           <When value={isLoading}>
             <RotateClockwise className="mr-2 animate-spin" />
           </When>

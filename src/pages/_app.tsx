@@ -1,7 +1,6 @@
 import { AppProps } from "next/app";
 import "../styles/globals.css";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { Footer } from "@components/Footer";
 import { poppins } from "@assets/fonts/poppins";
 import SnackbarProvider from "@contexts/Snackbar";
 import { appWithTranslation } from "next-i18next";
@@ -24,7 +23,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <SnackbarProvider>
         <div className={poppins.className}>
           <Component {...pageProps} />
-          <Footer />
         </div>
       </SnackbarProvider>
     </QueryClientProvider>

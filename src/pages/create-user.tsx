@@ -8,7 +8,7 @@ export default function CreateUser() {
   const { t: tUser } = useTranslation("user");
 
   return (
-    <ExternalContainer>
+    <ExternalContainer className={"my-2 sm:my-0"}>
       <div className="row">
         <div className="column text-center">
           <div className="mb-1">

@@ -42,7 +42,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             />
             <SymbolChecked className="absolute left-1 top-[25%]" />
           </div>
-          <label htmlFor={IdCurrent} className="text-sm ml-2">
+          <label htmlFor={IdCurrent} className="text-sm ml-2 cursor-pointer">
             {label}
           </label>
         </div>

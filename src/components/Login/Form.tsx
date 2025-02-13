@@ -41,7 +41,7 @@ export function LoginForm() {
             {...register("password")}
           />
         </div>
-        <div className="flex justify-between items-center">
+        <div className="sm:flex justify-between items-center">
           <div>
             <Checkbox
               errors={errors.rememberMe}
@@ -51,7 +51,7 @@ export function LoginForm() {
               onChecked={updateValueRememberMe}
             />
           </div>
-          <div>
+          <div className="mt-4 sm:mt-0">
             <Link
               href={forgotPassword}
               className="text-sm text-red relative top-[-3.5]"

@@ -15,7 +15,7 @@ export default function ForgotPassword() {
     <ExternalContainer>
       <div className="row">
         <div className="column text-center">
-          <div className="mb-5 mt-2">
+          <div className="mb-5 sm:mt-2">
             <EmailForward className="mx-auto" />
           </div>
           <div className="mb-1">
@@ -27,9 +27,9 @@ export default function ForgotPassword() {
             <p className="text-sm">{t("forgot-password.text")}</p>
           </div>
           <RecoverPasswordForm />
-          <div className="px-8 mt-4">
+          <div className="sm:px-8 mt-4">
             <Link
-              className="border-2 px-3 h-[48px] rounded-xl flex items-center justify-center"
+              className="border-2 px-3 h-[48px] text-sm sm:text-md rounded-xl flex items-center justify-center"
               href={login}
             >
               <SquareRoundedChevronLeft className="mr-2" />

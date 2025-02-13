@@ -5,7 +5,7 @@ export function FooterSimple() {
         <p>
           <strong>
             {" "}
-            Powered by <span>CoderT2</span> <br />{" "}
+            Powered by <span className="text-xl sm:text-md">CoderT2</span> <br />{" "}
             <span className="text-xs font-normal">Developed by Company Market</span>
           </strong>
         </p>

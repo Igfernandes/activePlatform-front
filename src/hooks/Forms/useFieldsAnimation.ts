@@ -1,8 +1,22 @@
-import { FormEvent, useState } from "react";
+import { CSSProperties, FormEvent, useRef, useState } from "react";
+
+type StatusLabelStyled = "UP" | "DOWN";
 
 export function useFieldsAnimation() {
-  const [labelClassState, setLabelStateClass] =
-    useState<string>("left-3 top-3");
+  const labelStyled = useRef({
+    UP: {
+      left: "1rem",
+      top: ".5rem",
+      fontSize: ".75rem",
+    },
+    DOWN: {
+      left: ".75rem",
+      top: ".75rem",
+    },
+  });
+  const [labelStyledState, setLabelStateClass] = useState<CSSProperties>(
+    labelStyled.current.DOWN
+  );
 
   /**
    * @function changeLabelClass
@@ -10,8 +24,8 @@ export function useFieldsAnimation() {
    *
    * @param {"UP"|"DOWN"} state O estado que defini a posição do label.
    */
-  const changeLabelClass = (state: "UP" | "DOWN") => {
-    setLabelStateClass(state == "UP" ? "left-3 top-2 text-xs" : "left-3 top-3");
+  const changeLabelClass = (state: StatusLabelStyled) => {
+    setLabelStateClass(labelStyled.current[state]);
   };
 
   /**
@@ -35,7 +49,7 @@ export function useFieldsAnimation() {
   };
 
   return {
-    labelClassState,
+    labelStyledState,
     handleTransitionLabel,
     changeLabelClass,
   };
