@@ -6,7 +6,7 @@ import { useFormRules } from "@hooks/Forms/useFormRules";
 
 type Payload = PostAuthPayload;
 
-const RECAPTCHA_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_KEY;
+const RECAPTCHA_KEY = process.env.NEXT_RECAPTCHA_KEY;
 
 export function useForm() {
   const { mutateAsync: postAuth } = usePostAuth();
