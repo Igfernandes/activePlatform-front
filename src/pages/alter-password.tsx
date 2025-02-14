@@ -1,6 +1,6 @@
 import { ExternalContainer } from "@components/shared/layouts/ExternalContainer";
 import { LockCog } from "@assets/Icons/colorful/LockCog";
-import { AlterPasswordForm } from "@components/AlterPassword/Form";
+import { AlterPasswordForm } from "@components/Public/AlterPassword/Form";
 import i18n from "@configs/i18n";
 
 export default function ForgotPassword() {

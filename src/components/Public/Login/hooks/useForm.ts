@@ -1,6 +1,6 @@
 import { loginFormSchema } from "../schemas";
-import { PostAuthPayload } from "../../../services/Authentications/Auth/type";
-import usePostAuth from "../../../services/Authentications/Auth/usePostAuth";
+import { PostAuthPayload } from "../../../../services/Authentications/Auth/type";
+import usePostAuth from "../../../../services/Authentications/Auth/usePostAuth";
 import { useRecaptcha } from "@hooks/useRecaptcha";
 import { useFormRules } from "@hooks/Forms/useFormRules";
 

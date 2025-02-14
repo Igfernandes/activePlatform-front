@@ -1,4 +1,4 @@
-import { Footer } from "@components/Footer";
+import { Footer } from "@components/Public/Footer";
 
 type Props = {
   children: React.ReactNode;

@@ -1,5 +1,5 @@
 import { UserShare } from "@assets/Icons/colorful/UserShare";
-import { LoginForm } from "@components/Login/Form";
+import { LoginForm } from "@components/Public/Login/Form";
 import { useRememberMe } from "@hooks/useRememberMe";
 import { useEffect } from "react";
 import usePostRememberMe from "../services/Authentications/RememberMe/usePostRememberMe";

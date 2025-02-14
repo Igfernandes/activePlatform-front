@@ -1,6 +1,6 @@
 import { RecoverPasswordRequestFormSchema } from "../schemas";
-import usePostRecoverPasswordRequest from "../../../services/Recovers/Password/Request/usePostRecoverPasswordRequest";
-import { PostRecoverPasswordPayload } from "../../../services/Recovers/Password/Request/type";
+import usePostRecoverPasswordRequest from "../../../../services/Recovers/Password/Request/usePostRecoverPasswordRequest";
+import { PostRecoverPasswordPayload } from "../../../../services/Recovers/Password/Request/type";
 import { useFormRules } from "@hooks/Forms/useFormRules";
 
 type Payload = PostRecoverPasswordPayload;

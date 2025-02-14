@@ -1,4 +1,4 @@
-import { CreateUserForm } from "@components/CreateUser/Form";
+import { CreateUserForm } from "@components/Public/CreateUser/Form";
 import { ExternalContainer } from "@components/shared/layouts/ExternalContainer";
 import i18n from "@configs/i18n";
 
