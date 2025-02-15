@@ -22,6 +22,10 @@ export function Item({
 
   return (
     <li
+      onMouseEnter={() => setItemStyle(textColors.red)}
+      onMouseLeave={() =>
+        setItemStyle(isActive ? textColors.red : textDefaultColors.primary)
+      }
       className={`hover:text-red text-xs ${
         index != menu.length - 1 ? "border-b-2 border-b-zinc-200" : ""
       } py-3  ${sidebarState ? "px-1" : ""}`}
@@ -36,11 +40,7 @@ export function Item({
           justifyContent: sidebarState ? "" : "end",
         }}
       >
-        <Icon
-          onMouseEnter={() => setItemStyle(textColors.red)}
-          onMouseLeave={() => setItemStyle(textDefaultColors.primary)}
-          fill={itemStyle}
-        />
+        <Icon fill={itemStyle} />
         <When value={sidebarState}>
           <strong className="ml-2">{title}</strong>
         </When>
