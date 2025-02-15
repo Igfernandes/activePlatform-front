@@ -2,13 +2,13 @@
 import { ExternalContainer } from "@components/shared/layouts/ExternalContainer";
 import { EmailForward } from "@assets/Icons/colorful/EmailForward";
 import Link from "next/link";
-import { userRoutes } from "@configs/routes/Web/navigation";
+import { publicRoutes } from "@configs/routes/Web/navigation";
 import { SquareRoundedChevronLeft } from "@assets/Icons/black/SquareRoundedChevronLeft";
 import { RecoverPasswordForm } from "@components/Public/ForgotPassword/Form";
 import i18n from "@configs/i18n";
 
 export default function ForgotPassword() {
-  const { login } = userRoutes;
+  const { login } = publicRoutes;
 
   return (
     <ExternalContainer>

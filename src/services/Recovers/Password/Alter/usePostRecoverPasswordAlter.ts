@@ -4,7 +4,7 @@ import { useAxios } from "@hooks/useAxios";
 import { PostRecoverPasswordAlterPayload } from "./type";
 import { usePostRecoverPasswordAlterService } from ".";
 import { useRouter } from "next/router";
-import { userRoutes } from "@configs/routes/Web/navigation";
+import { publicRoutes } from "@configs/routes/Web/navigation";
 import i18n from "@configs/i18n";
 
 export default function usePostRecoverPasswordAlter() {
@@ -12,7 +12,7 @@ export default function usePostRecoverPasswordAlter() {
   const { dispatchSnackbar } = useSnackbar();
   const { postRecoverPasswordAlter } = usePostRecoverPasswordAlterService();
   const router = useRouter();
-  const { successful } = userRoutes;
+  const { successful } = publicRoutes;
 
   const handleMutate = async (payload: PostRecoverPasswordAlterPayload) => {
     const { data } = await postRecoverPasswordAlter(payload);

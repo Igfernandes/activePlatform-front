@@ -1,11 +1,11 @@
 import { Checks } from "@assets/Icons/colorful/Checks";
 import { ExternalContainer } from "@components/shared/layouts/ExternalContainer";
 import i18n from "@configs/i18n";
-import { userRoutes } from "@configs/routes/Web/navigation";
+import { publicRoutes } from "@configs/routes/Web/navigation";
 import Link from "next/link";
 
 export default function Successful({ title }: Record<string, unknown>) {
-  const { login } = userRoutes;
+  const { login } = publicRoutes;
 
   return (
     <ExternalContainer>

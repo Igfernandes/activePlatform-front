@@ -2,7 +2,7 @@ import { useMutation } from "react-query";
 import { useSnackbar } from "@hooks/useSnackbar";
 import { useAxios } from "@hooks/useAxios";
 import { useRouter } from "next/router";
-import { userRoutes } from "@configs/routes/Web/navigation";
+import { publicRoutes } from "@configs/routes/Web/navigation";
 import { usePostCreateUserService } from ".";
 import { PostCreateUserPayload } from "./type";
 import i18n from "@configs/i18n";
@@ -12,7 +12,7 @@ export default function usePostCreateUser() {
   const { dispatchSnackbar } = useSnackbar();
   const { postCreateUser } = usePostCreateUserService();
   const router = useRouter();
-  const { successful } = userRoutes;
+  const { successful } = publicRoutes;
 
   const handleMutate = async (payload: PostCreateUserPayload) => {
     const { data } = await postCreateUser(payload);
