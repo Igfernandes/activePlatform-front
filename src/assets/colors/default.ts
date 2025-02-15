@@ -1,5 +1,5 @@
 export const textDefaultColors = {
-  Primary: "#101010",
+  primary: "#101010",
   secondary: "#646464",
   disabled: "#a3a3a3",
   active: "#ffffff",
