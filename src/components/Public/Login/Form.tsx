@@ -1,7 +1,7 @@
 import { Button } from "@components/shared/forms/Button";
 import { Checkbox } from "@components/shared/forms/Checkbox";
 import { Password } from "@components/shared/forms/Password";
-import { userRoutes } from "@configs/routes/Web/navigation";
+import { publicRoutes } from "@configs/routes/Web/navigation";
 import Link from "next/link";
 import { useForm } from "./hooks/useForm";
 import { Input } from "@components/shared/forms/Input";
@@ -18,7 +18,7 @@ export function LoginForm() {
     errors,
     updateValueRememberMe,
   } = useForm();
-  const { forgotPassword } = userRoutes;
+  const { forgotPassword } = publicRoutes;
 
   return (
     <FormProvider {...formMethods}>
