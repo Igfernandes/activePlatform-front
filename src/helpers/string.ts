@@ -23,3 +23,4 @@ export function hasSomeNumber(word: string): boolean {
 export function hasSomeSpecialCharacter(word: string): boolean {
   return REGEXES.HAS_SPECIAL_CHARACTER.test(word);
 }
+
