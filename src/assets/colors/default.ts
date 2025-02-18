@@ -30,6 +30,7 @@ export const bgDefaultColor = {
 export const borderColors = {
   primary: "#c1c1c1",
   secondary: "#dcdcdc",
+  tertiary: "#ebebeb",
   "cross-white-primary": "#a3a3a3",
   "cross-white-secondary": "#464646",
   "cross-black-primary": "#464646",
