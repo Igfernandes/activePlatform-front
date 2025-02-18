@@ -1,5 +1,5 @@
 import { MenuShape } from "@constants/menu/type";
-import { DetailedHTMLProps, HTMLAttributes, useEffect } from "react";
+import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { Item } from "./Item";
 
 type Props = DetailedHTMLProps<
@@ -12,8 +12,6 @@ type Props = DetailedHTMLProps<
 };
 
 export function Navbar({ menu = [], title, sidebarState, ...rest }: Props) {
-  useEffect(() => {});
-
   return (
     <div {...rest}>
       <div className="text-[10px]">
