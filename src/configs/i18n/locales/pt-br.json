@@ -62,7 +62,27 @@
     "finance": "Financeiro",
     "system": "Sistema",
     "settings": "Configurações",
-    "administrative": "Administrativo"
+    "administrative": "Administrativo",
+    "list_from_a_to_z": "Listar de A a Z",
+    "create_user_groups": "Criar grupos de usuários",
+    "invite_users": "Convidar usuários",
+    "users_groups": "Grupos de Usuários",
+    "research": "Pesquisar",
+    "status": "Status",
+    "total": "Total",
+    "created_date": "Data de Criação",
+    "actions": "Ações",
+    "active": "Ativo",
+    "inactive": "Inativo",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "group": "Grupo",
+    "users": "Usuários"
+  },
+  "configs": {
+    "formats": {
+      "date": "DD/MM/YYYY"
+    }
   },
   "login": {
     "welcome": "Seja bem-vindo!",

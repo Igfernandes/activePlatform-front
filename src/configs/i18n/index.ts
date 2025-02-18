@@ -2,6 +2,7 @@ import { I18n } from "i18n-js";
 import ptBR from "./locales/pt-br.json";
 import en from "./locales/en.json";
 import { LANGUAGE_I18N } from "@configs/envs";
+import dayjs from "dayjs";
 
 const languages = {
   "pt-br": ptBR,
@@ -14,11 +15,13 @@ const configureI18n = (lang?: string) => {
   const defaultLocale = lang ?? (LANGUAGE_I18N as string);
 
   setLanguageToI18n(defaultLocale);
+  dayjs.locale(defaultLocale);
 };
 
 export const setLanguageToI18n = (code: string) => {
   i18nConfig.defaultLocale = code;
   i18nConfig.locale = code;
+  dayjs.locale(code);
 };
 
 configureI18n();
