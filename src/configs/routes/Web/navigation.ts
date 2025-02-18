@@ -6,12 +6,13 @@ export const publicRoutes = {
 
 export const privateRoutes = {
   dashboard: "/dashboard",
-  myUsers: "/dashboard/users?reference_user=0",
+  myUsers: "/dashboard/my-users?",
   sendingManagement: "/dashboard/sending-management",
   schedule: "/dashboard/schedule",
   services: "/dashboard/services",
   finance: "/dashboard/finance",
   usersManager: "/dashboard/users",
+  userGroups: "/dashboard/users/group",
   apisManager: "/dashboard/apis",
   settings: "/dashboard/settings",
   logout: "/dashboard/logout",
