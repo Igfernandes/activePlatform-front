@@ -1,0 +1,1 @@
+export type PossiblesTypesToComponents = string | number | React.ReactNode;
