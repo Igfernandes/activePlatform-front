@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { ButtonConfig } from "../ButtonConfig";
 import i18n from "@configs/i18n";
-import { privateRoutes } from "@configs/routes/Web/navigation";
 import { alterKeysObject } from "@helpers/object";
 import { UsersShape } from "../../../../services/Users/Get/type";
+import { StatusText } from "@components/shared/others/StatusText";
 
 type Props = {
   users: Array<UsersShape>;
@@ -19,17 +19,31 @@ export function useUsers({ users: currentUsers, handleFilter, filter }: Props) {
     setUsers(
       currentUsers
         .map((user) => {
-          const newUser = alterKeysObject(user, [
-            "ID",
-            i18n("words.name"),
-            i18n("words.email"),
-            i18n("words.phone"),
-            i18n("words.status"),
-            i18n("words.group"),
-          ]);
+          const newUser = {
+            ...alterKeysObject(user, [
+              "ID",
+              i18n("words.name"),
+              i18n("words.email"),
+              i18n("words.phone"),
+              i18n("words.status"),
+              i18n("words.group"),
+            ]),
+            Status: <StatusText status={user.status} />,
+          } as Record<string, unknown>;
 
           newUser[i18n("words.actions") as string] = (
-            <ButtonConfig link={`${privateRoutes.usersManager}/${user.id}`} />
+            <ButtonConfig
+              actions={[
+                {
+                  text: i18n("words.edit"),
+                  handle: () => "",
+                },
+                {
+                  text: i18n("words.exclude"),
+                  handle: () => "",
+                },
+              ]}
+            />
           );
           return newUser;
         })

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { ButtonConfig } from "../ButtonConfig";
 import i18n from "@configs/i18n";
-import { privateRoutes } from "@configs/routes/Web/navigation";
 import { UsersGroupShape } from "../../../../services/UsersGroup/Get/type";
 import { alterKeysObject } from "@helpers/object";
 import dayjs from "dayjs";
+import { StatusText } from "@components/shared/others/StatusText";
 
 type Props = {
   usersGroup: Array<UsersGroupShape>;
@@ -25,7 +25,7 @@ export function useUsersGroup({
       currentUsersGroup
         .map((userGroup) => {
           const convertDate = dayjs(userGroup.created_at).format(
-            i18n("configs.formats.date")
+            i18n("configs.formats.datetime")
           );
           if (convertDate != "Invalid Date") userGroup.created_at = convertDate;
 
@@ -37,12 +37,25 @@ export function useUsersGroup({
               i18n("words.total"),
               i18n("words.created_date"),
             ]),
-            Status: i18n(`words.${userGroup.status.toLowerCase()}`),
+            Status: <StatusText status={userGroup.status} />,
           } as Record<string, unknown>;
 
           newUserGroup[i18n("words.actions") as string] = (
             <ButtonConfig
-              link={`${privateRoutes.userGroups}/${userGroup.id}`}
+              actions={[
+                {
+                  text: i18n("words.edit"),
+                  handle: () => "",
+                },
+                {
+                  text: i18n("words.group_desative"),
+                  handle: () => "",
+                },
+                {
+                  text: i18n("words.exclude"),
+                  handle: () => "",
+                },
+              ]}
             />
           );
 

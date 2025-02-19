@@ -1,14 +1,43 @@
 import { Gear } from "@assets/Icons/black/Gear";
-import Link from "next/link";
+import { When } from "@components/utilities/When";
+import { useState } from "react";
 
 type Props = {
-  link: string;
+  actions: Array<Actions>;
 };
 
-export function ButtonConfig({ link }: Props) {
+type Actions = {
+  text: string;
+  handle: () => void;
+};
+
+export function ButtonConfig({ actions = [] }: Props) {
+  const [showOptions, setShowOptions] = useState<boolean>(false);
+
   return (
-    <Link href={link}>
-      <Gear />
-    </Link>
+    <div className="relative" onMouseLeave={() => setShowOptions(false)}>
+      <div>
+        <Gear
+          onMouseEnter={() => setShowOptions(true)}
+          className="cursor-pointer"
+        />
+      </div>
+      <When value={showOptions}>
+        <div className="absolute right-4 bg-white shadow-xl z-50 w-40 p-2 rounded-xl">
+          <ul>
+            {actions.map((action, index) => (
+              <li
+                className="my-2 cursor-pointer"
+                key={`btn_config_item_${index}`}
+                onClick={action.handle}
+              >
+                <span>{action.text}</span>
+              </li>
+            ))}
+            <li></li>
+          </ul>
+        </div>
+      </When>
+    </div>
   );
 }

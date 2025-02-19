@@ -11,7 +11,7 @@ type Props = {
 
 export function Pagination({ onPagination, pagination }: Props) {
   const arrowStyled =
-    "bg-primary border-secondary border-2 px-2 text-center pt-1 hover:bg-hover-secondary";
+    "bg-primary border-secondary border-2 px-2 text-center py-1 hover:bg-hover-secondary";
   const [displayedGroupPage, setDisplayedGroupPage] = useState<number>(1);
   const [displayedPages, setDisplayedPages] = useState<Array<number>>([]);
   const amountGroups = (pagination.amount ?? 0) / pagination.max;
