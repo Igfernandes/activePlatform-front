@@ -17,6 +17,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       errors,
       name,
       placeholder,
+      required,
       handledChange,
       ...rest
     }: InputProps,
@@ -42,10 +43,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             htmlFor={IdCurrent}
             className={`absolute transition-all duration-350`}
             style={{
-              ...labelStyledState
+              ...labelStyledState,
             }}
           >
             {label}
+            <When value={required}>
+              <span className="text-red">*</span>
+            </When>
           </label>
           <input
             {...rest}

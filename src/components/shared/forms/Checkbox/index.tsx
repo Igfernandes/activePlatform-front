@@ -38,7 +38,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               id={IdCurrent}
               className={`${
                 isChecked ? "bg-red" : "bg-textDisabled"
-              } w-[.95rem] h-[.9rem] appearance-none rounded-[.2rem] cursor-pointer`}
+              } w-[90%] h-[90%] m-[1px] appearance-none rounded-[.2rem] cursor-pointer`}
             />
             <SymbolChecked className="absolute left-1 top-[25%]" />
           </div>
