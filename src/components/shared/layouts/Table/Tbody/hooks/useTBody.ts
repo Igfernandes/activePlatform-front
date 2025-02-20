@@ -41,7 +41,6 @@ export function useTBody({ sort, excludes, pagination }: Props) {
     const showMaxElement = pagination.max ?? 5;
     const lastElementPage = pagination.current * showMaxElement;
     const firstElementPage = lastElementPage - showMaxElement;
-    console.log(lastElementPage,showMaxElement)
 
     return data.slice(firstElementPage, lastElementPage);
   };

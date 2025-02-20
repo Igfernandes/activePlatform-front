@@ -39,7 +39,7 @@ export function Item({
         href={link}
         className="flex items-center hover:text-red duration-300"
         style={{
-          justifyContent: sidebarState ? "" : "end",
+          justifyContent: sidebarState ? "initial" : "end",
         }}
       >
         <Icon fill={itemStyle} />
