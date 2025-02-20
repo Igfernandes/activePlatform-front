@@ -1,6 +1,6 @@
 import { UsersGroupShape } from "../../../services/UsersGroup/Get/type";
 
-export const MOCK_USERS_GROUPS = [
+export const MOCK_USERS_GROUP = [
   {
     id: 1,
     name: "Admin master",
