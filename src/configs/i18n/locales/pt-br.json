@@ -1,0 +1,134 @@
+{
+  "errors": {
+    "service": {
+      "credentials_invalid": {
+        "title": "Não foi possível acessar a sua conta",
+        "message": "Verifique se sua senha ou seu e-mail estão corretos."
+      },
+      "default": {
+        "title": "Ocorreu um problema",
+        "message": "Estamos analisando o problema. Tente novamente mais tarde."
+      }
+    },
+    "fields": {
+      "invalid_email": "Digite um e-mail válido",
+      "required": "O campo é obrigatório",
+      "has_min_eight_letters": "Pelo menos de 8 caracteres.",
+      "has_min_one_uppercase": "Pelo menos 1 letra maiúscula.",
+      "has_min_one_lowercase": "Pelo menos 1 letra minúscula.",
+      "has_min_one_number": "Pelo menos 1 número.",
+      "has_min_one_special_character": "Pelo menos 1 caracteres especial.",
+      "password_need_equal": "A senha informada deve ser idêntica.",
+      "min_length": "O ${field} deve conter pelo menos ${length} caracteres"
+    }
+  },
+  "success": {
+    "already_conecte_redirect": "Você está conectado e será redirecionado",
+    "login": {
+      "will_redirect": "Você será redirecionado",
+      "already_conecte": "Conectado com Sucesso"
+    },
+    "forgot_password": {
+      "title": "Pedido enviado",
+      "text": "Se o e-mail informado estiver cadastrado na plataforma, você receberá um link para recuperar a senha."
+    }
+  },
+  "words": {
+    "need_go_back_login": "Agora, vá para o login para acessar a plataforma.",
+    "go_back_login": "Ir para o login",
+    "will_redirect": "Você será redirecionado",
+    "success": "Sucesso",
+    "send": "Enviar",
+    "enter_email": "Digite o seu e-mail",
+    "created_new_password": "Criar nova senha",
+    "await": "Aguarde",
+    "password": "Senha",
+    "password_confirmation": "Confirmação de senha",
+    "new_password": "Nova senha",
+    "created_account": "Conta criada",
+    "created_password": "Senha criada",
+    "unknown_operation": "Operação desconhecida",
+    "name": "Nome",
+    "first_access": "Primeiro acesso",
+    "forgot_password": "Esqueci a minha senha",
+    "remember_me": "Lembre de mim",
+    "main": "Principal",
+    "my_users": "Meus usuários",
+    "sending_management": "Gestão de envios",
+    "users_manager": "Gerenciador de usuários",
+    "apis_manager": "Gerenciador de APIs",
+    "go_out": "Sair",
+    "schedule": "Agenda",
+    "services": "Serviços",
+    "finance": "Financeiro",
+    "system": "Sistema",
+    "settings": "Configurações",
+    "administrative": "Administrativo",
+    "list_from_a_to_z": "Listar de A a Z",
+    "create_user_groups": "Criar grupos de usuários",
+    "invite_users": "Convidar usuários",
+    "users_groups": "Grupos de Usuários",
+    "research": "Pesquisar",
+    "status": "Status",
+    "total": "Total",
+    "created_date": "Data de Criação",
+    "actions": "Ações",
+    "active": "Ativo",
+    "inactive": "Inativo",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "group": "Grupo",
+    "users": "Usuários",
+    "edit": "Editar",
+    "group_desative": "Desativar grupo",
+    "exclude": "Excluir",
+    "users_group": "Grupo de Usuários",
+    "user_group": "Grupo de Usuário",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "continue": "Continuar",
+    "attention": "Atenção",
+    "new_user": "Novo usuário",
+    "update_user": "Atualizar usuário"
+  },
+  "configs": {
+    "formats": {
+      "date": "DD/MM/YYYY",
+      "datetime": "DD/MM/YYYY HH:mm:ss"
+    }
+  },
+  "login": {
+    "welcome": "Seja bem-vindo!",
+    "text_presentation": "Entre com sua conta de e-mail cadastrada"
+  },
+  "forgot_password": {
+    "title": "Informe o seu e-mail cadastrado",
+    "text": "Se você tiver cadastro na plataforma, enviaremos um link para o e-mail cadastrado para que você possa recuperar a conta.",
+    "back_page": "Voltar pra página anterior"
+  },
+  "alter_password": {
+    "title": "Nova senha",
+    "text": "Crie uma nova senha para acessar a plataforma.",
+    "submit": "Criar nova senha"
+  },
+  "create_user": {
+    "text": "Para acessar a plataforma, informe como gostaria de ser chamado e crie uma senha."
+  },
+  "my_users": {
+    "modal": {
+      "group": {
+        "text_insert_name": "Insira um nome para o grupo de usuários:",
+        "text_select_permissions": "Selecione as permissões que estarão ativas para este grupo:",
+        "title_already_desative": "Você deseja desativar este grupo de usuários?",
+        "text_awaiting_after_delete_desative": "Ao continuar, todos os usuários deste grupo perderão o acesso, pois suas permissões serão bloqueadas.",
+        "title_already_exclude": "Você deseja excluir este grupo de usuários?"
+      },
+      "user": {
+        "text_select_group": "Selecione os grupos ao qual o usuário pertencerá:",
+        "text_fill_information": "Preencha as informações abaixo para convidar um novo usuário:",
+        "text_awaiting_after_delete_desative": "Ao continuar, todos os usuários perderão o acesso, pois suas permissões serão bloqueadas.",
+        "title_already_exclude": "Você deseja excluir este usuário?"
+      }
+    }
+  }
+}

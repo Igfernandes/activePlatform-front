@@ -1,0 +1,38 @@
+import { SVGProps } from "react";
+
+export function Bars({
+  width = 24,
+  height = 24,
+  fill = "#101010",
+  ...props
+}: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      width={width}
+      height={height}
+      viewBox={`0 0 ${width} ${height}`}
+      fill={fill}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M11 6C11 5.44772 11.2487 5 11.5556 5H20.4444C20.7513 5 21 5.44772 21 6C21 6.55228 20.7513 7 20.4444 7H11.5556C11.2487 7 11 6.55228 11 6Z"
+        fill={fill}
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M3 12C3 11.4477 3.44772 11 4 11H20C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H4C3.44772 13 3 12.5523 3 12Z"
+        fill={fill}
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M7 18C7 17.4477 7.34822 17 7.77778 17H20.2222C20.6518 17 21 17.4477 21 18C21 18.5523 20.6518 19 20.2222 19H7.77778C7.34822 19 7 18.5523 7 18Z"
+        fill={fill}
+      />
+    </svg>
+  );
+}
