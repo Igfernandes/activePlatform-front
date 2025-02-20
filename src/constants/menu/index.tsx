@@ -7,10 +7,10 @@ import { Wallet } from "@assets/Icons/black/Wallet";
 import { UsersManager } from "@assets/Icons/black/UsersManager";
 import { Gear } from "@assets/Icons/black/Gear";
 import { Spreadsheet } from "@assets/Icons/black/Spreadsheet";
-import { Schedule } from "@assets/Icons/black/Schedule";
 import { GoOut } from "@assets/Icons/black/GoOut";
 import { Peoples } from "@assets/Icons/black/Peoples";
 import { Config } from "@assets/Icons/black/Config";
+import { Schedule } from "@assets/Icons/black/Schedule";
 
 export const MAIN_MENU = [
   {
@@ -25,7 +25,7 @@ export const MAIN_MENU = [
   },
   {
     title: i18n("words.sending_management"),
-    Icon: Spreadsheet ,
+    Icon: Spreadsheet,
     link: privateRoutes.sendingManagement,
   },
   {
