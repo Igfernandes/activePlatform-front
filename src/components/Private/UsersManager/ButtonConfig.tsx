@@ -23,7 +23,7 @@ export function ButtonConfig({ actions = [] }: Props) {
         />
       </div>
       <When value={showOptions}>
-        <div className="absolute right-4 bg-white shadow-xl z-50 w-40 p-2 rounded-xl">
+        <div className="absolute right-4 bg-white shadow-xl z-[1] w-40 p-2 rounded-xl">
           <ul>
             {actions.map((action, index) => (
               <li
