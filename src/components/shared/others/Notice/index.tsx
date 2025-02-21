@@ -6,7 +6,7 @@ import { NoticeProps } from "./type";
 export function Notice({ isShowModal, onModal, onSubmit, headerTitle, title}: NoticeProps) {
   return (
     <Modal title={headerTitle} isShowModal={isShowModal} handleModal={onModal}>
-      <div className="w-[424]">
+      <div className="w-[424px]">
         <div className="form-title mb-2 text-center">
           <h4 className="text-lg">
             <strong>

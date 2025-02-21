@@ -10,7 +10,7 @@ export function Sidebar() {
 
   return (
     <aside
-      className="w-[320] bg-white transition-all duration-500"
+      className="w-[320px] bg-white transition-all duration-500"
       style={{
         marginLeft: !showSidebar ? "-15rem" : "",
       }}

@@ -18,7 +18,7 @@ export function ModalFormUsers({
   return (
     <Modal title={title} isShowModal={isShowModal} handleModal={onModal}>
       <FormProvider {...formMethods}>
-        <form className="w-[424]">
+        <form className="w-[424px]">
           <div className="form-title mb-4">
             <h4 className="text-lg">
               <strong>{i18n("my_users.modal.user.text_select_group")}</strong>

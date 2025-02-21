@@ -18,7 +18,7 @@ export function ModalFormUsersGroup({
   return (
     <Modal title={i18n("words.user_group")} isShowModal={isShowModal} handleModal={onModal}>
       <FormProvider {...formMethods}>
-        <form className="w-[424]">
+        <form className="w-[424px]">
           <div className="form-title mb-4">
             <h4 className="text-lg">
               <strong>{i18n("my_users.modal.group.text_insert_name")}</strong>

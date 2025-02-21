@@ -1,4 +1,3 @@
-import i18n from "@configs/i18n";
 import { PaginationShape, SortShape } from "../../type";
 
 type Props = {
@@ -9,10 +8,9 @@ type Props = {
 
 export function useTBody({ sort, excludes, pagination }: Props) {
   const handleSortTData = (data: Array<Record<string, unknown>>) => {
-    const sortIndex = i18n(`words.${sort.reference}`) as string;
     data.sort((a, b) => {
-      const valueA = String(a[sortIndex]);
-      const valueB = String(b[sortIndex]);
+      const valueA = String(a[sort.reference]);
+      const valueB = String(b[sort.reference]);
 
       return sort.type === "ASC"
         ? valueA.localeCompare(valueB)

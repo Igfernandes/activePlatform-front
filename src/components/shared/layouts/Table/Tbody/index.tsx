@@ -30,7 +30,7 @@ export function TBody({
 
     // Atualiza o estado com as linhas filtradas
     setTRows(tRowsFilteredByPage);
-  }, [sort.type, pagination, data]);
+  }, [sort.type, pagination.current, data]);
 
   return (
     <tbody>
