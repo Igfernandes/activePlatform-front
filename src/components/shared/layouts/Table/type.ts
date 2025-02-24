@@ -1,3 +1,7 @@
+import { TableActions } from "./utilities/Options/type";
+import { PaginationOptionShape } from "./utilities/Pagination/type";
+import { SortShape } from "./utilities/Sort/type";
+
 export type TableProps<TableData> = {
   title: string;
   data: TableData;
@@ -8,23 +12,20 @@ export type TableProps<TableData> = {
   options: {
     sort?: SortShape;
     pagination?: PaginationOptionShape;
+    actions?: Array<TableActions>;
+    buttons?: React.ReactNode;
+    filters?: {
+      tag: {
+        key: string;
+      };
+    };
   };
-};
-
-export type PaginationOptionShape = {
-  max?: number;
 };
 
 export type HookTableDataProps<TableData> = {
   data: TableData;
   excludes: Array<string>;
   tHeads: THeadRequiredProps;
-  sort: SortShape;
-};
-
-export type SortShape = {
-  type: Sort;
-  reference: string;
 };
 
 export type THeadProps = {
@@ -37,16 +38,8 @@ export type THeadRequiredProps = {
   widths: Array<number>;
 };
 
-export type Sort = "ASC" | "DESC";
-
 export type HookTableProps<TableData> = {
   sort: SortShape;
   data: TableData;
   pagination: PaginationOptionShape;
-};
-
-export type PaginationShape = {
-  current: number;
-  amount?: number;
-  max: number;
 };
