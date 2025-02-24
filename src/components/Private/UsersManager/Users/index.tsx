@@ -22,14 +22,10 @@ export function Users({ search, filterObjects }: UsersStructProps) {
             pagination: {
               max: 5,
             },
-            sort: {
-              type: "ASC",
-              reference: "name",
-            },
           }}
           data={tDataUsers}
           title={i18n("words.users")}
-          excludes={["created_at", "updated_at"]}
+          excludes={["cpf", "cnpj", "category","created_at", "updated_at"]}
           tHeads={{
             data: tHeadsUser.current,
             widths: [60, 166.5, 166.5, 166.5, 120, 166.5, 48],
@@ -44,8 +40,8 @@ export function Users({ search, filterObjects }: UsersStructProps) {
         />
         <Notice
           headerTitle={i18n("words.attention")}
-          title={i18n("my_users.modal.user.title_already_exclude")}
-          text={i18n("my_users.modal.user.text_already_exclude")}
+          title={i18n("manager_user.modal.user.title_already_exclude")}
+          text={i18n("manager_user.modal.user.text_already_exclude")}
           onSubmit={() => ""}
           isShowModal={usersModal.type === "DELETE"}
           onModal={handleToggleUsersModal}

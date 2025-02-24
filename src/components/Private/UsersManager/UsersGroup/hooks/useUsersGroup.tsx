@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { ButtonConfig } from "../../ButtonConfig";
 import i18n from "@configs/i18n";
-import { UsersGroupShape } from "../../../../../services/UsersGroup/Get/type";
 import dayjs from "dayjs";
 import { StatusText } from "@components/shared/others/StatusText";
 import { HookUsersProps, TDataUserGroup } from "../../type";
 import { useUsersGroupModal } from "./useUsersGroupModal";
+import { ButtonConfig } from "@components/shared/others/ButtonConfig";
+import { UsersGroupShape } from "../../../../../types/Users/UsersGroup";
 
 export function useUsersGroup({
   data: currentUsersGroup,

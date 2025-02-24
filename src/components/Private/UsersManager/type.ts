@@ -19,11 +19,10 @@ export type TDataUser = {
   id: number;
   name: string;
   email: string;
-  telefone: string;
+  phone: string;
   group: string;
   status: JSX.Element;
   actions: JSX.Element;
-  created_at: string;
 };
 
 export type UsersStructProps = {

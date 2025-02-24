@@ -4,7 +4,7 @@ import { useModalForm } from "./hooks/useModalForm";
 import { ModalFormProps } from "./type";
 import { Modal } from "../../../../shared/layouts/Modal";
 import { FormProvider } from "react-hook-form";
-import { Button } from "@components/shared/others/Button";
+import { Button } from "@components/shared/layouts/Button";
 import { Select } from "@components/shared/forms/Select";
 import { MOCK_USERS_GROUP } from "../../../../../data/users/__mocks__/usersGroups";
 
@@ -21,7 +21,7 @@ export function ModalFormUsers({
         <form className="w-[424px]">
           <div className="form-title mb-4">
             <h4 className="text-lg">
-              <strong>{i18n("my_users.modal.user.text_select_group")}</strong>
+              <strong>{i18n("manager_user.modal.user.text_select_group")}</strong>
             </h4>
           </div>
           <div className="form-group">
@@ -34,9 +34,8 @@ export function ModalFormUsers({
                 };
               })}
               label={i18n("words.user_group")}
-              dataTestId="name"
+              dataTestId="group"
               required={true}
-              errors={errors.name}
               multiple={true}
             />
           </div>
@@ -44,7 +43,7 @@ export function ModalFormUsers({
             <div className="form-title mt-6 mb-4">
               <h4 className="text-lg">
                 <strong>
-                  {i18n("my_users.modal.user.text_fill_information")}
+                  {i18n("manager_user.modal.user.text_fill_information")}
                 </strong>
               </h4>
             </div>

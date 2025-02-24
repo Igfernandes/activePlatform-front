@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { ButtonConfig } from "../../ButtonConfig";
 import i18n from "@configs/i18n";
-import { UsersShape } from "../../../../../services/Users/Get/type";
 import { StatusText } from "@components/shared/others/StatusText";
 import { HookUsersProps, TDataUser } from "../../type";
 import { useUsersModal } from "./useUsersModal";
+import { ButtonConfig } from "@components/shared/others/ButtonConfig";
+import { UsersShape } from "../../../../../types/Users/Users";
 
 export function useUsers({
   data: currentUsers,
@@ -25,27 +25,36 @@ export function useUsers({
     i18n("words.actions"),
   ]);
 
-  const updateUserForTable = (user: UsersShape): TDataUser => {
-    const userDataUpdated = {
-      ...user,
-      status: <StatusText status={user.status} />,
+  const updateUserForTable = ({
+    id,
+    name,
+    email,
+    phone,
+    status,
+    group,
+  }: UsersShape): TDataUser => {
+    return {
+      id,
+      name,
+      email,
+      phone,
+      group,
+      status: <StatusText status={status} />,
       actions: (
         <ButtonConfig
           actions={[
             {
               text: i18n("words.edit"),
-              handle: () => handleToggleUsersModal("DEFAULT", user.id),
+              handle: () => handleToggleUsersModal("DEFAULT", id),
             },
             {
               text: i18n("words.exclude"),
-              handle: () => handleToggleUsersModal("DELETE", user.id),
+              handle: () => handleToggleUsersModal("DELETE", id),
             },
           ]}
         />
       ),
     };
-
-    return userDataUpdated;
   };
 
   /** Adding news keys of table and the lasted column to table data users */

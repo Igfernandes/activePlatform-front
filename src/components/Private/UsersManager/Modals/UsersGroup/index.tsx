@@ -7,7 +7,7 @@ import { FormProvider } from "react-hook-form";
 import { GroupChecks } from "@components/shared/forms/GroupChecks";
 import { MOCK_PERMISSIONS } from "../../../../../data/permissions/__mocks__";
 import { UsersGroupPayload } from "./schemas";
-import { Button } from "@components/shared/others/Button";
+import { Button } from "@components/shared/layouts/Button";
 
 export function ModalFormUsersGroup({
   isShowModal,
@@ -21,7 +21,7 @@ export function ModalFormUsersGroup({
         <form className="w-[424px]">
           <div className="form-title mb-4">
             <h4 className="text-lg">
-              <strong>{i18n("my_users.modal.group.text_insert_name")}</strong>
+              <strong>{i18n("manager_user.modal.group.text_insert_name")}</strong>
             </h4>
           </div>
           <div className="form-group">
@@ -36,7 +36,7 @@ export function ModalFormUsersGroup({
           <div className="form-title mt-6 mb-4">
             <h4 className="text-lg">
               <strong>
-                {i18n("my_users.modal.group.text_select_permissions")}
+                {i18n("manager_user.modal.group.text_select_permissions")}
               </strong>
             </h4>
           </div>

@@ -53,16 +53,16 @@ export function UsersGroup({ search, filterObjects }: Props) {
         />
         <Notice
           headerTitle={i18n("words.attention")}
-          title={i18n("my_users.modal.group.title_already_desative")}
-          text={i18n("my_users.modal.group.text_already_desative")}
+          title={i18n("manager_user.modal.group.title_already_desative")}
+          text={i18n("manager_user.modal.group.text_already_desative")}
           onSubmit={() => ""}
           isShowModal={usersGroupModal.type === "DESATIVE"}
           onModal={handleToggleUsersGroupModal}
         />
         <Notice
           headerTitle={i18n("words.attention")}
-          title={i18n("my_users.modal.group.title_already_exclude")}
-          text={i18n("my_users.modal.group.text_already_exclude")}
+          title={i18n("manager_user.modal.group.title_already_exclude")}
+          text={i18n("manager_user.modal.group.text_already_exclude")}
           onSubmit={() => ""}
           isShowModal={usersGroupModal.type === "DELETE"}
           onModal={handleToggleUsersGroupModal}
