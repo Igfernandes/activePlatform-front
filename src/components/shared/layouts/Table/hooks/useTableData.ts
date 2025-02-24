@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { HookTableDataProps } from "../type";
 import { REGEXES } from "@constants/regexes";
 import { TDataOptions } from "../Tbody/TData/type";
+import { useColumnMetrics } from "./useColumnMetrics";
 
 export function useTableData<TableData extends Array<Record<string, unknown>>>({
   data,
@@ -9,17 +10,63 @@ export function useTableData<TableData extends Array<Record<string, unknown>>>({
   tHeads: { data: tHeadsData = [], widths },
 }: HookTableDataProps<TableData>) {
   const [tHeads, setTHeads] = useState<string[]>([]);
+  const { getCurrentWidthColumn, getTextSize, truncateTextToFit } =
+    useColumnMetrics({ widths });
 
-  // Função otimizada para calcular a largura da coluna
-  const getCurrentWidthColumn = (table: HTMLTableElement, index: number) => {
-    const totalWidth = widths.reduce((acc, width) => acc + width, 0);
-    const columnWidthPercentage = (widths[index] / totalWidth) * 100;
-    const currentTableWidth = table.clientWidth;
-
-    return (currentTableWidth / 100) * columnWidthPercentage;
+  /**
+   * Obtém o conteúdo da coluna, garantindo que não seja um tipo inválido.
+   *
+   * @param {unknown} value - O valor da célula da tabela.
+   * @returns {string | null} - O conteúdo da coluna como string ou null se o valor for inválido.
+   */
+  const getColumnContent = (value: unknown): string | null => {
+    if (["object", "function"].includes(typeof value)) return null;
+    return value?.toString() || null;
   };
 
-  // Função para gerenciar o conteúdo das células da tabela
+  /**
+   * Calcula a largura da célula com base na tabela e no índice da coluna.
+   *
+   * @param {HTMLTableElement} table - A tabela onde a coluna está localizada.
+   * @param {number} index - O índice da coluna na tabela.
+   * @returns {number} - A largura da célula (em pixels).
+   */
+  const getCellWidth = (table: HTMLTableElement, index: number): number => {
+    return getCurrentWidthColumn(table, index);
+  };
+
+  /**
+   * Ajusta o conteúdo da célula com base na largura da coluna e no tamanho do texto.
+   * Se o conteúdo for maior que a largura da célula, ele será truncado e "..." será adicionado.
+   *
+   * @param {HTMLTableCellElement} el - A célula da tabela onde o conteúdo será ajustado.
+   * @param {string} content - O conteúdo da célula a ser exibido.
+   * @param {number} columnWidth - A largura da coluna, usada para determinar se o texto precisa ser truncado.
+   */
+  const adjustCellContent = (
+    el: HTMLTableCellElement,
+    content: string,
+    columnWidth: number
+  ) => {
+    const contentLength = getTextSize(content, el);
+
+    if (
+      columnWidth >= contentLength ||
+      REGEXES.HAS_HTML_ELEMENT.test(content)
+    ) {
+      el.innerHTML = content;
+    } else {
+      el.innerHTML = truncateTextToFit(content, el, columnWidth);
+    }
+  };
+
+  /**
+   * Função principal para gerenciar o conteúdo das células da tabela. Ajusta o conteúdo da célula
+   * de acordo com a largura da coluna, truncando o texto se necessário.
+   *
+   * @param {HTMLTableCellElement} el - A célula da tabela a ser ajustada.
+   * @param {TDataOptions} options - As opções que incluem o valor da célula e o índice da coluna.
+   */
   const handleManagerColumn = (
     el: HTMLTableCellElement,
     { value, index }: TDataOptions
@@ -29,23 +76,13 @@ export function useTableData<TableData extends Array<Record<string, unknown>>>({
     const table = el.closest("table");
     if (!table) return;
 
-    // Certificar que 'value' não é um tipo inválido
-    if (["object", "function"].includes(typeof value)) return;
+    const columnContent = getColumnContent(value);
+    if (!columnContent) return;
 
-    const columnContent = value.toString();
-    const contentLength = columnContent.length * 10;
-    const currentWidthColumn = getCurrentWidthColumn(table, index);
-
+    const currentWidthColumn = getCellWidth(table, index);
     el.setAttribute("width", currentWidthColumn.toString());
 
-    // Ajustar a visualização do conteúdo da célula
-    if (
-      currentWidthColumn >= contentLength ||
-      REGEXES.HAS_HTML_ELEMENT.test(columnContent)
-    )
-      return;
-
-    el.innerHTML = columnContent.substring(0, currentWidthColumn / 10) + "...";
+    adjustCellContent(el, columnContent, currentWidthColumn);
   };
 
   // Gerenciamento das cabeçalhos da tabela
