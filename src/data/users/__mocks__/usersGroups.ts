@@ -1,4 +1,4 @@
-import { UsersGroupShape } from "../../../services/UsersGroup/Get/type";
+import { UsersGroupShape } from "../../../types/Users/UsersGroup";
 
 export const MOCK_USERS_GROUP = [
   {
