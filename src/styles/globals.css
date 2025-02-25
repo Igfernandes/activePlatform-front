@@ -12,8 +12,9 @@ body {
 }
 
 .hidden-scroll::-webkit-scrollbar {
-  display: none;
+  appearance: none;
 }
+
 .bg-scroll-transparent::-webkit-scrollbar {
   display: none;
 }
@@ -21,5 +22,11 @@ body {
 .scrollbar {
   scrollbar-color: #575757 #fff;
   scrollbar-width: inherit;
-  padding-right: .3rem ;
+  padding-right: 0.3rem;
 }
+
+/* Largura da barra de rolagem */
+.only-arrows{
+  scrollbar-color: #fff transparent;
+}
+
