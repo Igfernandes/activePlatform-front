@@ -40,14 +40,7 @@ export function useUsers({
     const userId = id.toString();
 
     return {
-      id: (
-        <Selector
-          value={userId}
-          selectors={selectors}
-          onSelectors={setSelectors}
-          label={userId}
-        />
-      ),
+      id: <Selector value={userId} label={userId} />,
       name,
       identify: cpf ?? cnpj,
       email,
@@ -62,7 +55,21 @@ export function useUsers({
     const usersFiltered = currentUsers.filter((tDataUser) =>
       handleFilter(tDataUser)
     );
-    const tDataUser = usersFiltered.map(updateUserForTable);
+
+    setSelectors([
+      ...usersFiltered.map((user) => ({
+        value: user.id.toString(),
+        isChecked: false,
+      })),
+      {
+        value: "all",
+        isChecked: false,
+      },
+    ] as Array<SelectorShape>);
+
+    const tDataUser = usersFiltered.map((userProps) =>
+      updateUserForTable(userProps)
+    );
 
     setTDataUsers(tDataUser);
   }, [currentUsers, filter]);

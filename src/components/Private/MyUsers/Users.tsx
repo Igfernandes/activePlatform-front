@@ -10,9 +10,10 @@ import { ModalUsersOperationType, UsersStructProps } from "./type";
 import { UserSharedModal } from "./Modals/UserShared";
 import { UserCategoriesModal } from "./Modals/UserCategories";
 import { UserCreateModal } from "./Modals/Users";
+import SelectorProvider from "@components/shared/layouts/Seletor/contexts";
 
 export function Users({ search, filterObjects }: UsersStructProps) {
-  const { tDataUsers, tHeadsUser, setSelectors, selectors } = useUsers({
+  const { tDataUsers, tHeadsUser, selectors, setSelectors } = useUsers({
     data: MOCK_USERS,
     filter: search,
     handleFilter: filterObjects,
@@ -23,48 +24,46 @@ export function Users({ search, filterObjects }: UsersStructProps) {
   return (
     <>
       <div>
-        <Table
-          options={{
-            pagination: {
-              max: 4,
-            },
-            actions: [
-              {
-                handle: () => handleToggleModal("SHARED"),
-                text: i18n("words.data_shared"),
+        <SelectorProvider selectors={selectors} setSelectors={setSelectors}>
+          <Table
+            options={{
+              pagination: {
+                max: 4,
               },
-              {
-                handle: () => handleToggleModal("CHANGE_CATEGORY"),
-                text: i18n("words.category_alter"),
+              actions: [
+                {
+                  handle: () => handleToggleModal("SHARED"),
+                  text: i18n("words.data_shared"),
+                },
+                {
+                  handle: () => handleToggleModal("CHANGE_CATEGORY"),
+                  text: i18n("words.category_alter"),
+                },
+                {
+                  handle: () => handleToggleModal("DELETE"),
+                  text: i18n("words.exclude"),
+                },
+              ],
+              buttons: (
+                <Selector value={"all"} label={i18n(`words.select_all`)} />
+              ),
+              filters: {
+                tag: {
+                  key: "category",
+                },
               },
-              {
-                handle: () => handleToggleModal("DELETE"),
-                text: i18n("words.exclude"),
-              },
-            ],
-            buttons: (
-              <Selector
-                onSelectors={setSelectors}
-                selectors={selectors}
-                value={"all"}
-                label={i18n(`words.select_all`)}
-              />
-            ),
-            filters: {
-              tag: {
-                key: "category",
-              },
-            },
-          }}
-          data={tDataUsers}
-          title={i18n("words.users")}
-          excludes={["created_at", "updated_at"]}
-          tHeads={{
-            data: tHeadsUser.current,
-            widths: [60, 166.5, 120, 166.5, 166.5, 166.5, 48],
-          }}
-        />
+            }}
+            data={tDataUsers}
+            title={i18n("words.users")}
+            excludes={["created_at", "updated_at"]}
+            tHeads={{
+              data: tHeadsUser.current,
+              widths: [60, 166.5, 120, 166.5, 166.5, 166.5, 48],
+            }}
+          />
+        </SelectorProvider>
       </div>
+
       <div>
         <ModalFormCategories
           title={i18n("words.category")}
