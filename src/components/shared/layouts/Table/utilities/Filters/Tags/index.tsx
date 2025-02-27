@@ -8,8 +8,8 @@ export function Tags<TableData extends Array<Record<string, unknown>>>(
   const { tags, totalTags, handleChangeTargetTag } = useTags<TableData>(props);
 
   return (
-    <div className=" relative hidden md:block">
-      <ul className="flex items-center mx-4 w-[28vw] lg:w-[35vw] h-10 only-arrows overflow-x-auto whitespace-nowrap ">
+    <div className=" relative">
+      <ul className="flex items-center w-full lg:w-[30vw] h-11 mb-[-15px] only-arrows overflow-y-hidden overflow-x-auto whitespace-nowrap ">
         <li
           className="border-[1px] border-secondary px-3 rounded-xl cursor-pointer mx-[.25rem] inline-block"
           onClick={() => handleChangeTargetTag("")}
@@ -29,9 +29,16 @@ export function Tags<TableData extends Array<Record<string, unknown>>>(
         ))}
       </ul>
       <span
-        className="absolute bottom-4 right-0 w-[8%] h-7 "
+        className="absolute bottom-1 lg:bottom-0 right-[-10px] w-[5%] lg:w-[5%] h-8"
         style={{
-          background: "linear-gradient(380deg, #ffffff, #ffffffce)",
+          background: "linear-gradient(350deg, #ffffff, #ffffffce)",
+          filter: "blur(4px)",
+        }}
+      ></span>
+      <span
+        className="absolute bottom-1 lg:bottom-0 left-[-1px] w-[5%] lg:w-[2%] h-8"
+        style={{
+          background: "linear-gradient(350deg, #ffffff, #ffffffce)",
           filter: "blur(4px)",
         }}
       ></span>
