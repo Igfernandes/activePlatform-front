@@ -1,3 +1,4 @@
+import { THeadProps } from "../../type";
 import {
   PaginationOptionShape,
   PaginationShape,
@@ -22,7 +23,7 @@ export type TableProps = {
   sort?: SortShape;
   pagination?: PaginationOptionShape;
   data: TableDataShape;
-  tHeads?: Array<string>;
+  tHeads?: THeadProps;
   excludes: Array<string>;
   children: React.ReactNode;
 };

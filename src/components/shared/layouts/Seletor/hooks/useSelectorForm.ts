@@ -1,11 +1,9 @@
 import { HookSelectorProps } from "../type";
 
-export function useSelectorForm({
-  selectors,
-}: Omit<HookSelectorProps, "value">) {
+export function useSelectorForm({ selectors }: HookSelectorProps) {
   const getValues = () => {
     const filteredSelectors = selectors.filter(
-      (selector) => selector.ref.current.checked
+      (selector) => selector.isChecked
     );
 
     return filteredSelectors.map((selector) => selector.value);

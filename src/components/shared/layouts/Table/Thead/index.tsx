@@ -6,7 +6,7 @@ type Props = {
 export function THead({ tHeads, widths = [] }: Props) {
   return (
     <thead>
-      <tr className="border-y-2 border-x-8 border-tertiary bg-tertiary">
+      <tr className="border-y-2 border-x-8 border-tertiary bg-tertiary table w-full table-fixed">
         {tHeads.map((key, index) => (
           <th
             key={`table_${index}`}

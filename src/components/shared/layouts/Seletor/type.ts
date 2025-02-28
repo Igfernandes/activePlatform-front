@@ -1,17 +1,24 @@
-import { Dispatch, RefObject, SetStateAction } from "react";
 import { CheckboxProps } from "@components/shared/layouts/Checkbox/type";
+import { Dispatch, SetStateAction } from "react";
 
 type Props = {
-  onSelectors: Dispatch<SetStateAction<SelectorShape[]>>;
-  selectors: Array<SelectorShape>;
   value: SelectorValue;
+  onChange?: () => SelectorShape | undefined;
+  textSize?: string;
 };
 
-export type SelectorProps = Omit<CheckboxProps, "dataTestId" | "value"> & Props;
-export type HookSelectorProps = Props;
+export type SelectorProps = Omit<
+  CheckboxProps,
+  "dataTestId" | "value" | "onChange"
+> &
+  Props;
+export type HookSelectorProps = {
+  selectors: Array<SelectorShape>;
+  setSelectors: Dispatch<SetStateAction<SelectorShape[]>>;
+};
 
 export type SelectorShape = {
-  ref: RefObject<HTMLInputElement>;
+  isChecked: boolean;
   value: SelectorValue;
 };
 

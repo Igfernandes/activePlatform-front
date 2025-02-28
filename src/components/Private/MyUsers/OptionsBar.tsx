@@ -16,7 +16,7 @@ export function OptionsBar({ handleSearch }: Props) {
         label={i18n("words.research")}
         dataTestId="users"
         handleSearch={handleSearch}
-        className="w-[25%]"
+        className="w-[45%] xl:w-[25%]"
       />
       <div className="w-[75%] flex justify-end">
         <div className="mx-2">

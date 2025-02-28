@@ -36,25 +36,28 @@ export function Table<TableData extends Array<Record<string, unknown>>>({
   });
 
   return (
-    <TableProvider excludes={excludes} data={data} {...options}>
+    <TableProvider
+      excludes={excludes}
+      data={data}
+      tHeads={currentTHeads}
+      {...options}
+    >
       <div className="bg-white p-6 rounded-2xl">
         <div className="flex justify-between mb-6">
-          <div className="flex items-center">
+          <div className="flex items-center w-[50%]">
             <div>
               <h2 className="text-2xl">
                 <strong>{title}</strong>
               </h2>
             </div>
             <When value={!!options.filters?.tag?.key}>
-              <div>
-                <Tags<TableData>
-                  data={data}
-                  column={options.filters?.tag.key ?? ""}
-                />
-              </div>
+              <Tags<TableData>
+                data={data}
+                column={options.filters?.tag.key ?? ""}
+              />
             </When>
           </div>
-          <div className="flex">
+          <div className="flex lg:w-[30%] justify-end">
             {options.buttons}
             <When value={!!options.sort}>
               <Sort />
@@ -64,15 +67,17 @@ export function Table<TableData extends Array<Record<string, unknown>>>({
             </When>
           </div>
         </div>
-        <table className="w-full" ref={ref}>
-          <THead tHeads={tHeads} widths={currentTHeads?.widths} />
-          <TBody onManagerColumn={handleManagerColumn} />
-          <TFoot
-            hasTFoot={hasTFoot}
-            tHeads={tHeads}
-            widths={currentTHeads?.widths}
-          />
-        </table>
+        <div className="overflow-x-auto overflow-y-visible min-w-[30vw]">
+          <table className=" w-full border-collapse" ref={ref}>
+            <THead tHeads={tHeads} widths={currentTHeads?.widths} />
+            <TBody onManagerColumn={handleManagerColumn} />
+            <TFoot
+              hasTFoot={hasTFoot}
+              tHeads={tHeads}
+              widths={currentTHeads?.widths}
+            />
+          </table>
+        </div>
         <Pagination />
       </div>
     </TableProvider>

@@ -10,7 +10,7 @@ export function TBody({ onManagerColumn }: TBodyProps) {
       {paginatedTRows.map((tDataValue, tDataIndex) => (
         <tr
           key={`row_${tDataIndex}`}
-          className="border-y-[.75rem] border-x-8 border-white bg-white"
+          className="border-y-[.75rem] border-x-8 border-white bg-white table w-full table-fixed" 
         >
           <TData onManagerColumn={onManagerColumn} data={tDataValue} />
         </tr>

@@ -28,7 +28,7 @@ const TableProvider = ({
   const [paginatedTRows, setPaginatedTRows] = useState<Array<unknown[]>>([]);
 
   // Hooks para manipulação dos dados da tabela
-  const { handleSortTData, getTRows, paginateData } = useTableRules({ data });
+  const { sortTableData, getTRows, getPaginatedData } = useTableRules({ data });
   const { sort, handleChangeSort } = useSortRules({ sortInstance });
   const { pagination, handleChangePagination } = usePaginationRules({
     paginationInstance,
@@ -68,11 +68,11 @@ const TableProvider = ({
    * Atualiza os dados sempre que houver mudanças nos filtros, ordenação ou paginação
    */
   useEffect(() => {
-    const sortedData = handleSortTData(sort);
+    const sortedData = sortTableData(sort);
     const filteredData = handleFilteredData(sortedData);
     const newRows = getTRows(filteredData, excludes);
     setTRows(newRows);
-    const paginatedRows = paginateData(newRows, pagination);
+    const paginatedRows = getPaginatedData(newRows, pagination);
 
     handleChangePaginedTRows(paginatedRows);
     setHasEvent(false);

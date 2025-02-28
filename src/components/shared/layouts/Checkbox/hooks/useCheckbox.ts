@@ -15,7 +15,6 @@ export function useCheckbox({ onChecked }: Props) {
 
     const isChecked = inputElement.checked;
 
-    console.log("inputChecked", isChecked);
     inputElement.style.background = isChecked
       ? bgColors.red
       : bgDefaultColor.disable;
