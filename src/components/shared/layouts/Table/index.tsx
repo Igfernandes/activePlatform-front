@@ -43,7 +43,6 @@ export function Table<TableData extends Array<Record<string, unknown>>>({
   useEffect(() => {
     handleTruncateColumn(ref.current as HTMLTableElement);
   }, [width]);
-  console.log(width)
 
   return (
     <TableProvider
@@ -89,8 +88,7 @@ export function Table<TableData extends Array<Record<string, unknown>>>({
             </When>
           </div>
         </div>
-
-        <div className="min-w-[30vw] ">
+        <div className="min-w-[30vw]">
           <table className=" w-full border-collapse" ref={ref}>
             <THead tHeads={tHeads} widths={currentTHeads?.widths} />
             <TBody />
