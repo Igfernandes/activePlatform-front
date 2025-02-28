@@ -40,7 +40,7 @@ export function useUsers({
     const userId = id.toString();
 
     return {
-      id: <Selector value={userId} label={userId} />,
+      id: <Selector  value={userId} label={userId} />,
       name,
       identify: cpf ?? cnpj,
       email,

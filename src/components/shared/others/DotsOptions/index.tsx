@@ -23,7 +23,7 @@ export function DotsOptions({ actions = [] }: Props) {
         />
       </div>
       <When value={showOptions}>
-        <div className="absolute right-[0rem] bg-white shadow-xl z-[10000000000] w-40 px-3 py-2 rounded-xl">
+        <div className="absolute right-[0rem] bg-white shadow-xl z-[10000] w-40 px-3 py-2 rounded-xl">
           <ul>
             {actions.map((action, index) => (
               <li

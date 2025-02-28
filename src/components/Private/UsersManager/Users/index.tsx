@@ -1,10 +1,10 @@
-import { Table } from "@components/shared/layouts/Table";
 import { useUsers } from "./hooks/useUsers";
 import { MOCK_USERS } from "../../../../data/users/__mocks__";
 import { UsersStructProps } from "../type";
 import i18n from "@configs/i18n";
 import { ModalFormUsers } from "../Modals/Users";
 import { Notice } from "@components/shared/others/Notice";
+import { SmartTable } from "@components/shared/layouts/Tables/presets/SmartTable";
 
 export function Users({ search, filterObjects }: UsersStructProps) {
   const { tDataUsers, tHeadsUser, handleToggleUsersModal, usersModal } =
@@ -17,7 +17,7 @@ export function Users({ search, filterObjects }: UsersStructProps) {
   return (
     <>
       <div>
-        <Table
+        <SmartTable
           options={{
             pagination: {
               max: 5,
@@ -25,7 +25,7 @@ export function Users({ search, filterObjects }: UsersStructProps) {
           }}
           data={tDataUsers}
           title={i18n("words.users")}
-          excludes={["cpf", "cnpj", "category","created_at", "updated_at"]}
+          excludes={["cpf", "cnpj", "category", "created_at", "updated_at"]}
           tHeads={{
             data: tHeadsUser.current,
             widths: [60, 166.5, 166.5, 166.5, 120, 166.5, 48],

@@ -1,4 +1,3 @@
-import { Table } from "@components/shared/layouts/Table";
 import { useUsers } from "./hooks/useUsers";
 import { MOCK_USERS } from "../../../data/users/__mocks__";
 import i18n from "@configs/i18n";
@@ -11,6 +10,7 @@ import { UserSharedModal } from "./Modals/UserShared";
 import { UserCategoriesModal } from "./Modals/UserCategories";
 import { UserCreateModal } from "./Modals/Users";
 import SelectorProvider from "@components/shared/layouts/Seletor/contexts";
+import { SmartTable } from "@components/shared/layouts/Tables/presets/SmartTable";
 
 export function Users({ search, filterObjects }: UsersStructProps) {
   const { tDataUsers, tHeadsUser, selectors, setSelectors } = useUsers({
@@ -25,7 +25,7 @@ export function Users({ search, filterObjects }: UsersStructProps) {
     <>
       <div>
         <SelectorProvider selectors={selectors} setSelectors={setSelectors}>
-          <Table
+          <SmartTable
             options={{
               pagination: {
                 max: 4,
@@ -45,7 +45,11 @@ export function Users({ search, filterObjects }: UsersStructProps) {
                 },
               ],
               buttons: (
-                <Selector value={"all"} label={i18n(`words.select_all`)} textSize="text-[0px] md:text-lg" />
+                <Selector
+                  value={"all"}
+                  label={i18n(`words.select_all`)}
+                  textSize="text-[0px] md:text-lg"
+                />
               ),
               filters: {
                 tag: {

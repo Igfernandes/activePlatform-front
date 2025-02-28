@@ -10,7 +10,7 @@ export function Sidebar() {
 
   return (
     <aside
-      className="w-[320px] bg-white transition-all duration-500"
+      className={`w-[320px] bg-white transition-all duration-500`}
       style={{
         marginLeft: !showSidebar ? "-15rem" : "auto",
       }}
@@ -26,7 +26,7 @@ export function Sidebar() {
             <Bars onClick={handleToggleSidebar} />
           </div>
         </div>
-        <div className="h-[83vh] overflow-auto hidden-scroll transition-all duration-500">
+        <div className="max-h-[83vh] overflow-x-auto overflow-y-auto hidden-scroll transition-all duration-500">
           <Navbar
             sidebarState={showSidebar}
             menu={MAIN_MENU}
