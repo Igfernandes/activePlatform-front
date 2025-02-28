@@ -7,6 +7,15 @@ type Props = {
 export function useColumnRules({ tHeadsWidth = [] }: Props) {
   const [amountHiddenCols, setAmountHiddenCols] = useState<Array<boolean>>([]);
 
+  /**
+   * Adjusts column visibility in a table based on its width.
+   *
+   * @param {HTMLTableElement} [table] - The table element whose columns need to be truncated.
+   * If not provided, the function returns early.
+   *
+   * The function calculates the total width of the table headers and determines which
+   * columns should be hidden based on the available table width.
+   */
   const handleTruncateColumn = (table?: HTMLTableElement) => {
     if (!table) return;
 

@@ -30,18 +30,16 @@ export function Tags<TableData extends Array<Record<string, unknown>>>(
       </ul>
       <span
         className="absolute bottom-1 lg:bottom-0 right-[-10px] w-[5%] lg:w-[5%] h-8"
-        style={{
-          background: "linear-gradient(350deg, #ffffff, #ffffffce)",
-          filter: "blur(4px)",
-        }}
+        style={gradientStyle}
       ></span>
       <span
         className="absolute bottom-1 lg:bottom-0 left-[-1px] w-[5%] lg:w-[2%] h-8"
-        style={{
-          background: "linear-gradient(350deg, #ffffff, #ffffffce)",
-          filter: "blur(4px)",
-        }}
+        style={gradientStyle}
       ></span>
     </div>
   );
 }
+const gradientStyle = {
+  background: "linear-gradient(350deg, #ffffff, #ffffffce)",
+  filter: "blur(4px)",
+};
