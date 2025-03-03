@@ -21,7 +21,7 @@ export function Sidebar({ handleToggleSidebar, showSidebar }: Props) {
 
   return (
     <aside
-      className={`fixed lg:relative z-40 w-full h-full lg:w-[320px] bg-white transition-all duration-300`}
+      className={`fixed lg:relative z-40 lg:z-0 w-full h-full lg:w-[320px] bg-white transition-all duration-300`}
       style={{
         marginLeft: !showSidebar ? indentValue : "0",
       }}

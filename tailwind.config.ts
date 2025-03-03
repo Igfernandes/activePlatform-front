@@ -1,4 +1,4 @@
-import { bgColors, textColors } from "./src/assets/colors/colors";
+import { bgColors, othersColors, textColors } from "./src/assets/colors/colors";
 import {
   bgDefaultColor,
   borderColors,
@@ -15,14 +15,17 @@ export default {
     extend: {
       borderColor: {
         ...borderColors,
+        ...othersColors,
       },
       backgroundColor: {
         ...bgDefaultColor,
         ...bgColors,
+        ...othersColors,
       },
       colors: {
         ...textDefaultColors,
         ...textColors,
+        ...othersColors,
         background: "var(--background)",
         foreground: "var(--foreground)",
       },

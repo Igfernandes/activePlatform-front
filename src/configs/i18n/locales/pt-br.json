@@ -20,6 +20,9 @@
       "has_min_one_special_character": "Pelo menos 1 caracteres especial.",
       "password_need_equal": "A senha informada deve ser idêntica.",
       "min_length": "O ${field} deve conter pelo menos ${length} caracteres"
+    },
+    "system": {
+      "not_found_user": "O usuário que tentou acessar está com problemas, não exista ou é inacessível ao perfil atual."
     }
   },
   "success": {
@@ -99,7 +102,27 @@
     "add": "Adicionar",
     "data_shared": "Compartilhar dados",
     "category_alter": "Alterar categoria",
-    "continue_register": "Continuar cadastrando"
+    "continue_register": "Continuar cadastrando",
+    "shared": "Compartilhar",
+    "new_register": "Novo registro",
+    "notifications": "Notificações",
+    "basic": "Básico",
+    "address": "Endereço",
+    "social": "Social",
+    "family": "Família",
+    "others": "Outros",
+    "attachment": "Anexos",
+    "username": "Nome do usuário",
+    "facebook": "facebook",
+    "credit_card": "Cartão de crédito",
+    "street": "Rua",
+    "zipcode": "Cep",
+    "hobbies": "Passatempos",
+    "attachments": "Anexos",
+    "profile_picture": "Foto do perfil",
+    "bank_statement": "Anexos do banco",
+    "resume": "Currículo",
+    "new_data": "Novo dado"
   },
   "configs": {
     "formats": {
@@ -161,6 +184,13 @@
       "create": {
         "text_select_category": "Selecione a categoria à qual o usuário pertencerá:",
         "text_fill_information": "Preencha os dados abaixo para criar um novo usuário:"
+      }
+    }
+  },
+  "users": {
+    "modal": {
+      "create": {
+        "text_field_fill_information": "Preencha as informações abaixo para cadastrar um novo dado"
       }
     }
   }

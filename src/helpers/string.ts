@@ -24,3 +24,9 @@ export function hasSomeSpecialCharacter(word: string): boolean {
   return REGEXES.HAS_SPECIAL_CHARACTER.test(word);
 }
 
+export function capitalize(word: string) {
+  return word
+    .split(" ")
+    .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
