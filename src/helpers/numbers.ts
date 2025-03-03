@@ -5,3 +5,6 @@ export function getOnlyNumberRange(value: number, start: number, end: number) {
 
   return value;
 }
+
+export const formatNumber = (num: number, length: number) =>
+  num.toString().padStart(length, "0");
