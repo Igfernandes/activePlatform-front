@@ -1,28 +1,40 @@
-import { UserFieldsGroupShape } from "../../../types/Users/UserFields";
+import { FieldGroupsShape } from "../../../types/Fields";
 
 export const MOCK_USER_FIELDS_GROUP = [
   {
-    name: "Todos",
-    items: 50,
+    id: 1,
+    name: "BASIC",
+    items: 10,
+    position: 1,
   },
   {
-    name: "Users",
+    id: 2,
+    name: "SOCIAL",
     items: 10,
+    position: 2,
   },
   {
-    name: "Services",
+    id: 3,
+    name: "FINANCE",
     items: 10,
+    position: 3,
   },
   {
-    name: "Finance",
+    id: 4,
+    name: "ADDRESS",
     items: 10,
+    position: 4,
   },
   {
-    name: "Agenda",
+    id: 5,
+    name: "FAMILY",
     items: 10,
+    position: 5,
   },
   {
-    name: "Todos",
+    id: 6,
+    name: "OTHERS",
     items: 10,
+    position: 6,
   },
-] as UserFieldsGroupShape[];
+] as FieldGroupsShape[];

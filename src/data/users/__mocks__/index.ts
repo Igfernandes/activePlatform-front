@@ -4,6 +4,7 @@ export const MOCK_USERS: Array<UsersShape> = [
   {
     id: 1,
     name: "João Silva",
+    avatar: null,
     status: "ACTIVE",
     cpf: "123.456.789-00",
     cnpj: "12.345.678/0001-90",
@@ -17,6 +18,7 @@ export const MOCK_USERS: Array<UsersShape> = [
   {
     id: 2,
     name: "Maria Oliveira",
+    avatar: null,
     status: "INACTIVE",
     cpf: "987.654.321-00",
     cnpj: "98.765.432/0001-10",
@@ -30,6 +32,7 @@ export const MOCK_USERS: Array<UsersShape> = [
   {
     id: 3,
     name: "Carlos Mendes",
+    avatar: null,
     status: "ACTIVE",
     cpf: "111.222.333-44",
     cnpj: "11.222.333/0001-55",
@@ -43,6 +46,7 @@ export const MOCK_USERS: Array<UsersShape> = [
   {
     id: 4,
     name: "Fernanda Rocha",
+    avatar: null,
     status: "ACTIVE",
     cpf: "222.333.444-55",
     cnpj: "22.333.444/0001-66",
@@ -56,6 +60,7 @@ export const MOCK_USERS: Array<UsersShape> = [
   {
     id: 5,
     name: "Ricardo Nunes",
+    avatar: null,
     status: "INACTIVE",
     cpf: "333.444.555-66",
     cnpj: "33.444.555/0001-77",
@@ -69,6 +74,7 @@ export const MOCK_USERS: Array<UsersShape> = [
   {
     id: 6,
     name: "Patricia Souza",
+    avatar: null,
     status: "ACTIVE",
     cpf: "444.555.666-77",
     cnpj: "44.555.666/0001-88",
@@ -82,6 +88,7 @@ export const MOCK_USERS: Array<UsersShape> = [
   {
     id: 7,
     name: "Eduardo Lima",
+    avatar: null,
     status: "INACTIVE",
     cpf: "555.666.777-88",
     cnpj: "55.666.777/0001-99",
@@ -95,6 +102,7 @@ export const MOCK_USERS: Array<UsersShape> = [
   {
     id: 8,
     name: "Ana Martins",
+    avatar: null,
     status: "ACTIVE",
     cpf: "666.777.888-99",
     cnpj: "66.777.888/0001-00",
@@ -108,6 +116,7 @@ export const MOCK_USERS: Array<UsersShape> = [
   {
     id: 9,
     name: "Marcos Almeida",
+    avatar: null,
     status: "ACTIVE",
     cpf: "777.888.999-00",
     cnpj: "77.888.999/0001-11",
@@ -121,6 +130,7 @@ export const MOCK_USERS: Array<UsersShape> = [
   {
     id: 10,
     name: "Juliana Ferreira",
+    avatar: null,
     status: "INACTIVE",
     cpf: "888.999.000-11",
     cnpj: "88.999.000/0001-22",
