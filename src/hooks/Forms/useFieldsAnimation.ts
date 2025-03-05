@@ -37,7 +37,9 @@ export function useFieldsAnimation() {
    *
    * @returns {void}
    */
-  const handleTransitionLabel = (ev: FormEvent<HTMLInputElement>) => {
+  const handleTransitionLabel = (
+    ev: FormEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const input = ev.currentTarget;
     const currentValue = input.value;
 
