@@ -1,7 +1,7 @@
 import { DetailedHTMLProps, InputHTMLAttributes } from "react";
 import { FieldError } from "react-hook-form";
 
-export type CheckboxProps = DetailedHTMLProps<
+export type RadioProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 > & {
