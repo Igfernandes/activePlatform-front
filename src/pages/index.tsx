@@ -1,27 +1,12 @@
 import { UserShare } from "@assets/Icons/colorful/UserShare";
 import { LoginForm } from "@components/Public/Login/Form";
-import { useRememberMe } from "@hooks/useRememberMe";
-import { useEffect } from "react";
-import usePostRememberMe from "../services/Authentications/RememberMe/usePostRememberMe";
-import { PostRememberMePayload } from "../services/Authentications/RememberMe/type";
 import { ExternalContainer } from "@components/shared/layouts/ExternalContainer";
 import i18n from "@configs/i18n";
+import { GetServerSideProps } from "next";
+import { postRememberMe } from "../services/Authentications/RememberMe";
+import { privateRoutes } from "@configs/routes/Web/navigation";
 
 export default function Home() {
-  const { getReferenceToken } = useRememberMe();
-  const { mutateAsync } = usePostRememberMe();
-
-  useEffect(() => {
-    const referenceToken = getReferenceToken([
-      "referenceToken",
-    ]) as PostRememberMePayload;
-
-    if (Object.values(referenceToken).length > 0)
-      mutateAsync(referenceToken).then((data) => {
-        console.log(data);
-      });
-  }, []);
-
   return (
     <ExternalContainer>
       <div className="row">
@@ -43,3 +28,21 @@ export default function Home() {
     </ExternalContainer>
   );
 }
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const referenceToken = req.cookies["remember_referenceToken"] ?? "";
+  const resp = await postRememberMe({
+    referenceToken,
+  });
+
+  if (!resp)
+    return {
+      props: {},
+    };
+
+  return {
+    redirect: {
+      destination: privateRoutes.dashboard,
+      permanent: false,
+    },
+  };
+};

@@ -10,9 +10,9 @@ export const COMPANY_PROFILE = {
 };
 export const env: EnvironmentProprieties = {
   PROD: {
-    API_URL: process.env.NEXT_PROD_API_URL,
+    API_URL: process.env.NEXT_PUBLIC_PROD_API_URL,
   },
   DEV: {
-    API_URL: process.env.NEXT_DEV_API_URL,
+    API_URL: process.env.NEXT_PUBLIC_DEV_API_URL,
   },
-}[(process.env.NEXT_ENVIRONMENT as EnvironmentTypes) ?? "DEV"];
+}[(process.env.NEXT_PUBLIC_ENVIRONMENT as EnvironmentTypes) ?? "DEV"];

@@ -1,8 +1,6 @@
 import { AxiosError } from "axios";
 
-export type CustomAxiosError = AxiosError<{
-  error?: string;
-}>;
+export type CustomAxiosError = AxiosError<string>;
 
 export type ShapeError = {
   title: string;
