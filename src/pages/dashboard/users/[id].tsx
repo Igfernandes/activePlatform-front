@@ -8,11 +8,12 @@ import UserProvider from "@components/Private/Users/context";
 import { UserOptionsBar } from "@components/Private/Users/UserOptionsBar";
 import { UserTabs } from "@components/Private/Users/UserTabs";
 import { FormUser } from "@components/Private/Users/FormUser";
+import { UsersShape } from "../../../types/Users/Users";
 
 export default function UserProfile({ targetUser }: UserPageProps) {
   return (
     <DashboardContainer>
-      <UserProvider user={targetUser}>
+      <UserProvider user={targetUser as UsersShape}>
         <UserOptionsBar />
         <UserTabs />
         <FormUser />
