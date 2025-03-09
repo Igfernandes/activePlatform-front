@@ -1,6 +1,6 @@
 import { AppProps } from "next/app";
 import "../styles/globals.css";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { poppins } from "@assets/fonts/poppins";
 import SnackbarProvider from "@contexts/Snackbar";
 

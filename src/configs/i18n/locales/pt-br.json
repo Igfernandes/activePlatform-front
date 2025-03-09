@@ -142,7 +142,10 @@
     "yes": "Sim",
     "not": "Não",
     "private": "Privado",
-    "public": "Público"
+    "public": "Público",
+    "forms": "Formulários",
+    "new_form": "Novo formulário",
+    "welcome_message": "Seja Bem vindo, {name}!"
   },
   "configs": {
     "formats": {

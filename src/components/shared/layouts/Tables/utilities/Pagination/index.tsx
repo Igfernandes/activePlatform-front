@@ -20,7 +20,6 @@ export function Pagination() {
   useEffect(() => {
     const nextGroupPage = Math.ceil(pagination.current / 3);
 
-    console.log(displayedGroupPage, amountGroups);
     handleChangeDisplayedPages(nextGroupPage);
     handleChangeDisplayedGroupPage(nextGroupPage);
   }, [pagination]);

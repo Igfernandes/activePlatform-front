@@ -51,7 +51,6 @@ export function useFieldsByGroup({ fields, fieldGroups }: Props) {
 
     const matriz = Object.entries(filteredFieldsByGroup);
 
-    console.log(organizedFieldsByGroupPosition(matriz));
     setFieldByGroup(organizedFieldsByGroupPosition(matriz));
   }, [fields]);
 

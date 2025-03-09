@@ -1,20 +1,12 @@
 import { Axios } from "axios";
 import { useSnackbar } from "../useSnackbar";
 import { CustomAxiosError, ShapeError } from "./type";
-import { env } from "@configs/envs";
 import i18n from "@configs/i18n";
 import { STATUS_SERVICE } from "@constants/services";
 import { isValidJSON } from "@helpers/json";
-
-const axiosConfig = {
-  baseURL: env.API_URL,
-  headers: {
-    "Access-Control-Allow-Origin": "*",
-    "Content-Type": "application/json",
-  },
-};
-
-export const axios = new Axios(axiosConfig);
+import { AuthenticationsInterceptor } from "./interceptores/Authentication";
+import { DataInterceptor } from "./interceptores/Data";
+import { axiosConfig } from "@configs/axios";
 
 export function useAxios() {
   const { dispatchSnackbar } = useSnackbar();
@@ -23,6 +15,15 @@ export function useAxios() {
     validateStatus: (status: number) =>
       status >= STATUS_SERVICE.OK && status < STATUS_SERVICE.REDIRECT,
   });
+
+  axios.interceptors.request.use(AuthenticationsInterceptor, (error) => {
+    // Trata erros na requisição
+    return Promise.reject(error);
+  });
+  axios.interceptors.response.use(DataInterceptor, (error) => {
+    return Promise.reject(isValidJSON(error) ? JSON.parse(error) : error);
+  });
+
   /**
    * @function handleAxiosError
    * - Irá analisar o erro e tratar baseado no modelo de resposta do axios.
@@ -51,6 +52,7 @@ export function useAxios() {
 
     return shapeError;
   }
+
   return {
     axios,
     handleAxiosError,

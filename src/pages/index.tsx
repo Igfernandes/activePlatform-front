@@ -3,8 +3,8 @@ import { LoginForm } from "@components/Public/Login/Form";
 import { ExternalContainer } from "@components/shared/layouts/ExternalContainer";
 import i18n from "@configs/i18n";
 import { GetServerSideProps } from "next";
-import { postRememberMe } from "../services/Authentications/RememberMe";
 import { privateRoutes } from "@configs/routes/Web/navigation";
+import { handleRememberMe } from "../server/handleRememberMe";
 
 export default function Home() {
   return (
@@ -29,20 +29,20 @@ export default function Home() {
   );
 }
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const referenceToken = req.cookies["remember_referenceToken"] ?? "";
-  const resp = await postRememberMe({
-    referenceToken,
-  });
-
-  if (!resp)
+  const tokenNavigation = req.cookies["token_navigation"] ?? "";
+  if (tokenNavigation)
     return {
-      props: {},
+      redirect: {
+        destination: privateRoutes.dashboard,
+        permanent: false,
+      },
     };
 
+  const referenceToken = req.cookies["remember_referenceToken"] ?? "";
+
+  if (referenceToken) return handleRememberMe({ referenceToken });
+
   return {
-    redirect: {
-      destination: privateRoutes.dashboard,
-      permanent: false,
-    },
+    props: {},
   };
 };

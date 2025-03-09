@@ -11,6 +11,7 @@ import { GoOut } from "@assets/Icons/black/GoOut";
 import { Peoples } from "@assets/Icons/black/Peoples";
 import { Config } from "@assets/Icons/black/Config";
 import { Schedule } from "@assets/Icons/black/Schedule";
+import { Form } from "@assets/Icons/black/Form";
 
 export const MAIN_MENU = [
   {
@@ -27,6 +28,11 @@ export const MAIN_MENU = [
     title: i18n("words.sending_management"),
     Icon: Spreadsheet,
     link: privateRoutes.sendingManagement,
+  },
+  {
+    title: i18n("words.forms"),
+    Icon: Form,
+    link: privateRoutes.forms,
   },
   {
     title: i18n("words.schedule"),

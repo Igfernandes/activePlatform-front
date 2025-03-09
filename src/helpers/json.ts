@@ -17,8 +17,8 @@ export function isValidJSON(str: string) {
     const parsed = JSON.parse(str);
     // Verifica se o resultado é um objeto ou array válido
     return typeof parsed === "object" && parsed !== null;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e: unknown) {
-    console.log(e);
     return false;
   }
 }

@@ -1,4 +1,4 @@
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useSnackbar } from "@hooks/useSnackbar";
 import { useAxios } from "@hooks/useAxios";
 import { PostRecoverPasswordAlterPayload } from "./type";
@@ -20,10 +20,11 @@ export default function usePostRecoverPasswordAlter() {
     return data;
   };
 
-  return useMutation(handleMutate, {
+  return useMutation({
+    mutationFn: handleMutate,
     onSuccess: () => {
       dispatchSnackbar({
-        message:  i18n("success.alter_password.will_redirect"),
+        message: i18n("success.alter_password.will_redirect"),
         title: i18n("words.success"),
         type: "success",
       });

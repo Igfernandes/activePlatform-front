@@ -27,7 +27,6 @@ export function useGroupFields({ data }: Props) {
     setTargetItem(itemId);
   };
 
-  console.log(items);
   const handleChangeItem = (
     id: UniqueIdentifier,
     action: "EDIT" | "DELETE"

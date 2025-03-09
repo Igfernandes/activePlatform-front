@@ -1,4 +1,4 @@
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useSnackbar } from "@hooks/useSnackbar";
 import { useAxios } from "@hooks/useAxios";
 import { PostRecoverPasswordPayload } from "./type";
@@ -16,7 +16,8 @@ export default function usePostRecoverPasswordRequest() {
     return data;
   };
 
-  return useMutation(handleMutate, {
+  return useMutation({
+    mutationFn: handleMutate,
     onSuccess: () => {
       dispatchSnackbar({
         message: i18n("success.forgot_password.text"),

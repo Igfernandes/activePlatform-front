@@ -20,7 +20,6 @@ function ModalProvider<OptionsType>({ children }: { children: ReactNode }) {
   );
   const handleToggleModal = useCallback(
     (type: OptionsType, id: string | number = 0) => {
-      console.log("type", type);
       setModal({
         type,
         id,

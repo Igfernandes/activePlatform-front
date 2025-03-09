@@ -1,6 +1,8 @@
 import { Bars } from "@assets/Icons/black/Bars";
 import { Bell } from "@assets/Icons/black/Bell";
 import { When } from "@components/utilities/When";
+import i18n from "@configs/i18n";
+import { useUserNavigationContext } from "@contexts/UserNavigation";
 import useWindow from "@hooks/useWindow";
 
 type Props = {
@@ -9,6 +11,8 @@ type Props = {
 
 export function Header({ handleSidebar }: Props) {
   const { screenType } = useWindow();
+  const { userAuth } = useUserNavigationContext();
+  const welcomeMessage = i18n("words.welcome_message") as string;
 
   return (
     <header className="w-full border-b-2 border-zinc-200 p-6">
@@ -18,7 +22,11 @@ export function Header({ handleSidebar }: Props) {
         </When>
         <div>
           <h3>
-            <strong>{"Olá, Carlos Batista!"}</strong>
+            <When value={!!userAuth}>
+              <strong>
+                {welcomeMessage.replace("{name}", `${userAuth?.name}`)}
+              </strong>
+            </When>
           </h3>
         </div>
         <div>
