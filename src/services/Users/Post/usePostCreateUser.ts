@@ -1,4 +1,4 @@
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useSnackbar } from "@hooks/useSnackbar";
 import { useAxios } from "@hooks/useAxios";
 import { useRouter } from "next/router";
@@ -20,7 +20,8 @@ export default function usePostCreateUser() {
     return data;
   };
 
-  return useMutation(handleMutate, {
+  return useMutation({
+    mutationFn: handleMutate,
     onSuccess: () => {
       dispatchSnackbar({
         message: i18n("words.will_redirect"),

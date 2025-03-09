@@ -1,19 +1,20 @@
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { PostAuthPayload } from "./type";
 import { usePostAuthService } from ".";
 import { useSnackbar } from "@hooks/useSnackbar";
 import { useAxios } from "@hooks/useAxios";
 import { useRememberMe } from "@hooks/useRememberMe";
 import i18n from "@configs/i18n";
-import { isValidJSON } from "@helpers/json";
 import { useRouter } from "next/router";
 import { privateRoutes } from "@configs/routes/Web/navigation";
+import { useCookies } from "@hooks/useCookies";
 
 export default function usePostAuth() {
   const { handleAxiosError } = useAxios();
   const { dispatchSnackbar } = useSnackbar();
   const { postAuth } = usePostAuthService();
   const { saveReferenceToken } = useRememberMe();
+  const { saveCookies } = useCookies();
   const router = useRouter();
 
   const handleMutate = async (payload: PostAuthPayload) => {
@@ -22,9 +23,10 @@ export default function usePostAuth() {
     return data;
   };
 
-  return useMutation(handleMutate, {
+  return useMutation({
+    mutationFn: handleMutate,
     onSuccess: (res) => {
-      const data = isValidJSON(res) ? JSON.parse(res) : {};
+      const data = res;
 
       dispatchSnackbar({
         message: i18n("success.login.will_redirect"),
@@ -38,7 +40,13 @@ export default function usePostAuth() {
         });
       }
 
-      router.push(privateRoutes.dashboard);
+      saveCookies({
+        token_navigation: data.token_navigation,
+      });
+
+      setTimeout(() => {
+        router.push(privateRoutes.dashboard)
+      }, 500);
     },
     onError: (err) => {
       handleAxiosError(err);
