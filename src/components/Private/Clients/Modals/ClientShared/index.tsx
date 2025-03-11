@@ -6,10 +6,10 @@ import { FormProvider } from "react-hook-form";
 import { Button } from "@components/shared/layouts/Button";
 import { GroupChecks } from "@components/shared/forms/GroupChecks";
 import { UserSharedPayload } from "./schemas";
-import { useSharedModalForm } from "./hooks/useUserSharedModal";
+import { useSharedModalForm } from "./hooks/useClientSharedModal";
 import { MOCK_USER_FIELDS_GROUP } from "../../../../../data/users/__mocks__/usersFieldsGroup";
 
-export function UserSharedModal({
+export function ClientSharedModal({
   isShowModal,
   onModal,
   title,
@@ -22,7 +22,7 @@ export function UserSharedModal({
         <form className="w-[424px]">
           <div className="form-title mb-4">
             <h4 className="text-lg">
-              <strong>{i18n("my_users.modal.shared.text_insert_email")}</strong>
+              <strong>{i18n("clients.modal.shared.text_insert_email")}</strong>
             </h4>
           </div>
           <div className="form-group">
@@ -38,7 +38,7 @@ export function UserSharedModal({
             <div className="form-title mt-6 mb-4">
               <h4 className="text-lg">
                 <strong>
-                  {i18n("my_users.modal.shared.text_select_information")}
+                  {i18n("clients.modal.shared.text_select_information")}
                 </strong>
               </h4>
             </div>

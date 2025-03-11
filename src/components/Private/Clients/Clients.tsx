@@ -1,25 +1,27 @@
-import { useUsers } from "./hooks/useUsers";
+import { useClients } from "./hooks/useClients";
 import { MOCK_USERS } from "../../../data/users/__mocks__";
 import i18n from "@configs/i18n";
 import { Notice } from "@components/shared/others/Notice";
 import { Selector } from "@components/shared/layouts/Seletor";
 import { ModalFormCategories } from "./Modals/Categories";
 import { useModalContext } from "@contexts/Modal";
-import { ModalUsersOperationType, UsersStructProps } from "./type";
-import { UserSharedModal } from "./Modals/UserShared";
-import { UserCategoriesModal } from "./Modals/UserCategories";
-import { UserCreateModal } from "./Modals/Users";
+import { ModalClientsOperationType, ClientsStructProps } from "./type";
+import { ClientSharedModal } from "./Modals/ClientShared";
+import { ClientCreateModal } from "./Modals/Clients";
 import SelectorProvider from "@components/shared/layouts/Seletor/contexts";
 import { SmartTable } from "@components/shared/layouts/Tables/presets/SmartTable";
+import { ClientCategoriesModal } from "./Modals/ClientCategories";
+import { useClientsData } from "./hooks/useClientsData";
 
-export function Users({ search, filterObjects }: UsersStructProps) {
-  const { tDataUsers, tHeadsUser, selectors, setSelectors } = useUsers({
+export function Clients({ search, filterObjects }: ClientsStructProps) {
+  const { tDataClients, tHeadsClient, selectors, setSelectors } = useClients({
     data: MOCK_USERS,
     filter: search,
     handleFilter: filterObjects,
   });
+  const { categories } = useClientsData();
   const { handleToggleModal, modal } =
-    useModalContext<ModalUsersOperationType>();
+    useModalContext<ModalClientsOperationType>();
 
   return (
     <>
@@ -57,11 +59,11 @@ export function Users({ search, filterObjects }: UsersStructProps) {
                 },
               },
             }}
-            data={tDataUsers}
-            title={i18n("words.users")}
+            data={tDataClients}
+            title={i18n("words.clients")}
             excludes={["created_at", "updated_at"]}
             tHeads={{
-              data: tHeadsUser.current,
+              data: tHeadsClient.current,
               widths: [60, 166.5, 120, 166.5, 166.5, 166.5, 48],
             }}
           />
@@ -73,29 +75,31 @@ export function Users({ search, filterObjects }: UsersStructProps) {
           title={i18n("words.category")}
           isShowModal={modal.type === "CATEGORY"}
           onModal={handleToggleModal}
+          categories={categories}
         />
         <Notice
           headerTitle={i18n("words.attention")}
-          title={i18n("my_users.modal.user.title_already_exclude")}
-          text={i18n("my_users.modal.user.text_already_exclude")}
+          title={i18n("clients.modal.user.title_already_exclude")}
+          text={i18n("clients.modal.user.text_already_exclude")}
           onSubmit={() => ""}
           isShowModal={modal.type === "DELETE"}
           onModal={handleToggleModal}
         />
-        <UserSharedModal
+        <ClientSharedModal
           isShowModal={modal.type === "SHARED"}
           onModal={handleToggleModal}
           title={i18n("words.data_shared")}
         />
-        <UserCategoriesModal
+        <ClientCategoriesModal
           isShowModal={modal.type === "CHANGE_CATEGORY"}
           onModal={handleToggleModal}
           title={i18n("words.category_alter")}
         />
-        <UserCreateModal
-          isShowModal={modal.type === "USER"}
+        <ClientCreateModal
+          isShowModal={modal.type === "CLIENT"}
           onModal={handleToggleModal}
           title={i18n("words.new_user")}
+          categories={categories ?? []}
         />
       </div>
     </>

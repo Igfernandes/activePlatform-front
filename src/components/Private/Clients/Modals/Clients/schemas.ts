@@ -1,7 +1,7 @@
 import i18n from "@configs/i18n";
 import { z } from "zod";
 
-export const UserCreateSchema = z.object({
+export const ClientCreateSchema = z.object({
   category: z.string({ required_error: i18n("errors.fields.required") }),
   name: z.string({ required_error: i18n("errors.fields.required") }).min(3, {
     message: (i18n("errors.fields.min_length") as string)
@@ -15,4 +15,4 @@ export const UserCreateSchema = z.object({
   phone: z.string({ required_error: i18n("errors.fields.required") }),
 });
 
-export type UserCreatePayload = z.infer<typeof UserCreateSchema>;
+export type ClientCreatePayload = z.infer<typeof ClientCreateSchema>;

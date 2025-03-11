@@ -1,24 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 import i18n from "@configs/i18n";
-import { HookUsersProps, ModalUsersOperationType, TDataUser } from "../type";
+import { HookClientsProps, ModalClientsOperationType, TDataClient } from "../type";
 import { SelectorShape } from "@components/shared/layouts/Seletor/type";
 import { Selector } from "@components/shared/layouts/Seletor";
 import { useModalContext } from "@contexts/Modal";
-import { UserActions } from "../UserActions";
+import { ClientActions } from "../ClientActions";
 import { UsersShape } from "../../../../types/Users/Users";
 
-export function useUsers({
-  data: currentUsers,
+export function useClients({
+  data: currentClient,
   handleFilter,
   filter,
-}: HookUsersProps<UsersShape>) {
+}: HookClientsProps<UsersShape>) {
   const [selectors, setSelectors] = useState<SelectorShape[]>([]);
-  const [tDataUsers, setTDataUsers] = useState<Array<Record<string, unknown>>>(
+  const [tDataClients, setTDataClients] = useState<Array<Record<string, unknown>>>(
     []
   );
-  const { handleToggleModal } = useModalContext<ModalUsersOperationType>();
+  const { handleToggleModal } = useModalContext<ModalClientsOperationType>();
 
-  const tHeadsUser = useRef<Array<string>>([
+  const tHeadsClient = useRef<Array<string>>([
     "ID",
     i18n("words.name"),
     i18n("words.cpf_cnpj"),
@@ -28,7 +28,7 @@ export function useUsers({
     i18n("words.actions"),
   ]);
 
-  const updateUserForTable = ({
+  const updateClientForTable = ({
     id,
     name,
     cpf,
@@ -36,29 +36,29 @@ export function useUsers({
     email,
     phone,
     category,
-  }: UsersShape): TDataUser => {
-    const userId = id.toString();
+  }: UsersShape): TDataClient => {
+    const clientId = id.toString();
 
     return {
-      id: <Selector  value={userId} label={userId} />,
+      id: <Selector  value={clientId} label={clientId} />,
       name,
       identify: cpf ?? cnpj,
       email,
       phone,
       category,
-      actions: <UserActions handleToggleModal={handleToggleModal} id={id} />,
+      actions: <ClientActions handleToggleModal={handleToggleModal} id={id} />,
     };
   };
 
   /** Adding news keys of table and the lasted column to table data users */
   useEffect(() => {
-    const usersFiltered = currentUsers.filter((tDataUser) =>
-      handleFilter(tDataUser)
+    const clientsFiltered = currentClient.filter((tDataClient) =>
+      handleFilter(tDataClient)
     );
 
     setSelectors([
-      ...usersFiltered.map((user) => ({
-        value: user.id.toString(),
+      ...clientsFiltered.map((client) => ({
+        value: client.id.toString(),
         isChecked: false,
       })),
       {
@@ -67,16 +67,16 @@ export function useUsers({
       },
     ] as Array<SelectorShape>);
 
-    const tDataUser = usersFiltered.map((userProps) =>
-      updateUserForTable(userProps)
+    const tDataClient = clientsFiltered.map((ClientProps) =>
+      updateClientForTable(ClientProps)
     );
 
-    setTDataUsers(tDataUser);
-  }, [currentUsers, filter]);
+    setTDataClients(tDataClient);
+  }, [currentClient, filter]);
 
   return {
-    tDataUsers,
-    tHeadsUser,
+    tDataClients,
+    tHeadsClient,
     setSelectors,
     selectors,
   };

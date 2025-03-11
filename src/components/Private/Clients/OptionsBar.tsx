@@ -1,7 +1,7 @@
 import { Search } from "@components/shared/forms/Search";
 import i18n from "@configs/i18n";
 import { useModalContext } from "@contexts/Modal";
-import { ModalUsersOperationType } from "./type";
+import { ModalClientsOperationType } from "./type";
 import { Button } from "@components/shared/layouts/Button";
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 };
 
 export function OptionsBar({ handleSearch }: Props) {
-  const { handleToggleModal } = useModalContext<ModalUsersOperationType>();
+  const { handleToggleModal } = useModalContext<ModalClientsOperationType>();
   return (
     <div className="flex justify-between mb-6">
       <Search
@@ -24,7 +24,7 @@ export function OptionsBar({ handleSearch }: Props) {
             className="border border-zinc-300 px-3 font-bold rounded-xl bg-secondary text-primary"
             text={i18n("words.register")}
             type="button"
-            onClick={() => handleToggleModal("USER")}
+            onClick={() => handleToggleModal("CLIENT")}
           />
         </div>
         <div className="mx-2">

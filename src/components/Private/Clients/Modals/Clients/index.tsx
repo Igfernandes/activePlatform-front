@@ -1,18 +1,18 @@
 import { Input } from "@components/shared/forms/Input";
 import i18n from "@configs/i18n";
-import { useModalForm } from "./hooks/useUserCreateModal";
+import { useModalForm } from "./hooks/useClientCreateModal";
 import { ModalFormProps } from "./type";
 import { Modal } from "../../../../shared/layouts/Modal";
 import { FormProvider } from "react-hook-form";
 import { Button } from "@components/shared/layouts/Button";
 import { Select } from "@components/shared/forms/Select";
-import { MOCK_USER_CATEGORIES } from "../../../../../data/users/__mocks__/userCategories";
 import { Checkbox } from "@components/shared/layouts/Checkbox";
 
-export function UserCreateModal({
+export function ClientCreateModal({
   isShowModal,
   onModal,
   title,
+  categories,
 }: ModalFormProps) {
   const { formMethods, register, errors } = useModalForm();
 
@@ -23,17 +23,17 @@ export function UserCreateModal({
           <div className="form-title mb-4">
             <h4 className="text-lg">
               <strong>
-                {i18n("my_users.modal.create.text_select_category")}
+                {i18n("clients.modal.create.text_select_category")}
               </strong>
             </h4>
           </div>
-          <div className="form-group">
+          <div className="form-category">
             <Select
               {...register("category")}
-              options={MOCK_USER_CATEGORIES.map((group) => {
+              options={categories.map((category) => {
                 return {
-                  text: group.name,
-                  value: group.id,
+                  text: category.name,
+                  value: category.id,
                 };
               })}
               label={i18n("words.category")}
@@ -46,7 +46,7 @@ export function UserCreateModal({
             <div className="form-title mt-6 mb-4">
               <h4 className="text-lg">
                 <strong>
-                  {i18n("my_users.modal.create.text_fill_information")}
+                  {i18n("clients.modal.create.text_fill_information")}
                 </strong>
               </h4>
             </div>

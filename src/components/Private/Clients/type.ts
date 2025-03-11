@@ -1,12 +1,12 @@
 import { JSX } from "react";
 
-export type HookUsersProps<UserType> = {
-  data: Array<UserType>;
+export type HookClientsProps<ClientType> = {
+  data: Array<ClientType>;
   filter: string;
-  handleFilter: (data: UserType) => boolean;
+  handleFilter: (data: ClientType) => boolean;
 };
 
-export type TDataUser = {
+export type TDataClient = {
   id: React.ReactNode;
   name: string;
   identify: string;
@@ -16,16 +16,16 @@ export type TDataUser = {
   actions: JSX.Element;
 };
 
-export type UsersStructProps = {
+export type ClientsStructProps = {
   filterObjects: <ObjectShape extends Record<string, unknown>>(
     object: ObjectShape
   ) => boolean;
   search: string;
 };
 
-export type ModalUsersOperationType =
+export type ModalClientsOperationType =
   | "CATEGORY"
-  | "USER"
+  | "CLIENT"
   | "DELETE"
   | "SHARED"
   | "CHANGE_CATEGORY"

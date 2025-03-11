@@ -3,16 +3,16 @@ import { ModalFormProps } from "./type";
 import { Modal } from "../../../../shared/layouts/Modal";
 import { FormProvider } from "react-hook-form";
 import { Button } from "@components/shared/layouts/Button";
-import { useUserCategoriesModal } from "./hooks/useUserCategoriesModal";
 import { Select } from "@components/shared/forms/Select";
 import { MOCK_USER_CATEGORIES } from "../../../../../data/users/__mocks__/userCategories";
+import { useClientCategoriesModal } from "./hooks/useClientCategoriesModal";
 
-export function UserCategoriesModal({
+export function ClientCategoriesModal({
   isShowModal,
   onModal,
   title,
 }: ModalFormProps) {
-  const { formMethods, register, errors } = useUserCategoriesModal();
+  const { formMethods, register, errors } = useClientCategoriesModal();
 
   return (
     <Modal title={title} isShowModal={isShowModal} handleModal={onModal}>
@@ -20,7 +20,9 @@ export function UserCategoriesModal({
         <form className="w-[424px]">
           <div className="form-title mb-4">
             <h4 className="text-lg">
-              <strong>{i18n("my_users.modal.category.text_select_category")}</strong>
+              <strong>
+                {i18n("clients.modal.category.text_select_category")}
+              </strong>
             </h4>
           </div>
           <div className="form-group mb-6">
