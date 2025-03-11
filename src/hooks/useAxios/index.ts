@@ -7,6 +7,7 @@ import { isValidJSON } from "@helpers/json";
 import { AuthenticationsInterceptor } from "./interceptores/Authentication";
 import { DataInterceptor } from "./interceptores/Data";
 import { axiosConfig } from "@configs/axios";
+import { hasErrorAuthentication } from "./interceptores/hasErrorAuthentication";
 
 export function useAxios() {
   const { dispatchSnackbar } = useSnackbar();
@@ -20,9 +21,7 @@ export function useAxios() {
     // Trata erros na requisição
     return Promise.reject(error);
   });
-  axios.interceptors.response.use(DataInterceptor, (error) => {
-    return Promise.reject(isValidJSON(error) ? JSON.parse(error) : error);
-  });
+  axios.interceptors.response.use(DataInterceptor, hasErrorAuthentication);
 
   /**
    * @function handleAxiosError
