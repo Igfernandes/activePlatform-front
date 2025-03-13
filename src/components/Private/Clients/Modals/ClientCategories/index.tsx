@@ -4,20 +4,23 @@ import { Modal } from "../../../../shared/layouts/Modal";
 import { FormProvider } from "react-hook-form";
 import { Button } from "@components/shared/layouts/Button";
 import { Select } from "@components/shared/forms/Select";
-import { MOCK_USER_CATEGORIES } from "../../../../../data/users/__mocks__/userCategories";
 import { useClientCategoriesModal } from "./hooks/useClientCategoriesModal";
 
 export function ClientCategoriesModal({
   isShowModal,
   onModal,
   title,
+  categories,
+  selectors,
 }: ModalFormProps) {
-  const { formMethods, register, errors } = useClientCategoriesModal();
+  const { formMethods, register, errors, submit } = useClientCategoriesModal({
+    selectors,
+  });
 
   return (
     <Modal title={title} isShowModal={isShowModal} handleModal={onModal}>
       <FormProvider {...formMethods}>
-        <form className="w-[424px]">
+        <form onSubmit={formMethods.handleSubmit(submit)} className="w-[424px]">
           <div className="form-title mb-4">
             <h4 className="text-lg">
               <strong>
@@ -29,9 +32,10 @@ export function ClientCategoriesModal({
             <Select
               {...register("category")}
               label={i18n("words.category")}
+              id="category"
               dataTestId="category"
               required={true}
-              options={MOCK_USER_CATEGORIES.map((category) => ({
+              options={(categories ?? []).map((category) => ({
                 text: category.name,
                 value: category.id,
               }))}
@@ -48,7 +52,11 @@ export function ClientCategoriesModal({
               />
             </div>
             <div className="w-[25%] ml-5">
-              <Button className="bg-red text-white" text={i18n("words.save")} />
+              <Button
+                type="submit"
+                className="bg-red text-white"
+                text={i18n("words.save")}
+              />
             </div>
           </div>
         </form>

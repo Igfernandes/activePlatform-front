@@ -1,7 +1,6 @@
 import { JSX } from "react";
 
 export type HookClientsProps<ClientType> = {
-  data: Array<ClientType>;
   filter: string;
   handleFilter: (data: ClientType) => boolean;
 };
@@ -9,7 +8,7 @@ export type HookClientsProps<ClientType> = {
 export type TDataClient = {
   id: React.ReactNode;
   name: string;
-  identify: string;
+  status: 'ACTIVE'|'INACTIVE';
   email: string;
   phone: string;
   category: string;
