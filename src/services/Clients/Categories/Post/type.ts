@@ -1,4 +1,4 @@
-export type PostCreateUserPayload = {
+export type PostCreateCategoryPayload = {
   categories: Array<CategoryData>;
 };
 

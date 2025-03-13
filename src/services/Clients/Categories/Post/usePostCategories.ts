@@ -1,18 +1,18 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSnackbar } from "@hooks/useSnackbar";
 import { useAxios } from "@hooks/useAxios";
-import { PostCreateUserPayload } from "./type";
+import { PostCreateCategoryPayload } from "./type";
 import i18n from "@configs/i18n";
 import { usePostCategoriesService } from ".";
 
 export default function usePostCategories() {
   const { handleAxiosError } = useAxios();
   const { dispatchSnackbar } = useSnackbar();
-  const { postCreateUser } = usePostCategoriesService();
+  const { postCreateCategory } = usePostCategoriesService();
   const queryClient = useQueryClient();
 
-  const handleMutate = async (payload: PostCreateUserPayload) => {
-    const { data } = await postCreateUser(payload);
+  const handleMutate = async (payload: PostCreateCategoryPayload) => {
+    const { data } = await postCreateCategory(payload);
 
     return data;
   };
