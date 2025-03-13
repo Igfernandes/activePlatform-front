@@ -5,7 +5,7 @@ import { useRoutes } from "@hooks/useRoutes";
 import { ClientCategoriesShape } from "../../../../types/Clients/ClientCategories";
 
 export default function useGet() {
-  const { category } = API_ROUTES;
+  const { categories } = API_ROUTES;
   const { axios } = useAxios();
   const { setParams, setQueries } = useRoutes();
 
@@ -13,7 +13,7 @@ export default function useGet() {
     const { ...query } = request ?? {};
     return await axios.get<ClientCategoriesShape[]>(
       setQueries({
-        url: setParams({ url: category }),
+        url: setParams({ url: categories }),
         query,
       })
     );
