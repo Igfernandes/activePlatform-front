@@ -5,6 +5,8 @@ import { isValidJSON } from "@helpers/json";
 import { AxiosError } from "axios";
 
 export function hasErrorAuthentication(error: AxiosError) {
+  if (process.env.NEXT_PUBLIC_ENVIRONMENT == "DEV") return;
+
   if (
     !error.response?.status ||
     error.response?.status === STATUS_SERVICE.NOT_FOUND

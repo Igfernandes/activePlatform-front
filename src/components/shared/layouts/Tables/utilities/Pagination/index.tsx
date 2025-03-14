@@ -3,6 +3,7 @@ import { ArrowRight } from "@assets/Icons/black/ArrowRight";
 import { useEffect } from "react";
 import { When } from "@components/utilities/When";
 import { usePagination } from "./hooks/usePagination";
+import useWindow from "@hooks/useWindow";
 
 export function Pagination() {
   const {
@@ -17,6 +18,7 @@ export function Pagination() {
     handleChangePagination,
     amountRegisters,
   } = usePagination();
+  const { windowSize } = useWindow();
 
   useEffect(() => {
     const nextGroupPage = Math.ceil(pagination.current / 3);
@@ -24,10 +26,19 @@ export function Pagination() {
     handleChangeDisplayedPages(nextGroupPage);
     handleChangeDisplayedGroupPage(nextGroupPage);
   }, [pagination]);
+
   return (
     <div className="flex justify-between mt-3">
       <div>
-        <p className="text-sm">{`Exibindo ${tRows.length} de ${amountRegisters} resultados`}</p>
+        <p className="text-sm">
+          <When value={windowSize.width > 500}>
+            {`Exibindo ${tRows.length} de ${amountRegisters} resultados`}
+          </When>
+          <When value={windowSize.width <= 500}>
+            {" "}
+            {`Exibindo ${tRows.length} de ${amountRegisters} `}
+          </When>
+        </p>
       </div>
       <div>
         <div className="flex justify-end">

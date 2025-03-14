@@ -21,12 +21,12 @@ export function Sidebar({ handleToggleSidebar, showSidebar }: Props) {
 
   return (
     <aside
-      className={`fixed lg:relative z-40 lg:z-0 w-full h-full lg:w-[320px] bg-white transition-all duration-300`}
+      className={`fixed lg:relative z-40 lg:z-0 w-full h-[100vh] lg:h-full lg:w-[320px] bg-white transition-all duration-300`}
       style={{
         marginLeft: !showSidebar ? indentValue : "0",
       }}
     >
-      <div className="px-6 pt-6">
+      <div className="px-6 pt-6 ">
         <div className="flex justify-between mb-8">
           <div>
             <h3 className="text-2xl">
@@ -37,18 +37,18 @@ export function Sidebar({ handleToggleSidebar, showSidebar }: Props) {
             <Bars onClick={handleToggleSidebar} />
           </div>
         </div>
-        <div className="h-[85vh] flex flex-col justify-between overflow-x-hidden overflow-y-auto hidden-scroll transition-all duration-500">
+        <div className="h-[82vh] lg:h-full flex flex-col  justify-between overflow-x-hidden overflow-y-auto hidden-scroll transition-all duration-500">
           <Navbar
             sidebarState={showSidebar}
             menu={MAIN_MENU}
             title={i18n("words.main")}
-            className="mb-8"
+            className="mb-6 lg:mb-0 xl:mb-3"
           />
           <Navbar
             sidebarState={showSidebar}
             menu={ADMINISTRATIVE_MENU}
             title={i18n("words.administrative")}
-            className="mb-8"
+            className="mb-6 xl:mb-3"
           />
           <Navbar
             sidebarState={showSidebar}

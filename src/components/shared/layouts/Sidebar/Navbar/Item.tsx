@@ -30,7 +30,7 @@ export function Item({
         index != menu.length - 1 && sidebarState
           ? "border-b-2 border-b-zinc-200"
           : ""
-      } py-2  ${sidebarState ? "px-1" : ""}`}
+      } py-1 xl:py-2  ${sidebarState ? "px-1" : ""}`}
       style={{
         color: isActive ? textColors.red : textDefaultColors.primary,
       }}
@@ -42,7 +42,7 @@ export function Item({
           justifyContent: sidebarState ? "initial" : "end",
         }}
       >
-        <Icon fill={itemStyle} className="w-[10px] xl:w-[20px]" />
+        <Icon fill={itemStyle} className="w-[18px] xl:w-[20px]" />
         <When value={sidebarState}>
           <strong className="ml-2">{title}</strong>
         </When>

@@ -120,7 +120,7 @@ export function ClientCreateModal({
               <Checkbox
                 dataTestId="continue_register"
                 label={i18n(`words.continue_register`)}
-                checked={shouldContinueRegistering}
+                defaultChecked={shouldContinueRegistering}
                 onClick={handleToggleContinueRegistering}
               />
             </div>

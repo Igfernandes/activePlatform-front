@@ -40,16 +40,13 @@ export function handleMaskPhone(e: React.ChangeEvent<HTMLInputElement>) {
   // Adicionar a máscara conforme o número de dígitos
   if (value.length <= 1) {
     value = value.replace(/^(\d{2})/, "($1)");
-  } else if (value.length <= 5) {
-    value = value.replace(/^(\d{2})(\d{1,5})/, "($1) $2");
-  } else if (value.length <= 10) {
-    value = value.replace(/^(\d{2})(\d{1,5})(\d{1,4})/, "($1) $2-$3");
+  } else if (value.length <= 3) {
+    value = value.replace(/^(\d{2})(\d{1})/, "($1) $2");
+  } else if (value.length <= 7) {
+    value = value.replace(/^(\d{2})(\d{1})(\d{1,4})/, "($1) $2 $3");
   } else {
-    value = value.replace(
-      /^(\d{2})(\d{1,5})(\d{1,4})(\d{1,4})/,
-      "($1) $2-$3"
-    );
+    value = value.replace(/^(\d{2})(\d{1})(\d{1,4})(\d{1,4})/, "($1) $2 $3-$4");
   }
 
-  e.target.value = value;
+  e.target.value = value.slice(0, 16);
 }

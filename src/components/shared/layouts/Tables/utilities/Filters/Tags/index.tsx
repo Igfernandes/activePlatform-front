@@ -12,7 +12,7 @@ export function Tags<TableData extends Array<Record<string, unknown>>>(
   const { tags, totalTags, handleChangeTargetTag } = useTags<TableData>(props);
 
   return (
-    <div className="relative w-2/3 z-0">
+    <div className="relative w-[95%] z-0">
       <Swiper
         spaceBetween={10}
         slidesPerView={"auto"}
@@ -28,7 +28,7 @@ export function Tags<TableData extends Array<Record<string, unknown>>>(
         {tags.map((tag) => (
           <SwiperSlide style={{ width: 'auto' }}
             key={`tag_${tag.text}`}
-            className="border-[1px] border-secondary px-3 rounded-xl cursor-pointer "
+            className="border-[1px] border-secondary px-3 rounded-xl cursor-pointer"
             onClick={() => handleChangeTargetTag(tag.text)}
           >
             <span className="uppercase font-semibold text-xs">{`${tag.text} (${tag.amount})`}</span>
@@ -36,11 +36,11 @@ export function Tags<TableData extends Array<Record<string, unknown>>>(
         ))}
       </Swiper>
       <span
-        className="absolute bottom-1 lg:bottom-[1px] right-[-15px] w-[5%] lg:w-[20px] h-8  z-10"
+        className="absolute bottom-0 lg:bottom-[1px] right-[-10px] w-[5%] lg:w-[20px] h-8  z-10"
         style={gradientStyle}
       ></span>
       <span
-        className="absolute bottom-1 lg:bottom-0 left-[0px] w-[12%] lg:w-[12px] h-8  z-10"
+        className="absolute bottom-0 lg:bottom-0 left-[0px] w-[1%] lg:w-[12px] h-8  z-10"
         style={gradientStyle}
       ></span>
     </div>

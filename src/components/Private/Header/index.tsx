@@ -24,7 +24,10 @@ export function Header({ handleSidebar }: Props) {
           <h3>
             <When value={!!userAuth}>
               <strong>
-                {welcomeMessage.replace("{name}", `${userAuth?.name}`)}
+                {welcomeMessage.replace(
+                  ", {name}",
+                  screenType == "DESKTOP" ? `${userAuth?.name}` : ""
+                )}
               </strong>
             </When>
           </h3>
