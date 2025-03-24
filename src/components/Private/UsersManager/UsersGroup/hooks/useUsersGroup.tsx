@@ -2,20 +2,22 @@ import { useEffect, useRef, useState } from "react";
 import i18n from "@configs/i18n";
 import dayjs from "dayjs";
 import { StatusText } from "@components/shared/others/StatusText";
-import { HookUsersProps, TDataUserGroup } from "../../type";
-import { useUsersGroupModal } from "./useUsersGroupModal";
+import {
+  HookGroupsProps,
+  ModalUserOperationType,
+  TDataUserGroup,
+} from "../../type";
 import { ButtonConfig } from "@components/shared/others/ButtonConfig";
 import { UsersGroupShape } from "../../../../../types/Users/UsersGroup";
+import { useModalContext } from "@contexts/Modal";
 
-export function useUsersGroup({
-  data: currentUsersGroup,
-  filter,
-  handleFilter,
-}: HookUsersProps<UsersGroupShape>) {
-  const { handleToggleUsersGroupModal, usersGroupModal } = useUsersGroupModal();
+export function useUsersGroup({ filter, handleFilter, data }: HookGroupsProps) {
+  const { modal, handleToggleModal } =
+    useModalContext<ModalUserOperationType>();
   const [tDataUsersGroup, setTDataUsersGroup] = useState<Array<TDataUserGroup>>(
     []
   );
+
   const tHeadUsersGroup = useRef<Array<string>>([
     "ID",
     i18n("words.name"),
@@ -27,6 +29,8 @@ export function useUsersGroup({
 
   const updateUserGroupForTable = ({
     created_at,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    description,
     ...userGroup
   }: UsersGroupShape): TDataUserGroup => {
     const convertDate = dayjs(created_at).format(
@@ -42,17 +46,15 @@ export function useUsersGroup({
           actions={[
             {
               text: i18n("words.edit"),
-              handle: () =>
-                handleToggleUsersGroupModal("DEFAULT", userGroup.id),
+              handle: () => handleToggleModal("DEFAULT_GROUP", userGroup.id),
             },
             {
-              text: i18n("words.group_desative"),
-              handle: () =>
-                handleToggleUsersGroupModal("DESATIVE", userGroup.id),
+              text: i18n("words.desative"),
+              handle: () => handleToggleModal("DESATIVE_GROUP", userGroup.id),
             },
             {
               text: i18n("words.exclude"),
-              handle: () => handleToggleUsersGroupModal("DELETE", userGroup.id),
+              handle: () => handleToggleModal("DELETE_GROUP", userGroup.id),
             },
           ]}
         />
@@ -64,18 +66,17 @@ export function useUsersGroup({
 
   /** Adding news keys of table and the lasted column to table data usersGroup */
   useEffect(() => {
-    const userGroupFiltered = currentUsersGroup.filter((data) =>
-      handleFilter(data)
-    );
+    const groups = data ?? [];
+    const userGroupFiltered = groups.filter((data) => handleFilter(data));
     const tDataUserGroup = userGroupFiltered.map(updateUserGroupForTable);
 
     setTDataUsersGroup(tDataUserGroup);
-  }, [currentUsersGroup, filter]);
+  }, [data, filter]);
 
   return {
     tDataUsersGroup,
     tHeadUsersGroup,
-    usersGroupModal,
-    handleToggleUsersGroupModal,
+    modal,
+    handleToggleModal,
   };
 }

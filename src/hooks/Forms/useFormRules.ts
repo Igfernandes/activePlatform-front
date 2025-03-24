@@ -21,6 +21,7 @@ export function useFormRules<Payload extends FieldValues>({
     resolver: zodResolver(schema),
     mode: "onChange",
     defaultValues,
+    
   });
   const {
     register,

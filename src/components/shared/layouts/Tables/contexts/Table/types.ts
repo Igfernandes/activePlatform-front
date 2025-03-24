@@ -18,6 +18,7 @@ export type TableContextData = {
   handleChangeFilters: (callback: Record<string, FilterCallback>) => void;
   handleChangeEvent: (isEvent: boolean) => void;
   amountHiddenCols: Array<boolean>;
+  amountRegisters: number
 };
 
 export type TableProps = {

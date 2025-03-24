@@ -65,6 +65,7 @@
     "services": "Serviços",
     "finance": "Financeiro",
     "system": "Sistema",
+    "desative": "Desativar",
     "settings": "Configurações",
     "administrative": "Administrativo",
     "list_from_a_to_z": "Listar de A a Z",
@@ -145,7 +146,36 @@
     "public": "Público",
     "forms": "Formulários",
     "new_form": "Novo formulário",
-    "welcome_message": "Seja Bem vindo, {name}!"
+    "welcome_message": "Seja Bem vindo, {name}!",
+    "clients": "Clientes",
+    "birthdate": "Data de Nasc",
+    "new_client": "Novo cliente",
+    "is_valid": "É valido?",
+    "expired_at": "Expirado em",
+    "created_at": "Criado em",
+    "invites": "Convites",
+    "resend": "Reenviar"
+  },
+  "permissions": {
+    "users_create": "Criar usuários",
+    "users_update": "Atualizar usuários",
+    "users_delete": "Excluir usuários",
+    "users_view": "Visualizar usuários",
+
+    "forms_create": "Criar formulários",
+    "forms_update": "Atualizar formulários",
+    "forms_delete": "Excluir formulários",
+    "forms_view": "Visualizar formulários",
+
+    "services_create": "Criar Serviços",
+    "services_update": "Atualizar Serviços",
+    "services_delete": "Excluir Serviços",
+    "services_view": "Visualizar Serviços",
+
+    "clients_create": "Criar clientes",
+    "clients_update": "Atualizar clientes",
+    "clients_delete": "Excluir clientes",
+    "clients_view": "Visualizar clientes"
   },
   "configs": {
     "formats": {
@@ -176,14 +206,28 @@
         "text_insert_name": "Insira um nome para o grupo de usuários:",
         "text_select_permissions": "Selecione as permissões que estarão ativas para este grupo:",
         "title_already_desative": "Você deseja desativar este grupo de usuários?",
-        "text_awaiting_after_delete_desative": "Ao continuar, todos os usuários deste grupo perderão o acesso, pois suas permissões serão bloqueadas.",
+        "text_already_desative": "Ao continuar, todos os usuários deste grupo perderão o acesso, pois suas permissões serão bloqueadas.",
+        "text_already_exclude": "Ao continuar, todos os usuários deste grupo perderão o acesso, pois suas permissões serão bloqueadas.",
         "title_already_exclude": "Você deseja excluir este grupo de usuários?"
       },
       "user": {
         "text_select_group": "Selecione os grupos ao qual o usuário pertencerá:",
         "text_fill_information": "Preencha as informações abaixo para convidar um novo usuário:",
         "text_awaiting_after_delete_desative": "Ao continuar, todos os usuários perderão o acesso, pois suas permissões serão bloqueadas.",
-        "title_already_exclude": "Você deseja excluir este usuário?"
+        "text_already_desative": "Ao continuar, todos os dados dos usuário selecionado será excluído, e eles não poderá mais acessar até que sejam restaurados.",
+        "title_already_desative": "Você deseja desativar este cliente?",
+        "text_already_exclude": "Ao continuar, todos os dados dos usuário selecionado serão desabilitados, e eles não poderá mais acessar até que seja ativo novamente.",
+        "title_already_exclude": "Você deseja excluir este cliente?"
+      },
+      "invites": {
+        "text_already_resend": "Ao continuar, o convite enviado anteriormente com o token e as demais informações serão invalidadas.",
+        "title_already_resend": "Você deseja reenviar o convite ao usuário?",
+        "text_already_exclude": "Ao continuar, o convite será invalidado e os dados do usuário anexados sumiram do sistema.",
+        "title_already_exclude": "Você deseja excluir este convite?",
+        "success_title_resend": "Convite reenviado",
+        "success_text_resend": "Seu convite foi reenviado com sucesso!",
+        "success_title_delete": "Convite excluído",
+        "success_text_delete": "Seu convite foi excluído com sucesso!"
       }
     }
   },
@@ -199,33 +243,56 @@
     "inform_limit_reservation": "Será possível aderir a vagas de reserva?",
     "service_image": "Adicione uma imagem ao serviço:"
   },
-  "my_users": {
+  "clients": {
     "modal": {
       "category": {
         "text_create_category": "Para criar uma categoria, clique em adicionar ou edite uma categoria abaixo:",
         "text_organized_items": "Para ordenar a categoria, segure e arraste.",
-        "text_select_category": "Selecione a nova categoria para a base escolhida"
+        "text_select_category": "Selecione a nova categoria para a base escolhida",
+        "success_title": "Categoria criada",
+        "success_text": "Sua categoria está disponível para vincular ao cliente."
       },
-      "user": {
-        "text_select_group": "Selecione os grupos ao qual o usuário pertencerá:",
-        "text_fill_information": "Preencha as informações abaixo para convidar um novo usuário:",
-        "text_already_exclude": "Ao continuar, todos os dados dos usuários selecionados serão excluídos, e eles não poderão mais acessar até que sejam recadastrados.",
-        "title_already_exclude": "Você deseja excluir este usuário?"
+      "client": {
+        "text_fill_information": "Preencha as informações abaixo para convidar um novo cliente:",
+        "text_already_exclude": "Ao continuar, todos os dados dos clientes selecionados serão excluídos, e eles não poderão mais acessar até que sejam recadastrados.",
+        "title_already_exclude": "Você deseja excluir este cliente?"
       },
       "shared": {
         "text_insert_email": "Insira o e-mail do usuário que receberá os dados",
         "text_select_information": "Selecione quais grupos de informações serão compartilhados"
       },
       "create": {
-        "text_select_category": "Selecione a categoria à qual o usuário pertencerá:",
-        "text_fill_information": "Preencha os dados abaixo para criar um novo usuário:"
+        "text_select_category": "Selecione a categoria à qual o cliente pertencerá:",
+        "text_fill_information": "Preencha os dados abaixo para criar um novo cliente:",
+        "success_title": "Cliente criado",
+        "success_text": "Seu cliente foi criado com sucesso."
+      },
+      "delete": {
+        "success_title": "Cliente Excluído",
+        "success_text": "Seu cliente foi excluído com sucesso."
       }
     }
   },
   "users": {
     "modal": {
       "create": {
-        "text_field_fill_information": "Preencha as informações abaixo para cadastrar um novo dado"
+        "text_field_fill_information": "Preencha as informações abaixo para cadastrar um novo dado",
+        "success_title": "Usuário criado",
+        "success_text": "O usuário foi adicionado e precisa acessar os meios de contato para finalizar sua conta"
+      },
+      "delete": {
+        "success_title": "Usuário Deletado",
+        "success_text": "O usuário foi deletado com sucesso."
+      },
+      "groups": {
+        "title_success": "Grupo Criado",
+        "text_success": "O grupo foi criado com sucesso e já está disponível",
+        "success_update_title": "Grupo atualizado",
+        "success_update_text": "Seu grupo foi atualizado com sucesso.",
+        "success_delete_title": "Grupo Deletado",
+        "success_delete_text": "Seu grupo foi excluído com sucesso.",
+        "success_patch_title": "Status Atualizado",
+        "success_patch_text": "Seu grupo teve seu status alterado com sucesso."
       }
     }
   }

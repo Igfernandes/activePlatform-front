@@ -1,7 +1,7 @@
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import { SortableContext } from "@dnd-kit/sortable";
 
-import { FieldValues, useFormContext } from "react-hook-form";
+import { FieldValues } from "react-hook-form";
 import { GroupFieldsProps } from "./type";
 import { SortableItem } from "./SortableItem";
 import { useGroupFields } from "./hooks/useGroupFields";
@@ -12,16 +12,15 @@ export function GroupFields<Payload extends FieldValues>({
   data = [],
 }: GroupFieldsProps<Payload>) {
   const {
-    register,
-    formState: { errors },
-  } = useFormContext<Payload>();
-  const {
     handleDragEnd,
     items,
     handleChangeItem,
     targetItem,
     handleAddingItem,
-  } = useGroupFields({ data });
+    handleErrors,
+    errors,
+    register,
+  } = useGroupFields<Payload>({ data, name });
 
   return (
     <div>
@@ -37,12 +36,13 @@ export function GroupFields<Payload extends FieldValues>({
         >
           <SortableContext items={items.map((item) => item.id)}>
             <ul>
-              {items.map((item) => (
+              {items.map((item, key) => (
                 <SortableItem<Payload>
-                  key={item.id}
+                  key={`${item.id}_${item.value}`}
                   id={item.id}
+                  position={key}
                   value={item.value as string}
-                  name={`${name}.${item.id}`}
+                  name={name}
                   errors={errors}
                   target={targetItem}
                   register={register}
@@ -52,6 +52,9 @@ export function GroupFields<Payload extends FieldValues>({
             </ul>
           </SortableContext>
         </DndContext>
+      </div>
+      <div>
+        <span className="text-xs">{handleErrors()}</span>
       </div>
     </div>
   );

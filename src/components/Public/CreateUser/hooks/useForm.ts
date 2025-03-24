@@ -1,9 +1,7 @@
-import { createUserFormSchema } from "../schemas";
-import { PostCreateUserPayload } from "../../../../services/Users/Post/type";
-import usePostCreateUser from "../../../../services/Users/Post/usePostCreateUser";
+import { createUserFormSchema, CreateUserPayload } from "../schemas";
 import { useFormRules } from "@hooks/Forms/useFormRules";
 
-type Payload = PostCreateUserPayload;
+type Payload = CreateUserPayload;
 
 export function useForm() {
   const { formMethods, hasAllFilledFields } = useFormRules<Payload>({
@@ -14,11 +12,8 @@ export function useForm() {
     handleSubmit,
     formState: { isSubmitting },
   } = formMethods;
-  const { mutateAsync: postCreateUser } = usePostCreateUser();
 
-  const onSubmit = async (payload: Payload) => {
-    postCreateUser(payload);
-  };
+  const onSubmit = async () => {};
 
   return {
     register,

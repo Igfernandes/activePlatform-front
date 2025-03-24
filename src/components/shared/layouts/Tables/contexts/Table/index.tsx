@@ -23,7 +23,7 @@ const TableProvider = ({
   pagination: paginationInstance,
   data,
   excludes,
-  amountHiddenCols
+  amountHiddenCols,
 }: TableData) => {
   const [tRows, setTRows] = useState<Array<unknown[]>>([]);
   const [paginatedTRows, setPaginatedTRows] = useState<Array<unknown[]>>([]);
@@ -39,6 +39,7 @@ const TableProvider = ({
   // Estados locais
   const [hasEvent, setHasEvent] = useState<boolean>(false);
   const [filters, setFilters] = useState<Record<string, FilterCallback>>({});
+  const [amountRegisters, setAmountRegisters] = useState<number>(0);
 
   // Atualiza os filtros
   const handleChangeFilters = (callback: Record<string, FilterCallback>) => {
@@ -69,6 +70,7 @@ const TableProvider = ({
    * Atualiza os dados sempre que houver mudanças nos filtros, ordenação ou paginação
    */
   useEffect(() => {
+    setAmountRegisters(data.length);
     const sortedData = sortTableData(sort);
     const filteredData = handleFilteredData(sortedData);
     const newRows = getTRows(filteredData, excludes);
@@ -92,7 +94,8 @@ const TableProvider = ({
       filters,
       handleChangeFilters,
       handleChangeEvent,
-      amountHiddenCols
+      amountHiddenCols,
+      amountRegisters,
     }),
     [sort, pagination, tRows, filters, amountHiddenCols]
   );

@@ -3,6 +3,7 @@ import { ArrowRight } from "@assets/Icons/black/ArrowRight";
 import { useEffect } from "react";
 import { When } from "@components/utilities/When";
 import { usePagination } from "./hooks/usePagination";
+import useWindow from "@hooks/useWindow";
 
 export function Pagination() {
   const {
@@ -15,7 +16,9 @@ export function Pagination() {
     handleChangeDisplayedGroupPage,
     handleChangeDisplayedPages,
     handleChangePagination,
+    amountRegisters,
   } = usePagination();
+  const { windowSize } = useWindow();
 
   useEffect(() => {
     const nextGroupPage = Math.ceil(pagination.current / 3);
@@ -23,10 +26,19 @@ export function Pagination() {
     handleChangeDisplayedPages(nextGroupPage);
     handleChangeDisplayedGroupPage(nextGroupPage);
   }, [pagination]);
+
   return (
     <div className="flex justify-between mt-3">
       <div>
-        <p className="text-sm">{`Exibindo ${pagination.max} de ${tRows.length} resultados`}</p>
+        <p className="text-sm">
+          <When value={windowSize.width > 500}>
+            {`Exibindo ${tRows.length} de ${amountRegisters} resultados`}
+          </When>
+          <When value={windowSize.width <= 500}>
+            {" "}
+            {`Exibindo ${tRows.length} de ${amountRegisters} `}
+          </When>
+        </p>
       </div>
       <div>
         <div className="flex justify-end">
@@ -51,7 +63,7 @@ export function Pagination() {
                   <span>{value}</span>
                 </li>
               ))}
-              <When value={(displayedGroupPage + 1) < amountGroups}>
+              <When value={displayedGroupPage + 1 < amountGroups}>
                 <li
                   key={`pagination_key_more`}
                   className={`px-2 hover:bg-rose-800 text-black hover:text-white cursor-pointer`}

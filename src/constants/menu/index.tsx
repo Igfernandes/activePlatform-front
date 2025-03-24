@@ -20,9 +20,9 @@ export const MAIN_MENU = [
     link: privateRoutes.dashboard,
   },
   {
-    title: i18n("words.my_users"),
+    title: i18n("words.clients"),
     Icon: Peoples,
-    link: privateRoutes.myUsers,
+    link: privateRoutes.clients,
   },
   {
     title: i18n("words.sending_management"),

@@ -25,3 +25,5 @@ export const createUserFormSchema = z
     message: i18n("errors.fields.required"),
     path: ["passwordConfirm"],
   });
+
+export type CreateUserPayload = z.infer<typeof createUserFormSchema>;

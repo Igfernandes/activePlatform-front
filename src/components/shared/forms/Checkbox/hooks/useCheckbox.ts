@@ -15,5 +15,6 @@ export function useCheckbox({ onChecked }: Props = {}) {
   return {
     handleChecked,
     isChecked,
+    setIsChecked
   };
 }

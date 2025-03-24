@@ -24,6 +24,7 @@ export type ItemProps<Payload extends FieldValues> = {
   register: UseFormRegister<Payload>;
   onChange: (id: UniqueIdentifier, action: "EDIT" | "DELETE") => void;
   target: UniqueIdentifier | undefined;
+  position: number;
 };
 
 export type ItemShape = {

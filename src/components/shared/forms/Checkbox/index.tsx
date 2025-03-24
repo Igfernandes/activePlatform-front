@@ -2,7 +2,8 @@ import { SymbolChecked } from "@assets/Icons/white/SymbolChecked";
 import { useCheckbox } from "./hooks/useCheckbox";
 import { CheckboxProps } from "./type";
 import { When } from "@components/utilities/When";
-import React from "react";
+import React, { useEffect } from "react";
+import { useFormContext } from "react-hook-form";
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   function Checkbox(
@@ -13,14 +14,26 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       dataTestId,
       errors,
       onChecked,
+      defaultValue,
+      groupName,
       ...props
     }: CheckboxProps,
     ref
   ) {
-    const { handleChecked, isChecked } = useCheckbox({
+    const { handleChecked, isChecked, setIsChecked } = useCheckbox({
       onChecked,
     });
+    const currentReferenceName = (groupName ?? props.name) as string;
     const IdCurrent = id ?? dataTestId;
+    const { watch } = useFormContext();
+
+    useEffect(() => {
+      const values = watch(currentReferenceName);
+
+      if (!values) return;
+
+      setIsChecked(values.includes(String(defaultValue)));
+    }, [watch(currentReferenceName)]);
 
     return (
       <div>
@@ -34,6 +47,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               ref={ref}
               type={type}
               defaultChecked={isChecked}
+              defaultValue={defaultValue}
               data-testid={IdCurrent}
               id={IdCurrent}
               className={`${

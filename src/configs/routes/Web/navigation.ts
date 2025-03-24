@@ -6,7 +6,7 @@ export const publicRoutes = {
 
 export const privateRoutes = {
   dashboard: "/dashboard",
-  myUsers: "/dashboard/my-users",
+  clients: "/dashboard/clients",
   sendingManagement: "/dashboard/sending-management",
   forms: "/dashboard/forms", 
   schedule: "/dashboard/schedule",

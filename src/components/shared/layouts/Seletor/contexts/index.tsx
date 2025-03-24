@@ -54,7 +54,7 @@ const SelectorProvider = ({
       handleCheckedAll,
       handleChangeSelector,
     }),
-    [setSelectors, selectors]
+    [selectors]
   );
 
   return (

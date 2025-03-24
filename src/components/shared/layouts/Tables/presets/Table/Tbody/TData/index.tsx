@@ -13,7 +13,9 @@ export function TData<TableData>({ data, keyRow }: TDataProps<TableData>) {
     return (
       <When key={`when_${keyRow}_${index}`} value={isVisible}>
         <td key={`data_${keyRow}_${index}`} className="px-1">
-          {value as PossiblesTypesToComponents}
+          <span className="line-clamp-1">
+            {value as PossiblesTypesToComponents}
+          </span>
         </td>
       </When>
     );

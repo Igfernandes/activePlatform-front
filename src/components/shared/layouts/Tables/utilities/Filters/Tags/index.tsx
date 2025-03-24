@@ -1,6 +1,10 @@
 import i18n from "@configs/i18n";
 import { useTags } from "./hooks/useTags";
 import { TagProps } from "./type";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
 
 export function Tags<TableData extends Array<Record<string, unknown>>>(
   props: TagProps<TableData>
@@ -8,32 +12,35 @@ export function Tags<TableData extends Array<Record<string, unknown>>>(
   const { tags, totalTags, handleChangeTargetTag } = useTags<TableData>(props);
 
   return (
-    <div className="relative w-2/3">
-      <ul className="flex items-center px-2 w-full lg:w-[30vw] h-11 mb-[-15px] only-arrows overflow-y-hidden overflow-x-auto whitespace-nowrap ">
-        <li
-          className="border-[1px] border-secondary px-3 rounded-xl cursor-pointer mx-[.25rem] inline-block"
+    <div className="relative w-[95%] z-0">
+      <Swiper
+        spaceBetween={10}
+        slidesPerView={"auto"}
+      >
+        <SwiperSlide style={{ width: 'auto' }}
+          className="border-[1px] border-secondary px-3 rounded-xl cursor-pointer "
           onClick={() => handleChangeTargetTag("")}
         >
-          <span className="uppercase font-semibold text-xs ">
+          <span className="uppercase font-semibold text-xs">
             {`${i18n("words.all")} (${totalTags.current})`}{" "}
           </span>
-        </li>
+        </SwiperSlide>
         {tags.map((tag) => (
-          <li
+          <SwiperSlide style={{ width: 'auto' }}
             key={`tag_${tag.text}`}
-            className="border-[1px] border-secondary px-3 rounded-xl cursor-pointer mx-[.25rem] inline-block"
+            className="border-[1px] border-secondary px-3 rounded-xl cursor-pointer"
             onClick={() => handleChangeTargetTag(tag.text)}
           >
             <span className="uppercase font-semibold text-xs">{`${tag.text} (${tag.amount})`}</span>
-          </li>
+          </SwiperSlide>
         ))}
-      </ul>
+      </Swiper>
       <span
-        className="absolute bottom-1 lg:bottom-0 right-[-10px] w-[5%] lg:w-[5%] h-8"
+        className="absolute bottom-0 lg:bottom-[1px] right-[-10px] w-[5%] lg:w-[20px] h-8  z-10"
         style={gradientStyle}
       ></span>
       <span
-        className="absolute bottom-1 lg:bottom-0 left-[-1px] w-[5%] lg:w-[2%] h-8"
+        className="absolute bottom-0 lg:bottom-0 left-[0px] w-[1%] lg:w-[12px] h-8  z-10"
         style={gradientStyle}
       ></span>
     </div>

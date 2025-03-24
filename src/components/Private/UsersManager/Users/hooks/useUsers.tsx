@@ -1,27 +1,27 @@
 import { useEffect, useRef, useState } from "react";
 import i18n from "@configs/i18n";
 import { StatusText } from "@components/shared/others/StatusText";
-import { HookUsersProps, TDataUser } from "../../type";
-import { useUsersModal } from "./useUsersModal";
 import { ButtonConfig } from "@components/shared/others/ButtonConfig";
 import { UsersShape } from "../../../../../types/Users/Users";
+import { HookProps, ModalUserOperationType, TDataUser } from "../../type";
+import { useModalContext } from "@contexts/Modal";
+import useGetUsers from "../../../../../services/Users/Get/useGetUsers";
 
-export function useUsers({
-  data: currentUsers,
-  handleFilter,
-  filter,
-}: HookUsersProps<UsersShape>) {
-  const { handleToggleUsersModal, usersModal } = useUsersModal();
+export function useUsers({ handleFilter, filter }: HookProps<UsersShape>) {
+  const { handleToggleModal, modal } =
+    useModalContext<ModalUserOperationType>();
   const [tDataUsers, setTDataUsers] = useState<Array<Record<string, unknown>>>(
     []
   );
+  const { data } = useGetUsers();
+
   const tHeadsUser = useRef<Array<string>>([
     "ID",
     i18n("words.name"),
     i18n("words.email"),
     i18n("words.phone"),
-    i18n("words.status"),
     i18n("words.group"),
+    i18n("words.status"),
     i18n("words.actions"),
   ]);
 
@@ -31,25 +31,30 @@ export function useUsers({
     email,
     phone,
     status,
-    group,
+    groups,
   }: UsersShape): TDataUser => {
+    console.log(groups);
     return {
       id,
       name,
       email,
       phone,
-      group,
+      group: groups == "" ? "--" : groups,
       status: <StatusText status={status} />,
       actions: (
         <ButtonConfig
           actions={[
             {
               text: i18n("words.edit"),
-              handle: () => handleToggleUsersModal("DEFAULT", id),
+              handle: () => handleToggleModal("DEFAULT_USER", id),
+            },
+            {
+              text: i18n("words.desative"),
+              handle: () => handleToggleModal("DESATIVE_USER", id),
             },
             {
               text: i18n("words.exclude"),
-              handle: () => handleToggleUsersModal("DELETE", id),
+              handle: () => handleToggleModal("DELETE_USER", id),
             },
           ]}
         />
@@ -59,18 +64,18 @@ export function useUsers({
 
   /** Adding news keys of table and the lasted column to table data users */
   useEffect(() => {
-    const usersFiltered = currentUsers.filter((tDataUser) =>
-      handleFilter(tDataUser)
-    );
+    if (!data) return setTDataUsers([]);
+
+    const usersFiltered = data.filter((tDataUser) => handleFilter(tDataUser));
     const tDataUser = usersFiltered.map(updateUserForTable);
 
     setTDataUsers(tDataUser);
-  }, [currentUsers, filter]);
+  }, [data, filter]);
 
   return {
     tDataUsers,
     tHeadsUser,
-    handleToggleUsersModal,
-    usersModal,
+    handleToggleModal,
+    modal,
   };
 }

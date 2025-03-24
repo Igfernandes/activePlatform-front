@@ -8,7 +8,7 @@ export type UsersShape = {
   category: string;
   email: string;
   phone: string;
-  group: string;
+  groups: string;
   created_at: string;
   updated_at: string;
 };
