@@ -7,5 +7,6 @@ export type NoticeProps = {
   isActive?: boolean;
   onModal: (isShow: boolean) => void;
   isShowModal: boolean;
+  isLoading?: boolean;
   onSubmit: (ev?: MouseEvent<HTMLButtonElement>) => void;
 };

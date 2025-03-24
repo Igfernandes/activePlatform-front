@@ -26,7 +26,7 @@ export function Header({ handleSidebar }: Props) {
               <strong>
                 {welcomeMessage.replace(
                   ", {name}",
-                  screenType == "DESKTOP" ? `${userAuth?.name}` : ""
+                  screenType == "DESKTOP" ? `, ${userAuth?.name}` : ""
                 )}
               </strong>
             </When>

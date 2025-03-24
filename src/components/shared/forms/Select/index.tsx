@@ -27,7 +27,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         <div className="relative">
           <label
             htmlFor={IdCurrent}
-            className={`absolute top-[2px] pt-2 pb-1 left-4  transition-all duration-350 bg-white text-xs`}
+            className={`absolute w-[93%] top-[2px] pt-2 pb-1 left-2 pl-2  transition-all duration-350 bg-white text-xs`}
           >
             {label}
             <When value={required}>
@@ -46,13 +46,13 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
               !!errors ? "border-amber-500 outline-amber-500" : ""
             } ${
               multiple ? "h-[16vh]" : "h-[3.5rem]"
-            } w-full px-3   pt-5  cursor-pointer bg-scroll-transparent bg-white border-secondary border-2 rounded-lg text-primary text-md font-medium`}
+            } w-full px-3 pt-6  cursor-pointer bg-scroll-transparent bg-white border-secondary border-2 rounded-lg text-primary text-md font-medium`}
             data-testid={dataTestId}
             multiple={multiple}
             id={IdCurrent}
           >
             {options.map(({ text, value }, index) => (
-              <option key={index} value={value} className="pb-1 cursor-pointer">
+              <option key={index} value={value} className=" cursor-pointer">
                 {text}
               </option>
             ))}

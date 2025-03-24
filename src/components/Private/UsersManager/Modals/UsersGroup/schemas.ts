@@ -8,7 +8,7 @@ export const GroupModalSchema = z.object({
       .replace("${length}", "3"),
   }),
   permissions: z.array(
-    z.string({ required_error: i18n("errors.fields.required") })
+    z.string({ required_error: i18n("errors.fields.required") }).or(z.boolean())
   ),
 });
 

@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getUserAuth } from "../services/Users/GetAuth/SSR";
 import { STATUS_SERVICE } from "@constants/services";
 import { deleteCookie } from "cookies-next";
+import { jsonWebToken } from "@helpers/JsonWebToken";
 
 export async function authenticationsMiddleware(
   req: NextRequest,
@@ -27,8 +28,11 @@ export async function authenticationsMiddleware(
 
     const expirationDate = new Date();
     expirationDate.setDate(expirationDate.getDate() + 2);
-    
-    response.cookies.set("userAuth", JSON.stringify(data), {
+
+    const { createJwt } = jsonWebToken();
+    const jwt = await createJwt(JSON.parse(data));
+
+    response.cookies.set("userAuth", jwt, {
       httpOnly: process.env.NODE_ENV === "production", // Para segurança, se necessário
       secure: process.env.NODE_ENV === "production",
       expires: expirationDate,
@@ -36,6 +40,7 @@ export async function authenticationsMiddleware(
     });
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
+    console.log(error);
     // Se falhar ao obter as informações do usuário, redireciona para login
     return NextResponse.redirect(new URL(publicRoutes.login, req.url));
   }

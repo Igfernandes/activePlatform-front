@@ -11,9 +11,9 @@ import useGetUserAuth from "../../services/Users/GetAuth/useGetUser";
 import { useRouter } from "next/router";
 import { publicRoutes } from "@configs/routes/Web/navigation";
 import { getCookie } from "cookies-next";
-import { parseCookieServe } from "@helpers/cookies";
 import { handleLogout } from "@helpers/handlers";
 import { useQueryClient } from "@tanstack/react-query";
+import { jsonWebToken } from "@helpers/JsonWebToken";
 
 export const UserNavigationContext = createContext(
   {} as UserNavigationContextData
@@ -26,6 +26,7 @@ const UserNavigationProvider = ({ children }: UserNavigationProps) => {
   });
   const router = useRouter();
   const queryClient = useQueryClient();
+  const { verifyJwt } = jsonWebToken();
 
   const handleDisconnect = () => {
     handleLogout();
@@ -41,9 +42,13 @@ const UserNavigationProvider = ({ children }: UserNavigationProps) => {
 
     if (error instanceof Error) handleDisconnect();
 
-    if (data) setUserAuth(data);
-
-    setUserAuth(parseCookieServe(userAuthCookie));
+    if (data) {
+      setUserAuth(data);
+      return;
+    }
+    verifyJwt<UsersShape>(userAuthCookie).then((user) => {
+      setUserAuth(user);
+    });
   }, [isFetched, data]);
 
   const userProps = useMemo(

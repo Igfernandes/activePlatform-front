@@ -37,6 +37,7 @@ export function useAxios() {
       message: i18n("errors.service.default.message") as string,
     };
     const typedError = error as CustomAxiosError;
+    
     const jsonResponseData = typedError.response?.data ?? "";
     const responseData = isValidJSON(jsonResponseData)
       ? JSON.parse(jsonResponseData)

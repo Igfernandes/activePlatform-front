@@ -5,23 +5,37 @@ import { ModalFormProps } from "./type";
 import { Modal } from "../../../../shared/layouts/Modal";
 import { FormProvider } from "react-hook-form";
 import { GroupChecks } from "@components/shared/forms/GroupChecks";
-import { MOCK_PERMISSIONS } from "../../../../../data/permissions/__mocks__";
 import { UsersGroupPayload } from "./schemas";
 import { Button } from "@components/shared/layouts/Button";
 
 export function ModalFormUsersGroup({
   isShowModal,
   onModal,
+  groups,
 }: ModalFormProps) {
-  const { formMethods, register, errors } = useModalForm();
+  const {
+    errors,
+    permissions,
+    handleSubmit,
+    isLoading,
+    submit,
+    formMethods,
+    register,
+  } = useModalForm({ onModal, groups });
 
   return (
-    <Modal title={i18n("words.user_group")} isShowModal={isShowModal} handleModal={onModal}>
+    <Modal
+      title={i18n("words.user_group")}
+      isShowModal={isShowModal}
+      handleModal={onModal}
+    >
       <FormProvider {...formMethods}>
-        <form className="w-[424px]">
+        <form onSubmit={handleSubmit(submit)} className="w-[424px]">
           <div className="form-title mb-4">
             <h4 className="text-lg">
-              <strong>{i18n("manager_user.modal.group.text_insert_name")}</strong>
+              <strong>
+                {i18n("manager_user.modal.group.text_insert_name")}
+              </strong>
             </h4>
           </div>
           <div className="form-group">
@@ -43,7 +57,10 @@ export function ModalFormUsersGroup({
           <div>
             <GroupChecks<UsersGroupPayload>
               name="permissions"
-              values={MOCK_PERMISSIONS}
+              items={permissions.map((permission) => ({
+                label: i18n(`permissions.${permission.name}`) as string,
+                value: permission.id,
+              }))}
               register={register}
             />
           </div>
@@ -56,7 +73,12 @@ export function ModalFormUsersGroup({
               />
             </div>
             <div className="w-[25%] ml-5">
-              <Button className="bg-red text-white" text={i18n("words.save")} />
+              <Button
+                type="submit"
+                isLoading={isLoading}
+                className="bg-red text-white"
+                text={i18n("words.save")}
+              />
             </div>
           </div>
         </form>

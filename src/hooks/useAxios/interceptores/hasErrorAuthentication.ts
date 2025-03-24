@@ -5,7 +5,10 @@ import { isValidJSON } from "@helpers/json";
 import { AxiosError } from "axios";
 
 export function hasErrorAuthentication(error: AxiosError) {
-  if (process.env.NEXT_PUBLIC_ENVIRONMENT == "DEV") return;
+  const response = Promise.reject(
+    typeof error === "string" && isValidJSON(error) ? JSON.parse(error) : error
+  );
+  if (process.env.NEXT_PUBLIC_ENVIRONMENT == "DEV") return response;
 
   if (
     !error.response?.status ||
@@ -15,7 +18,5 @@ export function hasErrorAuthentication(error: AxiosError) {
     return (window.location.href = publicRoutes.login);
   }
 
-  return Promise.reject(
-    typeof error === "string" && isValidJSON(error) ? JSON.parse(error) : error
-  );
+  return response;
 }
