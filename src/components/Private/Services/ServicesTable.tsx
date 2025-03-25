@@ -1,6 +1,5 @@
 import i18n from "@configs/i18n";
 import { SmartTable } from "@components/shared/layouts/Tables/presets/SmartTable";
-import { MOCK_SERVICES } from "../../../data/services";
 import { ModalServicesOperationType, ServicesProps } from "./type";
 import { useServices } from "./hooks/useServices";
 import { Notice } from "@components/shared/others/Notice";
@@ -8,7 +7,6 @@ import { useModalContext } from "@contexts/Modal";
 
 export function ServicesTable({ search, filterObjects }: ServicesProps) {
   const { tDataServices, tHeadsServices } = useServices({
-    data: MOCK_SERVICES,
     filter: search,
     handleFilter: filterObjects,
   });
@@ -21,7 +19,7 @@ export function ServicesTable({ search, filterObjects }: ServicesProps) {
         <SmartTable
           options={{
             pagination: {
-              max: 2,
+              max: 10,
             },
             filters: {
               tag: {
@@ -34,7 +32,7 @@ export function ServicesTable({ search, filterObjects }: ServicesProps) {
           excludes={["updated_at"]}
           tHeads={{
             data: tHeadsServices.current,
-            widths: [60, 200, 120, 200, 100, 100, 48],
+            widths: [60, 250, 90, 70, 70, 100, 48],
           }}
         />
       </div>

@@ -9,9 +9,9 @@ import {
 import { ServicesShape } from "../../../../types/Services";
 import { ServicesActions } from "../ServicesActions";
 import dayjs from "dayjs";
+import useGetServices from "../../../../services/Services/Get/useGetServices";
 
 export function useServices({
-  data: currentServices,
   handleFilter,
   filter,
 }: HookServicesProps<ServicesShape>) {
@@ -19,12 +19,12 @@ export function useServices({
     Array<Record<string, unknown>>
   >([]);
   const { handleToggleModal } = useModalContext<ModalServicesOperationType>();
-
+  const { data: servicesData } = useGetServices();
   const tHeadsServices = useRef<Array<string>>([
     "ID",
     i18n("words.name"),
     i18n("words.type"),
-    i18n("words.responsible"),
+    i18n("words.stock"),
     i18n("words.status"),
     i18n("words.data_initial"),
     i18n("words.actions"),
@@ -35,14 +35,14 @@ export function useServices({
     name,
     type,
     status,
-    responsible,
+    stock,
     created_at,
   }: ServicesShape): TDataServices => {
     return {
       id,
       name,
-      type,
-      responsible: responsible.name,
+      type: i18n(`words.${type.toLowerCase()}`),
+      stock,
       status: i18n(`words.${status.toLowerCase()}`),
       created_at: dayjs(created_at).format(i18n("configs.formats.date")),
       actions: (
@@ -53,7 +53,9 @@ export function useServices({
 
   /** Adding news keys of table and the lasted column to table data services */
   useEffect(() => {
-    const servicesFiltered = currentServices.filter((tDataService) =>
+    if (!servicesData) return;
+
+    const servicesFiltered = servicesData.filter((tDataService) =>
       handleFilter(tDataService)
     );
 
@@ -62,7 +64,7 @@ export function useServices({
     );
 
     setTDataServices(tDataService);
-  }, [currentServices, filter]);
+  }, [servicesData, filter]);
 
   return {
     tDataServices,

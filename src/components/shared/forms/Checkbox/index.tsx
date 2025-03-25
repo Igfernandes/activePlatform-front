@@ -32,7 +32,11 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
       if (!values) return;
 
-      setIsChecked(values.includes(String(defaultValue)));
+      if (Array.isArray(values)) {
+        setIsChecked(values.includes(String(defaultValue)));
+      } else {
+        setIsChecked(values == String(defaultValue));
+      }
     }, [watch(currentReferenceName)]);
 
     return (

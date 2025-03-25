@@ -12,7 +12,7 @@ export function Tags<TableData extends Array<Record<string, unknown>>>(
   const { tags, totalTags, handleChangeTargetTag } = useTags<TableData>(props);
 
   return (
-    <div className="relative w-[95%] z-0">
+    <div className="relative z-0">
       <Swiper
         spaceBetween={10}
         slidesPerView={"auto"}
