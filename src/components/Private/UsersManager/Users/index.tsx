@@ -55,6 +55,19 @@ export function Users({ search, filterObjects, groups }: UsersStructProps) {
         />
         <Notice
           headerTitle={i18n("words.attention")}
+          title={i18n("manager_user.modal.user.title_already_active")}
+          text={i18n("manager_user.modal.user.text_already_active")}
+          onSubmit={() => {
+            patchStatusUsers({
+              id: modal.id as number,
+            });
+            handleToggleModal(false);
+          }}
+          isShowModal={modal.type === "ACTIVE_USER"}
+          onModal={handleToggleModal}
+        />
+        <Notice
+          headerTitle={i18n("words.attention")}
           title={i18n("manager_user.modal.user.title_already_exclude")}
           text={i18n("manager_user.modal.user.text_already_exclude")}
           onSubmit={() => {

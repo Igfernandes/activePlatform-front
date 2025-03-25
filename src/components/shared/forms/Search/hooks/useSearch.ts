@@ -14,6 +14,8 @@ export function useSearch() {
 
     const objectValues = Object.values(object);
     const foundValues = objectValues.filter((value) => {
+      if (!value) return false;
+      
       const convertStringValue = (value as string).toString().toLowerCase();
 
       return convertStringValue.includes(search);

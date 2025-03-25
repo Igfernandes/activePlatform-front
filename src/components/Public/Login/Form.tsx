@@ -17,6 +17,7 @@ export function LoginForm() {
     isLoading,
     errors,
     updateValueRememberMe,
+    recaptchaToken,
   } = useForm();
   const { forgotPassword } = publicRoutes;
 
@@ -62,7 +63,7 @@ export function LoginForm() {
           <Button
             text={i18n("words.send")}
             type="submit"
-            isLoading={isLoading}
+            isLoading={isLoading || !recaptchaToken}
             disabled={!hasAllFilledFields()}
           />
         </div>

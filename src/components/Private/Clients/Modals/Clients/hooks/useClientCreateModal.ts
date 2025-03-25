@@ -23,9 +23,11 @@ export function useModalForm() {
       birthdate: birthdate
         ? dayjs(birthdate, "DD/MM/YYYY").format("YYYY-MM-DD")
         : undefined,
-    });
+    }).then(() => {
+      formMethods.reset();
 
-    if (shouldContinueRegistering == false) handleToggleModal(false);
+      if (shouldContinueRegistering == false) handleToggleModal(false);
+    });
   };
 
   const handleToggleContinueRegistering = () => {

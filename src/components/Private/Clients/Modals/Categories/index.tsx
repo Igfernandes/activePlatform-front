@@ -4,7 +4,7 @@ import { ModalFormProps } from "./type";
 import { Modal } from "../../../../shared/layouts/Modal";
 import { FormProvider } from "react-hook-form";
 import { Button } from "@components/shared/layouts/Button";
-import { GroupFields } from "@components/shared/forms/GroupFields"
+import { GroupFields } from "@components/shared/forms/GroupFields";
 
 export function ModalFormCategories({
   isShowModal,
@@ -12,7 +12,7 @@ export function ModalFormCategories({
   title,
   categories,
 }: ModalFormProps) {
-  const { formMethods, handleSubmit, submit } = useModalForm();
+  const { formMethods, handleSubmit, submit, isLoading } = useModalForm();
 
   return (
     <Modal title={title} isShowModal={isShowModal} handleModal={onModal}>
@@ -44,11 +44,12 @@ export function ModalFormCategories({
                 onClick={() => onModal(false)}
               />
             </div>
-            <div className="w-[25%] ml-5">
+            <div className="w-[30%] ml-5">
               <Button
                 className="bg-red text-white"
                 text={i18n("words.save")}
                 type="submit"
+                isLoading={isLoading}
               />
             </div>
           </div>

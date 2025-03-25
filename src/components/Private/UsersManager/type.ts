@@ -56,5 +56,7 @@ export type ModalUserOperationType =
   | "DELETE_INVITE"
   | "DESATIVE_GROUP"
   | "DESATIVE_USER"
+  | "ACTIVE_GROUP"
+  | "ACTIVE_USER"
   | "RESEND_INVITE"
   | boolean;

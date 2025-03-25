@@ -50,5 +50,6 @@ export function useForm() {
     hasAllFilledFields,
     isLoading: isSubmitting,
     updateValueRememberMe,
+    recaptchaToken: token
   };
 }

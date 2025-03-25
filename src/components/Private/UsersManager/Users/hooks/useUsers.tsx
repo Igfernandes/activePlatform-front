@@ -33,7 +33,6 @@ export function useUsers({ handleFilter, filter }: HookProps<UsersShape>) {
     status,
     groups,
   }: UsersShape): TDataUser => {
-    console.log(groups);
     return {
       id,
       name,
@@ -49,8 +48,12 @@ export function useUsers({ handleFilter, filter }: HookProps<UsersShape>) {
               handle: () => handleToggleModal("DEFAULT_USER", id),
             },
             {
-              text: i18n("words.desative"),
-              handle: () => handleToggleModal("DESATIVE_USER", id),
+              text: i18n(`words.${status == "ACTIVE" ? "desative" : "ative"}`),
+              handle: () =>
+                handleToggleModal(
+                  status == "ACTIVE" ? "DESATIVE_USER" : "ACTIVE_USER",
+                  id
+                ),
             },
             {
               text: i18n("words.exclude"),

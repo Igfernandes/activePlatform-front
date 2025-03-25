@@ -154,7 +154,8 @@
     "expired_at": "Expirado em",
     "created_at": "Criado em",
     "invites": "Convites",
-    "resend": "Reenviar"
+    "resend": "Reenviar",
+    "ative": "Ativar"
   },
   "permissions": {
     "users_create": "Criar usuários",
@@ -205,6 +206,8 @@
       "group": {
         "text_insert_name": "Insira um nome para o grupo de usuários:",
         "text_select_permissions": "Selecione as permissões que estarão ativas para este grupo:",
+        "title_already_active": "Você deseja ativar este grupo de usuários?",
+        "text_already_active": "Ao continuar, todos os usuários deste grupo reativarão o acesso e as suas permissões.",
         "title_already_desative": "Você deseja desativar este grupo de usuários?",
         "text_already_desative": "Ao continuar, todos os usuários deste grupo perderão o acesso, pois suas permissões serão bloqueadas.",
         "text_already_exclude": "Ao continuar, todos os usuários deste grupo perderão o acesso, pois suas permissões serão bloqueadas.",
@@ -214,6 +217,8 @@
         "text_select_group": "Selecione os grupos ao qual o usuário pertencerá:",
         "text_fill_information": "Preencha as informações abaixo para convidar um novo usuário:",
         "text_awaiting_after_delete_desative": "Ao continuar, todos os usuários perderão o acesso, pois suas permissões serão bloqueadas.",
+        "title_already_active": "Você deseja ativar este usuários?",
+        "text_already_active": "Ao continuar, o usuário reativará o acesso e as suas permissões.",
         "text_already_desative": "Ao continuar, todos os dados dos usuário selecionado será excluído, e eles não poderá mais acessar até que sejam restaurados.",
         "title_already_desative": "Você deseja desativar este cliente?",
         "text_already_exclude": "Ao continuar, todos os dados dos usuário selecionado serão desabilitados, e eles não poderá mais acessar até que seja ativo novamente.",

@@ -71,7 +71,7 @@ export function useGroupFields<Payload extends FieldValues>({
       id: key,
     }));
 
-    handleUpdateValues(itemsUpdated)
+    handleUpdateValues(itemsUpdated);
     setItems(itemsUpdated);
     setTargetItem(itemId);
   };
@@ -104,8 +104,9 @@ export function useGroupFields<Payload extends FieldValues>({
   };
 
   useEffect(() => {
+    const itemsOrganized = data.sort((a, b) => a.position - b.position);
     setItems(
-      data.map(({ value, position }) => ({
+      itemsOrganized.map(({ value, position }) => ({
         id: position,
         value,
       }))

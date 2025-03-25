@@ -49,8 +49,16 @@ export function useUsersGroup({ filter, handleFilter, data }: HookGroupsProps) {
               handle: () => handleToggleModal("DEFAULT_GROUP", userGroup.id),
             },
             {
-              text: i18n("words.desative"),
-              handle: () => handleToggleModal("DESATIVE_GROUP", userGroup.id),
+              text: i18n(
+                `words.${userGroup.status == "ACTIVE" ? "desative" : "ative"}`
+              ),
+              handle: () =>
+                handleToggleModal(
+                  userGroup.status == "ACTIVE"
+                    ? "DESATIVE_GROUP"
+                    : "ACTIVE_GROUP",
+                  userGroup.id
+                ),
             },
             {
               text: i18n("words.exclude"),

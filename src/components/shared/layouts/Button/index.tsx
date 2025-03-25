@@ -17,9 +17,13 @@ export function Button({
 
   return (
     <div className="relative">
-      <button {...props} disabled={disabled || isLoading} className={`${classNameBtn} px-2`} >
+      <button
+        {...props}
+        disabled={disabled || isLoading}
+        className={`${classNameBtn}`}
+      >
         <When value={!!LeftIcon}>{LeftIcon}</When>
-        <span>{isLoading ? "Carregando" : text}</span>
+        <span className="px-2">{isLoading ? "Carregando" : text}</span>
         <When value={!!rightIcon}>{rightIcon}</When>
       </button>
     </div>

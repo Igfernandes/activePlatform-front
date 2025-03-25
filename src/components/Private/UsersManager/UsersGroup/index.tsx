@@ -70,6 +70,18 @@ export function UsersGroup({ search, filterObjects, groups }: Props) {
         />
         <Notice
           headerTitle={i18n("words.attention")}
+          title={i18n("manager_user.modal.group.title_already_active")}
+          text={i18n("manager_user.modal.group.text_already_active")}
+          onSubmit={() =>
+            patchUsersGroup({
+              id: modal.id as number,
+            }).then(() => handleToggleModal(false))
+          }
+          isShowModal={modal.type === "ACTIVE_GROUP"}
+          onModal={handleToggleModal}
+        />
+        <Notice
+          headerTitle={i18n("words.attention")}
           title={i18n("manager_user.modal.group.title_already_exclude")}
           text={i18n("manager_user.modal.group.text_already_exclude")}
           onSubmit={() =>
