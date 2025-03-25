@@ -19,7 +19,8 @@
       "has_min_one_number": "Pelo menos 1 número.",
       "has_min_one_special_character": "Pelo menos 1 caracteres especial.",
       "password_need_equal": "A senha informada deve ser idêntica.",
-      "min_length": "O ${field} deve conter pelo menos ${length} caracteres"
+      "min_length": "O ${field} deve conter pelo menos ${length} caracteres",
+      "image_valid": "O arquivo é obrigatório e deve ser uma imagem válida."
     },
     "system": {
       "not_found_user": "O usuário que tentou acessar está com problemas, não exista ou é inacessível ao perfil atual."
@@ -158,7 +159,8 @@
     "ative": "Ativar",
     "stock": "Estoque",
     "appellant": "Recorrente",
-    "pontual": "Pontual"
+    "pontual": "Pontual",
+    "service_status": "Status do serviço"
   },
   "permissions": {
     "users_create": "Criar usuários",
@@ -243,6 +245,10 @@
     "modal": {
       "text_already_exclude": "Ao continuar, todos os dados do serviço serão excluídos, e ele não poderá mais ser acessado até que seja recadastrado.",
       "title_already_exclude": "Você deseja excluir este serviço?"
+    },
+    "create": {
+      "success_title": "Serviço criado",
+      "success_text": "O serviço foi criado com sucesso!"
     },
     "settings_privacy": "Configure a privacidade do serviço:",
     "has_limit_vacancies": "Haverá um limite de vagas?",
