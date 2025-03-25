@@ -1,0 +1,12 @@
+export type GetServicesRequest = {
+  id?: number;
+  in_ids?: Array<number>;
+  name?: string;
+  name_contains?: string;
+  description_contains?: string;
+  type?: "APPELLANT" | "PUNCTUAL";
+  status?: "ACTIVE" | "INACTIVE";
+  privacy?: "PUBLIC" | "PRIVACY";
+  created_at?: string;
+  updated_at?: string;
+};
