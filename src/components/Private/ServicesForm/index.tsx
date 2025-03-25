@@ -1,7 +1,6 @@
 import i18n from "@configs/i18n";
 import { FormProvider } from "react-hook-form";
 import { useServicesForm } from "./hooks/useServicesForm";
-import { Checkbox } from "@components/shared/forms/Checkbox";
 import { Button } from "@components/shared/layouts/Button";
 import { File } from "@components/shared/forms/File";
 import { LimitAndReservationForm } from "./LimitAndReservationForm";
@@ -9,9 +8,18 @@ import { DefinitionsForm } from "./DefinationsForm";
 import { RadioBox } from "@components/shared/forms/RadioBox";
 import { UserGroup } from "@assets/Icons/black/UserGroup";
 import { Lock } from "@assets/Icons/black/Lock";
+import { Checkbox } from "@components/shared/layouts/Checkbox";
 
 export function ServicesForm() {
-  const { formMethods, register } = useServicesForm();
+  const {
+    formMethods,
+    register,
+    handleSubmit,
+    submit,
+    handleCleanForm,
+    errors,
+    setIsKeepCreating,
+  } = useServicesForm();
 
   return (
     <div className="bg-white p-6 rounded-xl">
@@ -22,8 +30,8 @@ export function ServicesForm() {
       </div>
       <div>
         <FormProvider {...formMethods}>
-          <form>
-            <DefinitionsForm register={register} />
+          <form onSubmit={handleSubmit(submit)}>
+            <DefinitionsForm register={register} errors={errors} />
             <div className="form-subtitle my-6">
               <h2>
                 <strong>{i18n(`services.settings_privacy`)}</strong>
@@ -32,19 +40,19 @@ export function ServicesForm() {
             <div className="flex justify-between">
               <div className="w-full lg:w-[48%]">
                 <RadioBox
-                  {...register("access")}
+                  {...register("privacy")}
                   icon={<UserGroup />}
                   defaultValue={"PUBLIC"}
-                  dataTestId="access_public"
+                  dataTestId="privacy_public"
                   label={i18n(`words.public`)}
                 />
               </div>
               <div className="w-full lg:w-[48%]">
                 <RadioBox
-                  {...register("access")}
+                  {...register("privacy")}
                   icon={<Lock />}
                   defaultValue={"PRIVATE"}
-                  dataTestId="access_private"
+                  dataTestId="privacy_private"
                   defaultChecked={true}
                   label={i18n(`words.private`)}
                 />
@@ -58,16 +66,17 @@ export function ServicesForm() {
             </div>
             <div className="mt-2 w-1/2">
               <File
-                {...register("image")}
+                {...register("photo")}
                 dataTestId="service_image"
                 label={i18n(`words.service_image`)}
-                accept=".pdf,.jpg,.jpge,.png"
+                accept=".jpg,.jpge,.png"
+                errors={errors.photo}
               />
             </div>
 
             <div className="flex justify-between mt-12 items-center">
               <div>
-                <span>
+                <span onClick={handleCleanForm} className="cursor-pointer">
                   <strong>{i18n("words.clean")}</strong>
                 </span>
               </div>
@@ -76,6 +85,7 @@ export function ServicesForm() {
                   <Checkbox
                     dataTestId="continue_create"
                     label={i18n(`words.keep_creating`)}
+                    onChecked={setIsKeepCreating}
                   />
                 </div>
                 <div className="ml-8">
