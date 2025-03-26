@@ -10,10 +10,11 @@ export const ServicesModalSchema = z
     description: descriptionSchema,
     privacy: z.enum(["PUBLIC", "PRIVATE"]),
     stock: z.string(),
+    status: z.enum(["ACTIVE", "INACTIVE"]),
     disabledLimitVacancies: z.enum(["Sim", "Não"]),
     reservations: z.string(),
     disabledReservationVacancies: z.enum(["Sim", "Não"]),
-    photo: photoSchema,
+    photo: photoSchema.optional(),
   })
   .superRefine((data, ctx) => {
     if (data.reservations > data.stock)

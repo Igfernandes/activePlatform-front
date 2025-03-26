@@ -1,11 +1,17 @@
 import { useFormRules } from "@hooks/Forms/useFormRules";
-import { ServicesModalSchema, ServicesPayload } from "../schemas";
 import usePostCreateService from "../../../../services/Services/Post/usePostCreateClient";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { privateRoutes } from "@configs/routes/Web/navigation";
+import { ServicesModalSchema, ServicesPayload } from "../Schemas";
+import usePutService from "../../../../services/Services/Put/usePostCreateClient";
+import { ServicesShape } from "../../../../types/Services";
 
-export function useServicesForm() {
+type Props = {
+  service?: ServicesShape;
+};
+
+export function useServicesForm({ service }: Props) {
   const [isKeepCreating, setIsKeepCreating] = useState<boolean>(false);
   const { formMethods, register, handleSubmit, errors } =
     useFormRules<ServicesPayload>({
@@ -18,36 +24,32 @@ export function useServicesForm() {
       },
     });
   const { mutateAsync: postService } = usePostCreateService();
+  const { mutateAsync: putService } = usePutService();
   const router = useRouter();
   const { services } = privateRoutes;
 
-  const handleCleanForm = () => {
-    const { setValue, resetField } = formMethods;
+  const submit = (formData: ServicesPayload) => {
+    const payload = {
+      name: formData.name,
+      photo: formData.photo,
+      privacy: formData.privacy,
+      reservations: parseInt(formData.reservations),
+      stock: parseInt(formData.stock),
+      status: formData.status,
+      type: formData.type,
+      description: formData.description,
+    };
 
-    resetField("description");
-    resetField("name");
-    setValue("type", "APPELLANT");
-    setValue("privacy", "PRIVATE");
-    setValue("disabledLimitVacancies", "Não");
-    setValue("disabledLimitVacancies", "Não");
-    resetField("stock");
-    resetField("reservations");
-    resetField("photo");
-  };
-
-  const submit = (payload: ServicesPayload) => {
-    postService({
-      name: payload.name,
-      photo: payload.photo,
-      privacy: payload.privacy,
-      reservations: parseInt(payload.reservations),
-      stock: parseInt(payload.stock),
-      status: payload.status,
-      type: payload.type,
-      description: payload.description,
-    }).then(() => {
-      if (!isKeepCreating) router.push(services);
-    });
+    if (!service) {
+      postService(payload).then(() => {
+        if (!isKeepCreating) router.push(services);
+      });
+    } else {
+      putService({
+        ...payload,
+        id: service.id,
+      });
+    }
   };
 
   return {
@@ -55,7 +57,6 @@ export function useServicesForm() {
     register,
     submit,
     handleSubmit,
-    handleCleanForm,
     errors,
     setIsKeepCreating,
   };

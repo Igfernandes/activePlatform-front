@@ -1,9 +1,9 @@
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { ServicesPayload } from "./schemas";
 import i18n from "@configs/i18n";
 import { Select } from "@components/shared/forms/Select";
 import { Input } from "@components/shared/forms/Input";
 import { TextArea } from "@components/shared/forms/TextArea";
+import { ServicesPayload } from "./Schemas";
 
 type Props = {
   register: UseFormRegister<ServicesPayload>;
@@ -49,11 +49,11 @@ export function DefinitionsForm({ register, errors }: Props) {
             label={i18n(`words.service_status`)}
             options={[
               {
-                text: i18n("words.public"),
+                text: i18n("words.active"),
                 value: "ACTIVE",
               },
               {
-                text: i18n("words.private"),
+                text: i18n("words.inactive"),
                 value: "INACTIVE",
               },
             ]}

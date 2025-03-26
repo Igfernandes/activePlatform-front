@@ -6,7 +6,7 @@ import { Notice } from "@components/shared/others/Notice";
 import { useModalContext } from "@contexts/Modal";
 
 export function ServicesTable({ search, filterObjects }: ServicesProps) {
-  const { tDataServices, tHeadsServices } = useServices({
+  const { tDataServices, tHeadsServices, handleDeleteService } = useServices({
     filter: search,
     handleFilter: filterObjects,
   });
@@ -40,7 +40,7 @@ export function ServicesTable({ search, filterObjects }: ServicesProps) {
         headerTitle={i18n("words.attention")}
         title={i18n("services.modal.title_already_exclude")}
         text={i18n("services.modal.text_already_exclude")}
-        onSubmit={() => ""}
+        onSubmit={handleDeleteService}
         isShowModal={modal.type === "DELETE"}
         onModal={handleToggleModal}
       />

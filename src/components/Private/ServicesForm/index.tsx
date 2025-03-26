@@ -9,17 +9,34 @@ import { RadioBox } from "@components/shared/forms/RadioBox";
 import { UserGroup } from "@assets/Icons/black/UserGroup";
 import { Lock } from "@assets/Icons/black/Lock";
 import { Checkbox } from "@components/shared/layouts/Checkbox";
+import { ServicesShape } from "../../../types/Services";
+import { When } from "@components/utilities/When";
+import { useRouter } from "next/router";
+import { privateRoutes } from "@configs/routes/Web/navigation";
+import { useEffect } from "react";
+import { useStateFields } from "./hooks/useStateFields";
 
-export function ServicesForm() {
+type Props = {
+  service?: ServicesShape;
+};
+
+export function ServicesForm({ service }: Props) {
   const {
     formMethods,
     register,
     handleSubmit,
     submit,
-    handleCleanForm,
     errors,
     setIsKeepCreating,
-  } = useServicesForm();
+  } = useServicesForm({ service });
+  const router = useRouter();
+  const { handleCleanForm, handleUpdateForm } = useStateFields({ formMethods });
+
+  useEffect(() => {
+    if (!service) return;
+
+    handleUpdateForm(service);
+  }, [service]);
 
   return (
     <div className="bg-white p-6 rounded-xl">
@@ -75,30 +92,36 @@ export function ServicesForm() {
             </div>
 
             <div className="flex justify-between mt-12 items-center">
-              <div>
-                <span onClick={handleCleanForm} className="cursor-pointer">
-                  <strong>{i18n("words.clean")}</strong>
-                </span>
-              </div>
-              <div className="flex items-center">
+              <When value={!service}>
                 <div>
-                  <Checkbox
-                    dataTestId="continue_create"
-                    label={i18n(`words.keep_creating`)}
-                    onChecked={setIsKeepCreating}
-                  />
+                  <span onClick={handleCleanForm} className="cursor-pointer">
+                    <strong>{i18n("words.clean")}</strong>
+                  </span>
                 </div>
-                <div className="ml-8">
-                  <Button
-                    className="p-3 border-[1px] border-secondary rounded-xl"
-                    text={i18n(`words.cancel`)}
-                    type="button"
-                  />
-                </div>
+              </When>
+              <div className={!service ? "flex items-center" : "ml-auto"}>
+                <When value={!service}>
+                  <div>
+                    <Checkbox
+                      dataTestId="continue_create"
+                      label={i18n(`words.keep_creating`)}
+                      onChecked={setIsKeepCreating}
+                    />
+                  </div>
+                  <div className="ml-8">
+                    <Button
+                      className="p-3 border-[1px] border-secondary rounded-xl"
+                      text={i18n(`words.cancel`)}
+                      type="button"
+                      onClick={() => router.push(privateRoutes.services)}
+                    />
+                  </div>
+                </When>
+
                 <div className="ml-4">
                   <Button
                     className="p-3 bg-red text-white rounded-xl"
-                    text={i18n(`words.save`)}
+                    text={!service ? i18n(`words.save`) : i18n(`words.update`)}
                   />
                 </div>
               </div>

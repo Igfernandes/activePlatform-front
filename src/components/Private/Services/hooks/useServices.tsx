@@ -10,6 +10,7 @@ import { ServicesShape } from "../../../../types/Services";
 import { ServicesActions } from "../ServicesActions";
 import dayjs from "dayjs";
 import useGetServices from "../../../../services/Services/Get/useGetServices";
+import useDeleteServices from "../../../../services/Services/Delete/useDelete";
 
 export function useServices({
   handleFilter,
@@ -18,8 +19,10 @@ export function useServices({
   const [tDataServices, setTDataServices] = useState<
     Array<Record<string, unknown>>
   >([]);
-  const { handleToggleModal } = useModalContext<ModalServicesOperationType>();
+  const { handleToggleModal, modal } =
+    useModalContext<ModalServicesOperationType>();
   const { data: servicesData } = useGetServices();
+  const { mutateAsync: deleteService } = useDeleteServices();
   const tHeadsServices = useRef<Array<string>>([
     "ID",
     i18n("words.name"),
@@ -51,6 +54,12 @@ export function useServices({
     };
   };
 
+  const handleDeleteService = () => {
+    deleteService({ id: modal.id as number }).then(() =>
+      handleToggleModal(false)
+    );
+  };
+
   /** Adding news keys of table and the lasted column to table data services */
   useEffect(() => {
     if (!servicesData) return;
@@ -69,5 +78,6 @@ export function useServices({
   return {
     tDataServices,
     tHeadsServices,
+    handleDeleteService,
   };
 }

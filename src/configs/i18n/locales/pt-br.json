@@ -23,7 +23,8 @@
       "image_valid": "O arquivo é obrigatório e deve ser uma imagem válida."
     },
     "system": {
-      "not_found_user": "O usuário que tentou acessar está com problemas, não exista ou é inacessível ao perfil atual."
+      "not_found_user": "O usuário que tentou acessar está com problemas, não exista ou é inacessível ao perfil atual.",
+      "not_found_service": "O serviço que tentou acessar está com problemas, não exista ou é inacessível ao perfil atual."
     }
   },
   "success": {
@@ -84,6 +85,7 @@
     "phone": "Telefone",
     "group": "Grupo",
     "users": "Usuários",
+    "update": "Atualizar",
     "edit": "Editar",
     "group_desative": "Desativar grupo",
     "exclude": "Excluir",
@@ -159,7 +161,7 @@
     "ative": "Ativar",
     "stock": "Estoque",
     "appellant": "Recorrente",
-    "pontual": "Pontual",
+    "punctual": "Pontual",
     "service_status": "Status do serviço"
   },
   "permissions": {
@@ -249,6 +251,10 @@
     "create": {
       "success_title": "Serviço criado",
       "success_text": "O serviço foi criado com sucesso!"
+    },
+    "delete": {
+      "success_title": "Serviço Deletado",
+      "success_text": "O serviço foi deletado com sucesso."
     },
     "settings_privacy": "Configure a privacidade do serviço:",
     "has_limit_vacancies": "Haverá um limite de vagas?",
