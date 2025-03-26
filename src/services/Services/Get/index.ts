@@ -10,10 +10,15 @@ export default function useGet() {
   const { setParams, setQueries } = useRoutes();
 
   async function getServices(request?: GetServicesRequest) {
-    const { ...query } = request ?? {};
+    const { id, ...query } = request ?? {};
     return await axios.get<ServicesShape[]>(
       setQueries({
-        url: setParams({ url: services }),
+        url: setParams({
+          url: services,
+          data: {
+            id,
+          },
+        }),
         query,
       })
     );
