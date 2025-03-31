@@ -1,8 +1,8 @@
 import { Input } from "@components/shared/forms/Input";
 import { Radio } from "@components/shared/forms/Radio";
 import i18n from "@configs/i18n";
-import { ServicesPayload } from "./schemas";
 import { useFormContext, UseFormRegister } from "react-hook-form";
+import { ServicesPayload } from "./Schemas";
 
 type Props = {
   register: UseFormRegister<ServicesPayload>;
