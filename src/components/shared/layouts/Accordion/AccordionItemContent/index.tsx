@@ -10,10 +10,10 @@ export function AccordionItemContent({ children, accordionId }: Props) {
 
   return (
     <div
-      className="accordion-content overflow-y-hidden break-words "
+      className="accordion-content overflow-y-hidden break-words"
       style={{
         maxHeight: accordionActive == accordionId ? "100vh" : "0",
-        transition: accordionActive == accordionId ? "all .5s ease-in-out" : "none"
+        transition: "all .5s ease-in-out",
       }}
     >
       {children}

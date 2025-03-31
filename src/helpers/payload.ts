@@ -21,9 +21,9 @@ export function getPayloadFormData<PayloadShape extends object>(
 ): FormData {
   const payload = new FormData();
   Object.entries(data).forEach(([key, value]) => {
-    if (value == "") return;
+    if (!value || value == "") return;
 
-    payload.append(key, value.toString());
+    payload.append(key, value);
   });
 
   return payload;

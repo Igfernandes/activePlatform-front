@@ -1,7 +1,6 @@
 import i18n from "@configs/i18n";
 import { FormProvider } from "react-hook-form";
 import { useServicesForm } from "./hooks/useServicesForm";
-import { Checkbox } from "@components/shared/forms/Checkbox";
 import { Button } from "@components/shared/layouts/Button";
 import { File } from "@components/shared/forms/File";
 import { LimitAndReservationForm } from "./LimitAndReservationForm";
@@ -9,9 +8,35 @@ import { DefinitionsForm } from "./DefinationsForm";
 import { RadioBox } from "@components/shared/forms/RadioBox";
 import { UserGroup } from "@assets/Icons/black/UserGroup";
 import { Lock } from "@assets/Icons/black/Lock";
+import { Checkbox } from "@components/shared/layouts/Checkbox";
+import { ServicesShape } from "../../../types/Services";
+import { When } from "@components/utilities/When";
+import { useRouter } from "next/router";
+import { privateRoutes } from "@configs/routes/Web/navigation";
+import { useEffect } from "react";
+import { useStateFields } from "./hooks/useStateFields";
 
-export function ServicesForm() {
-  const { formMethods, register } = useServicesForm();
+type Props = {
+  service?: ServicesShape;
+};
+
+export function ServicesForm({ service }: Props) {
+  const {
+    formMethods,
+    register,
+    handleSubmit,
+    submit,
+    errors,
+    setIsKeepCreating,
+  } = useServicesForm({ service });
+  const router = useRouter();
+  const { handleCleanForm, handleUpdateForm } = useStateFields({ formMethods });
+
+  useEffect(() => {
+    if (!service) return;
+
+    handleUpdateForm(service);
+  }, [service]);
 
   return (
     <div className="bg-white p-6 rounded-xl">
@@ -22,8 +47,8 @@ export function ServicesForm() {
       </div>
       <div>
         <FormProvider {...formMethods}>
-          <form>
-            <DefinitionsForm register={register} />
+          <form onSubmit={handleSubmit(submit)}>
+            <DefinitionsForm register={register} errors={errors} />
             <div className="form-subtitle my-6">
               <h2>
                 <strong>{i18n(`services.settings_privacy`)}</strong>
@@ -32,19 +57,19 @@ export function ServicesForm() {
             <div className="flex justify-between">
               <div className="w-full lg:w-[48%]">
                 <RadioBox
-                  {...register("access")}
+                  {...register("privacy")}
                   icon={<UserGroup />}
                   defaultValue={"PUBLIC"}
-                  dataTestId="access_public"
+                  dataTestId="privacy_public"
                   label={i18n(`words.public`)}
                 />
               </div>
               <div className="w-full lg:w-[48%]">
                 <RadioBox
-                  {...register("access")}
+                  {...register("privacy")}
                   icon={<Lock />}
                   defaultValue={"PRIVATE"}
-                  dataTestId="access_private"
+                  dataTestId="privacy_private"
                   defaultChecked={true}
                   label={i18n(`words.private`)}
                 />
@@ -58,37 +83,45 @@ export function ServicesForm() {
             </div>
             <div className="mt-2 w-1/2">
               <File
-                {...register("image")}
+                {...register("photo")}
                 dataTestId="service_image"
                 label={i18n(`words.service_image`)}
-                accept=".pdf,.jpg,.jpge,.png"
+                accept=".jpg,.jpge,.png"
+                errors={errors.photo}
               />
             </div>
 
             <div className="flex justify-between mt-12 items-center">
-              <div>
-                <span>
-                  <strong>{i18n("words.clean")}</strong>
-                </span>
-              </div>
-              <div className="flex items-center">
+              <When value={!service}>
                 <div>
-                  <Checkbox
-                    dataTestId="continue_create"
-                    label={i18n(`words.keep_creating`)}
-                  />
+                  <span onClick={handleCleanForm} className="cursor-pointer">
+                    <strong>{i18n("words.clean")}</strong>
+                  </span>
                 </div>
-                <div className="ml-8">
-                  <Button
-                    className="p-3 border-[1px] border-secondary rounded-xl"
-                    text={i18n(`words.cancel`)}
-                    type="button"
-                  />
-                </div>
+              </When>
+              <div className={!service ? "flex items-center" : "ml-auto"}>
+                <When value={!service}>
+                  <div>
+                    <Checkbox
+                      dataTestId="continue_create"
+                      label={i18n(`words.keep_creating`)}
+                      onChecked={setIsKeepCreating}
+                    />
+                  </div>
+                  <div className="ml-8">
+                    <Button
+                      className="p-3 border-[1px] border-secondary rounded-xl"
+                      text={i18n(`words.cancel`)}
+                      type="button"
+                      onClick={() => router.push(privateRoutes.services)}
+                    />
+                  </div>
+                </When>
+
                 <div className="ml-4">
                   <Button
                     className="p-3 bg-red text-white rounded-xl"
-                    text={i18n(`words.save`)}
+                    text={!service ? i18n(`words.save`) : i18n(`words.update`)}
                   />
                 </div>
               </div>

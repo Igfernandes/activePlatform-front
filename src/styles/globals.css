@@ -1,5 +1,6 @@
 @import "./settings/colors/palette.css";
 @import "./settings/colors/default.css";
+@import "./settings/colors/default.css";
 
 @tailwind base;
 @tailwind components;

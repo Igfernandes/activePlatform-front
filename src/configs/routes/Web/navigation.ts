@@ -8,7 +8,7 @@ export const privateRoutes = {
   dashboard: "/dashboard",
   clients: "/dashboard/clients",
   sendingManagement: "/dashboard/sending-management",
-  forms: "/dashboard/forms", 
+  forms: "/dashboard/forms",
   schedule: "/dashboard/schedule",
   services: "/dashboard/services",
   finance: "/dashboard/finance",

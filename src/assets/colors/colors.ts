@@ -7,7 +7,7 @@ export const othersColors = {
   orange: "#ff7640",
   pink: "#f03063",
   purple: "#895ef6",
-  gray: "#6b7280"
+  gray: "#6b7280",
 };
 
 export const hoverColors = {

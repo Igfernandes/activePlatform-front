@@ -9,12 +9,12 @@ import { useDeleteUserService } from ".";
 export default function useDeleteUsers() {
   const { handleAxiosError } = useAxios();
   const { dispatchSnackbar } = useSnackbar();
-  const { deleteGroup } = useDeleteUserService();
+  const { deleteUsers } = useDeleteUserService();
   const queryClient = useQueryClient();
 
   const handleMutate = async (payload: DeleteUserPayload) => {
     try {
-      const { data } = await deleteGroup(payload);
+      const { data } = await deleteUsers(payload);
 
       return data;
     } catch (error) {
