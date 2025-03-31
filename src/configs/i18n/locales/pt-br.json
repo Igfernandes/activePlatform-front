@@ -24,7 +24,8 @@
     },
     "system": {
       "not_found_user": "O usuário que tentou acessar está com problemas, não exista ou é inacessível ao perfil atual.",
-      "not_found_service": "O serviço que tentou acessar está com problemas, não exista ou é inacessível ao perfil atual."
+      "not_found_service": "O serviço que tentou acessar está com problemas, não exista ou é inacessível ao perfil atual.",
+      "not_found_form": "O formulário que tentou acessar está com problemas, não exista ou é inacessível ao perfil atual."
     }
   },
   "success": {
@@ -162,7 +163,64 @@
     "stock": "Estoque",
     "appellant": "Recorrente",
     "punctual": "Pontual",
-    "service_status": "Status do serviço"
+    "service_status": "Status do serviço",
+    "definitions": "Definições",
+    "customization": "Customização",
+    "preview": "Visualização",
+    "pendent": "Pendente",
+    "progress": "Em andamento",
+    "complete": "Completo",
+    "people_physical": "Pessoa física",
+    "people_legal": "Pessoa jurídica",
+    "form_name": "Nome do formulário",
+    "description": "Descrição",
+    "type_people": "Tipo de pessoa",
+    "simple_field": "Campo simples",
+    "simples": "Simples",
+    "text": "Texto",
+    "url": "Url",
+    "button": "Botão",
+    "radio": "Radio",
+    "checkbox": "Caixa de marcação",
+    "select": "Seletor",
+    "datetime-local": "Data e Hora",
+    "date": "Data",
+    "file": "Arquivo",
+    "color": "Cor",
+    "hidden": "Oculto",
+    "simple": "Simples",
+    "layout": "Layout",
+    "user": "Usuário",
+    "paragraph": "Parágrafo",
+    "title": "Título",
+    "span": "span",
+    "link": "link",
+    "hr": "Linha",
+    "label": "Rotulo",
+    "default_value": "Valor padrão",
+    "placeholder": "Placeholder",
+    "styled_class": "Classe de estilização",
+    "attributes": "Atributos",
+    "value": "Valor",
+    "remove": "Remover",
+    "width": "Largura",
+    "margin": "Margem",
+    "styled": "Estilização",
+    "height": "Comprimento",
+    "padding": "Espaçamento",
+    "sizes": "Tamanhos",
+    "colors": "Cores",
+    "structs": "Estruturas",
+    "border": "Borda",
+    "label_size": "Tamanho do rotulo",
+    "text_size": "Tamanho do texto",
+    "label_color": "Cor do rotulo",
+    "background_color": "Cor do fundo",
+    "border_color": "Cor da borda",
+    "label_weight": "Espessura do rotulo",
+    "weight": "Espessura",
+    "link_copy": "Copiar Link",
+    "copy_link_text": "O link foi copiado!"
   },
   "permissions": {
     "users_create": "Criar usuários",
@@ -262,6 +320,12 @@
     "has_limit_reservation": "Será possível aderir a vagas de reserva?",
     "inform_limit_reservation": "Será possível aderir a vagas de reserva?",
     "service_image": "Adicione uma imagem ao serviço:"
+  },
+  "custom_forms": {
+    "create": {
+      "success_title": "Formulário criado",
+      "success_text": "Seu formulário foi criado com sucesso."
+    }
   },
   "clients": {
     "modal": {

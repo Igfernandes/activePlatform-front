@@ -24,6 +24,7 @@ export function useGroupFields<Payload extends FieldValues>({
 
   const handleDragEnd = (event: EventDragProps) => {
     const { active, over } = event;
+    
     if (active.id !== over?.id) {
       const updatedItemsValue = handleUpdateItemsValue(items);
       const oldIndex = updatedItemsValue.findIndex(

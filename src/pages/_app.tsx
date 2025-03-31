@@ -15,13 +15,15 @@ const queryClient = new QueryClient({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <SnackbarProvider>
-        <div className={poppins.className}>
-          <Component {...pageProps} />
-        </div>
-      </SnackbarProvider>
-    </QueryClientProvider>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <SnackbarProvider>
+          <div className={poppins.className}>
+            <Component {...pageProps} />
+          </div>
+        </SnackbarProvider>
+      </QueryClientProvider>
+    </>
   );
 }
 

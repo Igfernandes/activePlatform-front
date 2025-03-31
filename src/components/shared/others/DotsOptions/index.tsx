@@ -1,17 +1,9 @@
 import { BtnDots } from "@assets/Icons/black/BtnDots";
 import { When } from "@components/utilities/When";
 import { useState } from "react";
+import { DotsOptionsProps } from "./type";
 
-type Props = {
-  actions: Array<Actions>;
-};
-
-type Actions = {
-  text: string;
-  handle: () => void;
-};
-
-export function DotsOptions({ actions = [] }: Props) {
+export function DotsOptions({ actions = [] }: DotsOptionsProps) {
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
   return (
