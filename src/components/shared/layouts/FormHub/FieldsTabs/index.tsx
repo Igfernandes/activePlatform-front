@@ -1,13 +1,13 @@
 import i18n from "@configs/i18n";
-import { useUserContext } from "../context";
-import { useUserTabs } from "./hooks/useUserTabs";
+import { useFieldContext } from "../context";
+import { useFieldsTabs } from "./hooks/useFieldsTabs";
 
-export function UserTabs() {
-  const { handleChangeTab, targetTab, userFields } = useUserContext();
+export function FieldsTabs() {
+  const { handleChangeTab, targetTab, fields } = useFieldContext();
   const TAILWIND_CLASS =
     "hover:bg-red hover:text-white font-medium text-xs px-4 py-1 uppercase rounded-xl shadow-sm border-secondary border-2 cursor-pointer";
-  const { handleToggleTab, uniqueFieldsByGroup } = useUserTabs({ targetTab });
-  const filesAmount = userFields.filter((field) => field.isFile);
+  const { handleToggleTab, uniqueFieldsByGroup } = useFieldsTabs({ targetTab });
+  const filesAmount = fields.filter((field) => field.isFile);
 
   return (
     <div className="mt-4">
@@ -20,7 +20,7 @@ export function UserTabs() {
             {i18n(`words.all`)}
           </span>
         </li>
-        {uniqueFieldsByGroup(userFields).map((userField, key) => (
+        {uniqueFieldsByGroup(fields).map((userField, key) => (
           <li key={`field_group_${key}`} className="mx-2">
             <span
               className={`${TAILWIND_CLASS} ${handleToggleTab(

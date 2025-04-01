@@ -1,18 +1,13 @@
 import { useState } from "react";
-import { useUserContext } from "../../../../shared/layouts/FormHub/context";
 import { useFieldsByGroup } from "@hooks/useFields/useFieldsByGroup";
+import { useFieldContext } from "../../context";
 
-export function useFormUser() {
-  const {
-    userFields,
-    targetTab,
-    userFieldsGroup,
-    handleToggleModal,
-    isShowModal,
-  } = useUserContext();
+export function useForm() {
+  const { fields, targetTab, fieldsGroup, handleToggleModal, isShowModal } =
+    useFieldContext();
   const { fieldByGroup } = useFieldsByGroup({
-    fieldGroups: userFieldsGroup,
-    fields: userFields,
+    fieldGroups: fieldsGroup,
+    fields: fields,
   });
   const [fieldsGroupEditing, setFieldsGroupEditing] = useState<string>();
 
@@ -25,7 +20,7 @@ export function useFormUser() {
     targetTab,
     handleToggleFieldsGroupToEditing,
     fieldsGroupEditing,
-    userFieldsGroup,
+    fieldsGroup,
     handleToggleModal,
     isShowModal,
   };
