@@ -1,35 +1,38 @@
-import { UserPageProps } from "@components/Private/Users/type";
 import { DashboardContainer } from "@components/shared/layouts/Dashboard";
 import { GetServerSideProps } from "next";
-import { MOCK_USERS } from "../../../data/users/__mocks__";
 import { privateRoutes } from "@configs/routes/Web/navigation";
 import i18n from "@configs/i18n";
-import UserProvider from "@components/Private/Users/context";
-import { UserOptionsBar } from "@components/Private/Users/UserOptionsBar";
-import { UserTabs } from "@components/Private/Users/UserTabs";
-import { FormUser } from "@components/Private/Users/FormUser";
-import { UsersShape } from "../../../types/Users/Users";
+import { ClientPageProps } from "@components/Private/Clients/type";
+import { FormHub } from "@components/shared/layouts/FormHub";
+import { useClientsUpdate } from "@components/Private/Clients/Update/hooks/useClientsUpdate";
+import { getClients } from "../../../services/Clients/Get/SSR";
 
-export default function clientPerfil({ targetUser }: UserPageProps) {
+export default function ClientPerfil({ targetClient }: ClientPageProps) {
+  const { fields } = useClientsUpdate({ client: targetClient });
+
   return (
     <DashboardContainer>
-      <UserProvider user={targetUser as UsersShape}>
-        <UserOptionsBar />
-        <UserTabs />
-        <FormUser />
-      </UserProvider>
+      <FormHub
+        entity={targetClient}
+        fields={fields ?? []}
+        handleCreated={() => ""}
+        handleShared={() => ""}
+      />
     </DashboardContainer>
   );
 }
 
 // Tipagem para getServerSideProps
-export const getServerSideProps: GetServerSideProps<UserPageProps> = async (
-  context
-) => {
-  const { id } = context.params as { id: string }; // Tipando o params
-  const foundCurrentUser = MOCK_USERS.find((user) => user.id === parseInt(id));
+export const getServerSideProps: GetServerSideProps<ClientPageProps> = async ({
+  req,
+  params,
+}) => {
+  const tokenNavigation = req.cookies["token_navigation"] ?? "";
+  const { id } = params as { id: string }; // Tipando o params
+  const clients = await getClients(tokenNavigation, { id: +id });
+  const currentClient = Array.isArray(clients) ? clients[0] : clients;
 
-  if (!foundCurrentUser) {
+  if (!currentClient || Object.hasOwn(currentClient, "errors")) {
     return {
       redirect: {
         destination: `${privateRoutes.dashboard}?alert=${i18n(
@@ -42,7 +45,7 @@ export const getServerSideProps: GetServerSideProps<UserPageProps> = async (
 
   return {
     props: {
-      targetUser: foundCurrentUser, // Passa o ID para o componente
+      targetClient: currentClient, // Passa o ID para o componente
     },
   };
 };

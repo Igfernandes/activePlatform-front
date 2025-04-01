@@ -1,6 +1,6 @@
 import { useFormRules } from "@hooks/Forms/useFormRules";
 import { CategoryModalSchema, CategoryPayload } from "../schemas";
-import usePostCategories from "../../../../../../services/Clients/Categories/Post/usePostCategories";
+import usePostCategories from "../../../../../../../services/Clients/Categories/Post/usePostCategories";
 import { ModalClientsOperationType } from "@components/Private/Clients/type";
 import { useModalContext } from "@contexts/Modal";
 

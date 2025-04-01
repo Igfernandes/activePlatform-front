@@ -1,13 +1,13 @@
 import { Input } from "@components/shared/forms/Input";
 import i18n from "@configs/i18n";
 import { ModalFormProps } from "./type";
-import { Modal } from "../../../../shared/layouts/Modal";
+import { Modal } from "../../../../../shared/layouts/Modal";
 import { FormProvider } from "react-hook-form";
 import { Button } from "@components/shared/layouts/Button";
 import { GroupChecks } from "@components/shared/forms/GroupChecks";
 import { UserSharedPayload } from "./schemas";
 import { useSharedModalForm } from "./hooks/useClientSharedModal";
-import { MOCK_USER_FIELDS_GROUP } from "../../../../../data/users/__mocks__/usersFieldsGroup";
+import { MOCK_USER_FIELDS_GROUP } from "../../../../../../data/users/__mocks__/usersFieldsGroup";
 
 export function ClientSharedModal({
   isShowModal,

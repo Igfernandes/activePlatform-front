@@ -4,9 +4,9 @@ import { GetServerSideProps } from "next";
 import { MOCK_USERS } from "../../../data/users/__mocks__";
 import { privateRoutes } from "@configs/routes/Web/navigation";
 import i18n from "@configs/i18n";
-import UserProvider from "@components/Private/Users/context";
+import UserProvider from "@components/shared/layouts/FormHub/context";
 import { UserOptionsBar } from "@components/Private/Users/UserOptionsBar";
-import { UserTabs } from "@components/Private/Users/UserTabs";
+import { UserTabs } from "@components/shared/layouts/FormHub/FieldsTabs";
 import { FormUser } from "@components/Private/Users/FormUser";
 import { UsersShape } from "../../../types/Users/Users";
 

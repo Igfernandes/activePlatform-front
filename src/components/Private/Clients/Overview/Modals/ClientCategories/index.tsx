@@ -1,6 +1,6 @@
 import i18n from "@configs/i18n";
 import { ModalFormProps } from "./type";
-import { Modal } from "../../../../shared/layouts/Modal";
+import { Modal } from "../../../../../shared/layouts/Modal";
 import { FormProvider } from "react-hook-form";
 import { Button } from "@components/shared/layouts/Button";
 import { Select } from "@components/shared/forms/Select";

@@ -4,7 +4,7 @@ import { Notice } from "@components/shared/others/Notice";
 import { Selector } from "@components/shared/layouts/Seletor";
 import { ModalFormCategories } from "./Modals/Categories";
 import { useModalContext } from "@contexts/Modal";
-import { ModalClientsOperationType, ClientsStructProps } from "./type";
+import { ModalClientsOperationType, ClientsStructProps } from "../type";
 import { ClientSharedModal } from "./Modals/ClientShared";
 import { ClientCreateModal } from "./Modals/Clients";
 import SelectorProvider from "@components/shared/layouts/Seletor/contexts";
@@ -18,6 +18,7 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
     setSelectors,
     categories,
     handleDeleteClient,
+    getSelectedClientsName,
   } = useClients({
     filter: search,
     handleFilter: filterObjects,
@@ -47,10 +48,7 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
                   handle: () =>
                     handleToggleModal(
                       "DELETE",
-                      selectors
-                        .filter((selector) => selector.value != "all")
-                        .map((selector) => selector.value)
-                        .join(",")
+                      getSelectedClientsName(selectors)
                     ),
                   text: i18n("words.exclude"),
                 },

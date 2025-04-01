@@ -1,7 +1,7 @@
 import { FileSymlink } from "@assets/Icons/black/FileSymlink";
 import { DotsOptions } from "@components/shared/others/DotsOptions";
 import i18n from "@configs/i18n";
-import { ModalClientsOperationType } from "./type";
+import { ModalClientsOperationType } from "../type";
 import { useRouter } from "next/router";
 import { privateRoutes } from "@configs/routes/Web/navigation";
 

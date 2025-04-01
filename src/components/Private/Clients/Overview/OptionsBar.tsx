@@ -1,7 +1,7 @@
 import { Search } from "@components/shared/forms/Search";
 import i18n from "@configs/i18n";
 import { useModalContext } from "@contexts/Modal";
-import { ModalClientsOperationType } from "./type";
+import { ModalClientsOperationType } from "../type";
 import { Button } from "@components/shared/layouts/Button";
 
 type Props = {

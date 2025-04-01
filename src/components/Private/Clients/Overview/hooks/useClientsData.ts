@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { ClientCategoriesShape } from "../../../../types/Clients/ClientCategories";
-import useGetCategories from "../../../../services/Clients/Categories/Get/useGetCategories";
-import useGetClients from "../../../../services/Clients/Get/useGetClients";
-import { ClientShape } from "../../../../types/Clients/client";
+import { ClientCategoriesShape } from "../../../../../types/Clients/ClientCategories";
+import useGetCategories from "../../../../../services/Clients/Categories/Get/useGetCategories";
+import useGetClients from "../../../../../services/Clients/Get/useGetClients";
+import { ClientShape } from "../../../../../types/Clients/client";
 
 export function useClientsData() {
   const [categories, setCategories] = useState<ClientCategoriesShape[]>();

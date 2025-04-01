@@ -1,4 +1,4 @@
-import { ClientCategoriesShape } from "../../../../../types/Clients/ClientCategories";
+import { ClientCategoriesShape } from "../../../../../../types/Clients/ClientCategories";
 
 export type ModalFormProps = {
   title: string;

@@ -4,7 +4,7 @@ import {
   HookClientsProps,
   ModalClientsOperationType,
   TDataClient,
-} from "../type";
+} from "../../type";
 import { SelectorShape } from "@components/shared/layouts/Seletor/type";
 import { Selector } from "@components/shared/layouts/Seletor";
 import { useModalContext } from "@contexts/Modal";
@@ -12,10 +12,10 @@ import { ClientActions } from "../ClientActions";
 import {
   ClientShape,
   UserCategoryData,
-} from "../../../../types/Clients/client";
+} from "../../../../../types/Clients/client";
 import { useClientsData } from "./useClientsData";
-import useDeleteClient from "../../../../services/Clients/Delete/useDeleteClient";
-import { DeleteClientPayload } from "../../../../services/Clients/Delete/type";
+import useDeleteClient from "../../../../../services/Clients/Delete/useDeleteClient";
+import { DeleteClientPayload } from "../../../../../services/Clients/Delete/type";
 
 export function useClients({
   handleFilter,
@@ -39,6 +39,13 @@ export function useClients({
     i18n("words.category"),
     i18n("words.actions"),
   ]);
+
+  const getSelectedClientsName = (selectors: Array<SelectorShape>) => {
+    return selectors
+      .filter((selector) => selector.value != "all" && selector.isChecked)
+      .map((selector) => selector.value)
+      .join(",");
+  };
 
   const updateClientForTable = ({
     id,
@@ -111,5 +118,6 @@ export function useClients({
     selectors,
     categories,
     handleDeleteClient,
+    getSelectedClientsName,
   };
 }
