@@ -220,7 +220,13 @@
     "label_weight": "Espessura do rotulo",
     "weight": "Espessura",
     "link_copy": "Copiar Link",
-    "copy_link_text": "O link foi copiado!"
+    "copy_link_text": "O link foi copiado!",
+    "personal": "Pessoal",
+    "field_type": "Tipo do campo",
+    "number": "Numero",
+    "is_sensitive": "É sensível?",
+    "is_required": "É obrigatório",
+    "is_file": "É um arquivo?"
   },
   "permissions": {
     "users_create": "Criar usuários",
@@ -355,6 +361,12 @@
         "success_title": "Cliente Excluído",
         "success_text": "Seu cliente foi excluído com sucesso."
       }
+    }
+  },
+  "fields": {
+    "create": {
+      "success_title": "Campo criado",
+      "success_text": "O campo foi criado com sucesso!"
     }
   },
   "users": {

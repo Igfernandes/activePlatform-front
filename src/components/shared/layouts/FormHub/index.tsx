@@ -1,18 +1,24 @@
 import FieldsProvider from "./context";
-import { FieldsTabs } from "./FieldsTabs";
-import { Form } from "./Form";
-import { OptionsBar } from "./OptionsBar";
+import { FieldsTabs } from "./parts/FieldsTabs";
+import { Form } from "./parts/Form";
+import { OptionsBar } from "./parts/OptionsBar";
 import { FormBuildProps } from "./type";
 
 export function FormHub({
-  handleCreated,
-  handleShared,
   fields,
   entity,
+  groups,
+  handleShared,
+  entityType,
 }: FormBuildProps) {
   return (
-    <FieldsProvider entity={entity} fieldsRelation={fields}>
-      <OptionsBar handleCreated={handleCreated} handleShared={handleShared} />
+    <FieldsProvider
+      entityType={entityType}
+      entity={entity}
+      fieldsRelation={fields}
+      Groups={groups}
+    >
+      <OptionsBar handleShared={handleShared} />
       <FieldsTabs />
       <Form />
     </FieldsProvider>

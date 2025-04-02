@@ -1,17 +1,13 @@
 import { useState } from "react";
 import { useFieldsByGroup } from "@hooks/useFields/useFieldsByGroup";
+import { useFieldContext } from "../../../context";
 
-export function useFormUser() {
-  const {
-    userFields,
-    targetTab,
-    userFieldsGroup,
-    handleToggleModal,
-    isShowModal,
-  } = useUserContext();
+export function useForm() {
+  const { fields, targetTab, fieldsGroups, handleToggleModal, isShowModal } =
+    useFieldContext();
   const { fieldByGroup } = useFieldsByGroup({
-    fieldGroups: userFieldsGroup,
-    fields: userFields,
+    fieldGroups: fieldsGroups,
+    fields: fields,
   });
   const [fieldsGroupEditing, setFieldsGroupEditing] = useState<string>();
 
@@ -24,7 +20,7 @@ export function useFormUser() {
     targetTab,
     handleToggleFieldsGroupToEditing,
     fieldsGroupEditing,
-    userFieldsGroup,
+    fieldsGroups,
     handleToggleModal,
     isShowModal,
   };

@@ -1,4 +1,5 @@
-import { FieldGroupsShape, FieldsShape } from "../../../../../types/Fields";
+import { FieldsGroupsShape } from "@type/Fields/fieldsGroups";
+import { FieldsShape, ScopeFields } from "../../../../../types/Fields";
 
 export type FieldContextData = {
   viewedField: ViewedEntityShape;
@@ -6,17 +7,20 @@ export type FieldContextData = {
   handleChangeTab: (tabId: OptionsFieldTabTarget) => void;
   targetTab: OptionsFieldTabTarget;
   fields: FieldsShape[];
-  fieldsGroup: FieldGroupsShape[];
+  fieldsGroups: FieldsGroupsShape[];
   isShowModal: boolean;
   handleToggleModal: (isShowModal: boolean) => void;
+  entityType: ScopeFields;
 };
 
 export type OptionsFieldTabTarget = string | "ALL" | "FILES";
 
 export type FieldProviderProps = {
   fieldsRelation: Array<FieldsShape>;
+  Groups: FieldsGroupsShape[];
   entity: ViewedEntityShape;
   children: React.ReactNode;
+  entityType: ScopeFields;
 };
 
 export type ViewedEntityShape = {

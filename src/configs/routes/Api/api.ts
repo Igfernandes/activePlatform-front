@@ -1,5 +1,6 @@
 import { authenticationRoutes } from "./authentications";
 import { clientsRoutes } from "./clients";
+import { fieldsRoutes } from "./fields";
 import { formsRoutes } from "./forms";
 import { invitesRoutes } from "./invites";
 import { permissionsRoutes } from "./permissions";
@@ -16,4 +17,5 @@ export const API_ROUTES = {
   ...permissionsRoutes,
   ...servicesRoutes,
   ...formsRoutes,
+  ...fieldsRoutes,
 };

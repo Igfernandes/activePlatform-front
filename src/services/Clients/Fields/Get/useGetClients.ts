@@ -11,7 +11,7 @@ export default function useGetClientsFields(request: GetClientsFieldsRequest = {
   }
 
   const { data, ...rest } = useQuery({
-    queryKey: ["clients/fields", request],
+    queryKey: ["clients/fields"],
     queryFn: handle,
     enabled: true,
   });

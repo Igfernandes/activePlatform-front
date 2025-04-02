@@ -6,7 +6,7 @@ import { privateRoutes } from "@configs/routes/Web/navigation";
 import i18n from "@configs/i18n";
 import UserProvider from "@components/shared/layouts/FormHub/context";
 import { UserOptionsBar } from "@components/Private/Users/UserOptionsBar";
-import { UserTabs } from "@components/shared/layouts/FormHub/FieldsTabs";
+import { UserTabs } from "@components/shared/layouts/FormHub/parts/FieldsTabs";
 import { FormUser } from "@components/Private/Users/FormUser";
 import { UsersShape } from "../../../types/Users/Users";
 

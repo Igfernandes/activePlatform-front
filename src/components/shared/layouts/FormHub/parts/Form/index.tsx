@@ -1,17 +1,17 @@
 import { Builder } from "@components/shared/layouts/FormHub/parts/Builder";
-import { useFormUser } from "./hooks/useFormUser";
+import { useForm } from "./hooks/useForm";
 import { When } from "@components/utilities/When";
 
-export function FormUser() {
+export function Form() {
   const {
     fieldByGroup,
     targetTab,
     fieldsGroupEditing,
     handleToggleFieldsGroupToEditing,
-    userFieldsGroup,
+    fieldsGroups,
     handleToggleModal,
     isShowModal,
-  } = useFormUser();
+  } = useForm();
 
   return (
     <>
@@ -23,7 +23,7 @@ export function FormUser() {
             fields={fields}
             isEditing={fieldsGroupEditing == groupName}
             handleEdit={handleToggleFieldsGroupToEditing}
-            fieldGroups={userFieldsGroup}
+            fieldGroups={fieldsGroups}
             onModal={handleToggleModal}
             isShowModal={isShowModal}
           />
