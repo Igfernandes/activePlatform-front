@@ -29,7 +29,7 @@ export default function usePostRecoverPasswordAlter() {
         type: "success",
       });
 
-      router.push(`${successful}?=type=created_password`);
+      router.push(`${successful}?title=created_password`);
     },
     onError: (err) => {
       handleAxiosError(err);

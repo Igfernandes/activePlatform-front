@@ -3,9 +3,11 @@ import { ExternalContainer } from "@components/shared/layouts/ExternalContainer"
 import i18n from "@configs/i18n";
 import { publicRoutes } from "@configs/routes/Web/navigation";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-export default function Successful({ title }: Record<string, unknown>) {
+export default function Successful() {
   const { login } = publicRoutes;
+  const { query } = useRouter();
 
   return (
     <ExternalContainer>
@@ -16,7 +18,9 @@ export default function Successful({ title }: Record<string, unknown>) {
           </div>
           <div className="mb-1">
             <h2 className="text-2xl">
-              <strong>{i18n(`words.${title ?? "unknown_operation"}`)}</strong>
+              <strong>
+                {i18n(`words.${query?.title ?? "unknown_operation"}`)}
+              </strong>
             </h2>
           </div>
           <div className="mb-6">

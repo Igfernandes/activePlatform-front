@@ -10,7 +10,7 @@ export function usePostRecoverPasswordAlterService() {
   async function postRecoverPasswordAlter(
     payload: PostRecoverPasswordAlterPayload
   ) {
-    return axios.post(recoverPassword, getPayloadJSON(payload));
+    return axios.put(recoverPassword, getPayloadJSON(payload));
   }
 
   return {

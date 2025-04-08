@@ -42,7 +42,7 @@ export const getServerSideProps: GetServerSideProps<ClientPageProps> = async ({
         destination: `${privateRoutes.dashboard}?alert=${i18n(
           "errors.system.not_found_user"
         )}`, // Redireciona para a página principal
-        permanent: false, // Define como redirecionamento temporário (status 307)
+        permanent: true, // Define como redirecionamento temporário (status 307)
       },
     };
   }

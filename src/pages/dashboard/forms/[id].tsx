@@ -79,7 +79,7 @@ export const getServerSideProps: GetServerSideProps<FormsPageProps> = async ({
         destination: `${privateRoutes.forms}?alert=${i18n(
           "errors.system.not_found_form"
         )}`, // Redireciona para a página principal
-        permanent: false, // Define como redirecionamento temporário (status 307)
+        permanent: true, // Define como redirecionamento temporário (status 307)
       },
     };
   }

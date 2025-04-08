@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps<ServicePageProps> = async ({
         destination: `${privateRoutes.services}?alert=${i18n(
           "errors.system.not_found_service"
         )}`, // Redireciona para a página principal
-        permanent: false, // Define como redirecionamento temporário (status 307)
+        permanent: true, // Define como redirecionamento temporário (status 307)
       },
     };
   }
