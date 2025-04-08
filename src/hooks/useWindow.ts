@@ -9,7 +9,7 @@ export default function useWindow() {
   useEffect(() => {
     const handleResize = () => {
       setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-      setScreenType(windowSize.width > 800 ? "DESKTOP" : "MOBILE");
+      setScreenType(windowSize.width >= 1024 ? "DESKTOP" : "MOBILE");
     };
 
     // Atualiza na montagem

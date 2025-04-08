@@ -2,6 +2,7 @@ import { MenuShape } from "@constants/menu/type";
 import { DetailedHTMLProps, HTMLAttributes, useEffect, useState } from "react";
 import { Item } from "./Item";
 import { useRouter } from "next/router";
+import { When } from "@components/utilities/When";
 
 type Props = DetailedHTMLProps<
   HTMLAttributes<HTMLDivElement>,
@@ -32,9 +33,11 @@ export function Navbar({
 
   return (
     <div {...rest}>
-      <div className="text-[10px]">
-        <h4>{title.toUpperCase()}</h4>
-      </div>
+      <When value={sidebarState}>
+        <div className="text-[10px]">
+          <h4>{title.toUpperCase()}</h4>
+        </div>
+      </When>
       <div>
         <ul>
           {menu.map((props, index) => (

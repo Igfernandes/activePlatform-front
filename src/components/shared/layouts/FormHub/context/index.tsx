@@ -5,24 +5,28 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { FieldGroupsShape, FieldsShape } from "../../../../../types/Fields";
+import { FieldsShape } from "../../../../../types/Fields";
 import {
   FieldContextData,
   FieldProviderProps,
   OptionsFieldTabTarget,
   ViewedEntityShape,
 } from "./types";
+import { FieldsGroupsShape } from "@type/Fields/fieldsGroups";
 const FielContext = createContext<FieldContextData>({} as FieldContextData);
 
 function FieldsProvider({
   children,
   fieldsRelation,
   entity,
+  Groups,
+  entityType,
+  handleSubmitFields,
 }: FieldProviderProps) {
   const [viewedField, setViewedField] = useState<ViewedEntityShape>(entity);
   const [targetTab, setTargetTab] = useState<OptionsFieldTabTarget>("ALL");
   const [fields, setFields] = useState<FieldsShape[]>([]);
-  const [fieldsGroup, setFieldsGroup] = useState<FieldGroupsShape[]>([]);
+  const [fieldsGroups, setFieldsGroups] = useState<FieldsGroupsShape[]>([]);
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
 
   const handleChangeField = (field: ViewedEntityShape) => {
@@ -41,8 +45,12 @@ function FieldsProvider({
   }, [entity]);
 
   useEffect(() => {
-    setFields(fieldsRelation);
+    setFields([...fieldsRelation]);
   }, [fieldsRelation]);
+
+  useEffect(() => {
+    setFieldsGroups(Groups);
+  }, [Groups]);
 
   const tabProps = useMemo(
     () => ({
@@ -65,9 +73,11 @@ function FieldsProvider({
       viewedField,
       handleChangeField,
       fields,
-      fieldsGroup,
+      fieldsGroups,
+      entityType,
+      handleSubmitFields,
     }),
-    [viewedField, fields, fieldsGroup]
+    [viewedField, fields, fieldsGroups, entityType, fieldsRelation]
   );
 
   return (

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { FieldGroupsShape, FieldsShape } from "../../types/Fields";
+import { FieldsShape } from "../../types/Fields";
+import { FieldsGroupsShape } from "@type/Fields/fieldsGroups";
 
 type Props = {
   fields: FieldsShape[];
-  fieldGroups: FieldGroupsShape[];
+  fieldGroups: FieldsGroupsShape[];
 };
 
 export function useFieldsByGroup({ fields, fieldGroups }: Props) {
@@ -41,18 +42,25 @@ export function useFieldsByGroup({ fields, fieldGroups }: Props) {
     } as Record<string, FieldsShape[]>;
 
     fields.forEach((field: FieldsShape) => {
-      if (!filteredFieldsByGroup[field.group])
-        filteredFieldsByGroup[field.group] = [];
+      const group = fieldGroups.find((group) => group.id === field.group_id);
 
-      if (field.isFile) return filteredFieldsByGroup["ATTACHMENTS"].push(field);
+      if (!group) return;
 
-      filteredFieldsByGroup[field.group].push(field);
+      if (!filteredFieldsByGroup[group.name])
+        filteredFieldsByGroup[group.name] = [];
+
+      if (field.type == "FILE")
+        return filteredFieldsByGroup["ATTACHMENTS"].push(field);
+
+      filteredFieldsByGroup[group.name].push(field);
     });
 
-    const matriz = Object.entries(filteredFieldsByGroup);
+    const matriz = Object.entries(filteredFieldsByGroup).sort(
+      ([prevKey], [nextKey]) => prevKey.length - nextKey.length
+    );
 
     setFieldByGroup(organizedFieldsByGroupPosition(matriz));
-  }, [fields]);
+  }, [fields, fieldGroups]);
 
   return {
     fieldByGroup,

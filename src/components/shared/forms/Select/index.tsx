@@ -29,7 +29,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             htmlFor={IdCurrent}
             className={`absolute ${
               multiple ? "w-[93%]" : ""
-            } cursor-pointer top-[2px] pt-2 pb-1 left-2 pl-2  transition-all duration-350 bg-white text-xs`}
+            } cursor-pointer top-[2px] pt-2 pb-1 left-2 pl-2  transition-all duration-350  text-xs`}
           >
             {label}
             <When value={required}>

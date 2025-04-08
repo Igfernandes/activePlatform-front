@@ -5,7 +5,7 @@ export function Cards({ items = [] }: CardsProps) {
   return (
     <div className="card">
       <div className="card-content">
-        <div className="card-box flex flex-wrap">
+        <div className="card-box flex flex-wrap ">
           {items.map((item, key) => (
             <CardItem {...item} key={key} />
           ))}

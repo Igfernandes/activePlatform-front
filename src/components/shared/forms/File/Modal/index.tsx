@@ -29,7 +29,7 @@ export function FileModal({
 
   return (
     <Modal title={"Upload"} isShowModal={isShowModal} handleModal={handleModal}>
-      <div>
+      <div >
         <When value={!!files}>
           <UploadPreview
             file={files && files.length > 0 ? files[0] : undefined}

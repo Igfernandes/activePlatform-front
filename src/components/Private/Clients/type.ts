@@ -1,4 +1,5 @@
 import { JSX } from "react";
+import { ClientShape } from "../../../types/Clients/client";
 
 export type HookClientsProps<ClientType> = {
   filter: string;
@@ -8,7 +9,7 @@ export type HookClientsProps<ClientType> = {
 export type TDataClient = {
   id: React.ReactNode;
   name: string;
-  status: 'ACTIVE'|'INACTIVE';
+  status: "ACTIVE" | "INACTIVE";
   email: string;
   phone: string;
   category: string;
@@ -29,3 +30,7 @@ export type ModalClientsOperationType =
   | "SHARED"
   | "CHANGE_CATEGORY"
   | boolean;
+
+export type ClientPageProps = {
+  targetClient: ClientShape;
+};

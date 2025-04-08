@@ -9,3 +9,7 @@ export const formatFileSize = (file?: File) => {
   const formattedSize = (size / Math.pow(1024, i)).toFixed(2); // Ajusta para a unidade
   return `${formattedSize.replace(/\.00$/, "")}${units[i]}`; // Remove ".00" se for número inteiro
 };
+
+export function isFileList(value: unknown): value is FileList {
+  return typeof value === "object" && value instanceof FileList;
+}

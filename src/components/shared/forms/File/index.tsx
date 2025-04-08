@@ -19,6 +19,8 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
       type = "file",
       name,
       required,
+      value,
+      defaultValue,
       handledChange,
       ...rest
     }: InputProps,
@@ -35,11 +37,18 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
     } = useFile();
 
     useEffect(() => {
-      const value = watch(`${name}`);
+      if (value || defaultValue) {
+        setCurrentValue({
+          name: `${defaultValue ?? value}`,
+        } as File);
+        return;
+      }
 
-      if (!value) return;
+      const files = watch(`${name}`);
 
-      setCurrentValue(value[0]);
+      if (!files) return;
+
+      setCurrentValue(files[0]);
     }, [watch(`${name}`), name]);
 
     return (
@@ -50,7 +59,7 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
               !!errors ? "border-amber-500 outline-amber-500" : ""
             } ${
               className ?? ""
-            } block w-full px-3 pb-3 pt-5 h-14  bg-white  border-secondary  cursor-pointer border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
+            }  w-full pl-3 pr-7 pb-3 pt-5 h-14  line-clamp-1 bg-white  border-secondary  cursor-pointer border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
             onClick={() => setIsShowModal(true)}
           >
             <span className="font-medium"> {currentValue?.name as string}</span>
@@ -68,12 +77,12 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
               </When>
             </span>
             <When value={!currentValue}>
-              <Upload className="absolute right-4 top-4" />
+              <Upload className="absolute right-2 top-5" />
             </When>
           </label>
           <When value={!!currentValue}>
             <CircleRed
-              className="absolute right-4 top-4 cursor-pointer"
+              className="absolute right-[2px] top-5 pr-0 w-7 cursor-pointer bg-white"
               fill={textColors.red}
               onClick={() => {
                 setValue(`${name}`, undefined);
@@ -95,13 +104,15 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
             id={IdCurrent}
           />
         </div>
-        <FileModal
-          isShowModal={isShowModal}
-          handleModal={setIsShowModal}
-          fileId={IdCurrent}
-          name={`${name}`}
-          accept={rest.accept}
-        />
+        <div className="relative z-10">
+          <FileModal
+            isShowModal={isShowModal}
+            handleModal={setIsShowModal}
+            fileId={IdCurrent}
+            name={`${name}`}
+            accept={rest.accept}
+          />
+        </div>
         <ErrorMessage errors={errors?.message} />
       </>
     );

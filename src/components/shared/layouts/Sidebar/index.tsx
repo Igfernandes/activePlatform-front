@@ -26,7 +26,7 @@ export function Sidebar({ handleToggleSidebar, showSidebar }: Props) {
         marginLeft: !showSidebar ? indentValue : "0",
       }}
     >
-      <div className="px-6 pt-6 ">
+      <div className="px-6 pt-6 h-[90vh]">
         <div className="flex justify-between mb-8">
           <div>
             <h3 className="text-2xl">

@@ -19,9 +19,11 @@ export function DashboardContainer<ModalOptions>({ children }: Props) {
             handleToggleSidebar={handleToggleSidebar}
             showSidebar={showSidebar}
           />
-          <div className="h-[100vh] w-full overflow-scroll hidden-scroll">
+          <div className="h-[100vh] w-full">
             <Header handleSidebar={handleToggleSidebar} />
-            <div className="p-6">{children}</div>
+            <div className="h-full pb-[15vh] overflow-y-scroll">
+              <div className="p-6">{children}</div>
+            </div>
           </div>
         </div>
       </ModalProvider>

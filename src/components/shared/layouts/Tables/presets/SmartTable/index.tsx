@@ -57,7 +57,7 @@ export function SmartTable<TableData extends Array<Record<string, unknown>>>({
       {...options}
     >
       <div className="bg-white p-6 rounded-2xl">
-        <div className=" mb-6">
+        <div className="mb-2 md:mb-6">
           <div className="flex justify-between">
             <div className="flex items-center w-[60%]">
               <div className="mr-4">
@@ -84,7 +84,7 @@ export function SmartTable<TableData extends Array<Record<string, unknown>>>({
               </When>
             </div>
           </div>
-          <div>
+          <div className="mt-2 md:mt-auto">
             <When
               value={!!options.filters?.tag?.key && windowSize.width <= 800}
             >

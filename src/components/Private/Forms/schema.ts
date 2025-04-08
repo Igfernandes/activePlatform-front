@@ -9,6 +9,7 @@ export const formsSchema = z.object({
   }),
   type: z.enum(["PEOPLE", "COMPANY"]),
   description: z.string({ required_error: i18n("errors.fields.required") }),
+  users: z.array(z.string()),
   isLoading: z.boolean().optional(),
 });
 

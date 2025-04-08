@@ -5,6 +5,8 @@ import React, { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import ErrorMessage from "@components/shared/others/ErrorMessage";
 import { useFieldsAnimation } from "@hooks/Forms/useFieldsAnimation";
+import { useInput } from "./hooks/useInput";
+import i18n from "@configs/i18n";
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   function Input(
@@ -26,8 +28,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const { labelStyledState, handleTransitionLabel, changeLabelClass } =
       useFieldsAnimation();
     const IdCurrent = id ?? dataTestId;
-    const { watch } = useFormContext();
+    const { watch, setError, setValue } = useFormContext();
+    const { isUpLabel } = useInput();
 
+    console.log(errors)
     useEffect(() => {
       if (watch(`${name}`)) {
         changeLabelClass("UP");
@@ -35,7 +39,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     }, [watch, name, changeLabelClass]);
 
     useEffect(() => {
-      changeLabelClass(placeholder ? "UP" : "DOWN");
+      changeLabelClass(isUpLabel({ placeholder, ...rest }) ? "UP" : "DOWN");
     }, [placeholder]);
 
     return (
@@ -43,7 +47,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <div className="relative">
           <label
             htmlFor={IdCurrent}
-            className={`absolute transition-all duration-350`}
+            className={`absolute transition-all duration-350 line-clamp-1`}
             style={{
               ...labelStyledState,
             }}
@@ -60,6 +64,17 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
               if (rest.onChange) rest.onChange(ev);
               if (handledChange) handledChange(ev);
+
+              if (rest.type?.toLowerCase() === "file") {
+                const file = ev.target.files?.[0];
+                if (file && file.size > 3 * 1024 * 1024) {
+                  setError(`${name}`, {
+                    message: i18n("errors.fields.file"),
+                  });
+                  setValue(`${name}`, null);
+                  ev.target.value = ""; // limpa o input
+                }
+              }
             }}
             onFocus={handleTransitionLabel}
             onBlur={handleTransitionLabel}

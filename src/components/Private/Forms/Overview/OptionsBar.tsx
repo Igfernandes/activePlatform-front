@@ -13,15 +13,15 @@ export function OptionsBar({ handleSearch }: Props) {
   const { forms } = privateRoutes;
 
   return (
-    <div className="flex justify-between mb-6">
+    <div className="flex flex-wrap md:flex-none items-center justify-between mb-6">
       <Search
         label={i18n("words.research")}
         dataTestId="services"
         handleSearch={handleSearch}
-        className="w-[45%] xl:w-[25%]"
+        className="w-full md:w-[45%] xl:w-[25%]"
       />
-      <div className="w-[75%] flex justify-end">
-        <div className="mx-2">
+      <div className="w-full md:w-[55%] xl:w-[75%] flex justify-end mt-2 md:mt-0">
+        <div className="mx-2 w-full md:w-auto">
           <Button
             className="border border-zinc-300 px-3 font-bold rounded-xl bg-secondary text-primary"
             text={i18n("words.new_form")}

@@ -25,9 +25,9 @@
       "@contexts/*": ["./src/contexts/*"],
       "@helpers/*": ["./src/helpers/*"],
       "@hooks/*": ["./src/hooks/*"],
-      "@pages/*": ["./src/pages"],
-      "@services/*": ["./src/services"],
-      "@types/*": ["./src/types"]
+      "@pages/*": ["./src/pages/*"],
+      "@services/*": ["./src/services/*"],
+      "@type/*": ["./src/types/*"]
     },
     "allowJs": true
   },

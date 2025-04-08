@@ -42,9 +42,9 @@ export function Item({
           justifyContent: sidebarState ? "initial" : "end",
         }}
       >
-        <Icon fill={itemStyle} className="w-[18px] xl:w-[20px]" />
+        <Icon fill={itemStyle} className="w-[18px] lg:w-[20px]" />
         <When value={sidebarState}>
-          <strong className="ml-2">{title}</strong>
+          <strong className="ml-2 text-[8px] lg:text-xs">{title}</strong>
         </When>
       </Link>
     </li>

@@ -1,4 +1,5 @@
 export type GetClientsRequest = {
+  id?: number;
   name?: string;
   name_contains?: string;
   phone_contains?: string;

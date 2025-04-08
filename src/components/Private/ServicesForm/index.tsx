@@ -4,7 +4,7 @@ import { useServicesForm } from "./hooks/useServicesForm";
 import { Button } from "@components/shared/layouts/Button";
 import { File } from "@components/shared/forms/File";
 import { LimitAndReservationForm } from "./LimitAndReservationForm";
-import { DefinitionsForm } from "./DefinationsForm";
+import { DefinitionsForm } from "./DefinitionsForm";
 import { RadioBox } from "@components/shared/forms/RadioBox";
 import { UserGroup } from "@assets/Icons/black/UserGroup";
 import { Lock } from "@assets/Icons/black/Lock";
@@ -54,7 +54,7 @@ export function ServicesForm({ service }: Props) {
                 <strong>{i18n(`services.settings_privacy`)}</strong>
               </h2>
             </div>
-            <div className="flex justify-between">
+            <div className="flex flex-wrap lg:flex-none justify-between">
               <div className="w-full lg:w-[48%]">
                 <RadioBox
                   {...register("privacy")}
@@ -81,7 +81,7 @@ export function ServicesForm({ service }: Props) {
                 <strong>{i18n(`services.service_image`)}</strong>
               </h2>
             </div>
-            <div className="mt-2 w-1/2">
+            <div className="mt-2 lg:w-1/2">
               <File
                 {...register("photo")}
                 dataTestId="service_image"
@@ -91,38 +91,44 @@ export function ServicesForm({ service }: Props) {
               />
             </div>
 
-            <div className="flex justify-between mt-12 items-center">
+            <div className="flex flex-wrap lg:flex-none justify-between mt-12 items-center relative">
               <When value={!service}>
-                <div>
+                <div className="w-full lg:w-auto mb-4 lg:mb-auto">
                   <span onClick={handleCleanForm} className="cursor-pointer">
                     <strong>{i18n("words.clean")}</strong>
                   </span>
                 </div>
               </When>
-              <div className={!service ? "flex items-center" : "ml-auto"}>
+              <div
+                className={!service ? "flex items-center flex-wrap lg:flex-nowrap w-full lg:w-auto" : "ml-auto"}
+              >
                 <When value={!service}>
-                  <div>
+                  <div className="ml-auto lg:w-[70%] absolute lg:static top-0 right-0">
                     <Checkbox
                       dataTestId="continue_create"
                       label={i18n(`words.keep_creating`)}
                       onChecked={setIsKeepCreating}
                     />
                   </div>
-                  <div className="ml-8">
+                </When>
+
+                <div className="flex justify-between w-full">
+                  <div className="lg:ml-8 w-[47%] lg:w-auto">
                     <Button
-                      className="p-3 border-[1px] border-secondary rounded-xl"
+                      className="p-3 border-[1px] border-secondary rounded-xl w-full"
                       text={i18n(`words.cancel`)}
                       type="button"
                       onClick={() => router.push(privateRoutes.services)}
                     />
                   </div>
-                </When>
-
-                <div className="ml-4">
-                  <Button
-                    className="p-3 bg-red text-white rounded-xl"
-                    text={!service ? i18n(`words.save`) : i18n(`words.update`)}
-                  />
+                  <div className="ml-4 w-[47%] lg:w-auto">
+                    <Button
+                      className="p-3 bg-red text-white rounded-xl w-full"
+                      text={
+                        !service ? i18n(`words.save`) : i18n(`words.update`)
+                      }
+                    />
+                  </div>
                 </div>
               </div>
             </div>

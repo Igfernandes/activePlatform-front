@@ -16,12 +16,12 @@ export function LimitAndReservationForm({ register }: Props) {
 
   return (
     <>
-      <div className="my-6 flex">
+      <div className="my-3 lg:my-6 flex flex-wrap lg:flex-none">
         <div>
           <p>{i18n(`services.has_limit_vacancies`)}</p>
         </div>
-        <div className="flex">
-          <div className="mx-1">
+        <div className="flex mt-2 lg:mt-auto">
+          <div className="mx-0 lg:mx-1">
             <Radio
               {...register("disabledLimitVacancies")}
               dataTestId="disabled_limit_vacancies_yes"
@@ -48,15 +48,16 @@ export function LimitAndReservationForm({ register }: Props) {
           label={i18n("services.inform_limit_vacancies")}
           disabled={watch("disabledLimitVacancies") === "Não"}
           max={99999}
+          className="line-clamp-1"
           errors={errors.stock}
         />
       </div>
-      <div className="my-6 flex">
+      <div className="my-3 lg:my-6 flex flex-wrap lg:flex-none">
         <div>
           <p>{i18n(`services.has_limit_reservation`)}</p>
         </div>
-        <div className="flex">
-          <div className="mx-1">
+        <div className="flex mt-2 lg:mt-auto">
+          <div className="mx-0 lg:mx-1">
             <Radio
               {...register("disabledReservationVacancies")}
               dataTestId="disabled_reservation_vacancies_yes"
