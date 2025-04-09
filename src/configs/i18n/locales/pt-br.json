@@ -230,7 +230,12 @@
     "is_file": "É um arquivo?",
     "prev": "Anterior",
     "next": "Próximo",
-    "exclude_people": "Pessoas Excluídas"
+    "exclude_people": "Pessoas Excluídas",
+    "cpf": "CPF",
+    "proceed": "Prosseguir",
+    "go_back": "Voltar",
+    "keyword": "Palavra-chave",
+    "create_account": "Criar conta"
   },
   "permissions": {
     "users_create": "Criar usuários",
@@ -274,7 +279,7 @@
     "submit": "Criar nova senha"
   },
   "create_user": {
-    "text": "Para acessar a plataforma, informe como gostaria de ser chamado e crie uma senha."
+    "text": "Para acessar a plataforma, informe alguns dados e crie uma senha."
   },
   "manager_user": {
     "modal": {

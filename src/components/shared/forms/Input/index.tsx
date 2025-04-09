@@ -31,7 +31,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const { watch, setError, setValue } = useFormContext();
     const { isUpLabel } = useInput();
 
-    console.log(errors)
     useEffect(() => {
       if (watch(`${name}`)) {
         changeLabelClass("UP");

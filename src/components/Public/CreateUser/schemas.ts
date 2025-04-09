@@ -1,4 +1,5 @@
 import i18n from "@configs/i18n";
+import { REGEXES } from "@constants/regexes";
 import {
   hasSomeLetterLowercase,
   hasSomeLetterUppercase,
@@ -9,9 +10,9 @@ import { z } from "zod";
 
 export const createUserFormSchema = z
   .object({
-    name: z.string({ required_error: i18n("errors.fields.required") }),
+    keyword: z.string({ required_error: i18n("errors.fields.required") }).nonempty(i18n("errors.fields.required")),
     password: z
-      .string({ required_error: i18n("errors.fields.required") })
+      .string({ required_error: i18n("errors.fields.required") }).nonempty(i18n("errors.fields.required"))
       .min(8)
       .refine(hasSomeLetterUppercase)
       .refine(hasSomeLetterLowercase)
@@ -19,7 +20,13 @@ export const createUserFormSchema = z
       .refine(hasSomeSpecialCharacter),
     passwordConfirm: z.string({
       required_error: i18n("errors.fields.required"),
-    }),
+    }).nonempty(i18n("errors.fields.required")),
+    cpf: z.string({ required_error: i18n("errors.fields.required") }).nonempty(i18n("errors.fields.required")),
+    birthdate: z
+      .string({ required_error: i18n("errors.fields.required") }).nonempty(i18n("errors.fields.required"))
+      .refine((date) => date === "" || REGEXES.DATE_BR.test(`${date}`), {
+        message: `Formato inválido (${i18n("configs.formats.date")})`,
+      }),
   })
   .refine((data) => data.password === data.passwordConfirm, {
     message: i18n("errors.fields.required"),

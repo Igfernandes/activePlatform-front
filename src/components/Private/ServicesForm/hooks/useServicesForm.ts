@@ -1,5 +1,5 @@
 import { useFormRules } from "@hooks/Forms/useFormRules";
-import usePostCreateService from "../../../../services/Services/Post/usePostCreateClient";
+import usePostCreateService from "../../../../services/Services/Post/usePostCreateService";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { privateRoutes } from "@configs/routes/Web/navigation";

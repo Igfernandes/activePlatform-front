@@ -1,38 +1,38 @@
-import { Button } from "@components/shared/forms/Button";
 import { useForm } from "./hooks/useForm";
 import { FormProvider } from "react-hook-form";
-import { PasswordValidation } from "@components/shared/forms/PasswordValidation";
-import { Input } from "@components/shared/forms/Input";
-import i18n from "@configs/i18n";
+import { Credentials } from "./Credentials";
+import { Personal } from "./Personal";
+import { When } from "@components/utilities/When";
 
 export function CreateUserForm() {
-  const { register, formMethods, hasAllFilledFields, isLoading, handleSubmit } =
-    useForm();
+  const {
+    register,
+    formMethods,
+    handleToggleStageForm,
+    isLoading,
+    handleSubmit,
+    onSubmit,
+    stageForm,
+    errors
+  } = useForm();
 
   return (
     <FormProvider {...formMethods}>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <Input
-            {...register("name")}
-            label={i18n("words.name")}
-            dataTestId="name"
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <When value={stageForm === "PERSONAL"}>
+          <Personal
+            register={register}
+            handleToggleStageForm={handleToggleStageForm}
+            errors={errors}
           />
-        </div>
-        <div className="form-group my-4">
-          <PasswordValidation
-            dataTestId="password"
-            label={i18n("words.password")}
-          />
-        </div>
-        <div className="form-submit mt-6">
-          <Button
-            text={i18n("words.created_new_password")}
-            type="submit"
+        </When>
+        <When value={stageForm === "CREDENTIALS"}>
+          <Credentials
+            handleToggleStageForm={handleToggleStageForm}
             isLoading={isLoading}
-            disabled={!hasAllFilledFields()}
+            errors={errors}
           />
-        </div>
+        </When>
       </form>
     </FormProvider>
   );

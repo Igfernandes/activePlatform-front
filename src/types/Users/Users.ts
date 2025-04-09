@@ -6,6 +6,7 @@ export type UsersShape = {
   cpf: string;
   cnpj: string;
   category: string;
+  birthdate: string;
   email: string;
   phone: string;
   groups: string;
