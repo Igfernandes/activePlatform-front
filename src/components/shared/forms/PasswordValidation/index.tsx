@@ -3,12 +3,13 @@ import { PasswordProps } from "./type";
 import { useFormContext } from "react-hook-form";
 import { useValidations } from "./hooks/useValidations";
 import { ValidationList } from "./ValidationList";
-import { PasswordConfirm } from "./PaswordConfirm";
+import { PasswordConfirm } from "./PasswordConfirm";
 import { borderColors, statusColors } from "@assets/colors/default";
 import { Input } from "../Input";
 
 export function PasswordValidation({
   name = "password",
+  className,
   label,
   ...rest
 }: PasswordProps) {
@@ -22,7 +23,7 @@ export function PasswordValidation({
 
   return (
     <>
-      <div className="relative">
+      <div className={`relative ${className}`}>
         <Input
           {...rest}
           {...register(name)}

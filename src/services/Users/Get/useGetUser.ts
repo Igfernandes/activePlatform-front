@@ -11,7 +11,7 @@ export default function useGetUser(request: GetUserRequest) {
   }
 
   const { data, ...rest } = useQuery({
-    queryKey: ["user", request],
+    queryKey: ["user"],
     queryFn: handle,
     enabled: true,
   });

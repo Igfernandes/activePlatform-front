@@ -32,10 +32,13 @@ export function capitalize(word: string) {
 }
 
 export function handleMaskPhone(e: React.ChangeEvent<HTMLInputElement>) {
-  let value = e.target.value;
+  e.target.value = getNumberFormatted(e.target.value);
+}
 
-  // Remover todos os caracteres não numéricos
-  value = value.replace(/\D/g, "");
+export function getNumberFormatted(number?: string) {
+  if (!number) return "";
+
+  let value = number.replace(/\D/g, "");
 
   // Adicionar a máscara conforme o número de dígitos
   if (value.length <= 1) {
@@ -48,5 +51,19 @@ export function handleMaskPhone(e: React.ChangeEvent<HTMLInputElement>) {
     value = value.replace(/^(\d{2})(\d{1})(\d{1,4})(\d{1,4})/, "($1) $2 $3-$4");
   }
 
-  e.target.value = value.slice(0, 16);
+  return value.slice(0, 16);
+}
+
+export function handleMaskCPF(e: React.ChangeEvent<HTMLInputElement>) {
+  e.target.value = getCPFFormatted(e.target.value);
+}
+
+export function getCPFFormatted(cpf: string = ""): string {
+  const digits = cpf.replace(/\D/g, ""); // Remove tudo que não for dígito
+
+  return digits
+    .replace(/^(\d{3})(\d)/, "$1.$2")
+    .replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3")
+    .replace(/\.(\d{3})\.(\d{3})(\d)/, ".$1.$2-$3")
+    .replace(/(-\d{2})\d+?$/, "$1"); // Limita em 11 dígitos formatados
 }

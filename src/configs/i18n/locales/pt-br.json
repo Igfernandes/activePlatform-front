@@ -235,7 +235,11 @@
     "proceed": "Prosseguir",
     "go_back": "Voltar",
     "keyword": "Palavra-chave",
-    "create_account": "Criar conta"
+    "create_account": "Criar conta",
+    "setting": "Configuração",
+    "alter": "Alterar",
+    "password_alter": "Alterar senha",
+    "current_password": "Senha atual"
   },
   "permissions": {
     "users_create": "Criar usuários",
@@ -389,6 +393,10 @@
     }
   },
   "users": {
+    "put": {
+      "success_title": "Configurações Atualizadas",
+      "success_text": "As suas configurações foram atualizadas"
+    },
     "modal": {
       "create": {
         "text_field_fill_information": "Preencha as informações abaixo para cadastrar um novo dado",
@@ -398,6 +406,16 @@
       "delete": {
         "success_title": "Usuário Deletado",
         "success_text": "O usuário foi deletado com sucesso."
+      },
+      "patch": {
+        "status": {
+          "success_title": "Status Atualizado",
+          "success_text": "Seu status foi alterado com sucesso."
+        },
+        "password": {
+          "success_title": "Senha Atualizada",
+          "success_text": "Sua senha foi alterada com sucesso."
+        }
       },
       "groups": {
         "title_success": "Grupo Criado",

@@ -18,7 +18,7 @@ export default function useGetUserAuth({
   const { data, ...rest } = useQuery({
     queryKey: ["userAuth"],
     queryFn: handle,
-    enabled: false,
+    enabled: true,
   });
   return { data, ...rest };
 }

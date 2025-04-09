@@ -1,4 +1,5 @@
 export const othersColors = {
+  white: "#fff",
   indigo: "#6984ed",
   blue: "#4da1f7",
   teal: "#20cbdd",
