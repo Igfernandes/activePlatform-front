@@ -1,7 +1,13 @@
 import { TData } from "./TData";
 import { useTableContext } from "../../../contexts/Table";
+import { When } from "@components/utilities/When";
+import i18n from "@configs/i18n";
 
-export function TBody() {
+type Props = {
+  tHeads: string[];
+};
+
+export function TBody({ tHeads }: Props) {
   const { paginatedTRows } = useTableContext();
 
   return (
@@ -14,6 +20,15 @@ export function TBody() {
           <TData data={tDataValue} keyRow={tDataIndex} />
         </tr>
       ))}
+      <When value={paginatedTRows.length == 0}>
+        <tr>
+          <td colSpan={tHeads.length}>
+            <div className="text-center py-7">
+              <span className="text-zinc-500">{i18n(`words.not_found_register`)}</span>
+            </div>
+          </td>
+        </tr>
+      </When>
     </tbody>
   );
 }

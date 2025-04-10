@@ -33,9 +33,11 @@ export const getServerSideProps: GetServerSideProps<ClientPageProps> = async ({
 }) => {
   const tokenNavigation = req.cookies["token_navigation"] ?? "";
   const { id } = params as { id: string }; // Tipando o params
+  
   const clients = await getClients(tokenNavigation, { id: +id });
   const currentClient = Array.isArray(clients) ? clients[0] : clients;
 
+ 
   if (!currentClient || Object.hasOwn(currentClient, "errors")) {
     return {
       redirect: {

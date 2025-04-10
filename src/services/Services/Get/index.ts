@@ -16,7 +16,7 @@ export default function useGet() {
         url: setParams({
           url: services,
           data: {
-            id,
+            id: id ?? "",
           },
         }),
         query,

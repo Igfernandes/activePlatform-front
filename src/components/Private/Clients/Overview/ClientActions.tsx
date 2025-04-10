@@ -16,7 +16,7 @@ type Props = {
 export function ClientActions({ handleToggleModal, id }: Props) {
   const router = useRouter();
   const { clients } = privateRoutes;
-
+  
   return (
     <div className="flex">
       <FileSymlink />
@@ -24,7 +24,9 @@ export function ClientActions({ handleToggleModal, id }: Props) {
         actions={[
           {
             text: i18n("words.edit"),
-            handle: () => router.push(`${clients}/${id}`),
+            handle: () => {
+              router.push(`${clients}/${id}`)
+            },
           },
           {
             text: i18n("words.exclude"),

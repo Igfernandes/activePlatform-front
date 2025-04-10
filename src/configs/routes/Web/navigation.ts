@@ -12,6 +12,7 @@ export const privateRoutes = {
   schedule: "/dashboard/schedule",
   services: "/dashboard/services",
   finance: "/dashboard/finance",
+  financesCreate: "/dashboard/finance/create",
   usersManager: "/dashboard/users",
   userGroups: "/dashboard/users/group",
   apisManager: "/dashboard/apis",

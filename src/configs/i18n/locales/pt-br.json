@@ -40,6 +40,13 @@
       "text": "Se o e-mail informado estiver cadastrado na plataforma, você receberá um link para recuperar a senha."
     }
   },
+  "texts": {
+    "insert_public_token": "Insira o token público",
+    "insert_private_token": "Insira o token privado",
+    "insert_username": "Insira o nome do usuário",
+    "insert_login": "Insira o login",
+    "insert_password": "Insira a senha"
+  },
   "words": {
     "need_go_back_login": "Agora, vá para o login para acessar a plataforma.",
     "go_back_login": "Ir para o login",
@@ -119,7 +126,7 @@
     "others": "Outros",
     "attachment": "Anexos",
     "username": "Nome do usuário",
-    "facebook": "facebook",
+    "facebook": "Facebook",
     "credit_card": "Cartão de crédito",
     "street": "Rua",
     "zipcode": "Cep",
@@ -239,7 +246,24 @@
     "setting": "Configuração",
     "alter": "Alterar",
     "password_alter": "Alterar senha",
-    "current_password": "Senha atual"
+    "current_password": "Senha atual",
+    "monthly_income": "Receita mensal",
+    "annual_revenue": "Receita anual",
+    "linked_customers": "Clientes vinculados",
+    "non_compliant": "Adimplentes",
+    "defaulter": "Inadimplente",
+    "my_charges": "Minhas cobranças",
+    "generate_charge": "Gerar cobrança",
+    "charges_extracts": "Extratos de cobranças",
+    "service": "Serviço",
+    "clients_amount": "Total clientes",
+    "not_found_register": "No momento, nenhum registro foi encontrado.",
+    "public_token": "Token público",
+    "private_token": "Token privado",
+    "login": "Login",
+    "mercado_pago": "Mercado Pago",
+    "instagram": "Instagram",
+    "whatsapp": "Whatsapp"
   },
   "permissions": {
     "users_create": "Criar usuários",
@@ -426,6 +450,20 @@
         "success_delete_text": "Seu grupo foi excluído com sucesso.",
         "success_patch_title": "Status Atualizado",
         "success_patch_text": "Seu grupo teve seu status alterado com sucesso."
+      }
+    }
+  },
+  "integrations": {
+    "banks": {
+      "post": {
+        "success_title": "Credenciais Atualizadas",
+        "success_text": "As credencias de conexão bancárias foram atualizadas"
+      }
+    },
+    "chats": {
+      "post": {
+        "success_title": "Credenciais Atualizadas",
+        "success_text": "As credencias de conexão foram atualizadas"
       }
     }
   }

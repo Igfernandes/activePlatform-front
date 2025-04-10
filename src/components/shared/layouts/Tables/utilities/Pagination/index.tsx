@@ -41,7 +41,7 @@ export function Pagination() {
         </p>
       </div>
       <div>
-        <div className="flex justify-end">
+        <div className="flex justify-end items-center">
           <div
             className={`${arrowStyled} rounded-l-md rounded-t-md cursor-pointer`}
             onClick={() => handleChangePagination(pagination.current - 1)}
@@ -50,6 +50,14 @@ export function Pagination() {
           </div>
           <div>
             <ul className=" text-white text-sm flex">
+              <When value={displayedPages.length == 0}>
+                <li
+                  key={`pagination_key_${1}`}
+                  className={`bg-red text-white px-2 hover:bg-rose-800 hover:text-white cursor-pointer`}
+                >
+                  <span>{1}</span>
+                </li>
+              </When>
               {displayedPages.map((value, index) => (
                 <li
                   key={`pagination_key_${index}`}

@@ -67,13 +67,13 @@ export function useTableData<TableData extends Array<Record<string, unknown>>>({
 
   // Gerenciamento das cabeçalhos da tabela
   useEffect(() => {
-    if (data && data.length > 0) {
-      // Se já temos dados em 'tHeadsData', vamos usá-los diretamente
-      if (tHeadsData.length > 0) {
-        return setTHeads(tHeadsData);
-      }
+    // Se já temos dados em 'tHeadsData', vamos usá-los diretamente
+    if (tHeadsData.length > 0) {
+      return setTHeads(tHeadsData);
+    }
 
-      // Se não, criamos 'tHeads' com as chaves dos dados, excluindo as que estão em 'excludes'
+    // Se não, criamos 'tHeads' com as chaves dos dados, excluindo as que estão em 'excludes'
+    if (Array.isArray(data) && data[0]) {
       const keys = Object.keys(data[0]);
       setTHeads(keys.filter((key) => !excludes.includes(key)));
     }

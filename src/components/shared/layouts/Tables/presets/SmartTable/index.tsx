@@ -100,7 +100,7 @@ export function SmartTable<TableData extends Array<Record<string, unknown>>>({
           <When value={windowSize.width > 650}>
             <table className="sm:table w-full border-collapse" ref={ref}>
               <THead tHeads={tHeads} widths={currentTHeads?.widths} />
-              <TBody />
+              <TBody tHeads={tHeads} />
               <TFoot
                 hasTFoot={hasTFoot}
                 tHeads={tHeads}
