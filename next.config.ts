@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
       {
         hostname: "localhost/**",
       },
+      {
+        hostname: "api.agmturismomarica.com.br/**",
+      },
     ],
   },
 };
