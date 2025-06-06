@@ -30,7 +30,7 @@ export function UsersGroup({ search, filterObjects, groups }: Props) {
 
   return (
     <>
-      <div className="mb-6">
+      <div className="mb-6 relative">
         <SmartTable
           options={{
             pagination: {
@@ -50,7 +50,7 @@ export function UsersGroup({ search, filterObjects, groups }: Props) {
           }}
         />
       </div>
-      <div>
+      <div className="relative z-10">
         <ModalFormUsersGroup
           isShowModal={modal.type === "DEFAULT_GROUP"}
           onModal={handleToggleModal}

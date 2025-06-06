@@ -56,7 +56,7 @@ export function SmartTable<TableData extends Array<Record<string, unknown>>>({
       table={ref}
       {...options}
     >
-      <div className="bg-white p-4 md:p-6 rounded-2xl relative z-0">
+      <div className="bg-white p-4 md:p-6 rounded-2xl">
         <div className="mb-2 md:mb-6">
           <div className="flex justify-between flex-wrap md:flex-nowrap">
             <div className="flex items-center md:w-[60%]">
