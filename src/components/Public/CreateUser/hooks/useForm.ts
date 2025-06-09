@@ -20,10 +20,8 @@ export function useForm() {
   const { mutateAsync: postCreateUsers, isPending: isLoading } =
     usePostCreateUsers();
 
-  const onSubmit = async ({ birthdate, ...payload }: CreateUserPayload) => {
-    const dataEUA = dayjs(birthdate, "DD/MM/YYYY").format("YYYY-MM-DD");
-
-    postCreateUsers({ ...payload, birthdate: dataEUA });
+  const onSubmit = async (payload: CreateUserPayload) => {
+    postCreateUsers({ ...payload });
   };
 
   const handleToggleStageForm = async (
