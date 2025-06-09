@@ -3,7 +3,6 @@ import React, {
   useContext,
   useEffect,
   useMemo,
-  useRef,
   useState,
 } from "react";
 import { UserNavigationContextData, UserNavigationProps } from "./types";
@@ -22,9 +21,8 @@ export const UserNavigationContext = createContext(
 
 const UserNavigationProvider = ({ children }: UserNavigationProps) => {
   const [userAuth, setUserAuth] = useState<UsersShape>();
-  const tokenNavigation = useRef("");
   const { data, isFetched, error } = useGetUserAuth({
-    tokenNavigation: tokenNavigation.current as string,
+    tokenNavigation: getCookie("token_navigation") as string,
   });
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -40,10 +38,6 @@ const UserNavigationProvider = ({ children }: UserNavigationProps) => {
   };
 
   useEffect(() => {
-    tokenNavigation.current = getCookie("token_navigation") as string;
-  }, []);
-
-  useEffect(() => {
     const userAuthCookie = getCookie("userAuth") as string;
 
     if (data) {
@@ -56,10 +50,12 @@ const UserNavigationProvider = ({ children }: UserNavigationProps) => {
       return;
     }
 
-    if (userAuthCookie)
-      verifyJwt<UsersShape>(userAuthCookie).then((user) => {
-        setUserAuth(user);
-      });
+    if (!userAuthCookie)
+      verifyJwt<UsersShape>(userAuthCookie)
+        .then((user) => {
+          setUserAuth(user);
+        })
+        .catch(() => handleDisconnect());
   }, [isFetched, data, error]);
 
   const userProps = useMemo(
