@@ -17,7 +17,6 @@ export function hasErrorAuthentication(error: AxiosError) {
   const url = error?.config?.url;
 
   if (url?.includes(privateRoutes.usersManager) && isStatusValid) {
-    console.log(url, privateRoutes.usersManager, url?.includes(privateRoutes.usersManager))
     handleLogout();
     return (window.location.href = publicRoutes.login);
   }
