@@ -57,11 +57,9 @@ const UserNavigationProvider = ({ children }: UserNavigationProps) => {
     }
 
     if (userAuthCookie)
-      verifyJwt<UsersShape>(userAuthCookie)
-        .then((user) => {
-          setUserAuth(user);
-        })
-        .catch(() => handleDisconnect());
+      verifyJwt<UsersShape>(userAuthCookie).then((user) => {
+        setUserAuth(user);
+      });
   }, [isFetched, data, error]);
 
   const userProps = useMemo(
