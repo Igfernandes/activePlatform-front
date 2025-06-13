@@ -43,9 +43,7 @@ export default function usePostAuth() {
         token_navigation: data.token_navigation,
       });
 
-      setTimeout(() => {
-        router.push(privateRoutes.dashboard);
-      }, 1000);
+      router.push(privateRoutes.dashboard);
     },
     onError: (err) => {
       handleAxiosError(err);

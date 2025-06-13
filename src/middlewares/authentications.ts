@@ -22,7 +22,7 @@ export async function authenticationsMiddleware(
 
     if (status === STATUS_SERVICE.NOT_FOUND) {
       response.cookies.set("token_navigation", "", {
-        httpOnly: process.env.NODE_ENV === "production",
+        httpOnly: false,
         secure: process.env.NODE_ENV === "production",
         expires: new Date(0), // Expira imediatamente
         sameSite: "lax",
