@@ -86,18 +86,18 @@ export const Calendar: React.FC<CalendarProps> = ({
       defaultDate={defaultDate}
       popup
       messages={{
-        today: i18n("words.today"),
-        previous: i18n("words.previous"),
-        next: i18n("words.next"),
-        month: i18n("words.month"),
-        week: i18n("words.week"),
-        day: i18n("words.day"),
-        agenda: i18n("words.agenda"),
-        date: i18n("words.date"),
-        time: i18n("words.time"),
-        event: i18n("words.event"),
-        noEventsInRange: i18n("words.no_events_in_range"),
-        showMore: (total) => `+ ${i18n("words.more")} ${total}`,
+        today: i18n("Words.today"),
+        previous: i18n("Words.previous"),
+        next: i18n("Words.next"),
+        month: i18n("Words.month"),
+        week: i18n("Words.week"),
+        day: i18n("Words.day"),
+        agenda: i18n("Words.agenda"),
+        date: i18n("Words.date"),
+        time: i18n("Words.time"),
+        event: i18n("Words.event"),
+        noEventsInRange: i18n("Words.no_events_in_range"),
+        showMore: (total) => `+ ${i18n("Words.more")} ${total}`,
       }}
       onSelectEvent={onSelectEvent}
     />

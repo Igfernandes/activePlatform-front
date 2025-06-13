@@ -15,7 +15,7 @@ export function OptionsBar({ handleSearch }: Props) {
   return (
     <div className="flex flex-wrap md:flex-none items-center justify-between mb-6">
       <Search
-        label={i18n("words.research")}
+        label={i18n("Words.research")}
         dataTestId="services"
         handleSearch={handleSearch}
         className="w-full md:w-[45%] xl:w-[25%]"
@@ -24,7 +24,7 @@ export function OptionsBar({ handleSearch }: Props) {
         <div className="mx-2 w-full md:w-auto">
           <Button
             className="border border-zinc-300 px-3 font-bold rounded-xl bg-secondary text-primary"
-            text={i18n("words.new_form")}
+            text={i18n("Words.new_form")}
             type="button"
             onClick={() => route.push(`${forms}/create`)}
           />

@@ -1,6 +1,6 @@
 import { useFormRules } from "@hooks/Forms/useFormRules";
 import { StoreFieldsPayload, StoreFieldsSchema } from "../schemas";
-import usePostCreateFields from "@services/Fields/Post/usePostCreateFields";
+import usePostCreateFields from "@services/Fields/Post/usePost";
 import { useFieldContext } from "@components/shared/layouts/FormHub/context/Fields";
 
 type Props = {

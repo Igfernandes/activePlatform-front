@@ -1,4 +1,4 @@
-import useGetUsersInvite from "@services/Invites/Get/Users/useGetUsersInvite";
+import useGetUsersInvite from "@services/Invites/Get/Users/useGet";
 import useGetUsers from "@services/Users/Get/useGetUsers";
 import { InvitesShape } from "@type/Invites";
 import { useEffect, useState } from "react";

@@ -35,14 +35,14 @@ export function SettingsForms() {
         isLoading={isPending}
       >
         <TInput
-          label={i18n("words.name")}
+          label={i18n("Words.name")}
           name={"name"}
           dataTestId="name"
           errors={errors.name}
           defaultValue={userAuth?.name}
         />
         <TInput
-          label={i18n("words.cpf")}
+          label={i18n("Words.cpf")}
           name={"cpf"}
           dataTestId="cpf"
           errors={errors.cpf}
@@ -53,7 +53,7 @@ export function SettingsForms() {
           defaultValue={getCPFFormatted(userAuth?.cpf)}
         />
         <TInput
-          label={i18n("words.birthdate")}
+          label={i18n("Words.birthdate")}
           name={"birthdate"}
           dataTestId="birthdate"
           errors={errors.birthdate}
@@ -66,7 +66,7 @@ export function SettingsForms() {
           }}
         />
         <TInput
-          label={i18n("words.phone")}
+          label={i18n("Words.phone")}
           name={"phone"}
           dataTestId="phone"
           errors={errors.phone}
@@ -77,7 +77,7 @@ export function SettingsForms() {
           defaultValue={getNumberFormatted(userAuth?.phone)}
         />
         <TInput
-          label={i18n("words.email")}
+          label={i18n("Words.email")}
           name={"email"}
           dataTestId="email"
           disabled
@@ -88,7 +88,7 @@ export function SettingsForms() {
         />
         <TInput
           type="password"
-          label={i18n("words.password")}
+          label={i18n("Words.password")}
           name={"password"}
           dataTestId="password"
           style={{
@@ -101,7 +101,7 @@ export function SettingsForms() {
               type="button"
               className="font-semibold text-red mr-1"
             >
-              {i18n("words.alter")}
+              {i18n("Words.alter")}
             </button>
           }
           disabled

@@ -46,7 +46,7 @@ export function ModalFormUsers({
           <div className="form-title mb-2 lg:mb-4">
             <h4 className="text-sm md:text-lg">
               <strong>
-                {i18n("manager_user.modal.user.text_select_group")}
+                {i18n("Screens.dashboard.users.user.text_select_group")}
               </strong>
             </h4>
           </div>
@@ -59,7 +59,7 @@ export function ModalFormUsers({
                   value: group.id,
                 };
               })}
-              label={i18n("words.user_group")}
+              label={i18n("Screens.dashboard.users.user_group")}
               dataTestId="group"
               required={true}
               multiple={true}
@@ -69,15 +69,15 @@ export function ModalFormUsers({
             <div className="form-title mt-4 xl:mt-6 pb-2">
               <h4 className="text-sm md:text-lg">
                 <strong>
-                  {i18n("manager_user.modal.user.text_fill_information")}
+                  {i18n("Screens.dashboard.users.user.text_fill_information")}
                 </strong>
               </h4>
             </div>
-            <div className="overflow-y-auto h-[20vh] hidden-scroll">
+            <div className="overflow-y-auto h-[20vh] pr-2">
               <div className="form-group my-3 ">
                 <Input
                   {...register("name")}
-                  label={i18n("words.name")}
+                  label={i18n("Words.name")}
                   dataTestId="name"
                   required={true}
                   errors={errors.name}
@@ -86,7 +86,7 @@ export function ModalFormUsers({
               <div className="form-group my-3">
                 <Input
                   {...register("email")}
-                  label={i18n("words.email")}
+                  label={i18n("Words.email")}
                   dataTestId="email"
                   required={true}
                   errors={errors.email}
@@ -95,7 +95,7 @@ export function ModalFormUsers({
               <div className="form-group my-3">
                 <Input
                   {...register("phone")}
-                  label={i18n("words.phone")}
+                  label={i18n("Words.phone")}
                   dataTestId="phone"
                   onChange={(ev) => {
                     handleMaskPhone(ev);
@@ -111,7 +111,7 @@ export function ModalFormUsers({
             <div>
               <Button
                 className="border-secondary border-2 px-4 w-1/2"
-                text={i18n("words.cancel")}
+                text={i18n("Words.cancel")}
                 onClick={() => onModal(false)}
               />
             </div>
@@ -119,7 +119,7 @@ export function ModalFormUsers({
               <Button
                 type="submit"
                 className="bg-red text-white "
-                text={i18n("words.save")}
+                text={i18n("Words.save")}
                 isLoading={isLoading}
               />
             </div>

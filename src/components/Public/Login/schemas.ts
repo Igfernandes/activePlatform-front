@@ -3,8 +3,10 @@ import { z } from "zod";
 
 export const loginFormSchema = z.object({
   login: z
-    .string({ required_error: i18n("errors.fields.required") })
-    .email({ message: i18n("errors.fields.invalid_email") }),
-  password: z.string({ required_error: i18n("errors.fields.required") }),
-  rememberMe: z.boolean().nullable(),
+    .string({ required_error: i18n("Validations.required") })
+    .email({ message: i18n("Validations.email") }),
+  password: z.string({ required_error: i18n("Validations.email") }),
+  rememberMe: z
+    .boolean({ required_error: i18n("Validations.boolean") })
+    .nullable(),
 });

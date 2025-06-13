@@ -1,12 +1,12 @@
 import { I18n } from "i18n-js";
-import ptBR from "./locales/pt-br.json";
-import en from "./locales/en.json";
 import { LANGUAGE_I18N } from "@configs/envs";
 import dayjs from "dayjs";
+import { translatePT_BR } from "./locales/pt-br";
+import { translatesEN } from "./locales/en";
 
 const languages = {
-  "pt-br": ptBR,
-  en,
+  "pt-br": translatePT_BR,
+  en: translatesEN,
 };
 
 export const i18nConfig = new I18n(languages);

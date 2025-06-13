@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import { FormFillField } from "@type/Forms/FormsFill";
 import { FillFieldsActions } from "../FillFieldsActions";
 import useGetFillFields from "@services/Forms/Fills/Get/useGetFillFields";
-import useDeleteFillField from "@services/Forms/Fills/Delete/useDeleteFillField";
+import useDeleteFillField from "@services/Forms/Fills/Delete/useDelete";
 
 type Props = {
   formId: number;
@@ -24,9 +24,9 @@ export function useFillFields({ formId }: Props) {
 
   const tHeadsFields = useRef<Array<string>>([
     "ID",
-    i18n("words.first_column"),
-    i18n("words.created_at"),
-    i18n("words.actions"),
+    i18n("Texts.first_column"),
+    i18n("Words.created_at"),
+    i18n("Words.actions"),
   ]);
 
   const updateFieldForTable = useCallback(

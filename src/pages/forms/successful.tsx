@@ -12,11 +12,11 @@ export default function Successful() {
           </div>
           <div className="text-center mb-6">
             <h2 className="text-2xl">
-              <strong>{i18n(`words.send_form`)}</strong>
+              <strong>{i18n(`Words.send_form`)}</strong>
             </h2>
           </div>
           <div className="text-justify mb-6">
-            <p className="text-sm">{i18n("words.text_thanks")}</p>
+            <p className="text-sm">{i18n("Words.text_thanks")}</p>
           </div>
         </div>
       </div>

@@ -10,27 +10,27 @@ export const financeCardsBoard = [
     key: "monthly_income",
     icon: <ChartPie />,
     prefix: "R$ ",
-    title: i18n("words.monthly_income"),
+    title: i18n("Words.monthly_income"),
   },
   {
     key: "annual_revenue",
     icon: <ChartPie />,
     prefix: "R$ ",
-    title: i18n("words.annual_revenue"),
+    title: i18n("Words.annual_revenue"),
   },
   {
     key: "linked_customers",
     icon: <UserCode />,
-    title: i18n("words.linked_customers"),
+    title: i18n("Words.linked_customers"),
   },
   {
     key: "non_compliant",
     icon: <UserDollar />,
-    title: i18n("words.non_compliant"),
+    title: i18n("Words.non_compliant"),
   },
   {
     key: "defaulter",
     icon: <UserCancel />,
-    title: i18n("words.defaulter"),
+    title: i18n("Words.defaulter"),
   },
 ] as Array<CardItemShape>;

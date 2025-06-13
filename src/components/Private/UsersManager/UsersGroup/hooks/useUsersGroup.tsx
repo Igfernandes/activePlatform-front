@@ -20,11 +20,11 @@ export function useUsersGroup({ filter, handleFilter, data }: HookGroupsProps) {
 
   const tHeadUsersGroup = useRef<Array<string>>([
     "ID",
-    i18n("words.name"),
-    i18n("words.status"),
-    i18n("words.total"),
-    i18n("words.created_date"),
-    i18n("words.actions"),
+    i18n("Words.name"),
+    i18n("Words.status"),
+    i18n("Words.total"),
+    i18n("Words.created_date"),
+    i18n("Words.actions"),
   ]);
 
   const updateUserGroupForTable = ({
@@ -45,12 +45,12 @@ export function useUsersGroup({ filter, handleFilter, data }: HookGroupsProps) {
         <ButtonConfig
           actions={[
             {
-              text: i18n("words.edit"),
+              text: i18n("Words.edit"),
               handle: () => handleToggleModal("DEFAULT_GROUP", userGroup.id),
             },
             {
               text: i18n(
-                `words.${userGroup.status == "ACTIVE" ? "desative" : "ative"}`
+                `Words.${userGroup.status == "ACTIVE" ? "desative" : "ative"}`
               ),
               handle: () =>
                 handleToggleModal(
@@ -61,7 +61,7 @@ export function useUsersGroup({ filter, handleFilter, data }: HookGroupsProps) {
                 ),
             },
             {
-              text: i18n("words.exclude"),
+              text: i18n("Words.exclude"),
               handle: () => handleToggleModal("DELETE_GROUP", userGroup.id),
             },
           ]}

@@ -20,10 +20,9 @@ export default function useDeleteClient() {
 
   return useMutation({
     mutationFn: handleMutate,
-    onSuccess: () => {
+    onSuccess: ({ success }) => {
       dispatchSnackbar({
-        message: i18n("clients.modal.delete.success_text"),
-        title: i18n("clients.modal.delete.success_title"),
+        message: i18n(success),
         type: "success",
       });
       queryClient.invalidateQueries({

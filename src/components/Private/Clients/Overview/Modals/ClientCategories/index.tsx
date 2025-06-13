@@ -20,18 +20,21 @@ export function ClientCategoriesModal({
   return (
     <Modal title={title} isShowModal={isShowModal} handleModal={onModal}>
       <FormProvider {...formMethods}>
-        <form onSubmit={formMethods.handleSubmit(submit)} className=" md:w-[424px]">
+        <form
+          onSubmit={formMethods.handleSubmit(submit)}
+          className=" md:w-[424px]"
+        >
           <div className="form-title mb-4">
             <h4 className="md:text-lg">
               <strong>
-                {i18n("clients.modal.category.text_select_category")}
+                {i18n("Screens.dashboard.clients.client.text_select_category")}
               </strong>
             </h4>
           </div>
           <div className="form-group mb-6">
             <Select
               {...register("category")}
-              label={i18n("words.category")}
+              label={i18n("Words.category")}
               id="category"
               dataTestId="category"
               required={true}
@@ -47,7 +50,7 @@ export function ClientCategoriesModal({
             <div className="w-1/2 mr-1 md:mr-0">
               <Button
                 className="border-secondary border-2 px-4"
-                text={i18n("words.cancel")}
+                text={i18n("Words.cancel")}
                 onClick={() => onModal(false)}
               />
             </div>
@@ -55,7 +58,7 @@ export function ClientCategoriesModal({
               <Button
                 type="submit"
                 className="bg-red text-white"
-                text={i18n("words.save")}
+                text={i18n("Words.save")}
               />
             </div>
           </div>

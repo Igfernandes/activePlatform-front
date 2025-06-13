@@ -20,7 +20,7 @@ export function PasswordConfirm({ password }: Props) {
     <div>
       <div className="mt-2 relative">
         <Input
-          label={i18n("words.password_confirmation")}
+          label={i18n("Words.password_confirmation")}
           {...register("passwordConfirm")}
           type={"text"}
           dataTestId={"password_confirm"}
@@ -46,7 +46,7 @@ export function PasswordConfirm({ password }: Props) {
               color: colorStatus,
             }}
           >
-            {i18n("errors.fields.password_need_equal")}
+            {i18n("Validations.password_need_equal")}
           </li>
         </ul>
       </div>

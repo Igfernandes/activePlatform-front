@@ -63,7 +63,7 @@ export function StepItem({ title, status, id, width }: StepItemProps) {
               color: STATUS_STYLED[status].color as string,
             }}
           >
-            {i18n(`words.${status.toLocaleLowerCase()}`)}
+            {i18n(`Words.${status.toLocaleLowerCase()}`)}
           </span>
         </div>
       </div>

@@ -23,12 +23,12 @@ export function RecoverPasswordForm() {
             {...register("email")}
             dataTestId="email"
             label={"E-mail"}
-            placeholder={i18n("words.enter_email")}
+            placeholder={i18n("Words.enter_email")}
           />
         </div>
         <div className="form-submit mt-6">
           <Button
-            text={i18n("words.send")}
+            text={i18n("Words.send")}
             type="submit"
             isLoading={isLoading}
             disabled={!hasAllFilledFields()}

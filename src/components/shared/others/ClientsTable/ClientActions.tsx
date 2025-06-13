@@ -14,7 +14,7 @@ export function ClientActions({ id }: Props) {
       <DotsOptions
         actions={[
           {
-            text: i18n("words.exclude"),
+            text: i18n("Words.exclude"),
             handle: () => handleToggleModal("EXCLUDE", id),
           },
         ]}

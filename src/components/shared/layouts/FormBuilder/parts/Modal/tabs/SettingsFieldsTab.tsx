@@ -46,11 +46,11 @@ export function SettingsFieldsTab({ field, oChangeField, tabActive }: Props) {
         <FormSelect
           options={[
             {
-              text: i18n("words.not"),
+              text: i18n("Words.not"),
               value: "",
             },
             {
-              text: i18n("words.yes"),
+              text: i18n("Words.yes"),
               value: "true",
             }
           ]}

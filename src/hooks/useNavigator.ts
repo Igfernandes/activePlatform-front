@@ -12,8 +12,8 @@ export function useNavigator() {
       setIsCopied(true);
       dispatchSnackbar({
         type: "notice",
-        title: `${i18n("words.link_copied")}`,
-        message: i18n("words.copied_success"),
+        title: `${i18n("Words.link_copied")}`,
+        message: i18n("Words.copied_success"),
       });
       setTimeout(() => setIsCopied(false), 2000); // Feedback por 2 segundos
     } catch (err) {

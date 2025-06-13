@@ -43,19 +43,19 @@ export function Sidebar({ handleToggleSidebar, showSidebar }: Props) {
           <Navbar
             sidebarState={showSidebar}
             menu={MAIN_MENU}
-            title={i18n("words.main")}
+            title={i18n("Words.main")}
             className="mb-6 lg:mb-0 xl:mb-3"
           />
           <Navbar
             sidebarState={showSidebar}
             menu={ADMINISTRATIVE_MENU}
-            title={i18n("words.administrative")}
+            title={i18n("Words.administrative")}
             className="mb-6 xl:mb-3"
           />
           <Navbar
             sidebarState={showSidebar}
             menu={SYSTEM_MENU}
-            title={i18n("words.system")}
+            title={i18n("Words.system")}
           />
         </div>
       </div>

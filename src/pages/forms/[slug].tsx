@@ -13,7 +13,6 @@ import i18n from "@configs/i18n";
 export default function Form({ form }: FormPageProps) {
   const { handleSubmit, isLoading } = useForm({ form });
 
-  console.log(form)
   return (
     <>
       <Header />
@@ -33,7 +32,11 @@ export default function Form({ form }: FormPageProps) {
                 fields={JSON.parse(form.components) as Array<FieldShape>}
               />
               <div className="max-w-40 ml-auto">
-                <Button text={i18n("words.send")} isLoading={isLoading} />
+                <Button
+                  className="text-white font-semibold"
+                  text={i18n("Words.send")}
+                  isLoading={isLoading}
+                />
               </div>
             </form>
           </div>

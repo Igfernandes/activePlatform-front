@@ -6,7 +6,7 @@ import { SmartTable } from "@components/shared/layouts/Tables/presets/SmartTable
 import { UsersGroupShape } from "../../../../types/Users/UsersGroup";
 import { useModalContext } from "@contexts/Modal";
 import { ModalUserOperationType } from "../type";
-import useDeleteGroup from "../../../../services/Users/Groups/Delete/useDeleteGroup";
+import useDeleteGroup from "../../../../services/Users/Groups/Delete/useDelete";
 import useDPatchGroup from "../../../../services/Users/Groups/Patch/usePatchGroup";
 
 type Props = {
@@ -43,7 +43,7 @@ export function UsersGroup({ search, filterObjects, groups }: Props) {
           }}
           data={tDataUsersGroup}
           excludes={["updated_at"]}
-          title={i18n("words.users_group")}
+          title={i18n("Screens.dashboard.users.users_groups")}
           tHeads={{
             data: tHeadUsersGroup.current,
             widths: [60, 291, 120, 100, 291, 48],
@@ -57,9 +57,9 @@ export function UsersGroup({ search, filterObjects, groups }: Props) {
           groups={groups}
         />
         <Notice
-          headerTitle={i18n("words.attention")}
-          title={i18n("manager_user.modal.group.title_already_desative")}
-          text={i18n("manager_user.modal.group.text_already_desative")}
+          headerTitle={i18n("Words.attention")}
+          title={i18n("Screens.dashboard.users.group.title_already_desative")}
+          text={i18n("Screens.dashboard.users.group.text_already_desative")}
           onSubmit={() =>
             patchUsersGroup({
               id: modal.id as number,
@@ -69,9 +69,9 @@ export function UsersGroup({ search, filterObjects, groups }: Props) {
           onModal={handleToggleModal}
         />
         <Notice
-          headerTitle={i18n("words.attention")}
-          title={i18n("manager_user.modal.group.title_already_active")}
-          text={i18n("manager_user.modal.group.text_already_active")}
+          headerTitle={i18n("Words.attention")}
+          title={i18n("Screens.dashboard.users.group.title_already_active")}
+          text={i18n("Screens.dashboard.users.group.text_already_active")}
           onSubmit={() =>
             patchUsersGroup({
               id: modal.id as number,
@@ -81,9 +81,9 @@ export function UsersGroup({ search, filterObjects, groups }: Props) {
           onModal={handleToggleModal}
         />
         <Notice
-          headerTitle={i18n("words.attention")}
-          title={i18n("manager_user.modal.group.title_already_exclude")}
-          text={i18n("manager_user.modal.group.text_already_exclude")}
+          headerTitle={i18n("Words.attention")}
+          title={i18n("Screens.dashboard.users.group.title_already_exclude")}
+          text={i18n("Screens.dashboard.users.group.text_already_exclude")}
           onSubmit={() =>
             deleteUsersGroup({
               id: modal.id as number,

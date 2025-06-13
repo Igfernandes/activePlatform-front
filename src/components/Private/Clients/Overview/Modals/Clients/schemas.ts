@@ -4,18 +4,18 @@ import { isDayValid, isMonthValid } from "@helpers/date";
 import { z } from "zod";
 
 export const ClientCreateSchema = z.object({
-  category: z.string({ required_error: i18n("errors.fields.required") }),
-  name: z.string({ required_error: i18n("errors.fields.required") }).min(3, {
-    message: (i18n("errors.fields.min_length") as string)
-      .replace("${field}", i18n("words.name"))
+  category: z.string({ required_error: i18n("Validations.required") }),
+  name: z.string({ required_error: i18n("Validations.required") }).min(3, {
+    message: (i18n("Validations.min_length") as string)
+      .replace("${field}", i18n("Words.name"))
       .replace("${length}", "3"),
   }),
   birthdate: z
-    .string({ required_error: i18n("errors.fields.required") })
+    .string({ required_error: i18n("Validations.required") })
     .optional() // Permite que o campo seja omitido ou vazio
     .or(z.literal("")) // Permite string vazia ("")
     .refine((date) => date === "" || REGEXES.DATE_BR.test(`${date}`), {
-      message: `Formato inválido (${i18n("configs.formats.date")})`,
+      message: `Formato inválido (${i18n("Configs.format.date")})`,
     })
     .refine((date) => {
       if (!date) return true;
@@ -24,16 +24,16 @@ export const ClientCreateSchema = z.object({
       return isMonthValid(month) && isDayValid(day);
     }, "Data inválida"),
   email: z
-    .string({ required_error: i18n("errors.fields.required") })
+    .string({ required_error: i18n("Validations.required") })
     .optional() // Permite que o campo seja omitido ou vazio
     .or(z.literal("")) // Permite string vazia ("")
     .refine((email) => email === "" || REGEXES.EMAIL.test(`${email}`), {
-      message: i18n("errors.fields.invalid_email"),
+      message: i18n("Validations.email"),
     }),
   hasContinueRegister: z.boolean(),
   phone: z
-    .string({ required_error: i18n("errors.fields.required") })
-    .nonempty(i18n("errors.fields.required")),
+    .string({ required_error: i18n("Validations.required") })
+    .nonempty(i18n("Validations.required")),
 });
 
 export type ClientCreatePayload = z.infer<typeof ClientCreateSchema>;

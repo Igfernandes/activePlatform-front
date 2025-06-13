@@ -12,7 +12,7 @@ export function ModalBirthday({ clients }: Props) {
 
   return (
     <Modal
-      title={i18n("words.month_birthdays")}
+      title={i18n("Words.month_birthdays")}
       isShowModal={modal.type === "BIRTHDAY_CLIENTS"}
       handleModal={handleToggleModal}
     >

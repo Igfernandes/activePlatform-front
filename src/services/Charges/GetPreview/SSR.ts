@@ -19,6 +19,5 @@ export async function getCharge(
     })
   );
 
-  console.log(data);
   return JSON.parse(data);
 }

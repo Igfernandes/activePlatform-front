@@ -32,7 +32,7 @@ export function Notifications({
                 <ArrowNarrowLeft className="bg-tertiary rounded-md cursor-pointer" />
               </div>
               <div>
-                <span className="font-bold">{i18n("words.notifications")}</span>
+                <span className="font-bold">{i18n("Words.notifications")}</span>
               </div>
             </div>
             <div>
@@ -43,8 +43,8 @@ export function Notifications({
           <div className="body h-[90vh] overflow-y-auto">
             {notifications.map((notification, key) => (
               <NotificationItem
+                props={notification}
                 key={`notification_${notification.id}_${key}`}
-                {...notification}
               />
             ))}
           </div>

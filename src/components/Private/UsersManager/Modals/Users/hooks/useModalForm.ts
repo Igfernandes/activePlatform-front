@@ -1,6 +1,6 @@
 import { useFormRules } from "@hooks/Forms/useFormRules";
 import { UsersModalSchema, UsersPayload } from "../schemas";
-import usePostInviteUser from "../../../../../../services/Invites/Post/Users/usePostCreateUser";
+import usePostInviteUser from "../../../../../../services/Invites/Post/Users/usePost";
 import usePutUsers from "@services/Users/Put/usePutUsers";
 
 type Props = {

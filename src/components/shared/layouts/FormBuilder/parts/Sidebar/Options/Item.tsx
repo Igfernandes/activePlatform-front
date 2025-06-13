@@ -39,7 +39,7 @@ export function Item({ icon, text, id, group }: Props) {
       <div className="flex items-center p-2 border-2 border-slate-100 hover:bg-slate-300">
         <div className="mr-2">{icon}</div>
         <div>
-          <span className="text-xs">{i18n(`words.${text}`)}</span>
+          <span className="text-xs">{i18n(`Words.${text}`)}</span>
         </div>
         <div className="ml-auto">
           <GripVertical />

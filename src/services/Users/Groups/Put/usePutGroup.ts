@@ -24,10 +24,9 @@ export default function usePutGroup() {
 
   return useMutation({
     mutationFn: handleMutate,
-    onSuccess: () => {
+    onSuccess: ({ success }) => {
       dispatchSnackbar({
-        title: i18n("users.modal.groups.success_update_title"),
-        message: i18n("users.modal.groups.success_update_text"),
+        message: i18n(success),
         type: "success",
       });
 

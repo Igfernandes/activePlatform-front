@@ -1,5 +1,5 @@
 import { RecoverPasswordRequestFormSchema } from "../schemas";
-import usePostRecoverPasswordRequest from "../../../../services/Recovers/Password/Request/usePostRecoverPasswordRequest";
+import usePostRecoverPasswordRequest from "../../../../services/Recovers/Password/Request/usePost";
 import { PostRecoverPasswordPayload } from "../../../../services/Recovers/Password/Request/type";
 import { useFormRules } from "@hooks/Forms/useFormRules";
 
@@ -12,9 +12,9 @@ export function useForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = formMethods;
-  const { mutateAsync: postRecoverPasswordRequest } =
+  const { mutateAsync: postRecoverPasswordRequest, isPending: isLoading } =
     usePostRecoverPasswordRequest();
 
   const onSubmit = async ({ email }: Payload) => {
@@ -29,6 +29,6 @@ export function useForm() {
     errors,
     formMethods,
     hasAllFilledFields,
-    isLoading: isSubmitting,
+    isLoading,
   };
 }

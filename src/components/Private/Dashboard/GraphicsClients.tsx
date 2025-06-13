@@ -33,7 +33,7 @@ export function GraphicsClients({
       <div className="content flex flex-wrap justify-around">
         <div className="w-full md:w-[320px] my-4 md:my-0">
           <CircleGraphic
-            title={i18n("words.clients_categories")}
+            title={i18n("Words.clients_categories")}
             data={{
               labels: categories.map((category) => category.name),
               datasets: [
@@ -48,7 +48,7 @@ export function GraphicsClients({
         </div>
         <div className="w-full md:w-[320px] my-4 md:my-0 ml-2">
           <PolarGraphic
-            title={i18n("words.clients_by_ddd")}
+            title={i18n("Words.clients_by_ddd")}
             data={{
               labels: clientsByDDD.slice(0.3).map((client) => client.ddd),
               datasets: [
@@ -76,16 +76,16 @@ export function GraphicsClients({
         </div>
         <div className="w-full md:w-[30%] ml-2">
           <Feeds
-            title={i18n("words.dependencies_historic")}
+            title={i18n("Words.dependencies_historic")}
             data={[
               ...clients
                 ?.filter((client) => !client.email)
                 .map((client) => ({
                   scape: `${clientsRoute}/${client.id}`,
-                  message: `${i18n("words.not_fill_email")}:  ${client.name}`,
+                  message: `${i18n("Words.not_fill_email")}:  ${client.name}`,
                 })),
               ...invites?.map((invite) => ({
-                message: `${i18n("words.invite_pending")}: ${invite.email}`,
+                message: `${i18n("Words.invite_pending")}: ${invite.email}`,
                 scape: usersManager,
               })),
             ]}

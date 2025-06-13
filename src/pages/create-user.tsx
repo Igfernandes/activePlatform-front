@@ -9,7 +9,7 @@ export default function CreateUser() {
         <div className="column text-center">
           <div className="mb-1">
             <h2 className="text-xl">
-              <strong>{i18n("words.first_access")}</strong>
+              <strong>{i18n("Words.first_access")}</strong>
             </h2>
           </div>
           <div className="mb-4">

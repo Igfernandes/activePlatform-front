@@ -1,6 +1,6 @@
 import { useModalContext } from "@contexts/Modal";
 import { ModalFormsOperationType } from "../type";
-import useDeleteFillField from "@services/Forms/Fills/Delete/useDeleteFillField";
+import useDeleteFillField from "@services/Forms/Fills/Delete/useDelete";
 
 type Props = {
   formId: number;

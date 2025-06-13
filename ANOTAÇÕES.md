@@ -10,10 +10,13 @@
 - Otimizar nomenclatura de tudo no projeto (DEPOIS)
 - Refatorar código. (DEPOIS)
 - Melhorar a proposta pros envios. Eles devem acontecer de background, de forma que não seja necessário esperar para enviar
-- Criar sistema de envio para atualizar notificações visualizadas
-
-- Lógica de Notificações não funciona
+- **Criar sistema de envio para atualizar notificações visualizadas**
+- Criar uma API para o websocket. 
+- **Lógica de Notificações não funciona**
 - Lógica de Permissões não funciona.
+- Otimizar todas as mensagens  de resposta.
+- Tabela calculando o valor de exibição errado
+- **Fazer com que a ordem de exibição dos arquivos sejam contrária (DESC)**
 
 # Clientes:
 

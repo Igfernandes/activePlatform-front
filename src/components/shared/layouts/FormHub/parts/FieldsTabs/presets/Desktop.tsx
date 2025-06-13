@@ -15,7 +15,7 @@ export function FieldsTabsDesktop({
           className={`${tailwindClass} ${handleToggleTab("ALL")}`}
           onClick={() => handleChangeTab("ALL")}
         >
-          {i18n(`words.all`)}
+          {i18n(`Words.all`)}
         </span>
       </li>
       {fieldsGroups.map((group, key) => (
@@ -24,7 +24,7 @@ export function FieldsTabsDesktop({
             className={`${tailwindClass} ${handleToggleTab(group.name)}`}
             onClick={() => handleChangeTab(group.name)}
           >
-            {i18n(`words.${group.name.toLowerCase()}`)}(
+            {i18n(`Words.${group.name.toLowerCase()}`)}(
             {fields.filter((fields) => fields.group_id == group.id).length})
           </span>
         </li>

@@ -41,7 +41,7 @@ export function CardItem({
           <div>{foot.items.map((item) => item)}</div>
           <div>
             <a href={link} className="flex items-center cursor-pointer">
-              <span className="font-bold mr-2">{i18n(`words.edit`)}</span>
+              <span className="font-bold mr-2">{i18n(`Words.edit`)}</span>
               <SquareRoundedChevronRight />
             </a>
           </div>

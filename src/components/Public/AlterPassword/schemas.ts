@@ -10,17 +10,17 @@ import { z } from "zod";
 export const alterPasswordFormSchema = z
   .object({
     password: z
-      .string({ required_error: i18n("errors.fields.required") })
+      .string({ required_error: i18n("Validations.required") })
       .min(8)
       .refine(hasSomeLetterUppercase)
       .refine(hasSomeLetterLowercase)
       .refine(hasSomeNumber)
       .refine(hasSomeSpecialCharacter),
     passwordConfirm: z.string({
-      required_error: i18n("errors.fields.required"),
+      required_error: i18n("Validations.required"),
     }),
   })
   .refine((data) => data.password === data.passwordConfirm, {
-    message: i18n("errors.fields.required"),
+    message: i18n("Validations.required"),
     path: ["passwordConfirm"],
   });

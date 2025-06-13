@@ -22,20 +22,20 @@ export default function Create() {
   const { submit, form, handleChangeFormFields, isLoading } = useForms();
 
   return (
-    <DashboardContainer title={i18n("words.new_form")}>
+    <DashboardContainer title={i18n("Words.new_form")}>
       <FormProvider {...formMethods}>
         <StepBar
           steps={[
             {
-              title: i18n(`words.definitions`),
+              title: i18n(`Words.definitions`),
               active: stepActive == 1,
             },
             {
-              title: i18n(`words.customization`),
+              title: i18n(`Words.customization`),
               active: stepActive == 2,
             },
             {
-              title: i18n(`words.preview`),
+              title: i18n(`Words.preview`),
               active: stepActive == 3,
             },
           ]}

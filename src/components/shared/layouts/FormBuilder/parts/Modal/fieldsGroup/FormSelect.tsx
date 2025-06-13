@@ -12,7 +12,7 @@ export function FormSelect({
   return (
     <div className="form-group my-3">
       <label htmlFor="label" className="font-semibold">
-        {i18n(`words.${label}`) ?? ""}:
+        {i18n(`Words.${label}`) ?? ""}:
       </label>
       <select
         {...inputProps}

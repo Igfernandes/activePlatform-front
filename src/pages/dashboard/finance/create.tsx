@@ -8,7 +8,7 @@ export default function FinanceCreate() {
   const { clients, updateClientsSelected, clientsSelected } = useFinance();
 
   return (
-    <DashboardContainer title={i18n("words.new_charge")}>
+    <DashboardContainer title={i18n("Words.new_charge")}>
       <CreateCharge
         clients={clients}
         clientsSelected={clientsSelected}

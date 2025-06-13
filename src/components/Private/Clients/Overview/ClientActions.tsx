@@ -23,13 +23,13 @@ export function ClientActions({ handleToggleModal, id }: Props) {
       <DotsOptions
         actions={[
           {
-            text: i18n("words.edit"),
+            text: i18n("Words.edit"),
             handle: () => {
               router.push(`${clients}/${id}`)
             },
           },
           {
-            text: i18n("words.exclude"),
+            text: i18n("Words.exclude"),
             handle: () => handleToggleModal("DELETE", id),
           },
         ]}

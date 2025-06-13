@@ -28,7 +28,7 @@ export function ServicesTable({ search, filterObjects }: ServicesProps) {
             },
           }}
           data={tDataServices}
-          title={i18n("words.my_services")}
+          title={i18n("Words.my_services")}
           excludes={["updated_at"]}
           tHeads={{
             data: tHeadsServices.current,
@@ -37,7 +37,7 @@ export function ServicesTable({ search, filterObjects }: ServicesProps) {
         />
       </div>
       <Notice
-        headerTitle={i18n("words.attention")}
+        headerTitle={i18n("Words.attention")}
         title={i18n("services.modal.title_already_exclude")}
         text={i18n("services.modal.text_already_exclude")}
         onSubmit={handleDeleteService}

@@ -2,7 +2,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSnackbar } from "@hooks/useSnackbar";
 import { useAxios } from "@hooks/useAxios";
 
-import i18n from "@configs/i18n";
 import { PatchPasswordUserPayload } from "./type";
 import { usePatchPasswordUserService } from ".";
 
@@ -24,10 +23,9 @@ export default function usePatchPasswordUsers() {
 
   return useMutation({
     mutationFn: handleMutate,
-    onSuccess: () => {
+    onSuccess: ({ success }) => {
       dispatchSnackbar({
-        title: i18n("users.modal.patch.password.success_title"),
-        message: i18n("users.modal.patch.password.success_text"),
+        message: success,
         type: "success",
       });
 

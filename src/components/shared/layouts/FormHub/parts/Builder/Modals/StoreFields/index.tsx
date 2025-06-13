@@ -26,7 +26,7 @@ export function StoreFieldsModal({
 
   return (
     <Modal
-      title={i18n("words.new_data")}
+      title={i18n("Words.new_data")}
       isShowModal={isShowModal}
       handleModal={onModal}
     >
@@ -36,7 +36,7 @@ export function StoreFieldsModal({
             <div className="form-title mt-6 mb-4">
               <h4 className="text-xs md:text-lg">
                 <strong>
-                  {i18n("users.modal.create.text_field_fill_information")}
+                  {i18n("Components.form_hub.text_field_fill_information")}
                 </strong>
               </h4>
             </div>
@@ -46,11 +46,11 @@ export function StoreFieldsModal({
                   {...register("group")}
                   options={groups.map((group) => {
                     return {
-                      text: i18n(`words.${group.name.toLowerCase()}`) as string,
+                      text: i18n(`Words.${group.name.toLowerCase()}`) as string,
                       value: group.id,
                     };
                   })}
-                  label={i18n("words.group")}
+                  label={i18n("Words.group")}
                   dataTestId="group"
                   required={true}
                   errors={errors.group}
@@ -59,7 +59,7 @@ export function StoreFieldsModal({
               <div className="form-group my-4">
                 <Input
                   {...register("name")}
-                  label={i18n("words.name")}
+                  label={i18n("Words.name")}
                   dataTestId="name"
                   required={true}
                   errors={errors.name}
@@ -77,10 +77,10 @@ export function StoreFieldsModal({
                       "FILE",
                       "DATETIME-LOCAL",
                     ].map((type) => ({
-                      text: i18n(`words.${type.toLowerCase()}`),
+                      text: i18n(`Words.${type.toLowerCase()}`),
                       value: type,
                     }))}
-                    label={i18n("words.field_type")}
+                    label={i18n("Words.field_type")}
                     dataTestId="type"
                     errors={errors.type}
                   />
@@ -89,7 +89,7 @@ export function StoreFieldsModal({
                   <div className="form-group my-4">
                     <Input
                       {...register("value")}
-                      label={i18n("words.value")}
+                      label={i18n("Words.value")}
                       dataTestId="identify"
                       errors={errors.value}
                     />
@@ -99,11 +99,11 @@ export function StoreFieldsModal({
                   <Select
                     {...register("is_sensitive")}
                     options={["YES", "NOT"].map((type) => ({
-                      text: i18n(`words.${type.toLowerCase()}`),
+                      text: i18n(`Words.${type.toLowerCase()}`),
                       value: type,
                     }))}
                     defaultValue={"NOT"}
-                    label={i18n("words.is_sensitive")}
+                    label={i18n("Words.is_sensitive")}
                     dataTestId="is_sensitive"
                     errors={errors.group}
                   />
@@ -116,7 +116,7 @@ export function StoreFieldsModal({
               <Checkbox
                 {...register("hasContinueRegister")}
                 dataTestId="continue_register"
-                label={i18n(`words.continue_register`)}
+                label={i18n(`Texts.continue_register`)}
               />
             </div>
             <div className="w-1/2">
@@ -124,7 +124,7 @@ export function StoreFieldsModal({
                 <Button
                   type="submit"
                   className="bg-red text-white"
-                  text={i18n("words.save")}
+                  text={i18n("Words.save")}
                 />
               </div>
             </div>

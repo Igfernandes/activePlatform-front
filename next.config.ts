@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
       },
       {
         hostname: "api.agmturismomarica.com.br/**",
-      },
+      }
     ],
   },
 };

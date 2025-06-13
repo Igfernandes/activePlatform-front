@@ -9,23 +9,23 @@ import { z } from "zod";
 
 export const createUserFormSchema = z
   .object({
-    keyword: z.string({ required_error: i18n("errors.fields.required") }).nonempty(i18n("errors.fields.required")),
+    keyword: z.string({ required_error: i18n("Validations.required") }).nonempty(i18n("Validations.required")),
     password: z
-      .string({ required_error: i18n("errors.fields.required") }).nonempty(i18n("errors.fields.required"))
+      .string({ required_error: i18n("Validations.required") }).nonempty(i18n("Validations.required"))
       .min(8)
       .refine(hasSomeLetterUppercase)
       .refine(hasSomeLetterLowercase)
       .refine(hasSomeNumber)
       .refine(hasSomeSpecialCharacter),
     passwordConfirm: z.string({
-      required_error: i18n("errors.fields.required"),
-    }).nonempty(i18n("errors.fields.required")),
-    cpf: z.string({ required_error: i18n("errors.fields.required") }).nonempty(i18n("errors.fields.required")),
+      required_error: i18n("Validations.required"),
+    }).nonempty(i18n("Validations.required")),
+    cpf: z.string({ required_error: i18n("Validations.required") }).nonempty(i18n("Validations.required")),
     birthdate: z
-      .string({ required_error: i18n("errors.fields.required") }).nonempty(i18n("errors.fields.required")),
+      .string({ required_error: i18n("Validations.required") }).nonempty(i18n("Validations.required")),
   })
   .refine((data) => data.password === data.passwordConfirm, {
-    message: i18n("errors.fields.required"),
+    message: i18n("Validations.required"),
     path: ["passwordConfirm"],
   });
 

@@ -1,6 +1,6 @@
-import useGetClientsFields from "@services/Clients/Fields/Get/useGetClients";
-import useGetFieldsGroups from "@services/Fields/Groups/Get/useGetFieldsGroups";
-import usePostClientsFields from "@services/Clients/Fields/Post/usePostClientsFields";
+import useGetClientsFields from "@services/Clients/Fields/Get/useGet";
+import useGetFieldsGroups from "@services/Fields/Groups/Get/useGet";
+import usePostClientsFields from "@services/Clients/Fields/Post/usePost";
 import { ClientShape } from "@type/Clients";
 import { PayloadFieldValues } from "@components/shared/layouts/FormHub/context/Fields/types";
 import { useCallback, useState } from "react";

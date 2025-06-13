@@ -15,6 +15,7 @@ export function DashboardContent({ children, title }: Props) {
     handleToggleNotification,
     notifications,
     userNotifications,
+    amountNotifications,
   } = useNotificationData();
 
   return (
@@ -30,7 +31,7 @@ export function DashboardContent({ children, title }: Props) {
             handleSidebar={handleToggleSidebar}
             handleNotification={handleToggleNotification}
             notificationsAmount={
-              notifications.length - userNotifications.length
+              amountNotifications() > 9 ? "+9" : `${amountNotifications()}`
             }
           />
           <div className="h-full pb-[15vh] overflow-y-scroll">

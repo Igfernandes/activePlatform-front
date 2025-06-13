@@ -1,4 +1,3 @@
-
 import { ExternalContainer } from "@components/shared/layouts/ExternalContainer";
 import { EmailForward } from "@assets/Icons/colorful/EmailForward";
 import Link from "next/link";
@@ -19,11 +18,11 @@ export default function ForgotPassword() {
           </div>
           <div className="mb-1">
             <h2 className="text-2xl">
-              <strong>{i18n("forgot_password.title")}</strong>
+              <strong>{i18n("Screens.forgot-password.title")}</strong>
             </h2>
           </div>
           <div className="mb-6">
-            <p className="text-sm">{i18n("forgot_password.text")}</p>
+            <p className="text-sm">{i18n("Screens.forgot-password.text")}</p>
           </div>
           <RecoverPasswordForm />
           <div className="sm:px-8 mt-4">
@@ -32,7 +31,7 @@ export default function ForgotPassword() {
               href={login}
             >
               <SquareRoundedChevronLeft className="mr-2" />
-              <strong>{i18n("forgot_password.back_page")}</strong>
+              <strong>{i18n("Texts.back_page")}</strong>
             </Link>
           </div>
         </div>

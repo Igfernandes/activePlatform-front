@@ -33,7 +33,7 @@ export function OperationsFailures({
             },
           }}
           data={tDataOperationsFailures}
-          title={i18n("words.operations_failures")}
+          title={i18n("Words.operations_failures")}
           excludes={["created_at", "updated_at"]}
           tHeads={{
             data: tHeadsOperationsFailures.current,

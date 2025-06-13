@@ -21,14 +21,14 @@ export function BoardDefault({ name, address, realized_at, stock }: Props) {
         <When value={!!realized_at}>
           <div className="mt-2">
             <p className="text-xs">
-              {i18n("words.started_date")}: {dayjs(realized_at).format("DD/MM/YYYY HH:MM")}
+              {i18n("Words.started_date")}: {dayjs(realized_at).format("DD/MM/YYYY HH:MM")}
             </p>
           </div>
         </When>
         <When value={!!stock}>
           <div className="mt-2">
             <p className="text-xs">
-              {stock} {i18n("words.vacancies_total")}
+              {stock} {i18n("Words.vacancies_total")}
             </p>
           </div>
         </When>

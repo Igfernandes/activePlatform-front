@@ -2,7 +2,7 @@ import { useFormRules } from "@hooks/Forms/useFormRules";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { IntegrationsPayload, integrationsSchema } from "../schemas";
-import usePostIntegrations from "@services/Integrations/Post/usePostIntegrations";
+import usePostIntegrations from "@services/Integrations/Post/usePost";
 import { useEffect, useState } from "react";
 import { useModalContext } from "@contexts/Modal";
 import { IntegrationShape } from "@type/Integrations";
@@ -26,6 +26,8 @@ export function useIntegrationModal({ integrations }: Props) {
 
     await postIntegrations({
       ...payload,
+      public_token: payload.public_token ?? '',
+      private_token: payload.private_token ?? '',
       provider: integration.provider,
       type: integration?.type,
     });

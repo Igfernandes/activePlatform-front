@@ -19,11 +19,9 @@ export default function usePostCategories() {
 
   return useMutation({
     mutationFn: handleMutate,
-
-    onSuccess: () => {
+    onSuccess: ({ success }) => {
       dispatchSnackbar({
-        message: i18n("clients.modal.category.success_text"),
-        title: i18n("clients.modal.category.success_title"),
+        message: i18n(success),
         type: "success",
       });
       queryClient.invalidateQueries({

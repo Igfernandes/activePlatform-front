@@ -7,7 +7,7 @@ export default function Settings() {
     <DashboardContainer>
       <div className="bg-white p-6 rounded-xl">
         <div className="mb-6">
-          <h1 className="text-2xl"><strong>{i18n("words.setting")}</strong></h1>
+          <h1 className="text-2xl"><strong>{i18n("Words.setting")}</strong></h1>
         </div>
         <SettingsForms />
       </div>

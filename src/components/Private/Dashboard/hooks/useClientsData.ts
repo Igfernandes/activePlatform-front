@@ -1,4 +1,4 @@
-import useGetClients from "@services/Clients/Get/useGetClients";
+import useGetClients from "@services/Clients/Get/useGet";
 import { useEffect, useState } from "react";
 import { CategoryStaticData, ClientsByDDDStaticData } from "../type";
 import { getOnlyNumbers } from "@helpers/numbers";

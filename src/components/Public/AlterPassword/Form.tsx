@@ -14,13 +14,13 @@ export function AlterPasswordForm() {
         <div className="form-group my-4">
           <PasswordValidation
             dataTestId="password"
-            label={i18n("words.password")}
+            label={i18n("Words.password")}
             name="password"
           />
         </div>
         <div className="form-submit mt-6">
           <Button
-            text={i18n("words.created_new_password")}
+            text={i18n("Texts.created_new_password")}
             type="submit"
             isLoading={isLoading}
             disabled={!hasAllFilledFields()}

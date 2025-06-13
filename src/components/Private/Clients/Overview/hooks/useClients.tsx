@@ -9,10 +9,7 @@ import { SelectorShape } from "@components/shared/layouts/Seletor/type";
 import { Selector } from "@components/shared/layouts/Seletor";
 import { useModalContext } from "@contexts/Modal";
 import { ClientActions } from "../ClientActions";
-import {
-  ClientShape,
-  UserCategoryData,
-} from "../../../../../types/Clients";
+import { ClientShape, UserCategoryData } from "../../../../../types/Clients";
 import { useClientsData } from "./useClientsData";
 import useDeleteClient from "../../../../../services/Clients/Delete/useDeleteClient";
 import { DeleteClientPayload } from "../../../../../services/Clients/Delete/type";
@@ -34,11 +31,11 @@ export function useClients({
 
   const tHeadsClient = useRef<Array<string>>([
     "ID",
-    i18n("words.name"),
-    i18n("words.status"),
-    i18n("words.phone"),
-    i18n("words.category"),
-    i18n("words.actions"),
+    i18n("Words.name"),
+    i18n("Words.status"),
+    i18n("Words.phone"),
+    i18n("Words.category"),
+    i18n("Words.actions"),
   ]);
 
   const getSelectedClientsName = (selectors: Array<SelectorShape>) => {
@@ -61,8 +58,8 @@ export function useClients({
       return {
         id: <Selector label={clientId} value={clientId} />,
         name,
-        status: i18n(`words.${status.toLocaleLowerCase()}`),
-        phone: getNumberFormatted(phone),
+        status: i18n(`Words.${status.toLocaleLowerCase()}`),
+        phone: getNumberFormatted(phone.replace("55", "")),
         category: categories
           .map((category: UserCategoryData) => category.name)
           .join(", "),

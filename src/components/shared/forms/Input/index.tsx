@@ -66,7 +66,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 const file = ev.target.files?.[0];
                 if (file && file.size > 3 * 1024 * 1024) {
                   setError(`${name}`, {
-                    message: i18n("errors.fields.file"),
+                    message: i18n("Validations.file"),
                   });
                   setValue(`${name}`, null);
                   ev.target.value = ""; // limpa o input

@@ -18,7 +18,7 @@ export function Options({ options, id, title }: Props) {
         className="border-2 border-slate-200 p-2 text-center cursor-pointer"
         onClick={() => handleCollapse(id)}
       >
-        <p>{i18n(`words.${title}`)}</p>
+        <p>{i18n(`Words.${title}`)}</p>
       </div>
       <div
         className="accordion-content overflow-y-auto break-words"

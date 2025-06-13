@@ -28,7 +28,7 @@ export function Builder({
           {/* <GripVertical className="cursor-pointer" /> */}
           <h2 className="text-2xl ml-1">
             <strong>
-              {capitalize(i18n(`words.${title?.toLowerCase()}`) || title)}
+              {capitalize(i18n(`Words.${title?.toLowerCase()}`) || title)}
             </strong>
           </h2>
           <When value={screenType === "MOBILE" && fieldsGroupEditing != title}>
@@ -36,7 +36,7 @@ export function Builder({
               <DotsOptions
                 actions={[
                   {
-                    text: i18n("words.edit"),
+                    text: i18n("Words.edit"),
                     handle: () => handleFieldsGroupToEditing(title),
                   },
                 ]}
@@ -57,7 +57,7 @@ export function Builder({
               <DotsOptions
                 actions={[
                   {
-                    text: i18n("words.edit") || "Edit",
+                    text: i18n("Words.edit") || "Edit",
                     handle: () => handleFieldsGroupToEditing(title),
                   },
                 ]}

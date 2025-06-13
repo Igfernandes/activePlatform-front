@@ -16,7 +16,7 @@ export function Credentials({ handleToggleStageForm, isLoading }: Props) {
       <div className="form-group my-4">
         <PasswordValidation
           dataTestId="password"
-          label={i18n("words.password")}
+          label={i18n("Words.password")}
         />
       </div>
       <div className="button-group flex flex-wrap md:flex-nowrap ">
@@ -24,13 +24,13 @@ export function Credentials({ handleToggleStageForm, isLoading }: Props) {
           <Button
             className="bg-white border-secondary border-2 text-cross-black-primary"
             onClick={() => handleToggleStageForm("PERSONAL")}
-            text={i18n("words.go_back")}
+            text={i18n("Words.go_back")}
             type="button"
           />
         </div>
         <div className="form-submit mt-6  md:mt-0 w-full md:w-1/2">
           <Button
-            text={i18n("words.create_account")}
+            text={i18n("Words.create_account")}
             type="submit"
             isLoading={isLoading}
           />

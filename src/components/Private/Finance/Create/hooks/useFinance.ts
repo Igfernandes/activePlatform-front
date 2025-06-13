@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ClientShape } from "@type/Clients";
-import useGetClients from "@services/Clients/Get/useGetClients";
+import useGetClients from "@services/Clients/Get/useGet";
 
 export function useFinance() {
   const { data: ClientsData } = useGetClients({ status: "ACTIVE" });

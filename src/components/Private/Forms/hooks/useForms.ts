@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { FormsPayload } from "../schema";
 import { FieldShape } from "@components/shared/layouts/FormBuilder/type";
-import usePostCreateForm from "../../../../services/CustomForms/Post/usePostCreateForm";
-import usePutForm from "@services/CustomForms/Put/usePutForm";
+import usePostCreateForm from "../../../../services/CustomForms/Post/usePost";
+import usePutForm from "@services/CustomForms/Put/usePut";
 
 export function useForms() {
   const [form, setForm] = useState<Array<FieldShape>>([]);

@@ -5,11 +5,11 @@ import { useRef } from "react";
 export function usePaymentsTable() {
   const tHeadsPayment = useRef<Array<string>>([
     "ID",
-    i18n("words.name"),
-    i18n("words.paid_amount"),
-    i18n("words.status"),
-    i18n("words.bank"),
-    i18n("words.actions"),
+    i18n("Words.name"),
+    i18n("Words.paid_amount"),
+    i18n("Words.status"),
+    i18n("Words.bank"),
+    i18n("Words.actions"),
   ]);
 
   const getClientName = (

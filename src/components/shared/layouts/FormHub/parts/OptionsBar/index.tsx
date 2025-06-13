@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { When } from "@components/utilities/When";
 import { formatNumber } from "@helpers/numbers";
 import { USER_OPTIONS } from "@constants/options";
@@ -23,9 +22,6 @@ export function OptionsBar({ handleShared, handleUpdateClient }: Props) {
           onClick={() => handleUpdateClient(true)}
         >
           <div className="mr-2">
-            <When value={!!viewedField.avatar}>
-              <Image src={`${viewedField.avatar}`} alt="Profile photo" />
-            </When>
             <When value={!viewedField.avatar}>
               <div className="bg-white p-2 rounded-full cursor-pointer">
                 <Pencil />
@@ -48,7 +44,7 @@ export function OptionsBar({ handleShared, handleUpdateClient }: Props) {
         <div className="mx-2 my-2 lg:my-0 w-full lg:w-auto">
           <Button
             className="border border-zinc-300 px-3 font-bold rounded-xl bg-secondary text-primary"
-            text={i18n("words.shared")}
+            text={i18n("Words.shared")}
             type="button"
             onClick={() => handleShared(viewedField.id)}
           />
@@ -56,7 +52,7 @@ export function OptionsBar({ handleShared, handleUpdateClient }: Props) {
         <div className="mx-2 w-full lg:w-auto">
           <Button
             className="border border-zinc-300 px-3 font-bold rounded-xl"
-            text={i18n("words.new_register")}
+            text={i18n("Words.new_register")}
             type="button"
             onClick={() => handleToggleModal(true)}
           />

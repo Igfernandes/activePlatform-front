@@ -3,14 +3,14 @@ import { z } from "zod";
 
 export const paymentFormSchema = z.object({
   amounts: z.array(
-    z.string({ required_error: i18n("errors.fields.required") })
+    z.string({ required_error: i18n("Validations.required") })
   ),
   email: z
-    .string({ required_error: i18n("errors.fields.required") })
-    .email({ message: i18n("errors.fields.invalid_email") }),
-  cpf: z.string({ required_error: i18n("errors.fields.required") }),
-  phone: z.string({ required_error: i18n("errors.fields.required") }),
-  name: z.string({ required_error: i18n("errors.fields.required") }),
+    .string({ required_error: i18n("Validations.required") })
+    .email({ message: i18n("Validations.email") }),
+  cpf: z.string({ required_error: i18n("Validations.required") }),
+  phone: z.string({ required_error: i18n("Validations.required") }),
+  name: z.string({ required_error: i18n("Validations.required") }),
 });
 
 export type PaymentPayload = z.infer<typeof paymentFormSchema>;

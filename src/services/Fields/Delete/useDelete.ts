@@ -24,10 +24,9 @@ export default function useDeleteFields() {
 
   return useMutation({
     mutationFn: handleMutate,
-    onSuccess: (resp, payload) => {
+    onSuccess: ({ success }, payload) => {
       dispatchSnackbar({
-        title: i18n("fields.delete.success_title"),
-        message: i18n("fields.delete.success_text"),
+        message: i18n(success),
         type: "success",
       });
 

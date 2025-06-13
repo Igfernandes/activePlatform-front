@@ -8,9 +8,6 @@ export type IntegrationShape = {
   logotype: string;
   public_token?: string;
   private_token?: string;
-  username?: string;
-  login?: string;
-  password?: string;
   action?: string;
   created_at?: string;
 };

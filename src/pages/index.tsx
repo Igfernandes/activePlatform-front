@@ -7,6 +7,7 @@ import { privateRoutes } from "@configs/routes/Web/navigation";
 import { handleRememberMe } from "../server/handleRememberMe";
 
 export default function Home() {
+
   return (
     <ExternalContainer>
       <div className="row">
@@ -16,11 +17,11 @@ export default function Home() {
           </div>
           <div className="mb-1">
             <h2 className="text-2xl">
-              <strong>{i18n("login.welcome")}</strong>
+              <strong>{i18n("Screens.login.title")}</strong>
             </h2>
           </div>
           <div className="mb-6">
-            <p className="text-sm">{i18n("login.text_presentation")}</p>
+            <p className="text-sm">{i18n("Screens.login.text")}</p>
           </div>
           <LoginForm />
         </div>
@@ -30,7 +31,7 @@ export default function Home() {
 }
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const tokenNavigation = req.cookies["token_navigation"] ?? "";
-  
+
   if (tokenNavigation)
     return {
       redirect: {

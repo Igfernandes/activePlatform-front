@@ -19,19 +19,19 @@ export default function Successful() {
           <div className="mb-1">
             <h2 className="text-2xl">
               <strong>
-                {i18n(`words.${query?.title ?? "unknown_operation"}`)}
+                {i18n(`Texts.${query?.title ?? "unknown_operation"}`)}
               </strong>
             </h2>
           </div>
           <div className="mb-6">
-            <p className="text-sm">{i18n("words.need_go_back_login")}</p>
+            <p className="text-sm">{i18n("Screens.successful.need_go_back_login")}</p>
           </div>
           <div className="px-8 mt-4">
             <Link
               className="border-2 px-3 h-[48px] bg-red text-white rounded-xl flex items-center justify-center"
               href={login}
             >
-              <strong>{i18n("words.go_back_login")}</strong>
+              <strong>{i18n("Texts.go_back_login")}</strong>
             </Link>
           </div>
         </div>

@@ -8,12 +8,12 @@ type Props = {
 export function FormTable({ label, name }: Props) {
   return (
     <div className="form-group my-3">
-      <label htmlFor="label" className="font-semibold">{i18n(`words.${label}`)}</label>
+      <label htmlFor="label" className="font-semibold">{i18n(`Words.${label}`)}</label>
       <table className="w-full">
         <thead className="border-zinc-400 border-2">
           <tr>
-            <th className="font-semibold border-r-2 border-zinc-400">{i18n("words.name")}</th>
-            <th className="font-semibold">{i18n("words.value")}</th>
+            <th className="font-semibold border-r-2 border-zinc-400">{i18n("Words.name")}</th>
+            <th className="font-semibold">{i18n("Words.value")}</th>
           </tr>
         </thead>
         <tbody className="border-zinc-400 border-2">

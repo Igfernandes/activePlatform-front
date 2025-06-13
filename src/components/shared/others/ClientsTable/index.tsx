@@ -48,17 +48,17 @@ export function ClientsTable({
             >
               <UserPlus />
               <span className="text-red font-semibold ml-2">
-                {i18n("words.clients_add")}
+                {i18n("Texts.clients_add")}
               </span>
             </a>
           ),
         }}
-        title={title ?? i18n("words.link_clients")}
+        title={title ?? i18n("Texts.link_clients")}
       />
       <Notice
-        headerTitle={i18n("words.attention")}
-        title={i18n("services.modal.title_already_exclude")}
-        text={i18n("services.modal.text_already_exclude")}
+        headerTitle={i18n("Words.attention")}
+        title={i18n("Components.clients_table.title_already_exclude")}
+        text={i18n("Components.clients_table.text_already_exclude")}
         onSubmit={() => {
           handleToggleModal(false);
           handleUpdateClients(

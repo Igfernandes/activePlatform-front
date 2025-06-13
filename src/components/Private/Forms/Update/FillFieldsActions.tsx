@@ -28,13 +28,13 @@ export function FillFieldsActions({
       <DotsOptions
         actions={[
           {
-            text: i18n("words.edit"),
+            text: i18n("Words.edit"),
             handle: () => {
               router.push(`${forms}/${formId}/fill/${refPackage}`);
             },
           },
           {
-            text: i18n("words.exclude"),
+            text: i18n("Words.exclude"),
             handle: () => handleToggleModal("DELETE", refPackage),
           },
         ]}

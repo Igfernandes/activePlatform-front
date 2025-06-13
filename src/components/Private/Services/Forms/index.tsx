@@ -58,7 +58,7 @@ export function ServicesForm({ service }: Props) {
         <div className="flex flex-wrap justify-between mb-6">
           <div>
             <h1 className="text-2xl">
-              <strong>{i18n(`words.definition`)}</strong>
+              <strong>{i18n(`Words.definition`)}</strong>
             </h1>
           </div>
           <div className="flex ">
@@ -67,14 +67,14 @@ export function ServicesForm({ service }: Props) {
                 setValue={setValue}
                 name="status"
                 dataTestId="status"
-                label={i18n(`words.service_status`)}
+                label={i18n(`Words.service_status`)}
                 options={{
                   left: {
-                    text: i18n("words.active"),
+                    text: i18n("Words.active"),
                     value: "ACTIVE",
                   },
                   right: {
-                    text: i18n("words.inactive"),
+                    text: i18n("Words.inactive"),
                     value: "INACTIVE",
                   },
                 }}
@@ -99,7 +99,7 @@ export function ServicesForm({ service }: Props) {
               <DefinitionsForm service={service} />
               <div className="form-subtitle my-6">
                 <h2>
-                  <strong>{i18n(`services.settings_privacy`)}</strong>
+                  <strong>{i18n(`Screens.dashboard.services.settings_privacy`)}</strong>
                 </h2>
               </div>
               <div className="flex flex-wrap lg:flex-none justify-between">
@@ -109,7 +109,7 @@ export function ServicesForm({ service }: Props) {
                     icon={<UserGroup />}
                     defaultValue={"PUBLIC"}
                     dataTestId="privacy_public"
-                    label={i18n(`words.public`)}
+                    label={i18n(`Words.public`)}
                   />
                 </div>
                 <div className="w-full lg:w-[48%]">
@@ -119,7 +119,7 @@ export function ServicesForm({ service }: Props) {
                     defaultValue={"PRIVATE"}
                     dataTestId="privacy_private"
                     defaultChecked={true}
-                    label={i18n(`words.private`)}
+                    label={i18n(`Words.private`)}
                   />
                 </div>
               </div>
@@ -133,7 +133,7 @@ export function ServicesForm({ service }: Props) {
                 <When value={!service}>
                   <div className="w-full lg:w-auto mb-4 lg:mb-auto">
                     <span onClick={handleCleanForm} className="cursor-pointer">
-                      <strong>{i18n("words.clean")}</strong>
+                      <strong>{i18n("Words.clean")}</strong>
                     </span>
                   </div>
                 </When>
@@ -149,7 +149,7 @@ export function ServicesForm({ service }: Props) {
                       <Checkbox
                         {...register("hasContinueRegister")}
                         dataTestId="continue_create"
-                        label={i18n(`words.keep_creating`)}
+                        label={i18n(`Words.keep_creating`)}
                         value={"true"}
                       />
                     </div>
@@ -159,7 +159,7 @@ export function ServicesForm({ service }: Props) {
                     <div className="lg:ml-8 w-[47%] lg:w-auto">
                       <Button
                         className="py-3 px-6  border-[1px] border-secondary rounded-xl w-full"
-                        text={i18n(`words.cancel`)}
+                        text={i18n(`Words.cancel`)}
                         type="button"
                         onClick={() => router.push(privateRoutes.services)}
                       />
@@ -168,7 +168,7 @@ export function ServicesForm({ service }: Props) {
                       <Button
                         className="py-3 px-8  bg-red text-white rounded-xl w-full"
                         text={
-                          !service ? i18n(`words.save`) : i18n(`words.update`)
+                          !service ? i18n(`Words.save`) : i18n(`Words.update`)
                         }
                         isLoading={isLoading}
                       />

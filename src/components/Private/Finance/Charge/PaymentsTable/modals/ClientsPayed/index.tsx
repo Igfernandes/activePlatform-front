@@ -45,7 +45,7 @@ export function ClientsPayedModal({
 
   return (
     <Modal
-      title={i18n("words.clients_add")}
+      title={i18n("Texts.clients_add")}
       isShowModal={modal.type == "ADD_CLIENT"}
       handleModal={handleToggleModal}
     >
@@ -53,7 +53,7 @@ export function ClientsPayedModal({
         <form onSubmit={handleSubmit(submit)}>
           <div className="w-full">
             <Search
-              label={i18n("words.research")}
+              label={i18n("Words.research")}
               dataTestId="users"
               handleSearch={handleSearch}
               className="w-full"
@@ -77,7 +77,7 @@ export function ClientsPayedModal({
           <div>
             <Button
               type="submit"
-              text={i18n("words.save")}
+              text={i18n("Words.save")}
               className="bg-red text-white"
             />
           </div>

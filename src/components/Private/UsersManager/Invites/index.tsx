@@ -4,8 +4,8 @@ import i18n from "@configs/i18n";
 import { Notice } from "@components/shared/others/Notice";
 import { SmartTable } from "@components/shared/layouts/Tables/presets/SmartTable";
 import { useModalContext } from "@contexts/Modal";
-import useInviteUserResend from "../../../../services/Invites/Resend/Users/useInviteUserResend";
-import useDeleteInviteUser from "../../../../services/Invites/Delete/Users/useDeleteInviteUser";
+import useInviteUserResend from "../../../../services/Invites/Resend/Users/useInvite";
+import useDeleteInviteUser from "../../../../services/Invites/Delete/Users/useDelete";
 
 export function Invites({ search, filterObjects }: InvitesStructProps) {
   const { tDataInvites, tHeadsInvite } = useInvites({
@@ -29,7 +29,7 @@ export function Invites({ search, filterObjects }: InvitesStructProps) {
             },
           }}
           data={tDataInvites}
-          title={i18n("words.invites")}
+          title={i18n("Words.invites")}
           tHeads={{
             data: tHeadsInvite.current,
             widths: [60, 250, 80, 166.5, 166.5, 48],
@@ -37,9 +37,9 @@ export function Invites({ search, filterObjects }: InvitesStructProps) {
         />
       </div>
       <Notice
-        headerTitle={i18n("words.attention")}
-        title={i18n("manager_user.modal.invites.title_already_resend")}
-        text={i18n("manager_user.modal.invites.text_already_resend")}
+        headerTitle={i18n("Words.attention")}
+        title={i18n("Screens.dashboard.users.invites.title_already_resend")}
+        text={i18n("Screens.dashboard.users.invites.text_already_resend")}
         onSubmit={() =>
           inviteUserResend({
             id: modal.id as number,
@@ -50,9 +50,9 @@ export function Invites({ search, filterObjects }: InvitesStructProps) {
         isLoading={isPendingResend}
       />
       <Notice
-        headerTitle={i18n("words.attention")}
-        title={i18n("manager_user.modal.invites.title_already_exclude")}
-        text={i18n("manager_user.modal.invites.text_already_exclude")}
+        headerTitle={i18n("Words.attention")}
+        title={i18n("Screens.dashboard.users.invites.title_already_exclude")}
+        text={i18n("Screens.dashboard.users.invites.text_already_exclude")}
         onSubmit={() =>
           deleteInviteUser({
             id: modal.id as number,

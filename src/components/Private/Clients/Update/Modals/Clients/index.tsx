@@ -31,7 +31,7 @@ export function ClientUpdateModal({
 
   return (
     <Modal
-      title={i18n("words.update_client")}
+      title={i18n("Words.update_client")}
       isShowModal={isShowModal}
       handleModal={onModal}
     >
@@ -40,7 +40,7 @@ export function ClientUpdateModal({
           <div className="form-title mb-4">
             <h4 className="text-sm md:text-lg">
               <strong>
-                {i18n("clients.modal.create.text_select_category")}
+                {i18n("Screens.dashboard.clients.client.text_select_category")}
               </strong>
             </h4>
           </div>
@@ -56,7 +56,7 @@ export function ClientUpdateModal({
                   ),
                 };
               })}
-              label={i18n("words.category")}
+              label={i18n("Words.category")}
               dataTestId="category"
               required={true}
               errors={errors.category}
@@ -66,7 +66,9 @@ export function ClientUpdateModal({
             <div className="form-title mt-6 mb-4">
               <h4 className="text-xs md:text-lg">
                 <strong>
-                  {i18n("clients.modal.create.text_fill_information")}
+                  {i18n(
+                    "Screens.dashboard.clients.client.text_fill_information"
+                  )}
                 </strong>
               </h4>
             </div>
@@ -79,7 +81,7 @@ export function ClientUpdateModal({
               <div className="form-group my-4">
                 <Input
                   {...register("name")}
-                  label={i18n("words.name")}
+                  label={i18n("Words.name")}
                   dataTestId="name"
                   required={true}
                   defaultValue={client.name}
@@ -89,10 +91,14 @@ export function ClientUpdateModal({
               <div className="form-group my-4">
                 <Input
                   {...register("birthdate")}
-                  label={i18n("words.birthdate")}
+                  label={i18n("Words.birthdate")}
                   dataTestId="birthdate"
-                  placeholder={i18n(`configs.formats.date`)}
-                  defaultValue={dayjs(client.birthdate).format("DD/MM/YYYY")}
+                  placeholder={i18n(`Configs.format.date`)}
+                  defaultValue={
+                    client.birthdate
+                      ? dayjs(client.birthdate).format("DD/MM/YYYY")
+                      : ""
+                  }
                   onChange={(ev) => {
                     handleMaskDate(ev);
                     setValue("birthdate", ev.currentTarget.value);
@@ -103,7 +109,7 @@ export function ClientUpdateModal({
               <div className="form-group my-4">
                 <Input
                   {...register("email")}
-                  label={i18n("words.email")}
+                  label={i18n("Words.email")}
                   dataTestId="email"
                   errors={errors.email}
                   defaultValue={client.email}
@@ -112,7 +118,7 @@ export function ClientUpdateModal({
               <div className="form-group my-4">
                 <Input
                   {...register("phone")}
-                  label={i18n("words.phone")}
+                  label={i18n("Words.phone")}
                   dataTestId="phone"
                   defaultValue={getNumberFormatted(client.phone)}
                   onChange={(ev) => {
@@ -131,7 +137,7 @@ export function ClientUpdateModal({
                 <Button
                   type="submit"
                   className="bg-red text-white"
-                  text={i18n("words.save")}
+                  text={i18n("Words.save")}
                   isLoading={isLoading}
                 />
               </div>

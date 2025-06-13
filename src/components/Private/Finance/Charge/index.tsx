@@ -23,7 +23,7 @@ export function ChargePreview({ charge }: Props) {
   return (
     <>
       <TimelineChart
-        title={i18n("words.lasted_operations")}
+        title={i18n("Words.lasted_operations")}
         data={getPaymentsByMonth()}
       />
 

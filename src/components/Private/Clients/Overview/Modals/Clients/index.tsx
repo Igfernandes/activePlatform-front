@@ -30,7 +30,7 @@ export function ClientCreateModal({
           <div className="form-title mb-4">
             <h4 className="text-sm md:text-lg">
               <strong>
-                {i18n("clients.modal.create.text_select_category")}
+                {i18n("Screens.dashboard.clients.client.text_select_category")}
               </strong>
             </h4>
           </div>
@@ -43,7 +43,7 @@ export function ClientCreateModal({
                   value: category.id,
                 };
               })}
-              label={i18n("words.category")}
+              label={i18n("Words.category")}
               dataTestId="category"
               required={true}
               errors={errors.category}
@@ -53,7 +53,7 @@ export function ClientCreateModal({
             <div className="form-title mt-4 md:mt-6 mb-2 md:mb-4">
               <h4 className="text-sm md:text-lg">
                 <strong>
-                  {i18n("clients.modal.create.text_fill_information")}
+                  {i18n("Screens.dashboard.clients.client.text_fill_information")}
                 </strong>
               </h4>
             </div>
@@ -66,7 +66,7 @@ export function ClientCreateModal({
               <div className="form-group my-4">
                 <Input
                   {...register("name")}
-                  label={i18n("words.name")}
+                  label={i18n("Words.name")}
                   dataTestId="name"
                   required={true}
                   errors={errors.name}
@@ -75,9 +75,9 @@ export function ClientCreateModal({
               <div className="form-group my-4">
                 <Input
                   {...register("birthdate")}
-                  label={i18n("words.birthdate")}
+                  label={i18n("Words.birthdate")}
                   dataTestId="birthdate"
-                  placeholder={i18n(`configs.formats.date`)}
+                  placeholder={i18n(`Configs.format.date`)}
                   onChange={(ev) => {
                     handleMaskDate(ev);
                     setValue("birthdate", ev.currentTarget.value);
@@ -88,7 +88,7 @@ export function ClientCreateModal({
               <div className="form-group my-4">
                 <Input
                   {...register("email")}
-                  label={i18n("words.email")}
+                  label={i18n("Words.email")}
                   dataTestId="email"
                   errors={errors.email}
                 />
@@ -96,7 +96,7 @@ export function ClientCreateModal({
               <div className="form-group my-4">
                 <Input
                   {...register("phone")}
-                  label={i18n("words.phone")}
+                  label={i18n("Words.phone")}
                   dataTestId="phone"
                   onChange={(ev) => {
                     handleMaskPhone(ev);
@@ -113,7 +113,7 @@ export function ClientCreateModal({
               <Checkbox
                 {...register("hasContinueRegister")}
                 dataTestId="continue_register"
-                label={i18n(`words.continue_register`)}
+                label={i18n(`Texts.continue_register`)}
               />
             </div>
             <div className="mt-4 md:my-auto w-full md:w-1/2">
@@ -121,7 +121,7 @@ export function ClientCreateModal({
                 <Button
                   type="submit"
                   className="bg-red text-white"
-                  text={i18n("words.save")}
+                  text={i18n("Words.save")}
                   isLoading={isLoading}
                 />
               </div>
