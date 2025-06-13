@@ -21,6 +21,7 @@ export default function Create() {
     });
   const { submit, form, handleChangeFormFields, isLoading } = useForms();
 
+  const submitForm = formMethods.handleSubmit(submit);
   return (
     <DashboardContainer title={i18n("Words.new_form")}>
       <FormProvider {...formMethods}>
@@ -40,7 +41,7 @@ export default function Create() {
             },
           ]}
         />
-        <form onSubmit={formMethods.handleSubmit(submit)}>
+        <form>
           <Forms
             step={stepActive}
             form={form}
@@ -49,6 +50,7 @@ export default function Create() {
           <FooterForms
             onNextStep={handleNextStep}
             onPrevStep={handlePrevStep}
+            handleSubmit={submitForm}
             isLoading={isLoading}
             isLastStep={isLastStep}
           />

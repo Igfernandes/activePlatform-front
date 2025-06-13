@@ -42,6 +42,8 @@ export function FillFieldsUpdate({ targetForm }: Props) {
     handleChangeFormFields(fields);
   }, [targetForm]);
 
+  const handleSubmit = formMethods.handleSubmit(submit);
+
   return (
     <div>
       <FormProvider {...formMethods}>
@@ -61,7 +63,7 @@ export function FillFieldsUpdate({ targetForm }: Props) {
             },
           ]}
         />
-        <form onSubmit={formMethods.handleSubmit(submit)}>
+        <form>
           <Forms
             step={stepActive}
             form={form}
@@ -74,6 +76,7 @@ export function FillFieldsUpdate({ targetForm }: Props) {
             onNextStep={handleNextStep}
             onPrevStep={handlePrevStep}
             isLoading={isLoading}
+            handleSubmit={handleSubmit}
             isLastStep={isLastStep}
           />
         </form>

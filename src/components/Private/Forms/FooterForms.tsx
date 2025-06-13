@@ -9,6 +9,7 @@ type Props = {
   onPrevStep: () => void;
   isLoading: boolean;
   isLastStep: boolean;
+  handleSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
 };
 
 export function FooterForms({
@@ -16,6 +17,7 @@ export function FooterForms({
   onPrevStep,
   isLoading,
   isLastStep,
+  handleSubmit
 }: Props) {
   const { reset } = useFormContext();
   return (
@@ -37,11 +39,11 @@ export function FooterForms({
         <div className="mx-2">
           <When value={isLastStep}>
             <Button
-              type={"submit"}
+              type={"button"}
               className="bg-red py-2 px-6 md:px-3 text-white"
               text={i18n("Words.save")}
               rightIcon={<SquareRoundedChevronRight fill={"#fff"} />}
-              onClick={onNextStep}
+              onClick={handleSubmit}
               isLoading={isLoading}
             />
           </When>
