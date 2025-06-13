@@ -1,5 +1,5 @@
-import { FooterForms } from "@components/Private/Forms/FooterForms";
 import { MessagesDispatcherForm } from "@components/Private/Dispatchers/Create";
+import { FooterForms } from "@components/Private/Dispatchers/Create/FooterForms";
 import { useMessagesDispatcher } from "@components/Private/Dispatchers/Create/hooks/useMessagesDispatcher";
 import { useMessagesDispatcherForms } from "@components/Private/Dispatchers/Create/hooks/useMessagesDispatcherForm";
 import { DashboardContainer } from "@components/shared/layouts/Dashboard";

@@ -16,6 +16,7 @@
 - Lógica de Permissões não funciona.
 - Otimizar todas as mensagens  de resposta.
 - Tabela calculando o valor de exibição errado
+- O snackbars estão sem icones corretos do lado
 - **Fazer com que a ordem de exibição dos arquivos sejam contrária (DESC)**
 
 # Clientes:
