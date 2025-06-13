@@ -36,7 +36,7 @@ export function IntegrationsModal({
 
   return (
     <Modal
-      title={`${i18n("words.integration")} - ${integration?.provider}`}
+      title={`${i18n("Words.integration")} - ${integration?.provider}`}
       isShowModal={isShowModal}
       handleModal={onModal}
     >
@@ -46,27 +46,24 @@ export function IntegrationsModal({
             <div className="form-title mt-6 mb-4">
               <h4 className="text-lg">
                 <strong>
-                  {i18n("clients.modal.create.text_fill_information")}
+                  {i18n("Screens.dashboard.apis.text_fill_information")}
                 </strong>
               </h4>
             </div>
             <div
               className="overflow-y-auto scrollbar"
-              style={{
-                height: "38vh",
-              }}
             >
               <div className="form-group">
                 <Select
                   {...register("status")}
                   options={["ACTIVE", "INACTIVE"].map((status) => {
                     return {
-                      text: i18n(`words.${status.toLowerCase()}`) as string,
+                      text: i18n(`Words.${status.toLowerCase()}`) as string,
                       value: status,
                       selected: integration?.status === status,
                     };
                   })}
-                  label={i18n("words.status")}
+                  label={i18n("Words.status")}
                   dataTestId="status"
                   errors={errors.status}
                 />
@@ -75,7 +72,7 @@ export function IntegrationsModal({
               <div className="form-group my-4">
                 <Input
                   {...register("public_token")}
-                  label={i18n("words.public_token")}
+                  label={i18n("Words.public_token")}
                   dataTestId="public_token"
                   defaultValue={integration?.public_token}
                   errors={errors.public_token}
@@ -84,7 +81,7 @@ export function IntegrationsModal({
               <div className="form-group my-4">
                 <Input
                   {...register("private_token")}
-                  label={i18n("words.private_token")}
+                  label={i18n("Words.private_token")}
                   dataTestId="private_token"
                   defaultValue={integration?.private_token}
                   errors={errors.private_token}
@@ -98,7 +95,7 @@ export function IntegrationsModal({
                 <Button
                   type="submit"
                   className="bg-red text-white"
-                  text={i18n("words.save")}
+                  text={i18n("Words.save")}
                   isLoading={isLoading}
                 />
               </div>

@@ -8,6 +8,7 @@ import { privateRoutes, publicRoutes } from "@configs/routes/Web/navigation";
 import { AmountInscribes } from "./AmountInscribes";
 import { useNavigator } from "@hooks/useNavigator";
 import useWindow from "@hooks/useWindow";
+import dayjs from "dayjs";
 
 export function FormsCard({ search, filterObjects }: FormsCardProps) {
   const { forms, handleToggleStatusForm, isLoadingDeleteForm } = useFormsOverview({
@@ -29,16 +30,16 @@ export function FormsCard({ search, filterObjects }: FormsCardProps) {
             description: form.description ?? "",
             alert: form.name,
             link: `${formsRoute}/${form.id}`,
-            createdAt: form.created_at,
+            createdAt: dayjs(form.created_at).format("DD/MM/YYYY HH:mm"),
             dotsActions: [
               {
                 handle: () =>
                   handleCopy(`${baseUrl}${formsRoutePublic}/${form.slug}`),
-                text: i18n(`words.link_copy`),
+                text: i18n(`Words.link_copy`),
               },
               {
                 handle: () => handleToggleModal("EXCLUDE", form.id),
-                text: i18n(`words.exclude`),
+                text: i18n(`Words.exclude`),
               },
             ],
             foot: {
@@ -48,9 +49,9 @@ export function FormsCard({ search, filterObjects }: FormsCardProps) {
         />
       </div>
       <Notice
-        headerTitle={i18n("words.attention")}
-        title={i18n("custom_forms.modal.title_already_exclude")}
-        text={i18n("custom_forms.modal.text_already_exclude")}
+        headerTitle={i18n("Words.attention")}
+        title={i18n("Screens.dashboard.forms.title_already_exclude")}
+        text={i18n("Screens.dashboard.forms.text_already_exclude")}
         onSubmit={handleToggleStatusForm}
         isShowModal={modal.type === "EXCLUDE"}
         onModal={handleToggleModal}

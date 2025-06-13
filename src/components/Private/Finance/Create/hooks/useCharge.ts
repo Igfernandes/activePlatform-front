@@ -1,7 +1,7 @@
 import { useFormRules } from "@hooks/Forms/useFormRules";
 import { ChargeSchema, ChargesPayload } from "../schemas";
 import { ClientShape } from "@type/Clients";
-import usePostCreateCharge from "@services/Charges/Post/usePostCreateClient";
+import usePostCreateCharge from "@services/Charges/Post/usePost";
 import { useRouter } from "next/router";
 import { privateRoutes } from "@configs/routes/Web/navigation";
 

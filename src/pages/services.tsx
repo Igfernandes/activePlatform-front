@@ -3,6 +3,7 @@ import { Header } from "@components/Public/External/Header";
 import { BoardCharge } from "@components/Public/Services/boards/Charge";
 import { BoardDefault } from "@components/Public/Services/boards/Default";
 import { ServicesPageProps } from "@components/Public/Services/types";
+import { Subscribe } from "@components/shared/layouts/Subscribe";
 import { When } from "@components/utilities/When";
 import i18n from "@configs/i18n";
 import { getServicePreview } from "@services/Services/GetPreview/SSR";
@@ -16,6 +17,7 @@ export default function Services({ service }: ServicesPageProps) {
   return (
     <div className="min-h-[100vh] flex flex-col justify-between">
       <div>
+        <Subscribe />
         <Script
           src="https://sdk.mercadopago.com/js/v2"
           strategy="afterInteractive"
@@ -53,7 +55,7 @@ export default function Services({ service }: ServicesPageProps) {
               <div className="contact">
                 <div>
                   <h4 className="font-semibold text-lg text-white">
-                    {i18n(`words.contact`)}
+                    {i18n(`Words.contact`)}
                   </h4>
                 </div>
                 <div>
@@ -73,7 +75,7 @@ export default function Services({ service }: ServicesPageProps) {
               <div className="address mt-2">
                 <div>
                   <h4 className="font-semibold text-lg text-white">
-                    {i18n(`words.address`)}
+                    {i18n(`Words.address`)}
                   </h4>
                 </div>
                 <div className="my-2">

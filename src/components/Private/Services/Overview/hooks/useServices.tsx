@@ -25,12 +25,12 @@ export function useServices({
   const { mutateAsync: deleteService } = useDeleteServices();
   const tHeadsServices = useRef<Array<string>>([
     "ID",
-    i18n("words.name"),
-    i18n("words.type"),
-    i18n("words.stock"),
-    i18n("words.status"),
-    i18n("words.data_initial"),
-    i18n("words.actions"),
+    i18n("Words.name"),
+    i18n("Words.type"),
+    i18n("Words.stock"),
+    i18n("Words.status"),
+    i18n("Words.data_initial"),
+    i18n("Words.actions"),
   ]);
 
   const updateUserForTable = ({
@@ -44,9 +44,9 @@ export function useServices({
     return {
       id,
       name,
-      type: i18n(`words.${type.toLowerCase()}`),
+      type: i18n(`Words.${type.toLowerCase()}`),
       stock,
-      status: i18n(`words.${status.toLowerCase()}`),
+      status: i18n(`Words.${status.toLowerCase()}`),
       created_at: dayjs(created_at).format(i18n("configs.formats.date")),
       actions: (
         <ServicesActions handleToggleModal={handleToggleModal} id={id} />

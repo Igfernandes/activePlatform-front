@@ -4,7 +4,7 @@ import i18n from "@configs/i18n";
 import { SelectorShape } from "@components/shared/layouts/Seletor/type";
 import { HookFinancesProps, TDataOperationsFailures } from "../../type";
 import { OperationFailureShape } from "@type/OperationsFailures";
-import useGetOperationsFailures from "@services/OperationsFailures/Get/useGetCharges";
+import useGetOperationsFailures from "@services/OperationsFailures/Get/useGet";
 import { OperationsFailuresActions } from "../OperationsFailuresActions";
 
 type Props = Pick<
@@ -21,11 +21,11 @@ export function useOperationsFailures({ filter, handleFilter }: Props) {
 
   const tHeadsOperationsFailures = useRef<Array<string>>([
     "ID",
-    i18n("words.operation_type"),
-    i18n("words.status"),
-    i18n("words.error_message"),
-    i18n("words.resolved_at"),
-    i18n("words.actions"),
+    i18n("Words.operation_type"),
+    i18n("Words.status"),
+    i18n("Words.error_message"),
+    i18n("Words.resolved_at"),
+    i18n("Words.actions"),
   ]);
   const updateOperationsFailuresForTable = ({
     id,
@@ -37,7 +37,7 @@ export function useOperationsFailures({ filter, handleFilter }: Props) {
     return {
       id,
       operation_type,
-      status: i18n(`words.${status.toLocaleLowerCase()}`),
+      status: i18n(`Words.${status.toLocaleLowerCase()}`),
       error: error_message,
       resolved_at: resolved_at,
       actions: <OperationsFailuresActions id={id} />,

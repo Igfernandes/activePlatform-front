@@ -24,7 +24,7 @@ export function TBody({ tHeads }: Props) {
         <tr>
           <td colSpan={tHeads.length}>
             <div className="text-center py-7">
-              <span className="text-zinc-500">{i18n(`words.not_found_register`)}</span>
+              <span className="text-zinc-500">{i18n(`Texts.not_found_register`)}</span>
             </div>
           </td>
         </tr>

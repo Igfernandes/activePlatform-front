@@ -26,7 +26,7 @@ export default function usePostRememberMe() {
 
       dispatchSnackbar({
         message: i18n("success.already_conecte_redirect"),
-        title: i18n("words.await"),
+        title: i18n("Words.await"),
         type: "notice",
       });
 

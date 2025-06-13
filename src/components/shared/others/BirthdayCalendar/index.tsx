@@ -24,7 +24,7 @@ export const BirthdayCalendar: React.FC<BirthdayCalendarProps> = ({
   return (
     <>
       <div className="relative z-0 h-[75vh] p-4 bg-white rounded-xl shadow">
-        <h2 className="text-2xl font-bold mb-4">{i18n("words.birthdays")}</h2>
+        <h2 className="text-2xl font-bold mb-4">{i18n("Words.birthdays")}</h2>
         <Calendar
           events={clientsBirthdays
             .filter((client) => client.birthdate)
@@ -34,7 +34,7 @@ export const BirthdayCalendar: React.FC<BirthdayCalendarProps> = ({
               const date = birth.year(thisYear);
 
               return {
-                title: i18n("words.see_list") + " 🎉🎂",
+                title: i18n("Words.see_list") + " 🎉🎂",
                 start: date.toDate(),
                 end: date.toDate(),
                 allDay: true,

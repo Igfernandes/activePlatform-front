@@ -3,7 +3,7 @@ import useGetCharges from "@services/Charges/Get/useGetCharges";
 import { ChargeShape } from "@type/Charges";
 import { useEffect, useState } from "react";
 import { financeCardsBoard } from "../../../../../data/finance/cardsBoard";
-import useGetPayments from "@services/Payments/Get/useGetCharges";
+import useGetPayments from "@services/Payments/Get/useGet";
 import { PaymentShape } from "@type/Payments";
 import dayjs from "dayjs";
 

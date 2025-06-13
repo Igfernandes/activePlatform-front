@@ -1,3 +1,4 @@
 export const notificationsRoutes = {
-  notifications: "/notifications/{id}"
+  notifications: "/notifications/{id}",
+  subscribe: "/notifications/subscribe",
 };

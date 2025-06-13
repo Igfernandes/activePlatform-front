@@ -5,9 +5,10 @@ import { ClientSchema, ClientUpdatePayload } from "../schemas";
 import { ClientCategoriesShape } from "@type/Clients/ClientCategories";
 import { useEffect, useState } from "react";
 import useGetCategories from "@services/Clients/Categories/Get/useGetCategories";
-import usePutClient from "@services/Clients/Put/usePostCreateClient";
+import usePutClient from "@services/Clients/Put/usePut";
 import { ClientShape } from "@type/Clients";
 import { useRouter } from "next/router";
+import i18n from "@configs/i18n";
 
 dayjs.extend(customParseFormat);
 
@@ -36,7 +37,7 @@ export function useClientModal({ client }: Props) {
       ...payload,
       id: client.id,
       birthdate: birthdate
-        ? dayjs(birthdate, "DD/MM/YYYY").format("YYYY-MM-DD")
+        ? dayjs(birthdate, i18n("Configs.format.date")).format("YYYY-MM-DD")
         : undefined,
     }).then(() => router.reload());
   };

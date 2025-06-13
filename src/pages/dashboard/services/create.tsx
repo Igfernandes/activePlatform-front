@@ -4,7 +4,7 @@ import i18n from "@configs/i18n";
 
 export default function ServicesCreate() {
   return (
-    <DashboardContainer title={i18n('words.new_service')}>
+    <DashboardContainer title={i18n('Words.new_service')}>
       <ServicesForm />
     </DashboardContainer>
   );

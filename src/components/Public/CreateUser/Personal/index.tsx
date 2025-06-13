@@ -16,7 +16,7 @@ export function Personal({ register, handleToggleStageForm, errors }: Props) {
       <div className="form-group my-6">
         <Input
           {...register("cpf")}
-          label={i18n("words.cpf")}
+          label={i18n("Words.cpf")}
           dataTestId="name"
           required={true}
           errors={errors.cpf}
@@ -25,7 +25,7 @@ export function Personal({ register, handleToggleStageForm, errors }: Props) {
       <div className="form-group my-6">
         <Input
           {...register("birthdate")}
-          label={i18n("words.birthdate")}
+          label={i18n("Words.birthdate")}
           dataTestId="name"
           required={true}
           type={"date"}
@@ -36,7 +36,7 @@ export function Personal({ register, handleToggleStageForm, errors }: Props) {
       <div className="form-group my-6">
         <Input
           {...register("keyword")}
-          label={i18n("words.keyword")}
+          label={i18n("Words.keyword")}
           dataTestId="keyword"
           required={true}
           errors={errors.keyword}
@@ -48,7 +48,7 @@ export function Personal({ register, handleToggleStageForm, errors }: Props) {
         <Button
           onClick={() => handleToggleStageForm("CREDENTIALS")}
           type="button"
-          text={i18n("words.proceed")}
+          text={i18n("Words.proceed")}
           className="bg-red text-white"
         />
       </div>

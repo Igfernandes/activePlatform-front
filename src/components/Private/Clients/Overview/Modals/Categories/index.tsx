@@ -21,10 +21,10 @@ export function ModalFormCategories({
           <div className="form-title mb-4">
             <h4 className="text-base text-justify lg:text-left xl:text-lg leading-6">
               <strong>
-                {i18n("clients.modal.category.text_create_category")}
+                {i18n("Screens.dashboard.clients.category.text_create_category")}
               </strong>
             </h4>
-            <span className="text-xs lg:text-base">{i18n("clients.modal.category.text_organized_items")}</span>
+            <span className="text-xs lg:text-base">{i18n("Screens.dashboard.clients.category.text_organized_items")}</span>
           </div>
           <GroupFields
             name="categories"
@@ -40,14 +40,14 @@ export function ModalFormCategories({
             <div>
               <Button
                 className="border-secondary border-2 px-4"
-                text={i18n("words.cancel")}
+                text={i18n("Words.cancel")}
                 onClick={() => onModal(false)}
               />
             </div>
             <div className="w-1/2 md:w-[30%] ml-2 md:ml-5">
               <Button
                 className="bg-red text-white"
-                text={i18n("words.save")}
+                text={i18n("Words.save")}
                 type="submit"
                 isLoading={isLoading}
               />

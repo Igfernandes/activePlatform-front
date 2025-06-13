@@ -19,7 +19,7 @@ export function StatusText({ status }: Props) {
         color: statusColors[status],
       }}
     >
-      {i18n(`words.${status.toLowerCase()}`)}
+      {i18n(`Words.${status.toLowerCase()}`)}
     </span>
   );
 }

@@ -22,13 +22,13 @@ export function ClientSharedModal({
         <form className="md:w-[424px]">
           <div className="form-title mb-4">
             <h4 className="text-sm md:text-lg">
-              <strong>{i18n("clients.modal.shared.text_insert_email")}</strong>
+              <strong>{i18n("Screens.dashboard.clients.client.text_insert_email")}</strong>
             </h4>
           </div>
           <div className="form-group">
             <Input
               {...register("email")}
-              label={i18n("words.email")}
+              label={i18n("Words.email")}
               dataTestId="email"
               required={true}
               errors={errors.email}
@@ -38,7 +38,7 @@ export function ClientSharedModal({
             <div className="form-title mt-6 mb-4">
               <h4 className="text-sm md:text-lg">
                 <strong>
-                  {i18n("clients.modal.shared.text_select_information")}
+                  {i18n("Screens.dashboard.clients.client.text_select_information")}
                 </strong>
               </h4>
             </div>
@@ -57,12 +57,12 @@ export function ClientSharedModal({
             <div>
               <Button
                 className="border-secondary border-2 px-4"
-                text={i18n("words.cancel")}
+                text={i18n("Words.cancel")}
                 onClick={() => onModal(false)}
               />
             </div>
             <div className="w-[25%] ml-5">
-              <Button className="bg-red text-white" text={i18n("words.save")} />
+              <Button className="bg-red text-white" text={i18n("Words.save")} />
             </div>
           </div>
         </form>

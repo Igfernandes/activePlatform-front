@@ -16,23 +16,23 @@ export function LimitAndReservationForm({ register, watch, errors }: Props) {
     <>
       <div className="my-3 lg:my-6 flex flex-wrap lg:flex-none">
         <div>
-          <p>{i18n(`services.has_limit_vacancies`)}</p>
+          <p>{i18n(`Screens.dashboard.services.has_limit_vacancies`)}</p>
         </div>
         <div className="flex mt-2 lg:mt-auto">
           <div className="mx-0 lg:mx-1">
             <Radio
               {...register("disabledLimitVacancies")}
               dataTestId="disabled_limit_vacancies_yes"
-              label={i18n(`words.yes`)}
-              value={i18n(`words.yes`)}
+              label={i18n(`Words.yes`)}
+              value={i18n(`Words.yes`)}
             />
           </div>
           <div className="mx-1">
             <Radio
               {...register("disabledLimitVacancies")}
               dataTestId="disabled_limit_vacancies_no"
-              label={i18n(`words.not`)}
-              value={i18n(`words.not`)}
+              label={i18n(`Words.not`)}
+              value={i18n(`Words.not`)}
             />
           </div>
         </div>
@@ -42,7 +42,7 @@ export function LimitAndReservationForm({ register, watch, errors }: Props) {
           {...register("stock")}
           type="number"
           dataTestId="limit_vacancies"
-          label={i18n("services.inform_limit_vacancies")}
+          label={i18n("Screens.dashboard.services.inform_limit_vacancies")}
           disabled={watch("disabledLimitVacancies") === "Não"}
           max={99999}
           className="line-clamp-1"
@@ -51,23 +51,23 @@ export function LimitAndReservationForm({ register, watch, errors }: Props) {
       </div>
       <div className="my-3 lg:my-6 flex flex-wrap lg:flex-none">
         <div>
-          <p>{i18n(`services.has_limit_reservation`)}</p>
+          <p>{i18n(`Screens.dashboard.services.has_limit_reservation`)}</p>
         </div>
         <div className="flex mt-2 lg:mt-auto">
           <div className="mx-0 lg:mx-1">
             <Radio
               {...register("disabledReservationVacancies")}
               dataTestId="disabled_reservation_vacancies_yes"
-              label={i18n(`words.yes`)}
-              value={i18n(`words.yes`)}
+              label={i18n(`Words.yes`)}
+              value={i18n(`Words.yes`)}
             />
           </div>
           <div className="mx-1">
             <Radio
               {...register("disabledReservationVacancies")}
               dataTestId="disabled_reservation_vacancies_no"
-              label={i18n(`words.not`)}
-              value={i18n(`words.not`)}
+              label={i18n(`Words.not`)}
+              value={i18n(`Words.not`)}
             />
           </div>
         </div>
@@ -77,7 +77,7 @@ export function LimitAndReservationForm({ register, watch, errors }: Props) {
           {...register("reservations")}
           type="number"
           dataTestId="reservation_vacancies"
-          label={i18n("services.inform_limit_reservation")}
+          label={i18n("Screens.dashboard.services.inform_limit_reservation")}
           disabled={watch("disabledReservationVacancies") === "Não"}
           max={99999}
           errors={errors.reservations}

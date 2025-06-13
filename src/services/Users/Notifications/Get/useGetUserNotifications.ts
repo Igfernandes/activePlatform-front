@@ -8,6 +8,8 @@ export default function useGetUserNotifications(
   const { getUserNotifications } = useGet();
 
   async function handle() {
+    if (!request.id ) return [];
+    
     const { data } = await getUserNotifications(request);
     return data ?? null;
   }

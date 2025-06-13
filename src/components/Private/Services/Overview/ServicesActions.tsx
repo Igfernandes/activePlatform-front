@@ -27,15 +27,15 @@ export function ServicesActions({ handleToggleModal, id }: Props) {
       <DotsOptions
         actions={[
           {
-            text: i18n("words.edit"),
+            text: i18n("Words.edit"),
             handle: () => router.push(`${services}/${id}`),
           },
           {
-            text: i18n("words.link_copy"),
+            text: i18n("Words.link_copy"),
             handle: () => handleCopy(`${baseUrl}/services?key=${id}`),
           },
           {
-            text: i18n("words.exclude"),
+            text: i18n("Words.exclude"),
             handle: () => handleToggleModal("DELETE", id),
           },
         ]}

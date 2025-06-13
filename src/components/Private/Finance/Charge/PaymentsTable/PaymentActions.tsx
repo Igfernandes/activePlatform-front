@@ -16,7 +16,7 @@ export function PaymentActions({ chargeId, paymentId }: Props) {
       <DotsOptions
         actions={[
           {
-            text: i18n("words.more_details"),
+            text: i18n("Words.more_details"),
             handle: () =>
               router.push(
                 privateRoutes.financePayments

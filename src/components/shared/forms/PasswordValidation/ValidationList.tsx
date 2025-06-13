@@ -20,7 +20,7 @@ export function ValidationList({
             color: statusColors[hasMinEightLetters],
           }}
         >
-          {i18n("errors.fields.has_min_eight_letters")}
+          {i18n("Validations.has_min_eight_letters")}
         </li>
         <li
           className={`text-xs`}
@@ -28,7 +28,7 @@ export function ValidationList({
             color: statusColors[hasUppercase],
           }}
         >
-          {i18n("errors.fields.has_min_one_uppercase")}
+          {i18n("Validations.has_min_one_uppercase")}
         </li>
         <li
           className={`${COLORS[hasLowercase]} text-xs`}
@@ -36,7 +36,7 @@ export function ValidationList({
             color: statusColors[hasLowercase],
           }}
         >
-          {i18n("errors.fields.has_min_one_lowercase")}
+          {i18n("Validations.has_min_one_lowercase")}
         </li>
         <li
           className={`text-xs`}
@@ -44,7 +44,7 @@ export function ValidationList({
             color: statusColors[hasNumber],
           }}
         >
-          {i18n("errors.fields.has_min_one_number")}
+          {i18n("Validations.has_min_one_number")}
         </li>
         <li
           className={`text-xs`}
@@ -52,7 +52,7 @@ export function ValidationList({
             color: statusColors[hasSpecialLetter],
           }}
         >
-          {i18n("errors.fields.has_min_one_special_character")}
+          {i18n("Validations.has_min_one_special_character")}
         </li>
       </ul>
     </div>

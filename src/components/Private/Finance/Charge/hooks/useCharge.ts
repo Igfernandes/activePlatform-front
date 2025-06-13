@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ClientShape } from "@type/Clients";
-import useGetClients from "@services/Clients/Get/useGetClients";
+import useGetClients from "@services/Clients/Get/useGet";
 import { ChargeShape } from "@type/Charges";
 import usePostChargeClients from "@services/Charges/Clients/Post/usePostChargeClients";
 import { useSnackbar } from "@hooks/useSnackbar";
@@ -23,7 +23,7 @@ export function useCharge({ charge }: Props) {
     if (clientsSelected.length < clients.length) {
       dispatchSnackbar({
         type: "notice",
-        message: i18n("words.await_sending"),
+        message: i18n("Words.await_sending"),
       });
     }
     await postChargeClients({

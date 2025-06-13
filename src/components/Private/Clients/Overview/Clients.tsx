@@ -39,11 +39,11 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
               actions: [
                 {
                   handle: () => handleToggleModal("SHARED"),
-                  text: i18n("words.data_shared"),
+                  text: i18n("Texts.data_shared"),
                 },
                 {
                   handle: () => handleToggleModal("CHANGE_CATEGORY"),
-                  text: i18n("words.category_alter"),
+                  text: i18n("Words.category_alter"),
                 },
                 {
                   handle: () =>
@@ -51,13 +51,13 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
                       "DELETE",
                       getSelectedClientsName(selectors)
                     ),
-                  text: i18n("words.exclude"),
+                  text: i18n("Words.exclude"),
                 },
               ],
               buttons: (
                 <Selector
                   value={"all"}
-                  label={i18n(`words.select_all`)}
+                  label={i18n(`Words.select_all`)}
                   textSize="text-[0px] md:text-lg"
                 />
               ),
@@ -68,7 +68,7 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
               },
             }}
             data={tDataClients}
-            title={i18n("words.clients")}
+            title={i18n("Words.clients")}
             excludes={["created_at", "updated_at"]}
             tHeads={{
               data: tHeadsClient.current,
@@ -80,15 +80,15 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
 
       <div>
         <ModalFormCategories
-          title={i18n("words.category")}
+          title={i18n("Words.category")}
           isShowModal={modal.type === "CATEGORY"}
           onModal={handleToggleModal}
           categories={categories}
         />
         <Notice
-          headerTitle={i18n("words.attention")}
-          title={i18n("clients.modal.client.title_already_exclude")}
-          text={i18n("clients.modal.client.text_already_exclude")}
+          headerTitle={i18n("Words.attention")}
+          title={i18n("Screens.dashboard.clients.client.title_already_exclude")}
+          text={i18n("Screens.dashboard.clients.client.text_already_exclude")}
           onSubmit={handleDeleteClient}
           isShowModal={modal.type === "DELETE"}
           onModal={handleToggleModal}
@@ -97,19 +97,19 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
         <ClientSharedModal
           isShowModal={modal.type === "SHARED"}
           onModal={handleToggleModal}
-          title={i18n("words.data_shared")}
+          title={i18n("Texts.data_shared")}
         />
         <ClientCategoriesModal
           isShowModal={modal.type === "CHANGE_CATEGORY"}
           onModal={handleToggleModal}
-          title={i18n("words.category_alter")}
+          title={i18n("Words.category_alter")}
           categories={categories}
           selectors={selectors}
         />
         <ClientCreateModal
           isShowModal={modal.type === "CLIENT"}
           onModal={handleToggleModal}
-          title={i18n("words.new_client")}
+          title={i18n("Words.new_client")}
           categories={categories ?? []}
         />
       </div>

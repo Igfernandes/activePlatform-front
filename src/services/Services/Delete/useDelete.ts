@@ -24,10 +24,9 @@ export default function useDeleteServices() {
 
   return useMutation({
     mutationFn: handleMutate,
-    onSuccess: () => {
+    onSuccess: ({ success }) => {
       dispatchSnackbar({
-        title: i18n("services.delete.success_title"),
-        message: i18n("services.delete.success_text"),
+        message: i18n(success),
         type: "success",
       });
 

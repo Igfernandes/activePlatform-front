@@ -21,7 +21,12 @@ export async function authenticationsMiddleware(
     const { data, status } = await getUserAuth(token_navigation.value);
 
     if (status === STATUS_SERVICE.NOT_FOUND) {
-      response.cookies.delete("token_navigation");
+      response.cookies.set("token_navigation", "", {
+        httpOnly: process.env.NODE_ENV === "production",
+        secure: process.env.NODE_ENV === "production",
+        expires: new Date(0), // Expira imediatamente
+        sameSite: "lax",
+      });
       return NextResponse.redirect(new URL(publicRoutes.login, req.url));
     }
 

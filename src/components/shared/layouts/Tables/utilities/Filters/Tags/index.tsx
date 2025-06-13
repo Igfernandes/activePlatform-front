@@ -23,7 +23,7 @@ export function Tags<TableData extends Array<Record<string, unknown>>>(
           onClick={() => handleChangeTargetTag("")}
         >
           <span className="uppercase font-semibold text-xs">
-            {`${i18n("words.all")} (${totalTags.current})`}{" "}
+            {`${i18n("Words.all")} (${totalTags.current})`}{" "}
           </span>
         </SwiperSlide>
         {tags.map((tag) => (

@@ -13,7 +13,7 @@ export function OptionsBar({ handleSearch }: Props) {
   return (
     <div className="flex justify-between flex-wrap md:flex-nowrap mb-6">
       <Search
-        label={i18n("words.research")}
+        label={i18n("Words.research")}
         dataTestId="users"
         handleSearch={handleSearch}
         className="w-full md:w-[45%] xl:w-[25%]"
@@ -22,7 +22,7 @@ export function OptionsBar({ handleSearch }: Props) {
         <div className="w-full md:w-auto mx-0 md:mx-2 mb-3 lg:my-0">
           <Button
             className="border border-zinc-300 px-3 font-bold rounded-xl bg-secondary text-primary"
-            text={i18n("words.register")}
+            text={i18n("Words.register")}
             type="button"
             onClick={() => handleToggleModal("CLIENT")}
           />
@@ -30,7 +30,7 @@ export function OptionsBar({ handleSearch }: Props) {
         <div className="w-full md:w-auto mx-0 lg:mx-2">
           <Button
             className="border border-zinc-300 px-3 font-bold rounded-xl"
-            text={i18n("words.category_manager")}
+            text={i18n("Words.category_manager")}
             type="button"
             onClick={() => handleToggleModal("CATEGORY")}
           />

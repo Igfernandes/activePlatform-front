@@ -12,7 +12,7 @@ export function OptionsBar({ handleSearch }: Props) {
     
     <div className="flex justify-between flex-wrap md:flex-nowrap mb-6">
       <Search
-        label={i18n("words.research")}
+        label={i18n("Words.research")}
         dataTestId="finances"
         handleSearch={handleSearch}
         className="w-full md:w-[45%] xl:w-[25%]"
@@ -24,7 +24,7 @@ export function OptionsBar({ handleSearch }: Props) {
             className="inline-block border border-zinc-300 px-3 py-3 font-bold rounded-xl"
             type="button"
           >
-            {i18n("words.generate_charge")}
+            {i18n("Words.generate_charge")}
           </Link>
         </div>
       </div>

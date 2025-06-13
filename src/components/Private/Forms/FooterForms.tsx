@@ -22,7 +22,7 @@ export function FooterForms({
     <div className="bg-white flex flex-wrap md:flex-auto items-center justify-between px-6 rounded-xl py-4 mt-6">
       <div>
         <span onClick={() => reset()} className="font-semibold cursor-pointer">
-          {i18n(`words.clean`)}
+          {i18n(`Words.clean`)}
         </span>
       </div>
       <div className="flex w-full md:w-auto mt-4 md:mt-auto">
@@ -30,7 +30,7 @@ export function FooterForms({
           <Button
             type="button"
             className="font-semibold border-2 border-zinc-300 px-2"
-            text={i18n("words.cancel")}
+            text={i18n("Words.cancel")}
             onClick={onPrevStep}
           />
         </div>
@@ -39,7 +39,7 @@ export function FooterForms({
             <Button
               type={"submit"}
               className="bg-red py-2 px-6 md:px-3 text-white"
-              text={i18n("words.save")}
+              text={i18n("Words.save")}
               rightIcon={<SquareRoundedChevronRight fill={"#fff"} />}
               onClick={onNextStep}
               isLoading={isLoading}
@@ -49,7 +49,7 @@ export function FooterForms({
             <Button
               type={"button"}
               className="bg-red py-2 px-3 text-white"
-              text={i18n("words.continue")}
+              text={i18n("Words.continue")}
               rightIcon={<SquareRoundedChevronRight fill={"#fff"} />}
               onClick={onNextStep}
               isLoading={isLoading}

@@ -14,7 +14,7 @@ export function useGeneralCalendar() {
         const date = birth.year(thisYear);
 
         return {
-          title: i18n("words.see_list") + " 🎉🎂",
+          title: i18n("Words.see_list") + " 🎉🎂",
           start: date.toDate(),
           end: date.toDate(),
           allDay: true,
@@ -32,7 +32,7 @@ export function useGeneralCalendar() {
         const date = serviceDate.year(thisYear);
 
         return {
-          title: i18n("words.event") + "🎉",
+          title: i18n("Words.event") + "🎉",
           start: date.toDate(),
           end: date.toDate(),
           allDay: true,
@@ -53,7 +53,7 @@ export function useGeneralCalendar() {
         const date = chargeDate.year(thisYear);
 
         return {
-          title: i18n("words.charge") + "🎉",
+          title: i18n("Words.charge") + "🎉",
           start: date.toDate(),
           end: date.toDate(),
           allDay: true,

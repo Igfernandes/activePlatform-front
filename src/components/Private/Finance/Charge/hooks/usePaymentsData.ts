@@ -1,7 +1,7 @@
 import { textColors } from "@assets/colors/colors";
 import { TimeLineChartDataShape } from "@components/shared/others/Graphics/TimeLineChart/type";
 import i18n from "@configs/i18n";
-import useGetPayments from "@services/Payments/Get/useGetCharges";
+import useGetPayments from "@services/Payments/Get/useGet";
 import { PaymentShape } from "@type/Payments";
 import { useCallback, useEffect, useState } from "react";
 
@@ -28,7 +28,7 @@ export function usePaymentsData({ chargeId }: Props) {
 
       paymentsByMonth.push({
         color: "",
-        label: i18n("words.pendent") as string,
+        label: i18n("Words.pendent") as string,
         value: 0,
         date: date,
       });
@@ -37,7 +37,7 @@ export function usePaymentsData({ chargeId }: Props) {
     payments.forEach((payment) => {
       paymentsByMonth.push({
         date: payment.created_at.split(" ")[0],
-        label: i18n(`words.${payment.status.toLocaleLowerCase()}`) as string,
+        label: i18n(`Words.${payment.status.toLocaleLowerCase()}`) as string,
         value: payment.paid_amount,
         color: statusColors[payment.status],
       });

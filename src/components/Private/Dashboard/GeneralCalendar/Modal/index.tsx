@@ -15,7 +15,7 @@ export function ModalScheduled({
 
   return (
     <Modal
-      title={i18n("words.month_events")}
+      title={i18n("Words.month_events")}
       isShowModal={modal.type === "SCHEDULED"}
       handleModal={handleToggleModal}
     >

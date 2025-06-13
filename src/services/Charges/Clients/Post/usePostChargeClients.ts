@@ -20,10 +20,9 @@ export default function usePostChargeClients() {
 
   return useMutation({
     mutationFn: handleMutate,
-    onSuccess: () => {
+    onSuccess: ({success}) => {
       dispatchSnackbar({
-        message: i18n("charges.clients.success_text"),
-        title: i18n("charges.clients.success_title"),
+        message: i18n(success),
         type: "success",
       });
       queryClient.invalidateQueries({

@@ -21,7 +21,7 @@ export function PaymentsTable({ payments, clients }: Props) {
           ID: payment.id,
           name: getClientName(clients, payment.client_id),
           paid_amount: getMoneyBrFormatted(payment.paid_amount),
-          status: i18n(`words.${payment.status.toLocaleLowerCase()}`),
+          status: i18n(`Words.${payment.status.toLocaleLowerCase()}`),
           bank: payment?.bank?.name,
           action: (
             <PaymentActions
@@ -35,7 +35,7 @@ export function PaymentsTable({ payments, clients }: Props) {
           data: tHeadsPayment.current,
           widths: [50, 200, 180, 100, 150, 30],
         }}
-        title={i18n("words.payments")}
+        title={i18n("Words.payments")}
       />
     </div>
   );

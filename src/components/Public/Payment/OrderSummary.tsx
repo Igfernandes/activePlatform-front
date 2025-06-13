@@ -35,12 +35,12 @@ export function OrderSummary({
     <div className="order-summary p-6 border-2 border-stone-200 rounded-lg ml-6">
       <div className="title mb-4">
         <h5>
-          <strong>{i18n("words.order_summary")}</strong>
+          <strong>{i18n("Words.order_summary")}</strong>
         </h5>
       </div>
       <div className="product-title flex items-center">
         <span className="text-xs uppercase font-semibold">
-          {i18n("words.products")}
+          {i18n("Words.products")}
         </span>{" "}
         <hr className="w-[80%] text-stone-300 ml-2" />
       </div>
@@ -65,7 +65,7 @@ export function OrderSummary({
               <div className="amount flex justify-between">
                 <div className="w-1/2">
                   <label htmlFor={`amounts.${index}`} className="text-xs">
-                    {i18n("words.amount")}
+                    {i18n("Words.amount")}
                   </label>
                 </div>
                 <div className="w-1/2 text-end">
@@ -95,7 +95,7 @@ export function OrderSummary({
 
       <div className="total flex justify-between pb-4 my-4 border-b-2 border-b-stone-200">
         <div className="title">
-          <span className="font-semibold">{i18n("words.total")}</span>
+          <span className="font-semibold">{i18n("Words.total")}</span>
         </div>
         <div className="text">
           <span className="font-semibold">
@@ -108,7 +108,7 @@ export function OrderSummary({
       </div>
       <div className="submit">
         <Button
-          text={i18n("words.continue")}
+          text={i18n("Words.continue")}
           type="submit"
           isLoading={isLoading}
           disabled={!hasAllFilledFields()}

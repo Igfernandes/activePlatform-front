@@ -16,11 +16,11 @@ export default function AlterPassword() {
           </div>
           <div className="mb-1">
             <h2 className="text-2xl">
-              <strong>{i18n("alter_password.title")}</strong>
+              <strong>{i18n("Screens.alter-password.title")}</strong>
             </h2>
           </div>
           <div className="mb-6">
-            <p className="text-sm">{i18n("alter_password.text")}</p>
+            <p className="text-sm">{i18n("Screens.alter-password.text")}</p>
           </div>
           <AlterPasswordForm />
         </div>

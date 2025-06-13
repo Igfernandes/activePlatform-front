@@ -4,7 +4,7 @@ import { HookProps, ModalUserOperationType, TDataInvite } from "../../type";
 import { ButtonConfig } from "@components/shared/others/ButtonConfig";
 import { useModalContext } from "@contexts/Modal";
 import { InvitesShape } from "../../../../../types/Invites";
-import useGetUsersInvite from "../../../../../services/Invites/Get/Users/useGetUsersInvite";
+import useGetUsersInvite from "../../../../../services/Invites/Get/Users/useGet";
 import dayjs from "dayjs";
 
 export function useInvites({ handleFilter, filter }: HookProps<InvitesShape>) {
@@ -16,11 +16,11 @@ export function useInvites({ handleFilter, filter }: HookProps<InvitesShape>) {
   >([]);
   const tHeadsInvite = useRef<Array<string>>([
     "ID",
-    i18n("words.email"),
-    i18n("words.is_valid"),
-    i18n("words.expired_at"),
-    i18n("words.created_at"),
-    i18n("words.actions"),
+    i18n("Words.email"),
+    i18n("Words.is_valid"),
+    i18n("Words.expired_at"),
+    i18n("Words.created_at"),
+    i18n("Words.actions"),
   ]);
 
   const updateInviteForTable = ({
@@ -40,18 +40,18 @@ export function useInvites({ handleFilter, filter }: HookProps<InvitesShape>) {
     return {
       id,
       email,
-      is_valid: is_valid ? i18n("words.yes") : i18n("words.not"),
+      is_valid: is_valid ? i18n("Words.yes") : i18n("Words.not"),
       expired_at: expiredAtDate != "Invalid Date" ? expiredAtDate : created_at,
       created_at: createdAtDate != "Invalid Date" ? createdAtDate : created_at,
       actions: (
         <ButtonConfig
           actions={[
             {
-              text: i18n("words.resend"),
+              text: i18n("Words.resend"),
               handle: () =>  handleToggleModal("RESEND_INVITE", id),
             },
             {
-              text: i18n("words.exclude"),
+              text: i18n("Words.exclude"),
               handle: () => handleToggleModal("DELETE_INVITE", id),
             },
           ]}

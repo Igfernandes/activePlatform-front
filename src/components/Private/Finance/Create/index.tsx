@@ -44,14 +44,14 @@ export function CreateCharge({
                   handleUpdateClients([]);
                 }}
               >
-                {i18n(`words.clean`)}
+                {i18n(`Words.clean`)}
               </span>
             </div>
             <div className="flex justify-end w-full">
               <div className="lg:ml-8 w-[47%] lg:w-auto">
                 <Button
                   className="p-3 border-[1px] border-secondary rounded-xl w-full"
-                  text={i18n(`words.cancel`)}
+                  text={i18n(`Words.cancel`)}
                   type="button"
                   onClick={() => router.push(privateRoutes.finance)}
                 />
@@ -59,7 +59,7 @@ export function CreateCharge({
               <div className="ml-4 w-[47%] lg:w-auto">
                 <Button
                   className="p-3 bg-red text-white rounded-xl w-full"
-                  text={true ? i18n(`words.save`) : i18n(`words.update`)}
+                  text={true ? i18n(`Words.save`) : i18n(`Words.update`)}
                   isLoading={isPending}
                 />
               </div>

@@ -18,27 +18,27 @@ export function FormBoard({ payment }: Pick<PaymentPreviewProps, "payment">) {
       <FormBoardHeader payment={payment} />
       <InfoBoard>
         <TSpan
-          text={i18n("words.operation_type")}
+          text={i18n("Words.operation_type")}
           dataTestId="operation_type"
           defaultValue={payment.operation_type}
         />
         <TSpan
-          text={i18n("words.order")}
+          text={i18n("Words.order")}
           dataTestId="order"
           defaultValue={payment?.order?.id}
         />
         <TSpan
-          text={i18n("words.status")}
+          text={i18n("Words.status")}
           dataTestId="status"
           defaultValue={payment.status}
         />
         <TSpan
-          text={i18n("words.status_detail")}
+          text={i18n("Words.status_detail")}
           dataTestId="status_detail"
           defaultValue={payment.status_detail}
         />
         <TSpan
-          text={i18n("words.amount")}
+          text={i18n("Words.amount")}
           dataTestId="amount"
           defaultValue={
             Array.isArray(additionalInfo) && additionalInfo[0]
@@ -47,74 +47,74 @@ export function FormBoard({ payment }: Pick<PaymentPreviewProps, "payment">) {
           }
         />
         <TSpan
-          text={i18n("words.ip_address_payer")}
+          text={i18n("Words.ip_address_payer")}
           dataTestId="ip_address_payer"
           defaultValue={payment?.additional_info?.ip_address}
         />
         <TSpan
-          text={i18n("words.taxes_amount")}
+          text={i18n("Words.taxes_amount")}
           dataTestId="taxes_amount"
           defaultValue={payment.taxes_amount}
         />
         <TSpan
-          text={i18n("words.payment_type")}
+          text={i18n("Words.payment_type")}
           dataTestId="payment_type"
           defaultValue={payment.payment_type ?? ""}
         />
         <TSpan
-          text={i18n("words.date_approved")}
+          text={i18n("Words.date_approved")}
           dataTestId="date_approved"
           defaultValue={payment.date_approved}
         />
         <TSpan
-          text={i18n("words.currency_type")}
+          text={i18n("Words.currency_type")}
           dataTestId="currency_id"
           defaultValue={payment.currency_id}
         />
         <TSpan
-          text={i18n("words.transaction_amount")}
+          text={i18n("Words.transaction_amount")}
           dataTestId="transaction_amount"
           defaultValue={payment.transaction_amount}
         />
         <TSpan
-          text={i18n("words.transaction_amount_refunded")}
+          text={i18n("Words.transaction_amount_refunded")}
           dataTestId="transaction_amount_refunded"
           defaultValue={payment.transaction_amount_refunded}
         />
         <TSpan
-          text={i18n("words.shipping_cost")}
+          text={i18n("Words.shipping_cost")}
           dataTestId="shipping_cost"
           defaultValue={payment.shipping_cost ?? 0}
         />
         <TSpan
-          text={i18n("words.total_paid_amount")}
+          text={i18n("Words.total_paid_amount")}
           dataTestId="total_paid_amount"
           defaultValue={payment.total_paid_amount ?? 0}
         />
         <TSpan
-          text={i18n("words.payer_name")}
+          text={i18n("Words.payer_name")}
           dataTestId="payer_name"
           defaultValue={`${payment.payer.first_name ?? ""} ${payment.payer.last_name ?? "--"}`}
         />
         <TSpan
           text={
-            payment.payer.identification?.type ?? i18n("words.identification")
+            payment.payer.identification?.type ?? i18n("Words.identification")
           }
           dataTestId="identification"
           defaultValue={payment.payer.identification?.number}
         />
         <TSpan
-          text={i18n("words.flag")}
+          text={i18n("Words.flag")}
           dataTestId="flag"
           defaultValue={payment.payment_method_id}
         />
         <TSpan
-          text={i18n("words.payment_method")}
+          text={i18n("Words.payment_method")}
           dataTestId="payment_method"
           defaultValue={payment.payment_type_id}
         />
         <TSpan
-          text={i18n("words.bank_tax")}
+          text={i18n("Words.bank_tax")}
           dataTestId="bank_tax"
           defaultValue={
             Array.isArray(chargesDetails) && chargesDetails[0]
@@ -123,7 +123,7 @@ export function FormBoard({ payment }: Pick<PaymentPreviewProps, "payment">) {
           }
         />
         <TSpan
-          text={i18n("words.bank_tax_refunded")}
+          text={i18n("Words.bank_tax_refunded")}
           dataTestId="bank_tax_refunded"
           defaultValue={
             Array.isArray(chargesDetails) && chargesDetails[0]

@@ -1,4 +1,4 @@
-import usePostCreateUsers from "@services/Users/Post/usePostCreateUsers";
+import usePostCreateUsers from "@services/Users/Post/usePost";
 import { createUserFormSchema, CreateUserPayload } from "../schemas";
 import { useFormRules } from "@hooks/Forms/useFormRules";
 import { useState } from "react";

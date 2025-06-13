@@ -24,10 +24,9 @@ export default function useDeleteCharges() {
 
   return useMutation({
     mutationFn: handleMutate,
-    onSuccess: () => {
+    onSuccess: ({ success }) => {
       dispatchSnackbar({
-        title: i18n("charges.delete.success_title"),
-        message: i18n("charges.delete.success_text"),
+        message: i18n(success),
         type: "success",
       });
 

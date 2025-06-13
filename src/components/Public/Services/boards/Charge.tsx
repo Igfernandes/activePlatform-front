@@ -12,7 +12,7 @@ export function BoardCharge({ charge }: Props) {
         <h3 className="text-2xl font-bold">{title}</h3>
       </div>
       <div className="Price mt-4 mb-2">
-        <p className="text-xs">{i18n("words.only_for")}</p>
+        <p className="text-xs">{i18n("Words.only_for")}</p>
         <p className="text-2xl mt-2">
           <When value={!promotional_price}>
             <strong>
@@ -44,12 +44,12 @@ export function BoardCharge({ charge }: Props) {
             className="bg-red text-white py-2 px-10 rounded-lg font-semibold"
             href={`/checkout/?charge=${reference}`}
           >
-            {i18n("words.make_payment")}
+            {i18n("Words.make_payment")}
           </a>
         </When>
         <When value={!!sold_out}>
           <span className="bg-disabled text-white py-2 px-10 rounded-lg font-semibold cursor-not-allowed">
-            {i18n("words.sold_out")}
+            {i18n("Words.sold_out")}
           </span>
         </When>
       </div>

@@ -1,12 +1,12 @@
 import { useFormRules } from "@hooks/Forms/useFormRules";
 import { GroupModalSchema, UsersGroupPayload } from "../schemas";
-import useGetPermissions from "../../../../../../services/Permissions/Get/useGetClients";
+import useGetPermissions from "../../../../../../services/Permissions/Get/useGet";
 import { useEffect, useState } from "react";
-import usePostCreateGroup from "../../../../../../services/Users/Groups/Post/usePostCreateGroup";
+import usePostCreateGroup from "../../../../../../services/Users/Groups/Post/usePost";
 import { PermissionsShape } from "../../../../../../types/Permissions";
 import { UsersGroupShape } from "../../../../../../types/Users/UsersGroup";
 import { useModalContext } from "@contexts/Modal";
-import useGetGroupsPermissions from "../../../../../../services/Permissions/Groups/Get/useGetClients";
+import useGetGroupsPermissions from "../../../../../../services/Permissions/Groups/Get/useGet";
 import usePutGroup from "../../../../../../services/Users/Groups/Put/usePutGroup";
 
 type Props = {

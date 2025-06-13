@@ -24,10 +24,9 @@ export default function useDeleteUsers() {
 
   return useMutation({
     mutationFn: handleMutate,
-    onSuccess: () => {
+    onSuccess: ({ success }) => {
       dispatchSnackbar({
-        title: i18n("users.modal.delete.success_title"),
-        message: i18n("users.modal.delete.success_text"),
+        message: i18n(success),
         type: "success",
       });
 

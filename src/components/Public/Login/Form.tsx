@@ -36,7 +36,7 @@ export function LoginForm() {
           <Password
             errors={errors.password}
             dataTestId="password"
-            label={i18n("words.password")}
+            label={i18n("Words.password")}
             {...register("password")}
           />
         </div>
@@ -46,7 +46,7 @@ export function LoginForm() {
               errors={errors.rememberMe}
               dataTestId="remember-me"
               {...register("rememberMe")}
-              label={i18n("words.remember_me")}
+              label={i18n("Screens.login.remember_me")}
               onChecked={updateValueRememberMe}
             />
           </div>
@@ -55,13 +55,13 @@ export function LoginForm() {
               href={forgotPassword}
               className="text-sm text-red relative top-[-3.5px]"
             >
-              <strong>{i18n("words.forgot_password")}</strong>
+              <strong>{i18n("Screens.login.forgot_password")}</strong>
             </Link>
           </div>
         </div>
         <div className="form-submit mt-6">
           <Button
-            text={i18n("words.send")}
+            text={i18n("Words.send")}
             type="submit"
             isLoading={isLoading || !recaptchaToken}
             disabled={!hasAllFilledFields()}

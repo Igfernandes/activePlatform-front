@@ -4,7 +4,7 @@ export function useSearch() {
   const [search, setSearch] = useState<string>("");
 
   const handleSearch = useCallback((words: string) => {
-    setSearch(words.toLowerCase());
+    setSearch(Words.toLowerCase());
   }, []);
 
   const filterObjects = <ObjectShape extends Record<string, unknown>>(

@@ -23,7 +23,7 @@ export function ChargeFeedback({ charges, date }: Props) {
         .map((charge) => (
           <li key={charge.id} className="bg-white px-2 rounded-md mb-2">
             <Link href={`${finance}/${charge.id}`}>
-              <span>{`${i18n("words.expired_charge")}: ${charge.title}`}</span>
+              <span>{`${i18n("Words.expired_charge")}: ${charge.title}`}</span>
             </Link>
           </li>
         ))}

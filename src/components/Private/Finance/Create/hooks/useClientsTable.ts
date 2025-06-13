@@ -4,11 +4,11 @@ import { useRef } from "react";
 export function useClientsTable() {
   const tHeadsClient = useRef<Array<string>>([
     "ID",
-    i18n("words.name"),
-    i18n("words.phone"),
-    i18n("words.email"),
-    i18n("words.category"),
-    i18n("words.actions"),
+    i18n("Words.name"),
+    i18n("Words.phone"),
+    i18n("Words.email"),
+    i18n("Words.category"),
+    i18n("Words.actions"),
   ]);
 
   return {

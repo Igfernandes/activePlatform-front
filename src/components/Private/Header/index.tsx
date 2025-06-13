@@ -12,13 +12,13 @@ type Props = {
   title?: string;
   handleSidebar: () => void;
   handleNotification: (isShow: boolean) => void;
-  notificationsAmount: number;
+  notificationsAmount: string;
 };
 
 export function Header({ handleSidebar, handleNotification, title, notificationsAmount }: Props) {
   const { screenType } = useWindow();
   const { userAuth } = useUserNavigationContext();
-  const welcomeMessage = i18n("words.welcome_message") as string;
+  const welcomeMessage = i18n("Words.welcome_message") as string;
   const route = useRouter();
   const isShowBackRoute = useRef(route.asPath.split("/").length > 3);
 
@@ -44,7 +44,7 @@ export function Header({ handleSidebar, handleNotification, title, notifications
                   className="mr-2 cursor-pointer"
                   onClick={() => route.back()}
                 />
-                {title ?? i18n("words.back_before_page")}
+                {title ?? i18n("Words.back_before_page")}
               </strong>
             </When>
           </h3>

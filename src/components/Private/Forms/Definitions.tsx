@@ -23,7 +23,7 @@ export function Definitions({ handleChangeFormFields }: Props) {
         <div className="form-group w-full">
           <Input
             {...register("name")}
-            label={i18n(`words.form_name`)}
+            label={i18n(`Words.form_name`)}
             dataTestId="form_name"
             required={true}
             errors={errors.name}
@@ -55,19 +55,19 @@ export function Definitions({ handleChangeFormFields }: Props) {
               handleChangeFormFields(JSON.parse(targetForm?.components));
             }}
             dataTestId="templates-forms"
-            label={i18n("words.templates")}
+            label={i18n("Words.templates")}
           />
         </When>
         <When value={forms.length == 0}>
           <span className="bg-disabled border-2 border-tertiary block p-4">
-            {i18n("words.not_found_templates")}
+            {i18n("Words.not_found_templates")}
           </span>
         </When>
       </div>
       <div className="form-group">
         <TextArea
           {...register("description")}
-          label={i18n("words.description")}
+          label={i18n("Words.description")}
           dataTestId="description"
           maxLength={200}
           errors={errors.description}

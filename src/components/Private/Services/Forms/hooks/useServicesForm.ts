@@ -1,10 +1,10 @@
 import { useFormRules } from "@hooks/Forms/useFormRules";
-import usePostCreateService from "../../../../../services/Services/Post/usePostCreateService";
+import usePostCreateService from "../../../../../services/Services/Post/usePost";
 
 import { useRouter } from "next/navigation";
 import { privateRoutes } from "@configs/routes/Web/navigation";
 import { ServicesModalSchema, ServicesPayload } from "../Schemas";
-import usePutService from "../../../../../services/Services/Put/usePutCreateClient";
+import usePutService from "../../../../../services/Services/Put/usePut";
 import { ServicesShape } from "../../../../../types/Services";
 
 type Props = {

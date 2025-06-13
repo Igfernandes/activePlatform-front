@@ -18,7 +18,7 @@ export function HeaderTab({ menus, activeMenu, onChangeTab }: Props) {
             }`}
             onClick={() => onChangeTab(menu)}
           >
-            {i18n(`words.${menu}`)}
+            {i18n(`Words.${menu}`)}
           </li>
         ))}
       </ul>

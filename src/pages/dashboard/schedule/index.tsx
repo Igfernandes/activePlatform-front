@@ -2,7 +2,7 @@ import { ScheduleCalendar } from "@components/Private/Schedule/Calendar";
 import { SchedulingModal } from "@components/Private/Schedule/Modals/Scheduling";
 import { OptionsBar } from "@components/Private/Schedule/OptionsBar";
 import { DashboardContainer } from "@components/shared/layouts/Dashboard";
-import useGetSchedules from "@services/Schedule/Get/useGetServices";
+import useGetSchedules from "@services/Schedule/Get/useGet";
 
 export default function Schedule() {
   const { data: schedules } = useGetSchedules();

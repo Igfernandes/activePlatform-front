@@ -18,7 +18,7 @@ export default function Checkout({ charge }: PaymentPageProps) {
         <Header />
         <div className="container max-w-[1100px] mx-auto my-12">
           <div className="title mb-6">
-            <h1 className="text-2xl font-bold">{i18n("words.checkout")}</h1>
+            <h1 className="text-2xl font-bold">{i18n("Words.checkout")}</h1>
           </div>
           <PaymentForm charge={charge} />
         </div>

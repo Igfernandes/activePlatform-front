@@ -91,7 +91,7 @@ export function Modal() {
                   handleChangeTab("settings");
                 }}
               >
-                {i18n(`words.remove`)}
+                {i18n(`Words.remove`)}
               </button>
               <button
                 onClick={(ev) => {
@@ -101,7 +101,7 @@ export function Modal() {
                 type="button"
                 className="bg-red border-2 border-red py-2 px-10 text-white rounded-md font-semibold"
               >
-                {i18n(`words.save`)}
+                {i18n(`Words.save`)}
               </button>
             </div>
           </div>

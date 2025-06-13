@@ -31,10 +31,9 @@ export function useAxios() {
    *
    * @returns {ShapeError} error
    */
-  function handleAxiosError(error: unknown, title?: string): ShapeError {
+  function handleAxiosError(error: unknown): ShapeError {
     const shapeError = {
-      title: i18n("errors.service.default.title") as string,
-      message: i18n("errors.service.default.message") as string,
+      message: i18n("Api.default.error") as string,
     };
     const typedError = error as CustomAxiosError;
 
@@ -46,14 +45,8 @@ export function useAxios() {
 
     const responseError = !!responseData && responseData.errors;
     if (responseError) {
-      shapeError["message"] = responseError as string;
+      shapeError["message"] = i18n(responseError) as string;
     }
-
-    if (title) {
-      shapeError["title"] = title;
-    }
-
-    if (status === 401) shapeError["title"] = i18n("words.feedback_auth");
 
     dispatchSnackbar({
       ...shapeError,

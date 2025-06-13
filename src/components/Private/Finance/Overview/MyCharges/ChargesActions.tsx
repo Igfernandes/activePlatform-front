@@ -23,11 +23,11 @@ export function ChargesActions({ handleToggleModal, id }: Props) {
       <DotsOptions
         actions={[
           {
-            text: i18n("words.edit"),
+            text: i18n("Words.edit"),
             handle: () => router.push(`${finance}/${id}`),
           },
           {
-            text: i18n("words.exclude"),
+            text: i18n("Words.exclude"),
             handle: () => handleToggleModal("DELETE", id),
           },
         ]}

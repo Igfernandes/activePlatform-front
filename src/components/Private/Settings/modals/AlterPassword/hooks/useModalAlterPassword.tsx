@@ -13,7 +13,7 @@ export function useModalAlterPassword({ handleModal }: Props) {
       schema: alterPasswordFormSchema,
     });
   const { userAuth } = useUserNavigationContext();
-  const { mutateAsync: patchPassword } = usePatchPasswordUsers();
+  const { mutateAsync: patchPassword, isPending: isLoading } = usePatchPasswordUsers();
 
   const submit = (payload: AlterPasswordPayload) => {
     patchPassword({ ...payload, id: userAuth?.id as number })
@@ -28,5 +28,6 @@ export function useModalAlterPassword({ handleModal }: Props) {
     handleSubmit,
     submit,
     errors,
+    isLoading
   };
 }

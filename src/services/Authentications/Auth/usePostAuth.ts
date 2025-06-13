@@ -29,8 +29,7 @@ export default function usePostAuth() {
       const data = res;
 
       dispatchSnackbar({
-        message: i18n("success.login.will_redirect"),
-        title: i18n("success.login.already_conecte"),
+        message: i18n(data.success),
         type: "success",
       });
 
@@ -47,7 +46,7 @@ export default function usePostAuth() {
       router.push(privateRoutes.dashboard);
     },
     onError: (err) => {
-      handleAxiosError(err, i18n("login.invalid.not_access_account"));
+      handleAxiosError(err);
     },
   });
 }

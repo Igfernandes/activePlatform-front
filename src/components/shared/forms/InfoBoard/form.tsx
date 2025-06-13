@@ -26,7 +26,7 @@ export function InfoBoard<Payload extends Record<string, unknown>>({
           <div className="form-submit w-full md:w-1/6 ml-auto mt-6">
             <Button
               type="submit"
-              text={i18n("words.save")}
+              text={i18n("Words.save")}
               className="bg-red text-white"
               isLoading={isLoading}
             />

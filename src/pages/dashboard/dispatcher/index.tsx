@@ -1,5 +1,5 @@
-import { MessagesDispatcherTable } from "@components/Private/Dispatcher/Overview/MessagesDispatcherTable";
-import { OptionsBar } from "@components/Private/Dispatcher/Overview/OptionsBar";
+import { MessagesDispatcherTable } from "@components/Private/Dispatchers/Overview/MessagesDispatcherTable";
+import { OptionsBar } from "@components/Private/Dispatchers/Overview/OptionsBar";
 import { useSearch } from "@components/shared/forms/Search/hooks/useSearch";
 import { DashboardContainer } from "@components/shared/layouts/Dashboard";
 

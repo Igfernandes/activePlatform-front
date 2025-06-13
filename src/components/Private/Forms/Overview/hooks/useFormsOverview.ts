@@ -3,7 +3,7 @@ import { FormsShape } from "../../../../../types/Forms";
 import { HookFormsProps } from "../../type";
 import useGetForms from "../../../../../services/CustomForms/Get/useGetForms";
 import { useModalContext } from "@contexts/Modal";
-import useDeleteForm from "@services/CustomForms/Delete/useDeleteForm";
+import useDeleteForm from "@services/CustomForms/Delete/useDelete";
 
 export function useFormsOverview({ handleFilter }: HookFormsProps<FormsShape>) {
   const [forms, setForms] = useState<FormsShape[]>([]);

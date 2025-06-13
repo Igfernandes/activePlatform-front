@@ -21,12 +21,12 @@ export function FilledFormsTable(props: Props) {
           actions: [
             {
               handle: () => handleToggleModal("SHARED"),
-              text: i18n("words.data_shared"),
+              text: i18n("Texts.data_shared"),
             },
           ]
         }}
         data={tDataFields}
-        title={i18n("words.registers")}
+        title={i18n("Words.registers")}
         tHeads={{
           data: tHeadsFields.current,
           widths: [60, 300, 100, 48],

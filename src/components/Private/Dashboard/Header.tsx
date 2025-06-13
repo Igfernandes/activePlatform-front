@@ -20,31 +20,31 @@ export function DashboardHeader({
       items={[
         {
           icon: <UserGroup fill="white" />,
-          title: i18n("words.clients"),
+          title: i18n("Words.clients"),
           value: String(clients?.length ?? 0).padStart(6, "0"),
         },
         {
           icon: <UsersManager fill="white" />,
           background: "bg-red",
-          title: i18n("words.users"),
+          title: i18n("Words.users"),
           value: String(users?.length ?? 0).padStart(6, "0"),
         },
         {
           icon: <Box fill="white" />,
           background: "bg-green",
-          title: i18n("words.services"),
+          title: i18n("Words.services"),
           value: String(services?.length ?? 0).padStart(6, "0"),
         },
         {
           icon: <Form fill="white" />,
           background: "bg-purple",
-          title: i18n("words.forms"),
+          title: i18n("Words.forms"),
           value: String(forms?.length ?? 0).padStart(6, "0"),
         },
         {
           icon: <Wallet fill="white" />,
           background: "bg-orange",
-          title: i18n("words.charges"),
+          title: i18n("Words.charges"),
           value: String(charges?.length ?? 0).padStart(6, "0"),
         },
       ]}

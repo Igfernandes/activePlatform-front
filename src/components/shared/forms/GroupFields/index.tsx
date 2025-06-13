@@ -26,7 +26,7 @@ export function GroupFields<Payload extends FieldValues>({
     <div>
       <div className="btn-add mb-4">
         <span className="text-red cursor-pointer" onClick={handleAddingItem}>
-          <strong>{i18n(`words.add`)}</strong>
+          <strong>{i18n(`Words.add`)}</strong>
         </span>
       </div>
       <div className="overflow-y-auto max-h-[160px] md:max-h-[40vh] hidden-scroll">

@@ -3,11 +3,11 @@ import { z } from "zod";
 
 export const UserSharedModalSchema = z.object({
   sectors: z.array(
-    z.number({ required_error: i18n("errors.fields.required") })
+    z.number({ required_error: i18n("Validations.required") })
   ),
   email: z
-    .string({ required_error: i18n("errors.fields.required") })
-    .email({ message: i18n("errors.fields.invalid_email") }),
+    .string({ required_error: i18n("Validations.required") })
+    .email({ message: i18n("Validations.email") }),
 });
 
 export type UserSharedPayload = z.infer<typeof UserSharedModalSchema>;

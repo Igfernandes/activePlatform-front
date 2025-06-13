@@ -8,7 +8,7 @@ export function Sort() {
 
   return (
     <div className="flex cursor-pointer" onClick={handleChangeSort}>
-      <p className="mr-2 hidden md:block">{i18n("words.list_from_a_to_z")}</p>
+      <p className="mr-2 hidden md:block">{i18n("Words.list_from_a_to_z")}</p>
       <ArrowDown
         className="mr-[-9px]"
         style={{

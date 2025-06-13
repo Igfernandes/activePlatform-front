@@ -17,7 +17,7 @@ export function ServiceFeedback({ services, date }: Props) {
         .map((service) => (
           <li key={service.id} className="bg-white px-2 rounded-md mb-2">
             <Link href={`${servicesRoute}/${service.id}`}>
-              <span>{`${i18n("words.event")}: ${
+              <span>{`${i18n("Words.event")}: ${
                 service.name
               }`}</span>
             </Link>

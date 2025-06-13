@@ -6,6 +6,6 @@ export const photoSchema = z.custom(
     return val instanceof FileList || !val;
   },
   {
-    message: i18n("errors.fields.image_valid"),
+    message: i18n("Validations.image_valid"),
   }
 );

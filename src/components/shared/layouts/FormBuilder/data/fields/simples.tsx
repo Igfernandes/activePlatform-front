@@ -1,5 +1,5 @@
-import { File } from "@components/shared/forms/File";
 import { Button } from "../../fields/Button";
+import { File } from "../../fields/File";
 import { Input } from "../../fields/Input";
 import { FieldShape } from "../../type";
 
@@ -69,7 +69,7 @@ export const fieldsSimple = {
       {...props}
     />
   ),
-  number: ({ className,...props }: FieldShape) => (
+  number: ({ className, ...props }: FieldShape) => (
     <Input
       type="number"
       className={`${classNameDefault} w-full ${className}`}

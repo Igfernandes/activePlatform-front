@@ -12,13 +12,13 @@ export function FormBoardHeader({ payment }: Props) {
       <div className="content flex justify-between">
         <div className="title mb-4">
           <h1 className=" text-xl">
-            <strong> {i18n("words.transaction")}</strong>: {payment.id}
+            <strong> {i18n("Words.transaction")}</strong>: {payment.id}
           </h1>
         </div>
         <div className="dates flex">
           <div className="created_at text-center text-xs mr-2">
             <div>
-              <span className="font-semibold">{i18n("words.created")}</span>
+              <span className="font-semibold">{i18n("Words.created")}</span>
             </div>
             <div>
               <span>{dayjs(payment.date_created).format("DD/MM/YYYY")}</span>
@@ -27,7 +27,7 @@ export function FormBoardHeader({ payment }: Props) {
           <div className="updated_at text-center text-xs ">
             <div className="border-l-2 border-l-slate-300 pl-2">
               <span className="font-semibold">
-                {i18n("words.last_updated")}
+                {i18n("Words.last_updated")}
               </span>
             </div>
             <div>

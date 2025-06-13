@@ -18,7 +18,7 @@ export function Definitions() {
     <div className="bg-white  py-4 px-6 rounded-xl mb-6">
       <div className="form-title mt-3 mb-5">
         <h3 className="text-xl">
-          <strong>{i18n("words.definitions")}</strong>
+          <strong>{i18n("Words.definitions")}</strong>
         </h3>
       </div>
       <div className="form-row flex flex-wrap mb-6 justify-between">
@@ -26,7 +26,7 @@ export function Definitions() {
           <Input
             {...register("title")}
             dataTestId="title"
-            label={i18n("words.charge_name")}
+            label={i18n("Words.charge_name")}
             errors={errors.title}
           />
         </div>
@@ -34,10 +34,10 @@ export function Definitions() {
           <Select
             {...register("service_id")}
             dataTestId="service"
-            label={`${i18n("words.service")} (${i18n("words.optional")})`}
+            label={`${i18n("Words.service")} (${i18n("Words.optional")})`}
             options={[
               {
-                text: i18n("words.select_service"),
+                text: i18n("Words.select_service"),
                 value: 0,
               },
               ...services.map((service) => ({
@@ -48,7 +48,7 @@ export function Definitions() {
             errors={errors.service_id}
           />
           <span className="text-xs text-red ml-2 block mt-1">
-            {i18n(`charges.about_name_and_service`)}
+            {i18n(`Screens.dashboard.finances.about_name_and_service`)}
           </span>
         </div>
       </div>
@@ -57,25 +57,25 @@ export function Definitions() {
           <Select
             {...register("privacy")}
             dataTestId="privacy"
-            label={i18n("words.privacy")}
+            label={i18n("Words.privacy")}
             options={["PUBLIC", "PRIVATE"].map((type) => ({
-              text: i18n(`words.${type.toLowerCase()}`),
+              text: i18n(`Words.${type.toLowerCase()}`),
               value: type,
             }))}
             required={true}
             errors={errors.privacy}
           />
           <span className="text-xs text-red ml-2 block mt-1">
-            {i18n(`charges.about_privacy_and_services`)}
+            {i18n(`Screens.dashboard.finances.about_privacy_and_services`)}
           </span>
         </div>
         <div className="form-group w-full lg:w-[48%]">
           <Select
             {...register("type")}
             dataTestId="type"
-            label={i18n("words.charge_type")}
+            label={i18n("Words.charge_type")}
             options={["APPELLANT", "PUNCTUAL"].map((type) => ({
-              text: i18n(`words.${type.toLowerCase()}`),
+              text: i18n(`Words.${type.toLowerCase()}`),
               value: type,
             }))}
             errors={errors.type}
@@ -90,12 +90,12 @@ export function Definitions() {
               dataTestId="period"
               type="number"
               min={1}
-              label={`${i18n("words.period")} (${i18n("words.months")})`}
+              label={`${i18n("Words.period")} (${i18n("Words.months")})`}
               errors={errors.type}
               required={true}
             />
             <span className="text-xs text-red ml-2 block mt-1">
-              {i18n(`charges.about_period`)}
+              {i18n(`Screens.dashboard.finances.about_period`)}
             </span>
           </div>
         </When>
@@ -105,7 +105,7 @@ export function Definitions() {
               {...register("amount")}
               type="number"
               dataTestId="amount"
-              label={`${i18n("words.charge_amount")}`}
+              label={`${i18n("Words.charge_amount")}`}
               min={1}
               required={true}
               errors={errors.amount}
@@ -119,7 +119,7 @@ export function Definitions() {
             placeholder=" "
             min="0"
             dataTestId="expired_days"
-            label={`${i18n("words.expired_days")} (${i18n("words.optional")})`}
+            label={`${i18n("Words.expired_days")} (${i18n("Words.optional")})`}
             errors={errors.expired_days}
           />
         </div>
@@ -132,7 +132,7 @@ export function Definitions() {
               dataTestId="started_at"
               type="datetime-local"
               placeholder=" "
-              label={`${i18n("words.started_at")}`}
+              label={`${i18n("Words.started_at")}`}
               errors={errors.type}
               required={true}
             />
@@ -144,7 +144,7 @@ export function Definitions() {
           <Input
             {...register("price")}
             dataTestId="price"
-            label={i18n("words.price")}
+            label={i18n("Words.price")}
             type="number"
             errors={errors.price}
           />
@@ -154,8 +154,8 @@ export function Definitions() {
             {...register("promotional_price")}
             dataTestId="promotional_price"
             errors={errors.promotional_price}
-            label={`${i18n("words.promotional_price")} (${i18n(
-              "words.optional"
+            label={`${i18n("Texts.promotional_price")} (${i18n(
+              "Words.optional"
             )})`}
             type="number"
           />

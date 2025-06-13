@@ -3,8 +3,8 @@ import { useRecaptcha } from "@hooks/useRecaptcha";
 import { paymentFormSchema, PaymentPayload } from "../schemas";
 import { useEffect, useState } from "react";
 import { useMercadoPago } from "@hooks/useMercadoPago";
-import useGetClientPreview from "@services/Clients/GetPreview/useGetClients";
-import usePostCheckout from "@services/Checkout/Post/usePostCreateClient";
+import useGetClientPreview from "@services/Clients/GetPreview/useGet";
+import usePostCheckout from "@services/Checkout/Post/usePost";
 import { useRouter } from "next/router";
 
 const RECAPTCHA_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_KEY;

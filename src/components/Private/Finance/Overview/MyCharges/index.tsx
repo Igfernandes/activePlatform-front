@@ -42,7 +42,7 @@ export function MyCharges({
               },
             }}
             data={tDataCharges}
-            title={i18n("words.my_charges")}
+            title={i18n("Words.my_charges")}
             excludes={["created_at", "updated_at"]}
             tHeads={{
               data: tHeadsFinance.current,
@@ -53,9 +53,9 @@ export function MyCharges({
       </div>
       <div className="relative z-10">
         <Notice
-          headerTitle={i18n("words.attention")}
-          title={i18n("charges.modal.title_already_exclude")}
-          text={i18n("charges.modal.text_already_exclude")}
+          headerTitle={i18n("Words.attention")}
+          title={i18n("Screens.dashboard.finances.title_already_exclude")}
+          text={i18n("Screens.dashboard.finances.text_already_exclude")}
           onSubmit={handleDeleteCharge}
           isShowModal={modal.type === "DELETE"}
           isLoading={isLoading}

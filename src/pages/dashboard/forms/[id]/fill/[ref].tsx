@@ -19,7 +19,7 @@ export default function FillField({ fields, form }: FieldsPageProps) {
     <DashboardContainer>
       <div className="bg-white">
         <div className="title p-4">
-          <h1 className="text-2xl font-semibold">{i18n('words.fill_register')}</h1>
+          <h1 className="text-2xl font-semibold">{i18n('Words.fill_register')}</h1>
         </div>
         <InfoBoard>
           {fieldsData.map(({ text, value }: FillFieldData, key) => (

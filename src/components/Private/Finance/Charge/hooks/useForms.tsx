@@ -4,7 +4,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 import { useState } from "react";
 import { ChargeUpdatePayload, ChargeUpdateSchema } from "../schemas";
 import useGetServices from "@services/Services/Get/useGetServices";
-import usePutCharge from "@services/Charges/Put/usePostCreateClient";
+import usePutCharge from "@services/Charges/Put/usePut";
 import { ChargeShape } from "@type/Charges";
 
 dayjs.extend(customParseFormat);
@@ -30,7 +30,6 @@ export function useForms({ charge }: Props) {
   const { mutateAsync: putCharges, isPending: isLoadingPutCharge } =
     usePutCharge();
 
-    console.log(errors)
   const submit = ({
     period,
     amount,

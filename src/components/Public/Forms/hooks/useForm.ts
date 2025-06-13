@@ -1,5 +1,5 @@
 import { useRecaptcha } from "@hooks/useRecaptcha";
-import usePostSubmitForm from "@services/Forms/Post/usePostSubmitForm";
+import usePostSubmitForm from "@services/Forms/Post/usePost";
 import { FormsShape } from "@type/Forms";
 import { FormEvent, useCallback } from "react";
 
@@ -31,9 +31,8 @@ export function useForm({ form }: Props) {
     return isValidForm;
   }, []);
 
-  const handleSubmit = (ev: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    handleLoaded();
 
     const formElement = ev.currentTarget as HTMLFormElement;
 
@@ -43,7 +42,7 @@ export function useForm({ form }: Props) {
 
     formData.append("g-recaptcha-response", token);
     formData.append("form_id", String(form.id));
-    handleLoaded().then(() => postSubmitForm(formData));
+    await handleLoaded().then(() => postSubmitForm(formData));
   };
   return {
     handleSubmit,

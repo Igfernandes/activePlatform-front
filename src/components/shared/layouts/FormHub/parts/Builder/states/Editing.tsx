@@ -80,7 +80,7 @@ export function FormBuilderEditing({
                           {
                             handle: () =>
                               deleteField({ id: field.id, scope: entityType }),
-                            text: i18n("words.exclude"),
+                            text: i18n("Words.exclude"),
                           },
                         ]}
                       />
@@ -95,7 +95,7 @@ export function FormBuilderEditing({
                   <Button
                     onClick={() => onModal(true)}
                     type="button"
-                    text={i18n("words.new_data")}
+                    text={i18n("Words.new_data")}
                     className="text-red font-bold"
                   />
                 </div>
@@ -105,14 +105,14 @@ export function FormBuilderEditing({
                   <Button
                     onClick={() => handleEdit("")}
                     type="button"
-                    text={i18n("words.cancel")}
+                    text={i18n("Words.cancel")}
                     className="border-secondary border-2 px-4"
                   />
                 </div>
                 <div className="w-[43%] lg:w-auto">
                   <Button
                     type="submit"
-                    text={i18n("words.save")}
+                    text={i18n("Words.save")}
                     className="bg-red text-white px-4"
                   />
                 </div>

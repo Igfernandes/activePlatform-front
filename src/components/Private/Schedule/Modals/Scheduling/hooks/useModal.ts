@@ -5,10 +5,10 @@ import { ScheduleSchema, ScheduleUpdatePayload } from "../schemas";
 import { useEffect, useState } from "react";
 import useGetUsers from "@services/Users/Get/useGetUsers";
 import { UsersShape } from "@type/Users";
-import usePostCreateSchedule from "@services/Schedule/Post/usePostService";
+import usePostCreateSchedule from "@services/Schedule/Post/usePost";
 import { useModalContext } from "@contexts/Modal";
-import usePutCreateSchedule from "@services/Schedule/Put/usePutService";
-import useDeleteSchedule from "@services/Schedule/Delete/useDeleteService";
+import usePutCreateSchedule from "@services/Schedule/Put/usePut";
+import useDeleteSchedule from "@services/Schedule/Delete/useDelete";
 
 dayjs.extend(customParseFormat);
 

@@ -24,7 +24,7 @@ export function DefinitionsForm({ service }: Props) {
         <Input
           {...register("name")}
           dataTestId="name"
-          label={i18n("words.service_name")}
+          label={i18n("Words.service_name")}
           required={true}
           errors={errors.name}
         />
@@ -34,14 +34,14 @@ export function DefinitionsForm({ service }: Props) {
           <Select
             {...register("type")}
             dataTestId="type"
-            label={i18n(`words.service_type`)}
+            label={i18n(`Words.service_type`)}
             options={[
               {
-                text: i18n("words.appellant"),
+                text: i18n("Words.appellant"),
                 value: "APPELLANT",
               },
               {
-                text: i18n("words.punctual"),
+                text: i18n("Words.punctual"),
                 value: "PUNCTUAL",
               },
             ]}
@@ -54,7 +54,7 @@ export function DefinitionsForm({ service }: Props) {
             {...register("expired_at")}
             dataTestId="expired_at"
             type="datetime-local"
-            label={i18n(`words.expired_at`)}
+            label={i18n(`Words.expired_at`)}
             errors={errors.expired_at}
           />
         </div>
@@ -65,7 +65,7 @@ export function DefinitionsForm({ service }: Props) {
             {...register("realized_at")}
             dataTestId="realized_at"
             type="datetime-local"
-            label={i18n(`words.realized_at`)}
+            label={i18n(`Words.realized_at`)}
             errors={errors.realized_at}
           />
         </div>
@@ -73,7 +73,7 @@ export function DefinitionsForm({ service }: Props) {
           <File
             {...register("photo")}
             dataTestId="service_image"
-            label={i18n(`words.service_image`)}
+            label={i18n(`Screens.dashboard.services.service_image`)}
             accept=".jpg,.jpge,.png"
             defaultValue={getFileName(service?.photo)}
             errors={errors.photo}
@@ -84,7 +84,7 @@ export function DefinitionsForm({ service }: Props) {
         <Input
           {...register("address")}
           dataTestId="address"
-          label={i18n(`words.address`)}
+          label={i18n(`Words.address`)}
           errors={errors.address}
         />
       </div>
@@ -92,7 +92,7 @@ export function DefinitionsForm({ service }: Props) {
         <TextEdit
           {...register("description")}
           dataTestId="describe"
-          label={i18n(`words.describe`)}
+          label={i18n(`Words.describe`)}
           defaultValue={getValues("description")}
           placeholder="Escreva detalhes sobre o passeio"
           errors={errors.description}

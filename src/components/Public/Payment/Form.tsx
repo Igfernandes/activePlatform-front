@@ -33,7 +33,7 @@ export function PaymentForm({ charge }: Props) {
               <Input
                 {...register("phone")}
                 dataTestId="phone"
-                label={i18n("words.phone")}
+                label={i18n("Words.phone")}
                 onChange={(ev) => {
                   handleMaskPhone(ev);
                   formMethods.setValue("phone", ev.currentTarget.value);
@@ -47,7 +47,7 @@ export function PaymentForm({ charge }: Props) {
               <Input
                 {...register("cpf")}
                 dataTestId="cpf"
-                label={i18n("words.cpf")}
+                label={i18n("Words.cpf")}
                 required={true}
                 errors={errors.cpf}
                 disabled={!hasFillPhone}
@@ -57,7 +57,7 @@ export function PaymentForm({ charge }: Props) {
               <Input
                 {...register("name")}
                 dataTestId="name"
-                label={i18n("words.name")}
+                label={i18n("Words.name")}
                 required={true}
                 errors={errors.name}
                 disabled={!hasFillPhone}
@@ -67,7 +67,7 @@ export function PaymentForm({ charge }: Props) {
               <Input
                 {...register("email")}
                 dataTestId="email"
-                label={i18n("words.email")}
+                label={i18n("Words.email")}
                 required={true}
                 errors={errors.email}
                 disabled={!hasFillPhone}

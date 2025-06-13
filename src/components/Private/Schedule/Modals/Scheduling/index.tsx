@@ -49,7 +49,7 @@ export function SchedulingModal({ schedules }: Props) {
 
   return (
     <Modal
-      title={i18n("words.new_scheduling")}
+      title={i18n("Words.new_scheduling")}
       isShowModal={modal.type === "SCHEDULE"}
       handleModal={handleToggleModal}
     >
@@ -59,7 +59,7 @@ export function SchedulingModal({ schedules }: Props) {
             <div className="form-group mb-4">
               <Input
                 {...register("title")}
-                label={i18n("words.title")}
+                label={i18n("Words.title")}
                 dataTestId="title"
                 errors={errors.title}
               />
@@ -67,7 +67,7 @@ export function SchedulingModal({ schedules }: Props) {
             <div className="form-group my-4">
               <Input
                 {...register("date")}
-                label={i18n("words.date")}
+                label={i18n("Words.date")}
                 dataTestId="date"
                 placeholder={i18n(`configs.formats.date`)}
                 type="datetime-local"
@@ -77,7 +77,7 @@ export function SchedulingModal({ schedules }: Props) {
             <div className="form-group my-4">
               <Input
                 {...register("end_date")}
-                label={i18n("words.until")}
+                label={i18n("Words.until")}
                 dataTestId="end_date"
                 type="datetime-local"
                 errors={errors.end_date}
@@ -94,7 +94,7 @@ export function SchedulingModal({ schedules }: Props) {
               <div className="form-group">
                 <Color
                   {...register("color")}
-                  label={i18n("words.color")}
+                  label={i18n("Words.color")}
                   dataTestId="color"
                   type="color"
                   errors={errors.color}
@@ -103,7 +103,7 @@ export function SchedulingModal({ schedules }: Props) {
             </div>
             <div className="form-title mt-6 mb-4">
               <h4 className="text-lg">
-                <strong>{i18n("words.list_linked_users")}</strong>
+                <strong>{i18n("Words.list_linked_users")}</strong>
               </h4>
             </div>
             <div className="form-group">
@@ -124,7 +124,7 @@ export function SchedulingModal({ schedules }: Props) {
                 <Button
                   type="button"
                   className="bg-primary border-tertiary  font-semibold border-2"
-                  text={i18n("words.exclude")}
+                  text={i18n("Words.exclude")}
                   onClick={handleDeleteSchedule}
                 />
               </div>
@@ -134,7 +134,7 @@ export function SchedulingModal({ schedules }: Props) {
                 <Button
                   type="submit"
                   className="bg-red text-white"
-                  text={i18n("words.save")}
+                  text={i18n("Words.save")}
                   isLoading={isLoading}
                 />
               </div>

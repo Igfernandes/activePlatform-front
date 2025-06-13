@@ -32,11 +32,11 @@ export function useMyCharges({
 
   const tHeadsFinance = useRef<Array<string>>([
     "ID",
-    i18n("words.name"),
-    i18n("words.type"),
-    i18n("words.status"),
-    i18n("words.clients_amount"),
-    i18n("words.actions"),
+    i18n("Words.name"),
+    i18n("Words.type"),
+    i18n("Words.status"),
+    i18n("Words.clients_amount"),
+    i18n("Words.actions"),
   ]);
 
   const updateChargeForTable = ({
@@ -50,14 +50,14 @@ export function useMyCharges({
     return {
       id,
       title,
-      type: i18n(`words.${type?.toLowerCase()}`),
+      type: i18n(`Words.${type?.toLowerCase()}`),
       status: (
         <span
           className={`font-semibold ${
             status === "ACTIVE" ? "text-emerald-600" : "text-red"
           }`}
         >
-          {i18n(`words.${status?.toLowerCase()}`)}
+          {i18n(`Words.${status?.toLowerCase()}`)}
         </span>
       ),
       clients: clients?.length ?? 0,

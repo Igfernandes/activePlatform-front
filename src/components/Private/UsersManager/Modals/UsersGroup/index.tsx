@@ -25,7 +25,7 @@ export function ModalFormUsersGroup({
 
   return (
     <Modal
-      title={i18n("words.user_group")}
+      title={i18n("Screens.dashboard.users.user_group")}
       isShowModal={isShowModal}
       handleModal={onModal}
     >
@@ -34,14 +34,14 @@ export function ModalFormUsersGroup({
           <div className="form-title mb-4">
             <h4 className="text-sm md:text-lg">
               <strong>
-                {i18n("manager_user.modal.group.text_insert_name")}
+                {i18n("Screens.dashboard.users.group.text_insert_name")}
               </strong>
             </h4>
           </div>
           <div className="form-group">
             <Input
               {...register("name")}
-              label={i18n("words.name")}
+              label={i18n("Words.name")}
               dataTestId="name"
               required={true}
               errors={errors.name}
@@ -50,7 +50,7 @@ export function ModalFormUsersGroup({
           <div className="form-title mt-6 mb-4">
             <h4 className="text-sm md:text-lg">
               <strong>
-                {i18n("manager_user.modal.group.text_select_permissions")}
+                {i18n("Screens.dashboard.users.group.text_select_permissions")}
               </strong>
             </h4>
           </div>
@@ -58,7 +58,7 @@ export function ModalFormUsersGroup({
             <GroupChecks<UsersGroupPayload>
               name="permissions"
               items={permissions.map((permission) => ({
-                label: i18n(`permissions.${permission.name}`) as string,
+                label: i18n(`Permissions.${permission.name}`) as string,
                 value: permission.id,
               }))}
               register={register}
@@ -68,7 +68,7 @@ export function ModalFormUsersGroup({
             <div>
               <Button
                 className="border-secondary border-2 px-4 w-1/2 md:w-auto"
-                text={i18n("words.cancel")}
+                text={i18n("Words.cancel")}
                 onClick={() => onModal(false)}
               />
             </div>
@@ -77,7 +77,7 @@ export function ModalFormUsersGroup({
                 type="submit"
                 isLoading={isLoading}
                 className="bg-red text-white"
-                text={i18n("words.save")}
+                text={i18n("Words.save")}
               />
             </div>
           </div>

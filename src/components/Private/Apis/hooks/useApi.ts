@@ -1,5 +1,5 @@
 import { useModalContext } from "@contexts/Modal";
-import useGetIntegrations from "@services/Integrations/Get/useGetIntegrations";
+import useGetIntegrations from "@services/Integrations/Get/useGet";
 import { IntegrationShape } from "@type/Integrations";
 import { useEffect, useState } from "react";
 

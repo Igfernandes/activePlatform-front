@@ -47,7 +47,7 @@ export function ClientsModal({
 
   return (
     <Modal
-      title={i18n("words.clients_add")}
+      title={i18n("Texts.clients_add")}
       isShowModal={modal.type == "ADD_CLIENT"}
       handleModal={handleToggleModal}
     >
@@ -55,7 +55,7 @@ export function ClientsModal({
         <form onSubmit={handleSubmit(submit)}>
           <div className="w-full">
             <Search
-              label={i18n("words.research")}
+              label={i18n("Words.research")}
               dataTestId="users"
               handleSearch={handleSearch}
               className="w-full"
@@ -65,7 +65,7 @@ export function ClientsModal({
             <Select
               {...register("category")}
               dataTestId="categories"
-              label={i18n("words.categories")}
+              label={i18n("Words.categories")}
               options={[
                 {
                   text: "--",
@@ -82,7 +82,7 @@ export function ClientsModal({
             <div className="form-title mt-6 mb-4">
               <h4 className="text-sm md:text-lg md:w-[400px]">
                 <strong className="mr-2">
-                  {i18n("clients.modal.add_clients_text")}:
+                  {i18n("Components.clients_table.add_clients_text")}:
                 </strong>
               </h4>
             </div>
@@ -98,7 +98,7 @@ export function ClientsModal({
           <div>
             <Button
               type="submit"
-              text={i18n("words.save")}
+              text={i18n("Words.save")}
               className="bg-red text-white"
             />
           </div>

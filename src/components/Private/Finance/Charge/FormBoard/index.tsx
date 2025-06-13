@@ -30,14 +30,14 @@ export function FormBoard({ charge }: Props) {
         isLoading={isLoadingPutCharge}
       >
         <TInput
-          label={i18n("words.name")}
+          label={i18n("Words.name")}
           name={"title"}
           dataTestId="title"
           errors={errors.title}
           defaultValue={charge.title}
         />
         <TSelect
-          label={i18n("words.service")}
+          label={i18n("Words.service")}
           name={"service"}
           dataTestId="service"
           options={
@@ -51,7 +51,7 @@ export function FormBoard({ charge }: Props) {
         />
         <When value={charge.type === "APPELLANT"}>
           <TInput
-            label={i18n("words.period")}
+            label={i18n("Words.period")}
             name={"period"}
             dataTestId="period"
             errors={errors.period}
@@ -59,7 +59,7 @@ export function FormBoard({ charge }: Props) {
             type="number"
           />
           <TInput
-            label={i18n("words.started_at")}
+            label={i18n("Words.started_at")}
             name={"started_at"}
             dataTestId="started_at"
             errors={errors.started_at}
@@ -69,7 +69,7 @@ export function FormBoard({ charge }: Props) {
         </When>
         <When value={charge.type !== "APPELLANT"}>
           <TInput
-            label={i18n("words.amount")}
+            label={i18n("Words.amount")}
             name={"amount"}
             dataTestId="amount"
             errors={errors.amount}
@@ -78,7 +78,7 @@ export function FormBoard({ charge }: Props) {
           />
         </When>
         <TInput
-          label={i18n("words.price")}
+          label={i18n("Words.price")}
           name={"price"}
           dataTestId="price"
           errors={errors.price}
@@ -86,7 +86,7 @@ export function FormBoard({ charge }: Props) {
           type="number"
         />
         <TInput
-          label={i18n("words.promotional_price")}
+          label={i18n("Texts.promotional_price")}
           name={"promotional_price"}
           dataTestId="promotional_price"
           errors={errors.promotional_price}
@@ -94,7 +94,7 @@ export function FormBoard({ charge }: Props) {
           type="number"
         />
         <TInput
-          label={i18n("words.expired_days")}
+          label={i18n("Words.expired_days")}
           name={"expired_days"}
           dataTestId="expired_days"
           className="bg-white"

@@ -18,12 +18,12 @@ export function useUsers({ handleFilter, filter }: HookProps<UsersShape>) {
 
   const tHeadsUser = useRef<Array<string>>([
     "ID",
-    i18n("words.name"),
-    i18n("words.email"),
-    i18n("words.phone"),
-    i18n("words.group"),
-    i18n("words.status"),
-    i18n("words.actions"),
+    i18n("Words.name"),
+    i18n("Words.email"),
+    i18n("Words.phone"),
+    i18n("Words.group"),
+    i18n("Words.status"),
+    i18n("Words.actions"),
   ]);
 
   const updateUserForTable = ({
@@ -48,11 +48,11 @@ export function useUsers({ handleFilter, filter }: HookProps<UsersShape>) {
         <ButtonConfig
           actions={[
             {
-              text: i18n("words.edit"),
+              text: i18n("Words.edit"),
               handle: () => handleToggleModal("DEFAULT_USER", id),
             },
             {
-              text: i18n(`words.${status == "ACTIVE" ? "desative" : "ative"}`),
+              text: i18n(`Words.${status == "ACTIVE" ? "desative" : "ative"}`),
               handle: () =>
                 handleToggleModal(
                   status == "ACTIVE" ? "DESATIVE_USER" : "ACTIVE_USER",
@@ -60,7 +60,7 @@ export function useUsers({ handleFilter, filter }: HookProps<UsersShape>) {
                 ),
             },
             {
-              text: i18n("words.exclude"),
+              text: i18n("Words.exclude"),
               handle: () => handleToggleModal("DELETE_USER", id),
             },
           ]}
