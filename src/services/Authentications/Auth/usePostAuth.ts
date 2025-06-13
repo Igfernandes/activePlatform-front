@@ -45,7 +45,7 @@ export default function usePostAuth() {
 
       setTimeout(() => {
         router.push(privateRoutes.dashboard);
-      }, 600)
+      }, 1000);
     },
     onError: (err) => {
       handleAxiosError(err);

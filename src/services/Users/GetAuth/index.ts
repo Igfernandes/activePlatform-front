@@ -6,12 +6,8 @@ export default function useGetAuth() {
   const { users } = API_ROUTES;
   const { axios } = useAxios();
 
-  async function getUser(tokenNavigation: string) {
-    return axios.get<UsersShape>(`${users}/?current=true`, {
-      headers: {
-        Authorization: `Bearer ${tokenNavigation}`,
-      },
-    });
+  async function getUser() {
+    return axios.get<UsersShape>(`${users}/?current=true`);
   }
 
   return {
