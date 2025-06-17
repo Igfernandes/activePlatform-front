@@ -110,7 +110,7 @@ export function Definitions({ handleChangeFormFields }: Props) {
           {...register("description")}
           label={i18n("Words.description")}
           dataTestId="description"
-          maxLength={200}
+          maxLength={800}
           errors={errors.description}
         />
       </div>

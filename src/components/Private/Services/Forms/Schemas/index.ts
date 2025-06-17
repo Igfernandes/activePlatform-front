@@ -7,6 +7,7 @@ export const ServicesModalSchema = z
   .object({
     name: nameSchema,
     description: descriptionSchema,
+    alerts: descriptionSchema,
     stock: z.string(),
     expired_at: z.string().optional().nullable(),
     realized_at: z.string().optional().nullable(),
@@ -14,7 +15,6 @@ export const ServicesModalSchema = z
     status: z.enum(["ACTIVE", "INACTIVE"]),
     disabledLimitVacancies: z.enum(["Sim", "Não"]),
     photo: photoSchema.optional(),
-    hasContinueRegister: z.boolean().optional().default(false),
   })
   .superRefine((data, ctx) => {
     const stock = parseInt(data.stock);

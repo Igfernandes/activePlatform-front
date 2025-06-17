@@ -1,5 +1,5 @@
-import { OptionsBar } from "@components/Private/Events/Overview/OptionsBar";
-import { ServicesTable } from "@components/Private/Events/Overview/ServicesTable";
+import { OptionsBar } from "@components/Private/Services/Overview/OptionsBar";
+import { ServicesTable } from "@components/Private/Services/Overview/ServicesTable";
 import { useSearch } from "@components/shared/forms/Search/hooks/useSearch";
 import { DashboardContainer } from "@components/shared/layouts/Dashboard";
 

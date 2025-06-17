@@ -1,20 +1,21 @@
 import { useAxios } from "@hooks/useAxios";
 import { getPayloadJSON } from "@helpers/payload";
-import { PutFormPayload } from "./type";
+import { PostClientsServicesPayload } from "./type";
 import { API_ROUTES } from "@configs/routes/Api/api";
 import { useRoutes } from "@hooks/useRoutes";
 
-export function usePutFormService() {
+export function usePostClientsServicesService() {
   const { axios } = useAxios();
-  const { forms } = API_ROUTES;
+  const { clientsServices } = API_ROUTES;
   const { setParams } = useRoutes();
 
-  async function putForm({ id, ...payload }: PutFormPayload) {
-    return axios.put(
+  async function post({ serviceId, ...payload }: PostClientsServicesPayload) {
+    return axios.post(
       setParams({
-        url: forms,
+        url: clientsServices,
         data: {
-          id,
+          id: "",
+          serviceId,
         },
       }),
       getPayloadJSON(payload)
@@ -22,6 +23,6 @@ export function usePutFormService() {
   }
 
   return {
-    putForm,
+    post,
   };
 }

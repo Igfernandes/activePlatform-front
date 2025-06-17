@@ -5,6 +5,7 @@ export type ServicesShape = {
   name: string;
   photo: string;
   description?: string;
+  alerts?: string;
   stock: number;
   status: "ACTIVE" | "INACTIVE";
   address?: string;
@@ -15,7 +16,13 @@ export type ServicesShape = {
 };
 export type ServicePreviewShape = Pick<
   ServicesShape,
-  "name" | "description" | "photo" | "stock" | "address" | "expired_at" | "realized_at"
+  | "name"
+  | "description"
+  | "photo"
+  | "stock"
+  | "address"
+  | "expired_at"
+  | "realized_at"
 > & {
   title: string;
   form: {

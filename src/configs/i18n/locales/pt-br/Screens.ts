@@ -76,6 +76,9 @@ export const Screens = {
       has_limit_reservation: "Será possível aderir a vagas de reserva?",
       inform_limit_reservation: "Informe o limite máximo de reserva",
       service_image: "Adicione uma imagem ao serviço:",
+      text_alert_about_alerts_inscribes:
+        "Escreva detalhes avisos para os inscritos",
+      inscribes_alert: "Avisos para os inscritos",
     },
     users: {
       create_user_groups: "Criar grupos de usuários",

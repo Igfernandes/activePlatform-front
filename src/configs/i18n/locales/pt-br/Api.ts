@@ -63,6 +63,11 @@ export const Api = {
         message_id: "O conteúdo do envio encontra-se inválido",
       },
     },
+    services: {
+      success: {
+        post: "O(s) cliente(s) foi(ram) inscrito(s) com sucesso!",
+      },
+    },
     fields: {
       success: {
         post: "O campo foi criado com sucesso!",

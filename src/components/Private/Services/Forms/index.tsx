@@ -17,6 +17,10 @@ import useWindow from "@hooks/useWindow";
 import { ToggleSwitch } from "@components/shared/forms/ToggleSwitch";
 import { Input } from "@components/shared/forms/Input";
 import { Radio } from "@components/shared/forms/Radio";
+import { ClientsModal } from "@components/shared/others/ClientsTable/modals/ClientsModal";
+import { useInscribeService } from "./hooks/useInscribeService";
+import { InscribesTable } from "./InscribesTable";
+import { TextEdit } from "@components/shared/forms/TextEdit";
 
 type Props = {
   service?: ServicesShape;
@@ -25,9 +29,13 @@ type Props = {
 export function ServicesForm({ service }: Props) {
   const { formMethods, register, handleSubmit, submit, errors, isLoading } =
     useServicesForm({ service });
+  const { clients, clientsSelected, handleInscribes } = useInscribeService({
+    service,
+    stock: formMethods.watch("stock"),
+  });
   const router = useRouter();
   const { handleCleanForm, handleUpdateForm } = useStateFields({ formMethods });
-  const { watch, setValue } = formMethods;
+  const { watch, setValue, getValues } = formMethods;
   const { handleCopy } = useNavigator();
   const { baseUrl } = useWindow();
 
@@ -80,12 +88,12 @@ export function ServicesForm({ service }: Props) {
             </div>
             <When value={!!service}>
               <div
-                className="px-4 pt-5 shadow-md rounded-md cursor-pointer ml-2"
+                className="px-4 py-2 shadow-md rounded-md cursor-pointer ml-2"
                 onClick={() =>
                   handleCopy(`${baseUrl}/services?key=${service?.id}`)
                 }
               >
-                <FloppyDisk />
+                <FloppyDisk className="hover:fill-red" />
               </div>
             </When>
           </div>
@@ -140,6 +148,25 @@ export function ServicesForm({ service }: Props) {
                   errors={errors.stock}
                 />
               </div>
+              <div className="form-row mt-6">
+                <TextEdit
+                  {...register("alerts")}
+                  dataTestId="alerts"
+                  label={i18n(`Screens.dashboard.services.inscribes_alert`)}
+                  defaultValue={getValues("alerts")}
+                  placeholder={i18n('Screens.dashboard.services.text_alert_about_alerts_inscribes')}
+                  errors={errors.alerts}
+                />
+              </div>
+              <When value={!!service}>
+                <div className="my-10">
+                  <InscribesTable
+                    title={i18n("Words.inscribes")}
+                    clientsSelected={clientsSelected}
+                    handleUpdateClients={handleInscribes}
+                  />
+                </div>
+              </When>
               <div className="flex flex-wrap lg:flex-none justify-between mt-12 items-center relative">
                 <When value={!service}>
                   <div className="w-full lg:w-auto mb-4 lg:mb-auto">
@@ -178,6 +205,11 @@ export function ServicesForm({ service }: Props) {
               </div>
             </form>
           </FormProvider>
+          <ClientsModal
+            clients={clients}
+            clientsSelected={clientsSelected}
+            handleAddClients={handleInscribes}
+          />
         </div>
       </div>
     </>

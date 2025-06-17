@@ -2,8 +2,8 @@ import { GetServerSideProps } from "next";
 import { privateRoutes } from "@configs/routes/Web/navigation";
 import i18n from "@configs/i18n";
 import { DashboardContainer } from "@components/shared/layouts/Dashboard";
-import { ServicePageProps } from "@components/Private/Events/Forms/type";
-import { ServicesForm } from "@components/Private/Events/Forms";
+import { ServicePageProps } from "@components/Private/Services/Forms/type";
+import { ServicesForm } from "@components/Private/Services/Forms";
 import { getServices } from "../../../services/Services/Get/SSR";
 
 export default function UserProfile({ targetService }: ServicePageProps) {

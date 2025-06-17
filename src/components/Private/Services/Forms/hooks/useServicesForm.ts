@@ -37,10 +37,7 @@ export function useServicesForm({ service }: Props) {
 
     if (!service) {
       postService(payload).then(() => {
-        const hasContinueRegister = formMethods.getValues(
-          "hasContinueRegister"
-        );
-        if (!hasContinueRegister) router.push(services);
+        router.push(services);
       });
     } else {
       formMethods.setValue("stock", String(payload.stock));

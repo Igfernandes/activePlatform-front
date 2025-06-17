@@ -22,6 +22,7 @@ export function useStateFields({ formMethods }: Props) {
     setValue("description", service.description);
     setValue("name", service.name);
     setValue("description", service.description);
+    setValue("alerts", service.alerts);
     setValue("status", service.status);
     setValue("address", service.address);
     setValue("expired_at", service.expired_at);

@@ -10,11 +10,16 @@ export default function useGet() {
   const { setParams, setQueries } = useRoutes();
 
   async function getForms(request?: GetFormsRequest) {
-    const { ...query } = request ?? {};
+    const { id, ...query } = request ?? {};
 
     return await axios.get<FormsShape[]>(
       setQueries({
-        url: setParams({ url: forms }),
+        url: setParams({
+          url: forms,
+          data: {
+            id,
+          },
+        }),
         query,
       })
     );

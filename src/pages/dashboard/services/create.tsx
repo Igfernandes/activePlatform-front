@@ -1,4 +1,4 @@
-import { ServicesForm } from "@components/Private/Events/Forms";
+import { ServicesForm } from "@components/Private/Services/Forms";
 import { DashboardContainer } from "@components/shared/layouts/Dashboard";
 import i18n from "@configs/i18n";
 
