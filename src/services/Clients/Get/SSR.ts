@@ -11,7 +11,7 @@ export async function getClients(
   const query = request ?? {};
 
   const { clients } = API_ROUTES;
-  const { data } = await axios.get<string>(
+  const { data } = await axios.get<ClientShape[] | ClientShape>(
     setQueries({
       url: clients,
       query,
@@ -23,5 +23,5 @@ export async function getClients(
     }
   );
 
-  return JSON.parse(data);
+  return data;
 }

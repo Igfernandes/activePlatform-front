@@ -7,6 +7,7 @@ import { useUserNavigationContext } from "@contexts/UserNavigation";
 import useWindow from "@hooks/useWindow";
 import { useRouter } from "next/router";
 import { useRef } from "react";
+import { Flags } from "../../shared/layouts/Flags";
 
 type Props = {
   title?: string;
@@ -15,7 +16,12 @@ type Props = {
   notificationsAmount: string;
 };
 
-export function Header({ handleSidebar, handleNotification, title, notificationsAmount }: Props) {
+export function Header({
+  handleSidebar,
+  handleNotification,
+  title,
+  notificationsAmount,
+}: Props) {
   const { screenType } = useWindow();
   const { userAuth } = useUserNavigationContext();
   const welcomeMessage = i18n("Words.welcome_message") as string;
@@ -49,15 +55,20 @@ export function Header({ handleSidebar, handleNotification, title, notifications
             </When>
           </h3>
         </div>
-        <div>
-          <div
-            className="relative bg-tertiary rounded-sm cursor-pointer"
-            onClick={() => handleNotification(true)}
-          >
-            <span className="bg-red px-1 pt-[3px] w-5 h-[19px] text-center rounded-xl text-[10px] text-white absolute right-[-4px] top-[-13px]">
-              {notificationsAmount}
-            </span>
-            <Bell className="w-5" />
+        <div className="flex relative z-1">
+          <div>
+            <Flags />
+          </div>
+          <div>
+            <div
+              className="relative bg-tertiary rounded-sm cursor-pointer"
+              onClick={() => handleNotification(true)}
+            >
+              <span className="bg-red px-1 pt-[3px] w-5 h-[19px] text-center rounded-xl text-[10px] text-white absolute right-[-4px] top-[-13px]">
+                {notificationsAmount}
+              </span>
+              <Bell className="w-6" />
+            </div>
           </div>
         </div>
       </div>

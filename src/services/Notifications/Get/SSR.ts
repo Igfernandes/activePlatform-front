@@ -11,7 +11,7 @@ export async function getUserNotificationRequest(
   const { id, ...query } = request ?? {};
 
   const { notifications } = API_ROUTES;
-  const { data } = await axios.get<string>(
+  const { data } = await axios.get<NotificationShape[]>(
     setQueries({
       url: setParams({
         url: notifications,
@@ -28,5 +28,5 @@ export async function getUserNotificationRequest(
     }
   );
 
-  return JSON.parse(data);
+  return data;
 }

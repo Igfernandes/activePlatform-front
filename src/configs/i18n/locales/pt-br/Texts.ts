@@ -10,6 +10,8 @@ export const Texts = {
   clients_add: "Adicionar clientes",
   users_group: "Grupo de Usuários",
   user_group: "Grupo de Usuário",
+  send_confirmation: "Confirmação Enviada",
+  until_years_gratuity: "Gratuidade até quantos anos?",
   select_event: "Selecione o evento",
   promotional_price: "Preço promocional",
   not_found_register: "No momento, nenhum registro foi encontrado.",
@@ -30,6 +32,7 @@ export const Texts = {
   see_more: "Ver mais",
   send_form: "Formulário enviado",
   is_confirmation: "Está confirmado?",
+  inscribe_at: "Inscrito em",
   text_thanks:
     "Agradecemos suas cooperação para nossas métricas e análises. Agora aguarde o retorno da nossa equipe e tenha um excelente dia!",
   first_column: "Primeira coluna",

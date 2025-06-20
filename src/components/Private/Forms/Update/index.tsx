@@ -29,6 +29,7 @@ export function FillFieldsUpdate({ targetForm }: Props) {
       started_at: targetForm.started_at,
       expired_at: targetForm.expired_at,
       template: String(targetForm.id),
+      service_id: String(targetForm.service_id),
     },
   });
   const { modal, handleToggleModal } = useModalContext();
@@ -37,7 +38,10 @@ export function FillFieldsUpdate({ targetForm }: Props) {
       formMethods,
     });
   const { handleDeleteFillField, isLoadingFillFieldDelete } =
-    useFillFieldsModal({ formId: targetForm.id });
+    useFillFieldsModal({
+      formId: targetForm.id,
+      serviceId: targetForm.service_id,
+    });
 
   useEffect(() => {
     const fields = JSON.parse(targetForm.components ?? "{}");
@@ -69,12 +73,17 @@ export function FillFieldsUpdate({ targetForm }: Props) {
           <Forms
             step={stepActive}
             form={form}
+            slug={targetForm.slug}
             onChangeFormFields={handleChangeFormFields}
           />
           <div className="mt-4">
-            <FilledFormsTable formId={targetForm.id} />
+            <FilledFormsTable
+              formId={targetForm.id}
+              serviceId={targetForm.service_id}
+            />
           </div>
           <FooterForms
+            isFirstStep={stepActive == 1}
             onNextStep={handleNextStep}
             onPrevStep={handlePrevStep}
             isLoading={isLoading}

@@ -1,13 +1,14 @@
-import { RecoverPasswordRequestFormSchema } from "../schemas";
 import usePostRecoverPasswordRequest from "../../../../services/Recovers/Password/Request/usePost";
 import { PostRecoverPasswordPayload } from "../../../../services/Recovers/Password/Request/type";
 import { useFormRules } from "@hooks/Forms/useFormRules";
+import { useRecoverPasswordRequestSchema } from "./useSchema";
 
 type Payload = PostRecoverPasswordPayload;
 
 export function useForm() {
+  const { schema } = useRecoverPasswordRequestSchema();
   const { formMethods, hasAllFilledFields } = useFormRules<Payload>({
-    schema: RecoverPasswordRequestFormSchema,
+    schema,
   });
   const {
     register,

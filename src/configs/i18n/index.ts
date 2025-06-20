@@ -2,29 +2,37 @@ import { I18n } from "i18n-js";
 import { LANGUAGE_I18N } from "@configs/envs";
 import dayjs from "dayjs";
 import { translatePT_BR } from "./locales/pt-br";
-import { translatesEN } from "./locales/en";
+import { translateEN } from "./locales/en";
+import { translateES } from "./locales/es";
+import { setCookie } from "cookies-next";
 
 const languages = {
   "pt-br": translatePT_BR,
-  en: translatesEN,
+  en: translateEN,
+  es: translateES,
 };
 
 export const i18nConfig = new I18n(languages);
-
-const configureI18n = (lang?: string) => {
+export const configureI18n = (lang: string = "pt-br") => {
   const defaultLocale = lang ?? (LANGUAGE_I18N as string);
 
   setLanguageToI18n(defaultLocale);
   dayjs.locale(defaultLocale);
 };
 
-export const setLanguageToI18n = (code: string) => {
+export const setLanguageToI18n = (code: string = "pt-br") => {
   i18nConfig.defaultLocale = code;
   i18nConfig.locale = code;
   dayjs.locale(code);
 };
 
 configureI18n();
+export const handleChangeLanguage = (language: string) => {
+  setCookie("language", language ?? "pt-br");
+  if (typeof window !== "undefined") {
+    window.location.reload();
+  }
+};
 
 export type I18nProps<T> = { [key: string]: T };
 const i18n = <T = string, I18N = I18nProps<T>>(key: string) =>

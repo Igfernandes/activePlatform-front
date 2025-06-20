@@ -2,9 +2,9 @@ import { Bars } from "@assets/Icons/black/Bars";
 import { COMPANY_PROFILE } from "@configs/envs";
 import { Navbar } from "./Navbar";
 import i18n from "@configs/i18n";
-import { ADMINISTRATIVE_MENU, MAIN_MENU, SYSTEM_MENU } from "@constants/menu";
 import useWindow from "@hooks/useWindow";
 import { useEffect, useState } from "react";
+import { useMenu } from "./Navbar/menu";
 
 type Props = {
   showSidebar: boolean;
@@ -13,6 +13,7 @@ type Props = {
 
 export function Sidebar({ handleToggleSidebar, showSidebar }: Props) {
   const { screenType } = useWindow();
+  const { ADMINISTRATIVE_MENU, MAIN_MENU, SYSTEM_MENU } = useMenu();
   const [indentValue, setIndentValue] = useState<string>();
 
   useEffect(() => {

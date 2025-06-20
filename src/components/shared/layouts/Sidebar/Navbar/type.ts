@@ -1,5 +1,5 @@
-import { MenuShape } from "@constants/menu/type";
 import { JSX, SVGProps } from "react";
+import { MenuShape } from "./menu/type";
 
 export type ItemProps = {
   menu: Array<MenuShape>;

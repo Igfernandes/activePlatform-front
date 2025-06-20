@@ -11,7 +11,7 @@ export async function getCharges(
   const query = request ?? {};
 
   const { chargesId } = API_ROUTES;
-  const { data } = await axios.get<string>(
+  const { data } = await axios.get<ChargeShape[] | ChargeShape>(
     setQueries({
       url: chargesId.replace("{id}", String(request?.id ?? "")),
       query,
@@ -23,5 +23,5 @@ export async function getCharges(
     }
   );
 
-  return JSON.parse(data);
+  return data;
 }

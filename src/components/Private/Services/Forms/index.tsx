@@ -17,8 +17,6 @@ import useWindow from "@hooks/useWindow";
 import { ToggleSwitch } from "@components/shared/forms/ToggleSwitch";
 import { Input } from "@components/shared/forms/Input";
 import { Radio } from "@components/shared/forms/Radio";
-import { ClientsModal } from "@components/shared/others/ClientsTable/modals/ClientsModal";
-import { useInscribeService } from "./hooks/useInscribeService";
 import { InscribesTable } from "./InscribesTable";
 import { TextEdit } from "@components/shared/forms/TextEdit";
 
@@ -29,10 +27,6 @@ type Props = {
 export function ServicesForm({ service }: Props) {
   const { formMethods, register, handleSubmit, submit, errors, isLoading } =
     useServicesForm({ service });
-  const { clients, clientsSelected, handleInscribes } = useInscribeService({
-    service,
-    stock: formMethods.watch("stock"),
-  });
   const router = useRouter();
   const { handleCleanForm, handleUpdateForm } = useStateFields({ formMethods });
   const { watch, setValue, getValues } = formMethods;
@@ -154,16 +148,18 @@ export function ServicesForm({ service }: Props) {
                   dataTestId="alerts"
                   label={i18n(`Screens.dashboard.services.inscribes_alert`)}
                   defaultValue={getValues("alerts")}
-                  placeholder={i18n('Screens.dashboard.services.text_alert_about_alerts_inscribes')}
+                  placeholder={i18n(
+                    "Screens.dashboard.services.text_alert_about_alerts_inscribes"
+                  )}
                   errors={errors.alerts}
                 />
               </div>
               <When value={!!service}>
                 <div className="my-10">
                   <InscribesTable
+                    service={service as ServicesShape}
+                    stock={+formMethods.watch("stock")}
                     title={i18n("Words.inscribes")}
-                    clientsSelected={clientsSelected}
-                    handleUpdateClients={handleInscribes}
                   />
                 </div>
               </When>
@@ -205,11 +201,6 @@ export function ServicesForm({ service }: Props) {
               </div>
             </form>
           </FormProvider>
-          <ClientsModal
-            clients={clients}
-            clientsSelected={clientsSelected}
-            handleAddClients={handleInscribes}
-          />
         </div>
       </div>
     </>

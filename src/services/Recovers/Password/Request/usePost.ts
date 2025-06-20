@@ -18,9 +18,9 @@ export default function usePostRecoverPasswordRequest() {
 
   return useMutation({
     mutationFn: handleMutate,
-    onSuccess: ({ success }) => {
+    onSuccess: ({ success, errors }) => {
       dispatchSnackbar({
-        message: i18n(success),
+        message: i18n(success ?? errors),
         type: "notice",
       });
     },

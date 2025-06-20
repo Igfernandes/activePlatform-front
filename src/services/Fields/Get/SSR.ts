@@ -11,7 +11,7 @@ export async function getFields(
   const { id, ...query } = request ?? {};
 
   const { fields } = API_ROUTES;
-  const { data } = await axios.get<string>(
+  const { data } = await axios.get<FieldsShape[] | FieldsShape>(
     setQueries({
       url: setParams({
         url: fields,
@@ -28,5 +28,5 @@ export async function getFields(
     }
   );
 
-  return JSON.parse(data);
+  return data;
 }

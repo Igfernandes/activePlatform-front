@@ -11,7 +11,7 @@ export async function getCharges(
   const { id, ...query } = request ?? {};
 
   const { operationsFailures } = API_ROUTES;
-  const { data } = await axios.get<string>(
+  const { data } = await axios.get<OperationFailureShape[] | OperationFailureShape>(
     setQueries({
       url: setParams({
         url: operationsFailures,
@@ -28,5 +28,5 @@ export async function getCharges(
     }
   );
 
-  return JSON.parse(data);
+  return data;
 }

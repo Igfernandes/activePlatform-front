@@ -17,6 +17,17 @@ export const Screens = {
   successful: {
     need_go_back_login: "Agora, vá para o login para acessar a plataforma.",
   },
+  create_user: {
+    title: "Primeiro acesso",
+    text: "Para acessar a plataforma, informe como gostaria de ser chamado e crie uma senha.",
+  },
+  services: {
+    confirmation: {
+      title: "Confirmação de Presença",
+      text: "Ao clicar no botão abaixo, você estará confirmando a sua presença no evento",
+      invalid_url: "A página encontra-se com recursos desatualizados ou inválidos. Copie o link completo e tente novamente, ou entre em contato com o central"
+    },
+  },
   dashboard: {
     clients: {
       category: {
@@ -79,6 +90,7 @@ export const Screens = {
       text_alert_about_alerts_inscribes:
         "Escreva detalhes avisos para os inscritos",
       inscribes_alert: "Avisos para os inscritos",
+      "awaiting_inscribe": "Aguarde enquanto o cliente estará sendo inscrito e enviado a confirmação"
     },
     users: {
       create_user_groups: "Criar grupos de usuários",

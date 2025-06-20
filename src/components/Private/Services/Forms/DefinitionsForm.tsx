@@ -69,6 +69,17 @@ export function DefinitionsForm({ service }: Props) {
           errors={errors.address}
         />
       </div>
+      <div className="mt-6">
+        <Input
+          {...register("gratuity")}
+          type={"number"}
+          dataTestId="gratuity"
+          min={0}
+          max={120}
+          label={i18n(`Texts.until_years_gratuity`)}
+          errors={errors.gratuity}
+        />
+      </div>
       <div className="form-row mt-6">
         <TextEdit
           {...register("description")}

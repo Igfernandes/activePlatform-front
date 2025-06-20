@@ -2,7 +2,7 @@ import i18n from "@configs/i18n";
 import { PasswordValidation } from "@components/shared/forms/PasswordValidation";
 import { Button } from "@components/shared/forms/Button";
 import { FieldErrors } from "react-hook-form";
-import { CreateUserPayload } from "../schemas";
+import { CreateUserPayload } from "../hooks/useSchema";
 
 type Props = {
   handleToggleStageForm: (stageForm: "PERSONAL" | "CREDENTIALS") => void;

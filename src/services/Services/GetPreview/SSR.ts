@@ -11,12 +11,12 @@ export async function getServicePreview(
 
   const { servicesPreview } = API_ROUTES;
 
-  const { data } = await axios.get<string>(
+  const { data } = await axios.get<ServicePreviewShape>(
     setQueries({
       url: servicesPreview,
       query,
     })
   );
 
-  return JSON.parse(data);
+  return data;
 }

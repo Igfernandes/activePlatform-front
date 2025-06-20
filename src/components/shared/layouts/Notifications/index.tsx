@@ -22,7 +22,7 @@ export function Notifications({
 
   return (
     <When value={isShow}>
-      <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50">
+      <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50">
         <div
           className={`content w-full md:w-[35%] min-w-[300px] bg-white h-[100vh] transition-all duration-500 p-4 ml-auto ${notificationBarStyled}`}
         >

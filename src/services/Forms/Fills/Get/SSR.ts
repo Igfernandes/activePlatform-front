@@ -11,7 +11,7 @@ export async function getFillFields(
   const { formId, ref } = request ?? {};
 
   const { formsFillsFields } = API_ROUTES;
-  const { data } = await axios.get<string>(
+  const { data } = await axios.get<Array<FormFillField>[] | FormFillField[]>(
     setParams({
       url: formsFillsFields,
       data: {
@@ -26,5 +26,5 @@ export async function getFillFields(
     }
   );
 
-  return JSON.parse(data);
+  return data;
 }

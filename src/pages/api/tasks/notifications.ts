@@ -6,8 +6,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  console.log("data")
   const { METHOD_NOT_ALLOWED, BAD_REQUEST, OK, INTERNAL_ERROR, BAD_AUTH } =
     STATUS_SERVICE;
+
   if (req.method !== "POST") {
     return res
       .status(METHOD_NOT_ALLOWED)

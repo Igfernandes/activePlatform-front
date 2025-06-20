@@ -16,7 +16,7 @@ export function Subscribe() {
     <When value={showPopUp}>
       <FormProvider {...formMethods}>
         <form onSubmit={formMethods.handleSubmit(submit)}>
-          <div className="fixed h-full w-full bg-cross-black-secondary bg-opacity-45 flex items-center">
+          <div className="fixed h-full w-full bg-cross-black-secondary bg-opacity-45 flex items-center z-[9999]">
             <div
               onClick={() => setShowPopUp(false)}
               className="overlay absolute top-0 left-0 w-full h-full z-0"
@@ -60,7 +60,7 @@ export function Subscribe() {
                 </div>
                 <div className="mt-2">
                   <Button
-                    text={i18n("Words.subscribe")}
+                    text={i18n("Words.receive")}
                     isLoading={isLoading}
                     className="bg-red text-white font-semibold"
                   />

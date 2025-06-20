@@ -1,4 +1,10 @@
 export const Api = {
+  mailer: {
+    invalid: {
+      email:
+        "O sistema incluiu o cliente no evento, mas não conseguiu notificar o cliente por não conter o seu e-mail em seu cadastro.",
+    },
+  },
   unauthorized:
     "O usuário foi desconectado ou não contém permissão para continuar a ação",
   default: {
@@ -36,6 +42,11 @@ export const Api = {
         "Não foi possível conectar-se automaticamente. Faça o login manualmente.",
     },
   },
+  subscribe: {
+    success: {
+      post: "Agora você sempre estará conectado conosco!",
+    },
+  },
   clients: {
     categories: {
       success: {
@@ -66,6 +77,10 @@ export const Api = {
     services: {
       success: {
         post: "O(s) cliente(s) foi(ram) inscrito(s) com sucesso!",
+        inscribe: "O usuário foi inscrito com sucesso!",
+      },
+      isConfirm: {
+        success: "Confirmado com sucesso!",
       },
     },
     fields: {
@@ -148,6 +163,12 @@ export const Api = {
       created_at: "A data de criação do formulário está inválido",
       updated_at: "A data de atualização do formulário está inválida",
       not_found: "O formulário não foi encontrada",
+      client: "Operação inválida. O registro não contém um cliente vinculado.",
+    },
+    services: {
+      success: {
+        inscribe: "O cliente foi inscrito no evento com sucesso!",
+      },
     },
   },
   dispatchers: {
@@ -331,6 +352,7 @@ export const Api = {
       post: "O serviço foi criado com sucesso!",
       put: "O serviço foi atualizado com sucesso!",
       delete: "O serviço foi excluído com sucesso!",
+      inscribe: "O cliente foi inscrito com sucesso!",
     },
     invalid: {
       name: "O nome do serviço informado está inválido",
@@ -376,7 +398,7 @@ export const Api = {
       post: "O seu cadastro foi criado com sucesso!",
       put: "O cadastro atualizado com sucesso!",
       delete: "O usuário foi excluído com sucesso!",
-      recover_password: "Abra o seu e-mail e segui as etapas",
+      recover_password: "Abra o e-mail e siga as instruções",
       alter_password: "A sua senha foi alterada com sucesso",
       patch_status: "Status alterado com sucesso!",
     },

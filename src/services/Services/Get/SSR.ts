@@ -12,7 +12,7 @@ export async function getServices(
 
   const { serviceById } = API_ROUTES;
 
-  const { data } = await axios.get<string>(
+  const { data } = await axios.get<ServicesShape[] | ServicesShape>(
     setQueries({
       url: setParams({
         url: serviceById,
@@ -29,5 +29,5 @@ export async function getServices(
     }
   );
 
-  return JSON.parse(data);
+  return data;
 }

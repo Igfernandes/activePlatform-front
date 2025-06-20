@@ -7,12 +7,15 @@ import { FormFillField } from "@type/Forms/FormsFill";
 import { FillFieldsActions } from "../FillFieldsActions";
 import useGetFillFields from "@services/Forms/Fills/Get/useGetFillFields";
 import useDeleteFillField from "@services/Forms/Fills/Delete/useDelete";
+import useGetClientsServices from "@services/Clients/Services/Get/useGet";
+import { ClientServiceShape } from "@type/Clients/ClientService";
 
 type Props = {
   formId: number;
+  serviceId?: number;
 };
 
-export function useFillFields({ formId }: Props) {
+export function useFillFields({ formId, serviceId }: Props) {
   const [tDataFields, setTDataFields] = useState<
     Array<Record<string, unknown>>
   >([]);
@@ -21,19 +24,32 @@ export function useFillFields({ formId }: Props) {
   const { mutateAsync: deleteFillField, isPending: isLoadingFillFieldDelete } =
     useDeleteFillField();
   const { data: fieldsData } = useGetFillFields({ formId });
+  const { data: clientsService } = useGetClientsServices({
+    serviceId: serviceId ?? 0,
+  });
 
   const tHeadsFields = useRef<Array<string>>([
     "ID",
     i18n("Texts.first_column"),
+    i18n("Texts.inscribe_at"),
     i18n("Words.created_at"),
     i18n("Words.actions"),
   ]);
 
   const updateFieldForTable = useCallback(
     ({ id, form_id, value, ref, created_at }: FormFillField): TDataForms => {
+      const inscribedService = clientsService?.find(
+        (clientsService: ClientServiceShape) =>
+          clientsService.service.id === serviceId
+      );
+      const serviceName = inscribedService?.service
+        ? inscribedService?.service.name
+        : "";
+
       return {
         id,
         value,
+        inscribe_at: serviceName,
         created_at: dayjs(created_at).format("DD/MM/YYYY HH:MM"),
         actions: (
           <FillFieldsActions

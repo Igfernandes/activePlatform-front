@@ -9,6 +9,7 @@ export const formsSchema = z.object({
       .replace("${length}", "3"),
   }),
   status: z.enum(["PUBLISHED", "DRAFT"]),
+  service_id: z.string().nullable().optional(),
   template: z
     .string({ required_error: i18n("Validations.required") })
     .nullable()

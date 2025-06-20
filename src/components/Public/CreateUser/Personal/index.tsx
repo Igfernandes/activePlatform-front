@@ -1,16 +1,23 @@
-import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { CreateUserPayload } from "../schemas";
+import { useFormContext } from "react-hook-form";
 import { Input } from "@components/shared/forms/Input";
 import i18n from "@configs/i18n";
 import { Button } from "@components/shared/layouts/Button";
+import { handleMaskCPF } from "@helpers/string";
+import { CreateUserPayload } from "../hooks/useSchema";
+import dayjs from "dayjs";
+import { Date } from "@components/shared/forms/Date";
 
 type Props = {
-  register: UseFormRegister<CreateUserPayload>;
   handleToggleStageForm: (stageForm: "PERSONAL" | "CREDENTIALS") => void;
-  errors: FieldErrors<CreateUserPayload>;
 };
 
-export function Personal({ register, handleToggleStageForm, errors }: Props) {
+export function Personal({ handleToggleStageForm }: Props) {
+  const {
+    register,
+    setValue,
+    formState: { errors },
+  } = useFormContext<CreateUserPayload>();
+
   return (
     <div>
       <div className="form-group my-6">
@@ -19,16 +26,20 @@ export function Personal({ register, handleToggleStageForm, errors }: Props) {
           label={i18n("Words.cpf")}
           dataTestId="name"
           required={true}
+          onChange={(ev) => {
+            handleMaskCPF(ev);
+            setValue("cpf", ev.currentTarget.value);
+          }}
           errors={errors.cpf}
         />
       </div>
       <div className="form-group my-6">
-        <Input
+        <Date
           {...register("birthdate")}
           label={i18n("Words.birthdate")}
           dataTestId="name"
           required={true}
-          type={"date"}
+          max={dayjs().subtract(15, "years").format("YYYY-MM-DD")}
           errors={errors.birthdate}
         />
       </div>

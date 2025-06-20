@@ -6,25 +6,20 @@ import { When } from "@components/utilities/When";
 
 export function CreateUserForm() {
   const {
-    register,
     formMethods,
     handleToggleStageForm,
     isLoading,
     handleSubmit,
     onSubmit,
     stageForm,
-    errors
+    errors,
   } = useForm();
 
   return (
     <FormProvider {...formMethods}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <When value={stageForm === "PERSONAL"}>
-          <Personal
-            register={register}
-            handleToggleStageForm={handleToggleStageForm}
-            errors={errors}
-          />
+          <Personal handleToggleStageForm={handleToggleStageForm} />
         </When>
         <When value={stageForm === "CREDENTIALS"}>
           <Credentials

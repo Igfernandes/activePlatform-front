@@ -11,10 +11,10 @@
 - Refatorar código. (DEPOIS)
 - Melhorar a proposta pros envios. Eles devem acontecer de background, de forma que não seja necessário esperar para enviar
 - **Criar sistema de envio para atualizar notificações visualizadas**
-- Criar uma API para o websocket. 
+- Criar uma API para o websocket.
 - **Lógica de Notificações não funciona**
 - Lógica de Permissões não funciona.
-- Otimizar todas as mensagens  de resposta.
+- Otimizar todas as mensagens de resposta.
 - Tabela calculando o valor de exibição errado
 - O snackbars estão sem icones corretos do lado
 - **Fazer com que a ordem de exibição dos arquivos sejam contrária (DESC)**
@@ -37,7 +37,7 @@
 # Formulários:
 
 - **Possibilidade de escolher um modelo já existente, para que ele seja usado como base inicial**
-  - Corrigir os bugs de exibição para tornar mais fluído.
+  - **Corrigir os bugs de exibição para tornar mais fluído.**
 - **Criar nomenclaturas mais claras sobre os valores de preenchimento no modal.**
 - **Criar área de visualizar formulários preenchidos**
 - **Criar validações de campos obrigatório ou não. Eles não estão sendo respeitados.**
@@ -45,6 +45,11 @@
 - **Área de edição não está funcionando**
 - **Copiar link está vindo com o link errado.**
 - **Testar o save das informações**
+- Adicionar campo de publico e privado nos formulários.
+
+# Serviços:
+
+- Precisa alterar lógica de gratuidade para permitir a possibilidade de inserir outras regras de exceção.
 
 # Agenda:
 

@@ -9,21 +9,30 @@ import { When } from "@components/utilities/When";
 import { ComponentsProps } from "./type";
 import { Date } from "@components/shared/forms/Date";
 import { ToggleSwitch } from "@components/shared/forms/ToggleSwitch";
+import { ServicesShape } from "@type/Services";
+import useWindow from "@hooks/useWindow";
+import { useNavigator } from "@hooks/useNavigator";
+import { FloppyDisk } from "@assets/Icons/black/FloppyDisck";
 
-type Props = Pick<ComponentsProps, "handleChangeFormFields">;
+type Props = Pick<ComponentsProps, "handleChangeFormFields"> & {
+  slug?: string;
+};
 
-export function Definitions({ handleChangeFormFields }: Props) {
-  const { forms } = useFormsData();
+export function Definitions({ handleChangeFormFields, slug }: Props) {
+  const { forms, services } = useFormsData();
   const {
     register,
     setValue,
     getValues,
     formState: { errors },
   } = useFormContext<FormsPayload>();
+  const { baseUrl } = useWindow();
+  const { handleCopy } = useNavigator();
+  const formId = getValues("id");
 
   return (
     <div className="form-definitions">
-      <div>
+      <div className="flex justify-end">
         <div className="mb-6">
           <ToggleSwitch
             setValue={setValue}
@@ -43,6 +52,16 @@ export function Definitions({ handleChangeFormFields }: Props) {
             }}
           />
         </div>
+        <When value={!!formId}>
+          <div>
+            <div
+              className="px-3 py-2 shadow-md rounded-md cursor-pointer ml-2"
+              onClick={() => handleCopy(`${baseUrl}/forms/${slug}`)}
+            >
+              <FloppyDisk className="hover:fill-red" />
+            </div>
+          </div>
+        </When>
       </div>
       <div className="form-row flex flex-wrap mb-4 justify-between">
         <div className="form-group w-full">
@@ -88,6 +107,24 @@ export function Definitions({ handleChangeFormFields }: Props) {
             {i18n("Words.not_found_templates")}
           </span>
         </When>
+      </div>
+      <div className="my-4">
+        <Select
+          {...register("service_id")}
+          label={i18n("Words.service")}
+          dataTestId="services"
+          options={[
+            {
+              text: "--",
+              value: "",
+            },
+            ...(services ?? [])?.map((service: ServicesShape) => ({
+              text: service.name,
+              value: service.id,
+              selected: getValues("service_id") === String(service.id),
+            })),
+          ]}
+        />
       </div>
       <div className="flex my-4">
         <div className="form-group w-full md:w-1/2 mr-2">

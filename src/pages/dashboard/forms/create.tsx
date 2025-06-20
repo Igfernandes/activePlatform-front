@@ -48,6 +48,7 @@ export default function Create() {
             onChangeFormFields={handleChangeFormFields}
           />
           <FooterForms
+            isFirstStep={stepActive === 1}
             onNextStep={handleNextStep}
             onPrevStep={handlePrevStep}
             handleSubmit={submitForm}

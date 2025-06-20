@@ -28,6 +28,7 @@ export function useStateFields({ formMethods }: Props) {
     setValue("expired_at", service.expired_at);
     setValue("realized_at", service.realized_at);
     setValue("stock", String(service.stock));
+    setValue("gratuity", String(service.gratuity));
   };
   return {
     handleCleanForm,

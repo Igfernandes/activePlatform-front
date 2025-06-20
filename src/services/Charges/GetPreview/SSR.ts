@@ -12,12 +12,12 @@ export async function getCharge(
 
   const { chargesPreview } = API_ROUTES;
 
-  const { data } = await axios.get<string>(
+  const { data } = await axios.get<ChargePreviewShape>(
     setQueries({
       url: chargesPreview,
       query,
     })
   );
 
-  return JSON.parse(data);
+  return data;
 }

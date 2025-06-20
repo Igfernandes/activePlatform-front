@@ -15,6 +15,7 @@ export const ServicesModalSchema = z
     status: z.enum(["ACTIVE", "INACTIVE"]),
     disabledLimitVacancies: z.enum(["Sim", "Não"]),
     photo: photoSchema.optional(),
+    gratuity: z.string().optional(),
   })
   .superRefine((data, ctx) => {
     const stock = parseInt(data.stock);

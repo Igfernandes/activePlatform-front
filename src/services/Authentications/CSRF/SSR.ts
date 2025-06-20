@@ -4,7 +4,7 @@ import { CSRFShape } from "./types";
 
 export async function getCSRF(): Promise<CSRFShape> {
   const { csrf } = API_ROUTES;
-  const { data } = await axios.post<string>(csrf);
+  const { data } = await axios.post<CSRFShape>(csrf);
 
-  return JSON.parse(data);
+  return data;
 }

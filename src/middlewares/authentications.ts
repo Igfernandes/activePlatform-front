@@ -39,7 +39,7 @@ export async function authenticationsMiddleware(
     }
 
     const { createJwt } = jsonWebToken();
-    const jwt = await createJwt(JSON.parse(data));
+    const jwt = await createJwt(data);
 
     response.cookies.set("userAuth", jwt, AUTH_RULES.cookies);
 

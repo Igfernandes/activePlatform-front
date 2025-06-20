@@ -11,7 +11,7 @@ export async function getMessagesDispatcherRequest(
   const { id, ...query } = request ?? {};
 
   const { messagesDispatcher } = API_ROUTES;
-  const { data } = await axios.get<string>(
+  const { data } = await axios.get<MessagesDispatcherShape[] | MessagesDispatcherShape>(
     setQueries({
       url: setParams({
         url: messagesDispatcher,
@@ -28,5 +28,5 @@ export async function getMessagesDispatcherRequest(
     }
   );
 
-  return JSON.parse(data);
+  return data;
 }

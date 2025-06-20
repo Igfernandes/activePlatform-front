@@ -9,6 +9,7 @@ type Props = {
   onPrevStep: () => void;
   isLoading: boolean;
   isLastStep: boolean;
+  isFirstStep: boolean;
   handleSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
 };
 
@@ -17,7 +18,8 @@ export function FooterForms({
   onPrevStep,
   isLoading,
   isLastStep,
-  handleSubmit
+  isFirstStep,
+  handleSubmit,
 }: Props) {
   const { reset } = useFormContext();
   return (
@@ -31,8 +33,10 @@ export function FooterForms({
         <div className="mx-2">
           <Button
             type="button"
-            className="font-semibold border-2 border-zinc-300 px-2"
-            text={i18n("Words.cancel")}
+            className={`font-semibold border-2 border-zinc-300 px-2 ${
+              isFirstStep ? "bg-disabled text-gray" : ""
+            }`}
+            text={i18n("Words.back")}
             onClick={onPrevStep}
           />
         </div>

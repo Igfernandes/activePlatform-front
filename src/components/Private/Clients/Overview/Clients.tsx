@@ -43,7 +43,7 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
                 },
                 {
                   handle: () => handleToggleModal("CHANGE_CATEGORY"),
-                  text: i18n("Words.category_alter"),
+                  text: i18n("Texts.category_alter"),
                 },
                 {
                   handle: () =>

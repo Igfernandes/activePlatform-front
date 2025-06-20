@@ -7,14 +7,15 @@ import { FieldShape } from "@components/shared/layouts/FormBuilder/type";
 type Props = {
   step: number;
   form: FieldShape[];
+  slug?: string;
   onChangeFormFields: (fieldsForm: Array<FieldShape>) => void;
 };
 
-export function Forms({ step, form, onChangeFormFields }: Props) {
+export function Forms({ step, form, slug, onChangeFormFields }: Props) {
   return (
     <div className="mt-6 p-6 bg-white">
       <When value={step === 1}>
-        <Definitions handleChangeFormFields={onChangeFormFields} />
+        <Definitions slug={slug} handleChangeFormFields={onChangeFormFields} />
       </When>
       <When value={step === 2}>
         <Customizations

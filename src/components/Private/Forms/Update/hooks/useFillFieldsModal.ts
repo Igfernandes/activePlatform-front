@@ -4,6 +4,7 @@ import useDeleteFillField from "@services/Forms/Fills/Delete/useDelete";
 
 type Props = {
   formId: number;
+  serviceId: number;
 };
 
 export function useFillFieldsModal({ formId }: Props) {

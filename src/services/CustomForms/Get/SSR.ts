@@ -11,7 +11,7 @@ export async function getForms(
   const { id, ...query } = request ?? {};
 
   const { forms } = API_ROUTES;
-  const { data } = await axios.get<string>(
+  const { data } = await axios.get<FormsShape[] | FormsShape>(
     setQueries({
       url: setParams({
         url: forms,
@@ -28,7 +28,7 @@ export async function getForms(
     }
   );
 
-  return JSON.parse(data);
+  return data;
 }
 
 export async function getForm({
@@ -36,7 +36,7 @@ export async function getForm({
   ...query
 }: GetFormsRequest): Promise<FormsShape> {
   const { formPreview } = API_ROUTES;
-  const { data } = await axios.get<string>(
+  const { data } = await axios.get<FormsShape>(
     setQueries({
       url: setParams({
         url: formPreview,
@@ -48,5 +48,5 @@ export async function getForm({
     })
   );
 
-  return JSON.parse(data);
+  return data;
 }

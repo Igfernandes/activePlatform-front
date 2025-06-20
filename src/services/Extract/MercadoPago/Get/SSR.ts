@@ -11,7 +11,7 @@ export async function getExtract(
   const query = request ?? {};
 
   const { extract } = API_ROUTES;
-  const { data } = await axios.get<string>(
+  const { data } = await axios.get<MercadoPagoPaymentShape>(
     setQueries({
       url: setParams({
         url: extract,
@@ -25,5 +25,5 @@ export async function getExtract(
     }
   );
 
-  return JSON.parse(data);
+  return data;
 }

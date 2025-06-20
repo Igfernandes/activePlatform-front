@@ -1,5 +1,7 @@
 import { Axios, AxiosRequestConfig } from "axios";
 import { env } from "./envs";
+import { DataInterceptor } from "@hooks/useAxios/interceptores/Data";
+import { hasErrorAuthentication } from "@hooks/useAxios/interceptores/hasErrorAuthentication";
 
 export const axiosConfig: AxiosRequestConfig = {
   baseURL: env.API_URL,
@@ -9,4 +11,6 @@ export const axiosConfig: AxiosRequestConfig = {
   },
 };
 
-export const axios = new Axios(axiosConfig);
+const axios = new Axios(axiosConfig);
+axios.interceptors.response.use(DataInterceptor, hasErrorAuthentication);
+export { axios };

@@ -5,6 +5,7 @@ import { useFillFields } from "./hooks/useFillFields";
 
 type Props = {
   formId: number;
+  serviceId: number;
 };
 
 export function FilledFormsTable(props: Props) {
@@ -23,13 +24,13 @@ export function FilledFormsTable(props: Props) {
               handle: () => handleToggleModal("SHARED"),
               text: i18n("Texts.data_shared"),
             },
-          ]
+          ],
         }}
         data={tDataFields}
         title={i18n("Words.registers")}
         tHeads={{
           data: tHeadsFields.current,
-          widths: [60, 300, 100, 48],
+          widths: [60, 300, 200, 100, 48],
         }}
       />
     </>

@@ -1,8 +1,9 @@
-import { MenuShape } from "@constants/menu/type";
+
 import { DetailedHTMLProps, HTMLAttributes, useEffect, useState } from "react";
 import { Item } from "./Item";
 import { usePathname } from "next/navigation";
 import { When } from "@components/utilities/When";
+import { MenuShape } from "./menu/type";
 
 type Props = DetailedHTMLProps<
   HTMLAttributes<HTMLDivElement>,

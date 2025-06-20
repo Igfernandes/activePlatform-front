@@ -9,11 +9,11 @@ export default function CreateUser() {
         <div className="column text-center">
           <div className="mb-1">
             <h2 className="text-xl">
-              <strong>{i18n("Words.first_access")}</strong>
+              <strong>{i18n("Screens.create_user.title")}</strong>
             </h2>
           </div>
           <div className="mb-4">
-            <p className="text-xs">{i18n("create_user.text")}</p>
+            <p className="text-xs">{i18n("Screens.create_user.text")}</p>
           </div>
           <CreateUserForm />
         </div>

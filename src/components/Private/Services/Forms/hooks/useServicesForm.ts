@@ -28,6 +28,7 @@ export function useServicesForm({ service }: Props) {
   const submit = (formData: ServicesPayload) => {
     const payload = {
       ...formData,
+      gratuity: formData.gratuity ? +formData.gratuity : undefined,
       stock:
         formData.disabledLimitVacancies == "Não" ? 0 : parseInt(formData.stock),
       address: formData.address ?? "",
