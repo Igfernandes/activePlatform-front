@@ -2,6 +2,7 @@ import { handleMaskCEP, handleMaskCPF, handleMaskPhone } from "@helpers/string";
 import { Input } from "../../fields/Input";
 import { FieldShape } from "../../type";
 import { Date } from "../../fields/Date";
+import { Dependents } from "../../fields/Dependents";
 
 export const classNameDefault = "w-full h-7 py-1 px-2";
 export const fieldsUser = {
@@ -44,6 +45,13 @@ export const fieldsUser = {
   cep: ({ className, ...props }: FieldShape) => (
     <Input
       type="text"
+      onChange={handleMaskCEP}
+      className={`${classNameDefault} ${className}`}
+      {...props}
+    />
+  ),
+  dependents: ({ className, ...props }: FieldShape) => (
+    <Dependents
       onChange={handleMaskCEP}
       className={`${classNameDefault} ${className}`}
       {...props}

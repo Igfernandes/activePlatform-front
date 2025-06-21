@@ -48,6 +48,8 @@ export const Words = {
   register: "Cadastrar",
   category_manager: "Gerenciar Categoria",
   category: "Categoria",
+  dependents: "Dependentes",
+  to_add: "Adicionar",
   confirm: "Confirmar",
   activity: "Atividade",
   cpf_cnpj: "CPF/CNPJ",

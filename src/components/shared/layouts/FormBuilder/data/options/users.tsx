@@ -37,6 +37,11 @@ export const optionsUser = [
     field: "cep",
     icon: <Pen width={12} height={12} />,
   },
+  {
+    id: "dependents",
+    field: "dependents",
+    icon: <Pen width={12} height={12} />,
+  },
 ].map((option) => ({
   ...option,
   element: "INPUT",

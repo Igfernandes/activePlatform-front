@@ -41,6 +41,7 @@ export function useForm({ form }: Props) {
 
     formData.append("form_id", String(form.id));
     formData.append("recaptcha", String(token));
+    
     postSubmitForm(formData);
     loadReCaptcha();
   };
