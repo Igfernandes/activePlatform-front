@@ -11,21 +11,23 @@ export function useFillFields({ fields, form }: HookFillFieldsProps) {
     const fieldsForm = JSON.parse(form.components) as Array<FieldsShape>;
 
     setFieldsData(
-      fieldsForm.map((fieldForm) => {
-        const data = {
-          text: fieldForm.label,
-          value: "--",
-        };
-        const fieldValue = fields.filter(
-          (fieldValue) => fieldValue.field_id == fieldForm.id
-        );
+      fieldsForm
+        .filter((field) => ["simple", "user"].includes(field?.group ?? ""))
+        .map((fieldForm) => {
+          const data = {
+            text: fieldForm.label,
+            value: "--",
+          };
+          const fieldValue = fields.filter(
+            (fieldValue) => fieldValue.field_id == fieldForm.id
+          );
 
-        if (fieldValue.length == 0) return data;
+          if (fieldValue.length == 0) return data;
 
-        data.value = fieldValue[0].value;
+          data.value = fieldValue[0].value;
 
-        return data;
-      })
+          return data;
+        })
     );
   }, [fields, form]);
 
