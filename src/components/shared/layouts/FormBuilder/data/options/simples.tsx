@@ -39,6 +39,11 @@ export const optionsSimples = [
     icon: <Pen width={12} height={12} />,
   },
   {
+    id: "time",
+    field: "time",
+    icon: <Pen width={12} height={12} />,
+  },
+  {
     id: "file",
     field: "file",
     icon: <Pen width={12} height={12} />,

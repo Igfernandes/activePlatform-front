@@ -11,6 +11,7 @@ export const Words = {
   main: "Principal",
   my_users: "Mis usuarios",
   fill: "Llenado",
+  time: "Hora",
   go_out: "Salir",
   schedule: "Agenda",
   services: "Servicios",

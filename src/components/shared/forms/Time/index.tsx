@@ -6,8 +6,8 @@ import { useFormContext } from "react-hook-form";
 import ErrorMessage from "@components/shared/others/ErrorMessage";
 import i18n from "@configs/i18n";
 
-export const Datetime = React.forwardRef<HTMLInputElement, InputProps>(
-  function Datetime(
+export const Time = React.forwardRef<HTMLInputElement, InputProps>(
+  function Time(
     {
       dataTestId,
       isLoading = false,
@@ -41,7 +41,7 @@ export const Datetime = React.forwardRef<HTMLInputElement, InputProps>(
           <input
             {...rest}
             ref={ref}
-            type={"datetime-local"}
+            type={"time"}
             name={name}
             onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
               if (rest.onChange) rest.onChange(ev);

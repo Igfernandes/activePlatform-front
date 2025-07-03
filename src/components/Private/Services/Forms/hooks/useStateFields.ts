@@ -29,6 +29,7 @@ export function useStateFields({ formMethods }: Props) {
     setValue("stock", String(service.stock));
     setValue("gratuity", String(service.gratuity));
   };
+
   return {
     handleCleanForm,
     handleUpdateForm,

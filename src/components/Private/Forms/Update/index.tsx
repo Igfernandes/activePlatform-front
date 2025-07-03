@@ -34,6 +34,7 @@ export function FillFieldsUpdate({ targetForm }: Props) {
         : undefined,
     },
   });
+
   const { modal, handleToggleModal } = useModalContext();
   const { handleNextStep, handlePrevStep, stepActive, isLastStep } =
     useFormStep({

@@ -5,6 +5,7 @@ import { Datetime } from "../../fields/Datetime";
 import { File } from "../../fields/File";
 import { Input } from "../../fields/Input";
 import { Radio } from "../../fields/Radio";
+import { Time } from "../../fields/Time";
 import { FieldShape } from "../../type";
 
 export const classNameDefault = "h-7 py-1 px-2 ";
@@ -40,6 +41,12 @@ export const fieldsSimple = {
   "datetime-local": ({ className, ...props }: FieldShape) => (
     <Datetime
       type="datetime-local"
+      className={`${classNameDefault} w-full ${className}`}
+      {...props}
+    />
+  ),
+  "time": ({ className, ...props }: FieldShape) => (
+    <Time
       className={`${classNameDefault} w-full ${className}`}
       {...props}
     />

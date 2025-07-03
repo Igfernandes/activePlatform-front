@@ -7,13 +7,13 @@ import { Select } from "@components/shared/forms/Select";
 import { useFormsData } from "./hooks/useFormsData";
 import { When } from "@components/utilities/When";
 import { ComponentsProps } from "./type";
-import { Date } from "@components/shared/forms/Date";
 import { ToggleSwitch } from "@components/shared/forms/ToggleSwitch";
 import { ServicesShape } from "@type/Services";
 import useWindow from "@hooks/useWindow";
 import { useNavigator } from "@hooks/useNavigator";
 import { FloppyDisk } from "@assets/Icons/black/FloppyDisck";
 import { Shared } from "@components/shared/others/Shared";
+import { Datetime } from "@components/shared/forms/DateTime";
 
 type Props = Pick<ComponentsProps, "handleChangeFormFields"> & {
   slug?: string;
@@ -132,14 +132,14 @@ export function Definitions({ handleChangeFormFields, slug }: Props) {
       </div>
       <div className="flex my-4">
         <div className="form-group w-full md:w-1/2 mr-2">
-          <Date
+          <Datetime
             {...register("started_at")}
             label={i18n("Words.started_at")}
             dataTestId="started_at"
           />
         </div>
         <div className="form-group w-full md:w-1/2 ml-2">
-          <Date
+          <Datetime
             {...register("expired_at")}
             label={i18n("Words.expired_at")}
             dataTestId="expired_at"
