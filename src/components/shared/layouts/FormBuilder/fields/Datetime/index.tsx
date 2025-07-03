@@ -10,7 +10,7 @@ import dayjs from "dayjs";
 import i18n from "@configs/i18n";
 import { FieldShape } from "../../type";
 
-export function Date({
+export function Datetime({
   isLoading = false,
   className,
   id,
@@ -63,7 +63,7 @@ export function Date({
         <div className="absolute right-4 top-4">
           <label htmlFor={`calendar_${name}`}>
             <Calendar fill={labelColor}  />
-          </label> 
+          </label>
           <input
             id={`calendar_${name}`}
             type="date"

@@ -10,7 +10,6 @@ export function useFormStep({ formMethods }: Props) {
   const { trigger } = formMethods;
   const [stepActive, setStepActive] = useState<number>(1);
   const [isLastStep, setIsLastStep] = useState<boolean>(false);
-
   const handleNextStep = async () => {
     const resp = await trigger(["name"]);
 
