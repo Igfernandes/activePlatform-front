@@ -27,8 +27,8 @@ export function FormsCard({ search, filterObjects }: FormsCardProps) {
       <div>
         <Cards
           items={forms.map((form) => ({
-            description: form.description ?? "",
-            alert: form.name,
+            description: form.name ?? "",
+            alert: form.description ?? "",
             link: `${formsRoute}/${form.id}`,
             createdAt: dayjs(form.created_at).format("DD/MM/YYYY HH:mm"),
             dotsActions: [

@@ -1,5 +1,7 @@
 import { Button } from "../../fields/Button";
 import { Checkbox } from "../../fields/Checkbox";
+import { Date } from "../../fields/Date";
+import { Datetime } from "../../fields/Datetime";
 import { File } from "../../fields/File";
 import { Input } from "../../fields/Input";
 import { Radio } from "../../fields/Radio";
@@ -16,16 +18,10 @@ export const fieldsSimple = {
     />
   ),
   radio: ({ className, ...props }: FieldShape) => (
-    <Radio
-      className={`${classNameDefault} ml-2 ${className}`}
-      {...props}
-    />
+    <Radio className={`${classNameDefault} ml-2 ${className}`} {...props} />
   ),
   checkbox: ({ className, ...props }: FieldShape) => (
-    <Checkbox
-      className={`${classNameDefault} ml-2 ${className}`}
-      {...props}
-    />
+    <Checkbox className={`${classNameDefault} ml-2 ${className}`} {...props} />
   ),
   select: ({ className, required, ...props }: FieldShape) => (
     <select
@@ -35,14 +31,14 @@ export const fieldsSimple = {
     />
   ),
   date: ({ className, ...props }: FieldShape) => (
-    <Input
+    <Date
       type="date"
       className={`${classNameDefault} w-full ${className}`}
       {...props}
     />
   ),
   "datetime-local": ({ className, ...props }: FieldShape) => (
-    <Input
+    <Datetime
       type="datetime-local"
       className={`${classNameDefault} w-full ${className}`}
       {...props}
