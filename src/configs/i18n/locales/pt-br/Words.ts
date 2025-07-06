@@ -346,4 +346,6 @@ export const Words = {
   politics_privacy: "Políticas de Privacidade",
   inscribes: "Inscritos",
   reservations: "Reservas",
+  custom: "Customizado",
+  gallery: "Galeria",
 };

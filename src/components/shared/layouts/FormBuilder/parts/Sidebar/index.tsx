@@ -7,6 +7,7 @@ import { optionsSimples } from "../../data/options/simples";
 import { optionsUser } from "../../data/options/users";
 import { optionsLayout } from "../../data/options/layout";
 import { useEffect } from "react";
+import { optionsCustom } from "../../data/options/custom";
 
 export function FormBuilderSidebar() {
   const { optionDrag, handleCollapse } = useFormBuilderContext();
@@ -20,6 +21,7 @@ export function FormBuilderSidebar() {
       <div>
         <Options options={optionsSimples} id="simple" title="fill" />
         <Options options={optionsUser} id="user" title="user" />
+        <Options options={optionsCustom} id="custom" title="custom" />
         <Options options={optionsLayout} id="layout" title="layout" />
       </div>
       <When value={!!optionDrag?.field}>

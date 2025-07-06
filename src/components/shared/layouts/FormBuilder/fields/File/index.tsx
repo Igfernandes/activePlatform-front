@@ -68,6 +68,7 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
             ref={fileInputRef}
             name={name}
             type={"file"}
+            required={required}
             onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
               const files = ev.currentTarget.files;
               if (files) setCurrentValue(files[0]);

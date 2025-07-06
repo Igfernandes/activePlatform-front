@@ -20,7 +20,7 @@ export function useRecaptcha() {
   }, [SITE_KEY]);
 
   const loadReCaptcha = useCallback(() => {
-    turnstile.reset();
+    if (turnstile) turnstile.reset();
   }, []);
 
   return { token, loadReCaptcha, Recaptcha };

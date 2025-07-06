@@ -12,7 +12,7 @@ import i18n from "@configs/i18n";
 import { getCSRF } from "@services/Authentications/CSRF/SSR";
 
 export default function Form({ form, csrf }: FormPageProps) {
-  const { handleSubmit, isLoading } = useForm({
+  const { handleSubmit, isLoading, handleChangeField } = useForm({
     form,
     csrf,
   });
@@ -36,6 +36,7 @@ export default function Form({ form, csrf }: FormPageProps) {
               className="flex flex-col min-h-[60vh] justify-between"
             >
               <FormBuilderPreview
+                handleValue={handleChangeField}
                 fields={JSON.parse(form.components) as Array<FieldShape>}
               />
               <div className="flex justify-end items-center">

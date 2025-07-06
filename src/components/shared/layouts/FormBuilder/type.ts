@@ -3,7 +3,7 @@ import { CSSProperties, JSX } from "react";
 export type OptionData = {
   id: string;
   field: string;
-  element: "INPUT" | "TEXT";
+  element: "INPUT" | "TEXT" | "GALLERY";
   icon: JSX.Element;
 };
 
@@ -23,5 +23,8 @@ export type FieldShape = {
   margin?: string;
   labelColor?: string;
   labelWeight?: string;
+  setValue?: SetValue;
   required?: string;
 };
+
+export type SetValue = (name: string, value: unknown) => void;
