@@ -2,7 +2,6 @@ import { GalleryFileShape, InputProps } from "./type";
 import React from "react";
 import ErrorMessage from "@components/shared/others/ErrorMessage";
 import { useGallery } from "./hooks/useGallery";
-import { capitalize } from "@helpers/string";
 import { GalleryItem } from "./GalleryItem";
 
 export function Gallery({
@@ -27,7 +26,7 @@ export function Gallery({
       <div className="relative w-full  my-4">
         <div>
           <div>
-            <p className="line-clamp-1">{capitalize(label ?? "")}</p>
+            <p className="line-clamp-1">{label}</p>
           </div>
           <div className="p-2 border-2 border-disabled rounded-lg shadow-md">
             <ul className="flex flex-wrap">
