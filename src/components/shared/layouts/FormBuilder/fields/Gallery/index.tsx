@@ -27,9 +27,7 @@ export function Gallery({
       <div className="relative w-full  my-4">
         <div>
           <div>
-            <p className="line-clamp-1">
-              <strong>{capitalize(label ?? "")}</strong>
-            </p>
+            <p className="line-clamp-1">{capitalize(label ?? "")}</p>
           </div>
           <div className="p-2 border-2 border-disabled rounded-lg shadow-md">
             <ul className="flex flex-wrap">
@@ -38,7 +36,7 @@ export function Gallery({
                   <GalleryItem {...file} key={key} />
                 )
               )}
-              <li className="w-1/5 h-40 m-1">
+              <li className="w-1/2 md:w-1/5 h-40 m-1">
                 <div className="relative flex items-center justify-center text-center w-full h-full border-2">
                   <div id={`content_file_${name}`}>
                     <input
