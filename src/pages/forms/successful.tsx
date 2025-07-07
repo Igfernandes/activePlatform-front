@@ -1,6 +1,5 @@
 import { Checks } from "@assets/Icons/colorful/Checks";
 import { ExternalContainer } from "@components/shared/layouts/ExternalContainer";
-import i18n from "@configs/i18n";
 
 export default function Successful() {
   return (
@@ -12,11 +11,14 @@ export default function Successful() {
           </div>
           <div className="text-center mb-6">
             <h2 className="text-2xl">
-              <strong>{i18n(`Texts.send_form`)}</strong>
+              <strong>A Agm recebeu seu Formulário com Sucesso!</strong>
             </h2>
           </div>
           <div className="text-justify mb-6">
-            <p className="text-sm">{i18n("Texts.text_thanks")}</p>
+            <p className="text-sm">
+              Sua resposta é super importante para podermos entender e melhorar
+              cada vez mais.
+            </p>
           </div>
         </div>
       </div>
