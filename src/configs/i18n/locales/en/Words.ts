@@ -19,6 +19,7 @@ export const Words = {
   system: "System",
   subscribe: "Subscribe",
   desative: "Deactivate",
+  fill_register: "Fill Register",
   settings: "Settings",
   administrative: "Administrative",
   list_from_a_to_z: "List from A to Z",

@@ -35,6 +35,7 @@ export const Words = {
   email: "Correo electrónico",
   phone: "Teléfono",
   group: "Grupo",
+  fill_register: "Formulario completado",
   users: "Usuarios",
   update: "Actualizar",
   edit: "Editar",

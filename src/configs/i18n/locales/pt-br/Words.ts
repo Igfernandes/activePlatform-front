@@ -348,4 +348,5 @@ export const Words = {
   reservations: "Reservas",
   custom: "Customizado",
   gallery: "Galeria",
+  fill_register: "Formulário Preenchido"
 };
