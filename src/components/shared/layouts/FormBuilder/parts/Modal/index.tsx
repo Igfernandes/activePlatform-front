@@ -32,7 +32,7 @@ export function Modal() {
 
     handleChangeTab(tabsCurrent[0])
     setTabs(tabsCurrent);
-  }, [payload]);
+  }, [payload?.group]);
 
   return (
     <When value={isShowModal}>
