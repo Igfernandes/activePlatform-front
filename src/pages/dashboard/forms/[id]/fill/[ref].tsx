@@ -6,29 +6,29 @@ import { getFillFields } from "@services/Forms/Fills/Get/SSR";
 import { getForms } from "@services/CustomForms/Get/SSR";
 import { FormFillField } from "@type/Forms/FormsFill";
 import { InfoBoard } from "@components/shared/forms/InfoBoard/viewer";
-import { TSpan } from "@components/shared/forms/InfoBoard/fields/Span";
 import { useFillFields } from "@components/Private/Forms/Fills/hooks/useFillFields";
 import {
   FieldsPageProps,
   FillFieldData,
 } from "@components/Private/Forms/Fills/type";
-
+import { TViewer } from "@components/shared/forms/InfoBoard/fields/Viewer";
 
 export default function FillField({ fields, form }: FieldsPageProps) {
   const { fieldsData } = useFillFields({ fields, form });
-  
+
   return (
     <DashboardContainer>
       <div className="bg-white">
         <div className="title p-4">
-          <h1 className="text-2xl font-semibold">{i18n('Words.fill_register')}</h1>
+          <h1 className="text-2xl font-semibold">
+            {i18n("Words.fill_register")}
+          </h1>
         </div>
         <InfoBoard>
-          {fieldsData.map(({ text, value }: FillFieldData, key) => (
-            <TSpan
-              key={`${text.replaceAll(" ", "")}_${key}`}
-              text={text}
-              value={value}
+          {fieldsData.map((props: FillFieldData, key) => (
+            <TViewer
+              key={`${props.text.replaceAll(" ", "")}_${key}`}
+              {...props}
             />
           ))}
         </InfoBoard>
@@ -57,6 +57,7 @@ export const getServerSideProps: GetServerSideProps<FieldsPageProps> = async ({
     formId: parseInt(id),
     ref,
   });
+
   const form = Array.isArray(forms) ? forms[0] : forms;
 
   if (!forms || !fields) {

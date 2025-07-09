@@ -2,6 +2,7 @@ import { FormsShape } from "@type/Forms";
 import { FormFillField } from "@type/Forms/FormsFill";
 
 export type FillFieldData = {
+  component: string;
   text: string;
   value: string;
 };

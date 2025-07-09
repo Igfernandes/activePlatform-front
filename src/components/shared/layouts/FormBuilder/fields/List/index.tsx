@@ -13,8 +13,6 @@ export function List({
   required,
   options,
   label,
-  labelWeight,
-  labelColor,
   ...rest
 }: InputProps) {
   const IdCurrent = id;
@@ -23,15 +21,13 @@ export function List({
   );
 
   return (
-    <>
+    <div>
       <div>
-        <h4
-          style={{
-            fontWeight: labelWeight,
-            color: labelColor,
-          }}
-        >
-          {label}
+        <h4 style={rest.style}>
+          {label}{" "}
+          <When value={!!required}>
+            <span className="text-red">*</span>
+          </When>
         </h4>
       </div>
       <div className={`flex ${errors?.message ? "border-yellow" : ""} my-4`}>
@@ -39,9 +35,6 @@ export function List({
           <div key={`list_option_key`}>
             <label htmlFor={IdCurrent} className="ml-2">
               {option.text}
-              <When value={!!required}>
-                <span className="text-red">*</span>
-              </When>
             </label>
             <input
               {...rest}
@@ -57,6 +50,6 @@ export function List({
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

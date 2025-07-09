@@ -5,6 +5,7 @@ export type FieldsShape = {
   label: string;
   name: string;
   group?: string;
+  element: string;
   component: "INPUT" | "SELECT" | "TEXTAREA";
   type: HTMLInputTypeAttribute;
   scope: ScopeFields;

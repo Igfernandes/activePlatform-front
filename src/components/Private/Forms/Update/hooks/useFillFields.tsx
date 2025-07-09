@@ -9,16 +9,20 @@ import useGetFillFields from "@services/Forms/Fills/Get/useGetFillFields";
 import useDeleteFillField from "@services/Forms/Fills/Delete/useDelete";
 import useGetClientsServices from "@services/Clients/Services/Get/useGet";
 import { ClientServiceShape } from "@type/Clients/ClientService";
+import { FieldShape } from "@components/shared/layouts/FormBuilder/type";
 
 type Props = {
   formId: number;
+
+  components: FieldShape[];
   serviceId?: number;
 };
 
-export function useFillFields({ formId, serviceId }: Props) {
+export function useFillFields({ formId, serviceId, components }: Props) {
   const [tDataFields, setTDataFields] = useState<
     Array<Record<string, unknown>>
   >([]);
+  const [firstColumnId, setFirstColumn] = useState<string>();
   const { handleToggleModal, modal } =
     useModalContext<ModalFormsOperationType>();
   const { mutateAsync: deleteFillField, isPending: isLoadingFillFieldDelete } =
@@ -36,6 +40,8 @@ export function useFillFields({ formId, serviceId }: Props) {
     i18n("Words.actions"),
   ]);
 
+  const handleChangeColumn = (fieldId: string) => setFirstColumn(fieldId);
+
   const updateFieldForTable = useCallback(
     ({ id, form_id, value, ref, created_at }: FormFillField): TDataForms => {
       const inscribedService = clientsService?.find(
@@ -48,7 +54,7 @@ export function useFillFields({ formId, serviceId }: Props) {
 
       return {
         id,
-        value:  value.length > 40 ?  value.slice(0, 40)+"..." : value,
+        value: value.length > 40 ? value.slice(0, 40) + "..." : value,
         inscribe_at: serviceName,
         created_at: dayjs(created_at).format("DD/MM/YYYY HH:mm:ss"),
         actions: (
@@ -60,7 +66,7 @@ export function useFillFields({ formId, serviceId }: Props) {
         ),
       };
     },
-    [handleToggleModal]
+    [handleToggleModal, firstColumnId]
   );
 
   const handleDeleteFillField = () => {
@@ -78,16 +84,27 @@ export function useFillFields({ formId, serviceId }: Props) {
   useEffect(() => {
     if (!fieldsData) return;
 
-    const tDataFields = fieldsData.map((FieldsProps) =>
-      updateFieldForTable(FieldsProps[0])
-    );
+    if (firstColumnId) {
+      const field = components.find((field) => field.id == firstColumnId);
+      tHeadsFields.current[1] = field?.label ?? "";
+    } else tHeadsFields.current[1] = i18n("Texts.first_column");
+
+    const tDataFields = fieldsData.map((FieldsProps) => {
+      const fieldProps = FieldsProps.find(
+        (field) => field.field_id == +(firstColumnId ?? 0)
+      );
+
+      return updateFieldForTable(fieldProps ?? FieldsProps[0]);
+    });
     setTDataFields(tDataFields);
-  }, [fieldsData, updateFieldForTable]);
+  }, [fieldsData, updateFieldForTable, firstColumnId, components]);
 
   return {
     tDataFields,
     tHeadsFields,
     handleDeleteFillField,
     isLoadingFillFieldDelete,
+    fieldsData,
+    handleChangeColumn,
   };
 }

@@ -81,6 +81,7 @@ export function FillFieldsUpdate({ targetForm }: Props) {
           />
           <div className="mt-4">
             <FilledFormsTable
+              components={form}
               formId={targetForm.id}
               serviceId={targetForm.service_id}
             />

@@ -12,9 +12,12 @@ export function useFillFields({ fields, form }: HookFillFieldsProps) {
 
     setFieldsData(
       fieldsForm
-        .filter((field) => ["simple", "user", "custom"].includes(field?.group ?? ""))
+        .filter((field) =>
+          ["simple", "user", "custom"].includes(field?.group ?? "")
+        )
         .map((fieldForm) => {
           const data = {
+            component: fieldForm.element,
             text: fieldForm.label,
             value: "--",
           };

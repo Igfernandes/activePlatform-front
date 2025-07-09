@@ -97,7 +97,7 @@ const TableProvider = ({
       amountHiddenCols,
       amountRegisters,
     }),
-    [sort, pagination, tRows, filters, amountHiddenCols]
+    [sort, pagination, tRows, filters, amountHiddenCols, data]
   );
 
   return (

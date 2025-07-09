@@ -37,4 +37,5 @@ export const Texts = {
   text_thanks:
     "Thank you for your cooperation with our metrics and analyses. Now please wait for our team's feedback and have a great day!",
   first_column: "First column",
+  viewer_file: "View attachment"
 };
