@@ -4,11 +4,13 @@ import Image from "next/image";
 import { FileSymlink } from "@assets/Icons/black/FileSymlink";
 import { Close } from "@assets/Icons/black/CloseClean";
 
-type Props = GalleryFileShape;
+type Props = GalleryFileShape & {
+  id: number;
+};
 
-export function GalleryItem({ name, type, url, handleDelete }: Props) {
+export function GalleryItem({ name, type, url, id, handleDelete }: Props) {
   return (
-    <li className="relative w-[23%] md:w-[19%] h-40 bg-slate-100 m-1">
+    <li className="relative w-[23%] md:w-[18.5%] h-40 bg-slate-100 m-1 ml-2">
       <When value={type.includes("image")}>
         <Image
           src={url}
@@ -33,7 +35,7 @@ export function GalleryItem({ name, type, url, handleDelete }: Props) {
       </When>
       <div
         className="absolute top-0 right-0 bg-white hover:bg-neutral-300   shadow-sm cursor-pointer"
-        onClick={() => handleDelete(name)}
+        onClick={() => handleDelete(id)}
       >
         <Close />
       </div>

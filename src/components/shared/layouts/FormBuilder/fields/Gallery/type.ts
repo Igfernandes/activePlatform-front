@@ -15,5 +15,6 @@ export type GalleryFileShape = {
   url: string;
   type: string;
   ref: File;
-  handleDelete: (name: string) => void;
+  status: "AWAITING" | "UPLOADED" | "INVALIDED";
+  handleDelete: (name: number) => void;
 };

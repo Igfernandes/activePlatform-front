@@ -40,11 +40,19 @@ export function ServicesForm({ service }: Props) {
 
   return (
     <>
-      <When value={!!service?.photo || !!getFileUrl(watch("photo"))}>
+      <When
+        value={
+          !!service?.photo ||
+          !!getFileUrl(watch("photo") ? watch("photo")[0] : null)
+        }
+      >
         <div className="image mb-2 bg-white rounded-xl">
           <div className="">
             <Image
-              src={service?.photo ?? getFileUrl(watch("photo"))}
+              src={
+                service?.photo ??
+                getFileUrl(watch("photo") ? watch("photo")[0] : null)
+              }
               width={200}
               height={100}
               className="w-full object-cover h-[35vh]"
