@@ -52,7 +52,6 @@ export function useForm({ form, csrf }: Props) {
     formData.append("form_id", String(form.id));
     Object.entries(fields.current).forEach(([name, value]) => {
       if (Array.isArray(value)) {
-        console.log(value)
         value.forEach((file) => formData.append(`${name}[]`, file));
       } else {
         formData.append(`${name}`, value as string | Blob);

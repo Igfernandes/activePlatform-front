@@ -1,81 +1,56 @@
-import { ChangeEvent, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { GalleryFileShape } from "../type";
 import { SetValue } from "../../../type";
+import { useModal } from "./useModal";
 
 type Props = {
   setValue?: SetValue;
-  inputName: string;
+  IdCurrent: string;
+  name: string;
 };
-const MAX_FILE_SIZE_MB = 5; // limite por arquivo
-const MAX_TOTAL_SIZE_MB = 20; // limite total
 
-export function useGallery({ setValue, inputName }: Props) {
-  const fileRef = useRef<Array<GalleryFileShape>>([]);
-  const [files, setFiles] = useState<Array<GalleryFileShape>>([]);
+export function useGallery({ IdCurrent, setValue, name }: Props) {
+  const galleryRef = useRef<string>(IdCurrent);
+  const { handleModal, isShowModal } = useModal();
+  const [filesUploaded, setFilesUploaded] = useState<Array<GalleryFileShape>>(
+    []
+  );
 
-  const handleDelete = (name: string) => {
-    const updatedFiles = fileRef.current.filter((file) => file.name !== name);
-    fileRef.current = updatedFiles;
-    setFiles(updatedFiles);
-    updateValue(updatedFiles);
+  const handleDeleteFile = (fileIndex: number) => {
+    setFilesUploaded((files) => {
+      return files.filter((file, key) => fileIndex !== key);
+    });
+    if (setValue)
+      setValue(
+        name,
+        JSON.stringify({
+          package: galleryRef.current,
+          files: filesUploaded
+            .filter((file, key) => fileIndex !== key)
+            .map((file) => file.url),
+        })
+      );
   };
 
-  const updateValue = (files: Array<GalleryFileShape>) => {
-    if (!setValue) return;
-
-    setValue(
-      inputName,
-      files.map((file) => file.ref)
-    );
-  };
-
-  const handleChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
-    const changeFiles = e.currentTarget.files;
-    if (!changeFiles) return;
-
-    const maxFileSize = MAX_FILE_SIZE_MB * 1024 * 1024;
-    const maxTotalSize = MAX_TOTAL_SIZE_MB * 1024 * 1024;
-
-    const currentTotalSize = fileRef.current.reduce(
-      (acc, file) => acc + file.ref.size,
-      0
-    );
-
-    const newFiles = Array.from(changeFiles);
-
-    for (const file of newFiles) {
-      if (file.size > maxFileSize) {
-        alert(`O arquivo "${file.name}" excede ${MAX_FILE_SIZE_MB}MB.`);
-        return;
-      }
-    }
-
-    const newFilesTotalSize = newFiles.reduce(
-      (acc, file) => acc + file.size,
-      0
-    );
-    if (currentTotalSize + newFilesTotalSize > maxTotalSize) {
-      alert(`O total de arquivos excede ${MAX_TOTAL_SIZE_MB}MB.`);
-      return;
-    }
-
-    const galleryFiles = newFiles.map((file) => ({
-      name: file.name,
-      url: URL.createObjectURL(file),
-      type: file.type,
-      ref: file,
-      handleDelete,
-    }));
-
-    const updatedFiles = [...fileRef.current, ...galleryFiles];
-    fileRef.current = updatedFiles;
-    setFiles(updatedFiles);
-    updateValue(updatedFiles);
+  const handleUpdateFilesUploaded = (files: Array<GalleryFileShape>) => {
+    setFilesUploaded(files);
+    handleModal(false);
+    if (setValue)
+      setValue(
+        name,
+        JSON.stringify({
+          package: galleryRef.current,
+          files: files.map((file) => file.url),
+        })
+      );
   };
 
   return {
-    files,
-    handleChangeFile,
-    handleDelete,
+    galleryRef,
+    filesUploaded,
+    isShowModal,
+    handleModal,
+    handleUpdateFilesUploaded,
+    handleDeleteFile,
   };
 }

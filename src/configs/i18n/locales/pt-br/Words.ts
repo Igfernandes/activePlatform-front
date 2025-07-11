@@ -14,6 +14,7 @@ export const Words = {
   fill: "Preenchimento",
   go_out: "Sair",
   schedule: "Agenda",
+  loading: "Carregando",
   services: "Serviços",
   finance: "Financeiro",
   system: "Sistema",

@@ -1,10 +1,10 @@
-import { GalleryFileShape, InputProps } from "./type";
+import { InputProps } from "./type";
 import React from "react";
 import ErrorMessage from "@components/shared/others/ErrorMessage";
 import { useGallery } from "./hooks/useGallery";
 import { GalleryItem } from "./GalleryItem";
 import { UploadModal } from "./Modal";
-import { useModal } from "./hooks/useModal";
+import i18n from "@configs/i18n";
 
 export function Gallery({
   dataTestId,
@@ -17,11 +17,18 @@ export function Gallery({
   ...rest
 }: InputProps) {
   const IdCurrent = id ?? dataTestId ?? `${name}_${new Date().getTime()}`;
-  const { files } = useGallery({
+  const {
+    galleryRef,
+    filesUploaded,
+    handleUpdateFilesUploaded,
+    handleModal,
+    isShowModal,
+    handleDeleteFile,
+  } = useGallery({
+    IdCurrent,
     setValue,
-    inputName: name ?? "",
+    name: name ?? "",
   });
-  const { handleModal, isShowModal } = useModal();
 
   return (
     <>
@@ -30,29 +37,31 @@ export function Gallery({
           <div>
             <p className="line-clamp-1">{label}</p>
           </div>
-          <div className="p-2 border-2 border-disabled rounded-lg shadow-md">
-            <ul className="flex flex-wrap">
-              {Array.from(files ?? []).map(
-                (file: GalleryFileShape, key: number) => (
-                  <GalleryItem {...file} key={key} />
-                )
-              )}
-              <li className="w-1/2 md:w-1/5 h-40 m-1">
-                <div className="relative flex items-center justify-center text-center w-full h-full border-2">
-                  <div id={`content_file_${name}`}></div>
-                  <span> {"Adicionar nova imagem"}</span>
-                </div>
-              </li>
+          <div className="p-1 border-2 border-disabled rounded-lg shadow-md">
+            <ul className="flex flex-wrap min-h-40">
+              {filesUploaded.map((file, key: number) => (
+                <GalleryItem
+                  {...file}
+                  key={key}
+                  id={key}
+                  handleDelete={handleDeleteFile}
+                />
+              ))}
             </ul>
-
             <button
               onClick={() => handleModal(true)}
-              className="absolute top-6 right-0 bg-red text-white p-2"
+              className="absolute bottom-0 right-0 bg-red text-white p-2 rounded-md"
               type="button"
             >
-              Adicionar
+              {i18n("Words.add")}
             </button>
-            <UploadModal isShow={isShowModal} handleModal={handleModal} />
+            <UploadModal
+              files={filesUploaded}
+              galleryRef={galleryRef}
+              handleUpdateFilesUploaded={handleUpdateFilesUploaded}
+              isShow={isShowModal}
+              handleModal={handleModal}
+            />
           </div>
           <div>
             <input
