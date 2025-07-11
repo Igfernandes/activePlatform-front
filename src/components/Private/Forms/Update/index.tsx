@@ -18,7 +18,7 @@ type Props = {
 };
 
 export function FillFieldsUpdate({ targetForm }: Props) {
-  const { submit, form, handleChangeFormFields, isLoading } = useForms();
+  const { submit, components, handleChangeFormFields, isLoading } = useForms();
   const { formMethods } = useFormRules<FormsPayload>({
     schema: formsSchema,
     defaultValues: {
@@ -75,7 +75,7 @@ export function FillFieldsUpdate({ targetForm }: Props) {
           <Forms
             step={stepActive}
             form={targetForm}
-            components={form}
+            components={components}
             slug={targetForm.slug}
             onChangeFormFields={handleChangeFormFields}
           />

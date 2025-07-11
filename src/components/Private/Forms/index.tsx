@@ -10,11 +10,17 @@ type Props = {
   step: number;
   components: FieldShape[];
   slug?: string;
-  form: FormsShape
+  form?: FormsShape;
   onChangeFormFields: (fieldsForm: Array<FieldShape>) => void;
 };
 
-export function Forms({ step, form, components, slug, onChangeFormFields }: Props) {
+export function Forms({
+  step,
+  form,
+  components,
+  slug,
+  onChangeFormFields,
+}: Props) {
   return (
     <div className="mt-6 p-6 bg-white">
       <When value={step === 1}>
@@ -22,8 +28,8 @@ export function Forms({ step, form, components, slug, onChangeFormFields }: Prop
         <div className="mt-4">
           <FilledFormsTable
             components={components}
-            formId={form.id}
-            serviceId={form.service_id}
+            formId={form?.id ?? 0}
+            serviceId={form?.service_id ?? 0}
           />
         </div>
       </When>

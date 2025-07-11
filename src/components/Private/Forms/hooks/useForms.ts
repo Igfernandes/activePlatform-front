@@ -5,7 +5,7 @@ import usePostCreateForm from "../../../../services/CustomForms/Post/usePost";
 import usePutForm from "@services/CustomForms/Put/usePut";
 
 export function useForms() {
-  const [form, setForm] = useState<Array<FieldShape>>([]);
+  const [components, setComponents] = useState<Array<FieldShape>>([]);
   const { mutateAsync: postForm, isPending: isLoadingPost } =
     usePostCreateForm();
   const { mutateAsync: putForm, isPending: isLoadingPut } = usePutForm();
@@ -13,7 +13,7 @@ export function useForms() {
   const submit = (FormsPayload: FormsPayload) => {
     const payload = {
       ...FormsPayload,
-      components: JSON.stringify(form),
+      components: JSON.stringify(components),
       status: "PUBLISHED" as "PUBLISHED" | "DRAFT",
     };
 
@@ -28,13 +28,13 @@ export function useForms() {
   };
 
   const handleChangeFormFields = (fieldsForm: Array<FieldShape>) => {
-    setForm(fieldsForm);
+    setComponents(fieldsForm);
   };
 
   return {
     submit,
     handleChangeFormFields,
-    form,
+    components,
     isLoading: isLoadingPost || isLoadingPut,
   };
 }

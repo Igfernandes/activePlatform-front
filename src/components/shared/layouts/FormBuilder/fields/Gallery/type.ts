@@ -12,7 +12,7 @@ export type InputProps = FieldShape & {
 
 export type GalleryFileShape = {
   name: string;
-  url: Blob | MediaSource;
+  url: string;
   type: string;
   ref: File;
   handleDelete: (name: string) => void;

@@ -11,9 +11,7 @@ export function AccordionItemHeader({
 }: TabHeaderProps) {
   const { accordionActive, handleCollapse } = useAccordionContext();
   const divRef = useRef<HTMLDivElement>(null);
-  const { getClampString } = useStrings({
-    elementRef: divRef,
-  });
+  const { getClampString } = useStrings();
 
   return (
     <div className="accordion-header flex justify-between border-b-[1px] py-4 pr-6 border-secondary relative">
