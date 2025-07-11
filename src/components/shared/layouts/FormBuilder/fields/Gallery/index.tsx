@@ -3,10 +3,11 @@ import React from "react";
 import ErrorMessage from "@components/shared/others/ErrorMessage";
 import { useGallery } from "./hooks/useGallery";
 import { GalleryItem } from "./GalleryItem";
+import { UploadModal } from "./Modal";
+import { useModal } from "./hooks/useModal";
 
 export function Gallery({
   dataTestId,
-  className,
   id,
   label,
   errors,
@@ -16,10 +17,11 @@ export function Gallery({
   ...rest
 }: InputProps) {
   const IdCurrent = id ?? dataTestId ?? `${name}_${new Date().getTime()}`;
-  const { files, handleChangeFile } = useGallery({
+  const { files } = useGallery({
     setValue,
     inputName: name ?? "",
   });
+  const { handleModal, isShowModal } = useModal();
 
   return (
     <>
@@ -37,23 +39,30 @@ export function Gallery({
               )}
               <li className="w-1/2 md:w-1/5 h-40 m-1">
                 <div className="relative flex items-center justify-center text-center w-full h-full border-2">
-                  <div id={`content_file_${name}`}>
-                    <input
-                      {...rest}
-                      name={name}
-                      type={"file"}
-                      multiple={true}
-                      required={!!required}
-                      onChange={handleChangeFile}
-                      className={`${className} w-full h-full opacity-0 absolute top-0 left-0`}
-                      data-testid={dataTestId}
-                      id={IdCurrent}
-                    />
-                  </div>
+                  <div id={`content_file_${name}`}></div>
                   <span> {"Adicionar nova imagem"}</span>
                 </div>
               </li>
             </ul>
+
+            <button
+              onClick={() => handleModal(true)}
+              className="absolute top-6 right-0 bg-red text-white p-2"
+              type="button"
+            >
+              Adicionar
+            </button>
+            <UploadModal isShow={isShowModal} handleModal={handleModal} />
+          </div>
+          <div>
+            <input
+              {...rest}
+              name={name}
+              type={"hidden"}
+              required={!!required}
+              data-testid={dataTestId}
+              id={IdCurrent}
+            />
           </div>
         </div>
       </div>

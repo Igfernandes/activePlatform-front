@@ -18,3 +18,10 @@ export type DependentsData = {
   cpf: string;
   birthdate: string;
 };
+
+
+export type DependentsViewerProps = {
+  rows: Array<DependentsData>;
+  setValue: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setRows: React.Dispatch<React.SetStateAction<DependentsData[]>>;
+};

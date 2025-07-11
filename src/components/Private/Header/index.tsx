@@ -44,13 +44,13 @@ export function Header({
                 )}
               </strong>
             </When>
-            <When value={isShowBackRoute.current}>
-              <strong className="flex">
+            <When value={isShowBackRoute.current && screenType !== "MOBILE"}>
+              <strong className="flex w-full">
                 <ArrowNarrowLeft
                   className="mr-2 cursor-pointer"
                   onClick={() => route.back()}
                 />
-                {title ?? i18n("Words.back_before_page")}
+                <span> {title ?? i18n("Words.back_before_page")}</span>
               </strong>
             </When>
           </h3>

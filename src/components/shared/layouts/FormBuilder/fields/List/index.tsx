@@ -7,7 +7,6 @@ import { OptionShape } from "../../parts/Modal/tabs/Settings/GroupsTab/type";
 
 export function List({
   className,
-  id,
   errors,
   name,
   required,
@@ -15,7 +14,6 @@ export function List({
   label,
   ...rest
 }: InputProps) {
-  const IdCurrent = id;
   const optionsRef = useRef<Array<OptionShape>>(
     JSON.parse(options ?? "[]") as Array<OptionShape>
   );
@@ -30,10 +28,17 @@ export function List({
           </When>
         </h4>
       </div>
-      <div className={`flex ${errors?.message ? "border-yellow" : ""} my-4`}>
-        {optionsRef.current.map((option) => (
-          <div key={`list_option_key`}>
-            <label htmlFor={IdCurrent} className="ml-2">
+      <div
+        className={`flex flex-wrap md:flex-nowrap ${
+          errors?.message ? "border-yellow" : ""
+        } my-4`}
+      >
+        {optionsRef.current.map((option, key) => (
+          <div
+            className="w-full md:w-full flex flex-row-reverse md:block my-2 cursor-pointer"
+            key={`list_option_key`}
+          >
+            <label htmlFor={`option_${key}`} className="w-[90%] md:w-auto ml-2">
               {option.text}
             </label>
             <input
@@ -44,8 +49,8 @@ export function List({
               value={option.value}
               className={`${className ?? ""} ${
                 !!errors ? "border-amber-500 outline-amber-500" : ""
-              } px-3 pt-8 pb-4  bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
-              id={IdCurrent}
+              } w-[10%] md:w-full px-3 pt-8 pb-4  bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
+              id={`option_${key}`}
             />
           </div>
         ))}

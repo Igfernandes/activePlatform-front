@@ -1,6 +1,8 @@
 import { ArrowDownSimple } from "@assets/Icons/black/ArrowDownSimple";
 import { TabHeaderProps } from "../type";
 import { useAccordionContext } from "../AccordionContext";
+import { useRef } from "react";
+import { useStrings } from "@hooks/useStrings";
 
 export function AccordionItemHeader({
   title,
@@ -8,6 +10,8 @@ export function AccordionItemHeader({
   accordionId,
 }: TabHeaderProps) {
   const { accordionActive, handleCollapse } = useAccordionContext();
+  const divRef = useRef<HTMLDivElement>(null);
+  const { getClampString } = useStrings();
 
   return (
     <div className="accordion-header flex justify-between border-b-[1px] py-4 pr-6 border-secondary relative">
@@ -15,8 +19,8 @@ export function AccordionItemHeader({
         className="absolute top-0 left-0 w-full h-full z-[0] cursor-pointer"
         onClick={() => handleCollapse(accordionId)}
       ></div>
-      <div className="line-clamp-1">
-        <span>{title}</span>
+      <div ref={divRef}>
+        <span>{getClampString(String(title))}</span>
       </div>
       <div className="flex items-center">
         {buttons}

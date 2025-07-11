@@ -1,4 +1,3 @@
-import { FileSymlink } from "@assets/Icons/black/FileSymlink";
 import { DotsOptions } from "@components/shared/others/DotsOptions";
 import i18n from "@configs/i18n";
 import { useRouter } from "next/navigation";
@@ -9,6 +8,7 @@ import { useEffect, useState } from "react";
 import { ActionsData } from "@components/shared/others/DotsOptions/type";
 import usePostInscribesServices from "@services/Forms/Services/Post/usePost";
 import { useSnackbar } from "@hooks/useSnackbar";
+import { Shared } from "@components/shared/others/Shared";
 
 type Props = {
   handleToggleModal: (
@@ -17,12 +17,14 @@ type Props = {
   ) => void;
   formId: number;
   refPackage: string;
+  fieldId: number;
 };
 
 export function FillFieldsActions({
   handleToggleModal,
   formId,
   refPackage,
+  fieldId,
 }: Props) {
   const router = useRouter();
   const { forms } = privateRoutes;
@@ -67,7 +69,7 @@ export function FillFieldsActions({
 
   return (
     <div className="flex">
-      <FileSymlink />
+      <Shared entity={"FORMS_FILLS"} in_ids={[fieldId]} />
       <DotsOptions actions={actions} />
     </div>
   );

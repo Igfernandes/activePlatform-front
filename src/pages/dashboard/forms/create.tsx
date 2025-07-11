@@ -19,7 +19,7 @@ export default function Create() {
     useFormStep({
       formMethods,
     });
-  const { submit, form, handleChangeFormFields, isLoading } = useForms();
+  const { submit, components, handleChangeFormFields, isLoading } = useForms();
 
   const submitForm = formMethods.handleSubmit(submit);
   return (
@@ -44,7 +44,7 @@ export default function Create() {
         <form>
           <Forms
             step={stepActive}
-            form={form}
+            components={components}
             onChangeFormFields={handleChangeFormFields}
           />
           <FooterForms
