@@ -11,4 +11,10 @@ export const Components = {
   subscribe: {
     notification_to_you: "A AGM quer enviar notificações pra você!",
   },
+  gallery: {
+    modal_title: "Carregar e anexar arquivos",
+    modal_text: "Insira abaixo os arquivos/imagens que deseja incluir",
+    modal_upload_text: "Clique para carregar ou arraste e solte",
+    modal_upload_max_file: "Tamanho máximo do arquivo 5 MB"
+  },
 };

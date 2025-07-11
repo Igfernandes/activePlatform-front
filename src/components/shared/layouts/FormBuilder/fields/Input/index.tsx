@@ -33,7 +33,7 @@ export function Input({
       <div
         className={`relative ${
           errors?.message ? "border-yellow" : ""
-        } w-full my-4`}
+        } w-full`}
       >
         <label
           htmlFor={IdCurrent}

@@ -87,3 +87,15 @@
 
 - **Os chats estão atualizando em conjunto.**
 - **Colocar o título da integração selecionada**
+
+
+#PENDENCIAS:
+Galeria de Fotos
+Mudar a mensagem de finalização do formulário
+Mudar cor da linha do formulário no topo
+Criar filtros para os formulários na página de visualização
+Remover lógica de segurar e soltar e colocar opção de mexer pra cima ou pra baixo nos campos clicando em algum lugar.
+Exportação individual dos registros.
+Colocar tabela de inscritos só na primeira página (Ok)
+Trocar icons de compartilhar e icons de copiar link, pois não está legais. (Ok)
+Melhorar visual de lista em versão mobile. (Ok)

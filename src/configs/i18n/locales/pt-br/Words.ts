@@ -24,6 +24,7 @@ export const Words = {
   list_from_a_to_z: "Listar de A a Z",
   research: "Pesquisar",
   status: "Status",
+  see: "Ver",
   published: "Publicado",
   draft: "Rascunho",
   back: "Voltar",

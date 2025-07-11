@@ -11,8 +11,8 @@ import { ToggleSwitch } from "@components/shared/forms/ToggleSwitch";
 import { ServicesShape } from "@type/Services";
 import useWindow from "@hooks/useWindow";
 import { useNavigator } from "@hooks/useNavigator";
-import { FloppyDisk } from "@assets/Icons/black/FloppyDisck";
 import { Datetime } from "@components/shared/forms/DateTime";
+import { Link } from "@assets/Icons/black/Link";
 
 type Props = Pick<ComponentsProps, "handleChangeFormFields"> & {
   slug?: string;
@@ -55,10 +55,10 @@ export function Definitions({ handleChangeFormFields, slug }: Props) {
         <When value={!!formId}>
           <div>
             <div
-              className="px-3 py-2 shadow-md rounded-md cursor-pointer ml-2"
+              className="px-3 py-2 shadow-md hover:bg-red rounded-md cursor-pointer ml-2"
               onClick={() => handleCopy(`${baseUrl}/forms/${slug}`)}
             >
-              <FloppyDisk className="hover:fill-red" />
+              <Link  />
             </div>
           </div>
         </When>
@@ -126,15 +126,15 @@ export function Definitions({ handleChangeFormFields, slug }: Props) {
           ]}
         />
       </div>
-      <div className="flex my-4">
-        <div className="form-group w-full md:w-1/2 mr-2">
+      <div className="flex flex-wrap md:flex-nowrap my-4">
+        <div className="form-group w-full md:w-1/2 md:mr-2">
           <Datetime
             {...register("started_at")}
             label={i18n("Words.started_at")}
             dataTestId="started_at"
           />
         </div>
-        <div className="form-group w-full md:w-1/2 ml-2">
+        <div className="form-group w-full my-4 md:my-auto md:w-1/2 md:ml-2">
           <Datetime
             {...register("expired_at")}
             label={i18n("Words.expired_at")}

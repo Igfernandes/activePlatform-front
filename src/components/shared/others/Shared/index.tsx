@@ -1,4 +1,4 @@
-import { Shared as SharedIcon } from "@assets/Icons/black/Shared";
+import { FileSymlink } from "@assets/Icons/black/FileSymlink";
 import { When } from "@components/utilities/When";
 import { EntitiesShape } from "@services/Exports/Post/type";
 import usePostExports from "@services/Exports/Post/usePost";
@@ -16,13 +16,13 @@ export function Shared({ entity, in_ids }: Props) {
   return (
     <div className="relative">
       <div
-        className="px-3 py-2 shadow-md rounded-md cursor-pointer ml-2"
+        className=" rounded-md cursor-pointer ml-2"
         onMouseEnter={() => setIsShow(true)}
         onMouseLeave={() => setIsShow(false)}
       >
-        <SharedIcon className="hover:fill-red" />
+        <FileSymlink className="hover:fill-red" />
         <When value={isShow}>
-          <ul className="absolute z-50 bg-white mt-1 p-4 left-0 shadow-lg">
+          <ul className="absolute z-50 bg-white p-4 left-0 shadow-lg rounded-md">
             <li
               onClick={() =>
                 postExport({

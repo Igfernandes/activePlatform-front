@@ -13,22 +13,24 @@ export function FilledFormsActions({
   components,
   handleChangeColumn,
 }: Props) {
+ 
   return (
-    <div className="flex">
-      <div className="">
-        <span>{i18n("Texts.first_column")}:</span>
+    <div className="flex flex-wrap md:flex-nowrap flex-col-reverse md:flex-row  relative">
+      <div className="flex flex-wrap md:flex-nowrap line-clamp-1 items-center mt-5 md:mt-auto">
+        <span className="w-[9rem] font-bold ">{i18n("Texts.first_column")}:</span>
         <select
+          id="first_column"
           onChange={(ev) => handleChangeColumn(ev.currentTarget.value)}
-          className="min-w-20 p-1 shadow-md rounded-md ml-2"
+          className="w-full max-w-40 md:w-auto min-w-20 p-1 shadow-md rounded-md md:ml-2"
         >
-          {components.map((component) => (
+          {components.filter((component) => !['layout'].includes(component.group ?? "") ).map((component) => (
             <option key={`option_${component.id}`} value={component.id}>
               {component.label}
             </option>
           ))}
         </select>
       </div>
-      <div className="ml-4">
+      <div className="w-10 ml-2 shadow-md rounded-md">
         <Shared entity={"FORMS"} in_ids={[formId ?? 0]} />
       </div>
     </div>

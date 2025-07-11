@@ -9,7 +9,6 @@ import i18n from "@configs/i18n";
 import { useForms } from "../hooks/useForms";
 import { useEffect } from "react";
 import { Forms } from "..";
-import { FilledFormsTable } from "./FilledFormsTable";
 import { FooterForms } from "../FooterForms";
 import { useModalContext } from "@contexts/Modal";
 import { useFillFieldsModal } from "./hooks/useFillFieldsModal";
@@ -75,17 +74,12 @@ export function FillFieldsUpdate({ targetForm }: Props) {
         <form>
           <Forms
             step={stepActive}
-            form={form}
+            form={targetForm}
+            components={form}
             slug={targetForm.slug}
             onChangeFormFields={handleChangeFormFields}
           />
-          <div className="mt-4">
-            <FilledFormsTable
-              components={form}
-              formId={targetForm.id}
-              serviceId={targetForm.service_id}
-            />
-          </div>
+
           <FooterForms
             isFirstStep={stepActive == 1}
             onNextStep={handleNextStep}
