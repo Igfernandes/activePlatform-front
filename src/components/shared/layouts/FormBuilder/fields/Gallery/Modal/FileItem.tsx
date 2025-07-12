@@ -6,6 +6,7 @@ import { Close } from "@assets/Icons/black/CloseClean";
 import i18n from "@configs/i18n";
 import { useStrings } from "@hooks/useStrings";
 import { FileItemProps } from "./type";
+import useWindow from "@hooks/useWindow";
 
 export function FileItem({
   setPreview,
@@ -15,11 +16,12 @@ export function FileItem({
 }: FileItemProps) {
   const { type, name, ref, status } = file;
   const { getClampString } = useStrings();
+  const { screenType } = useWindow();
 
   return (
     <li className="border-2 p-2 rounded-md w-full mt-2">
-      <div className="flex">
-        <div className="py-2 px-3">
+      <div className="flex flex-wrap md:flex-nowrap">
+        <div className="w-1/6 py-2 px-1 md:px-3">
           <When value={!!type.startsWith("image/")}>
             <ImageSimple />
           </When>
@@ -27,7 +29,7 @@ export function FileItem({
             <FileSimple />
           </When>
         </div>
-        <div>
+        <div className="w-5/6">
           <p className="text-sm">{getClampString(name, 40)}</p>
           <p className="text-xs">
             {bytesToMB(ref?.size ?? "")}
@@ -37,13 +39,23 @@ export function FileItem({
             </When>
           </p>
         </div>
-        <div className="text-center ml-auto">
-          <span className="cursor-pointer" onClick={() => handleDelete(id)}>
-            <Close className="w-4 mx-auto" />
-          </span>
+        <div className="flex md:block text-center ml-auto mt-2">
+          <div
+            className="cursor-pointer pt-[2px] md:pt-0 mr-1 md:mr-0"
+            onClick={() => handleDelete(id)}
+          >
+            <When value={screenType !== "MOBILE"}>
+              <Close className="w-4 mx-auto" />
+            </When>
+            <When value={screenType === "MOBILE"}>
+              <span className="py-[2px] px-4  text-red rounded-md border-2 border-red text-sm">
+                <u>{i18n("Words.remove")}</u>
+              </span>
+            </When>
+          </div>
           <When value={!!type.startsWith("image/")}>
             <span
-              className="text-sm cursor-pointer"
+              className="bg-red py-1 md:py-0 px-4 md:px-0 text-white md:text-black rounded-md md:bg-transparent text-sm cursor-pointer"
               onClick={() => {
                 setPreview(getFileUrl(ref));
               }}

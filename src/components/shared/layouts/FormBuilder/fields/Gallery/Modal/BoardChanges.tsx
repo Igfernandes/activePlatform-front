@@ -21,10 +21,10 @@ export function BoardChanges({ preview, handleChangeFile, setPreview }: Props) {
               <Upload className="w-10 h-10" />
             </div>
             <div className="text-center">
-              <p>
+              <p className="text-xs md:text-base">
                 <u>{i18n("Components.gallery.modal_upload_text")}</u>
               </p>
-              <span className="text-xs text-disabled">
+              <span className="text-xs md:text-xs text-disabled">
                 {i18n("Components.gallery.modal_upload_max_file")}
               </span>
             </div>

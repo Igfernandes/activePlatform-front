@@ -36,7 +36,7 @@ export function UploadModal({
       handleModal={handleModal}
       isShowModal={isShow}
     >
-      <div className="w-[33vw]">
+      <div className="w-full lg:w-[33vw]">
         <div className="mb-2">
           <span className="text-disabled text-xs">
             {i18n("Components.gallery.modal_text")}
@@ -68,7 +68,7 @@ export function UploadModal({
           type="button"
           disabled={isLoading}
           onClick={handleUploadFiles}
-          className="w-1/2 bg-red text-white disabled:bg-disabled hover:scale-95 duration-300 py-2 px-16 rounded-md cursor-pointer ml-2"
+          className="w-1/2 bg-red text-white disabled:bg-disabled hover:scale-95 duration-300 py-2 md:px-16 rounded-md cursor-pointer ml-2"
         >
           {i18n(`Words.${isLoading ? "loading" : "save"}`)}
         </button>

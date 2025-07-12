@@ -18,7 +18,7 @@ export default function Cookies() {
           </div>
           <div className="w-full mt-6 px-6 mx-auto mb-10">
             <p className="text-sm text-end">Última atualização: 16/06/2025</p>
-            <ol className="list-decimal text-2xl mt-4">
+            <ol className="list-decimal text-2xl mt-4 pl-5">
               <li>
                 <h2 className="text-2xl">
                   <strong>O que são Cookies</strong>
@@ -169,7 +169,7 @@ export default function Cookies() {
                
                 <ol className="pl-6">
                   {[
-                    <span key={"email"}>
+                    <span key={"email"} className="break-words">
                       E-mail:
                       <Link
                         href="mailto:contato@agmturismomarica.com.br"

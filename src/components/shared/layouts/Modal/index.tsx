@@ -9,7 +9,7 @@ export function Modal({ children, title, isShowModal, handleModal }: ModalProps)
         <div className="bg-white sm:max-w-[60%] max-h-[98vh] overflow-x-hidden overflow-y-auto p-6 rounded-xl">
           <div className="flex items-center border-b-2 border-b-secondary pb-4 mb-2 md:mb-6">
             <div className="pr-4">
-              <h4 className="text-xl">
+              <h4 className="txt-sm md:text-xl">
                 <strong>{title}</strong>
               </h4>
             </div>

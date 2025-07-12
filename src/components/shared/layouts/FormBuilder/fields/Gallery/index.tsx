@@ -31,7 +31,7 @@ export function Gallery({
 
   return (
     <>
-      <div className="relative w-full  my-4">
+      <div className="relative w-full  my-4 z-50" >
         <div>
           <div>
             <p className="line-clamp-1">{label}</p>
