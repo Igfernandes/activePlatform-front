@@ -20,7 +20,7 @@ export default function FillField({ fields, form }: FieldsPageProps) {
     ref: fields[0].ref,
     formId: form.id,
   });
-  const { formMethods, errors } = useFormRules({
+  const { formMethods } = useFormRules({
     schema: z.object(
       Object.fromEntries(
         fieldsData.map(({ id }: FieldsShape) => [
@@ -31,7 +31,6 @@ export default function FillField({ fields, form }: FieldsPageProps) {
     ),
   });
 
-  console.log(errors);
 
   return (
     <DashboardContainer>
