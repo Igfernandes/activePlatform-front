@@ -59,7 +59,7 @@ export const fieldsSimple = {
   ),
   file: ({ required, ...props }: FieldShape) => (
     <File
-      required={required === "true"}
+      required={required}
       className={`${classNameDefault} w-full h-[3.5rem]`}
       {...props}
     />

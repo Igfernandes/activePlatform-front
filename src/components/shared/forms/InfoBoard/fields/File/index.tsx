@@ -1,5 +1,4 @@
 import { When } from "@components/utilities/When";
-import { FieldsShape } from "@type/Fields";
 import { useFormContext } from "react-hook-form";
 import { CircleRed } from "@assets/Icons/red/CircleRed";
 import { textColors } from "@assets/colors/colors";
@@ -9,8 +8,9 @@ import i18n from "@configs/i18n";
 import { RotateClockwise } from "@assets/Icons/white/RotateClockwise";
 import { Upload } from "@assets/Icons/black/Upload";
 import { useEffect, useState } from "react";
+import { TFields } from "../../type";
 
-export function TFile({ label, name, className, defaultValue }: FieldsShape) {
+export function TFile({ label, name, className, defaultValue }: TFields) {
   const { watch, setValue } = useFormContext();
   const { dispatchSnackbar } = useSnackbar();
   const currentId = `input_${name}`;

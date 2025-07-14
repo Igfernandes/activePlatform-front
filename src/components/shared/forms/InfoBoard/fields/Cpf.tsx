@@ -1,6 +1,6 @@
 import { handleMaskCPF } from "@helpers/string";
-import { FieldsShape } from "@type/Fields";
 import { useFormContext } from "react-hook-form";
+import { TFields } from "../type";
 
 export function TCpf({
   label,
@@ -9,7 +9,7 @@ export function TCpf({
   type,
   required,
   ...props
-}: FieldsShape) {
+}: TFields) {
   const { register } = useFormContext();
   const currentId = `input_${name}`;
   return (

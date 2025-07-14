@@ -12,5 +12,5 @@ export type InputProps = Omit<
   required?: string | null;
   tooltip?: string;
   handledChange?: (ev: React.ChangeEvent<HTMLInputElement> | undefined) => void;
-  setValue: SetValue;
+  setValue?: SetValue;
 };

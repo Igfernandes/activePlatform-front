@@ -3,11 +3,11 @@ import { useGallery } from "./hooks/useGallery";
 import { GalleryItem } from "./GalleryItem";
 import { UploadModal } from "./Modal";
 import i18n from "@configs/i18n";
-import { FieldsShape } from "@type/Fields";
 import { useFormContext } from "react-hook-form";
 import { GalleryFileShape } from "./type";
+import { TFields } from "../../type";
 
-export function TGallery({ label, name, defaultValue }: FieldsShape) {
+export function TGallery({ label, name, defaultValue }: TFields) {
   const IdCurrent = `input_${name}`;
   const { setValue } = useFormContext();
   const {

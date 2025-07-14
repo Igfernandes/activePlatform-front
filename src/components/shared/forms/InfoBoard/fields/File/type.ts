@@ -1,12 +1,12 @@
 import { DetailedHTMLProps, InputHTMLAttributes } from "react";
 import { FieldError } from "react-hook-form";
-import { FieldShape } from "../../type";
+import { TFields } from "../../type";
 
 export type InputProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 > &
-  FieldShape & {
+  TFields & {
     dataTestId?: string;
     isLoading?: boolean;
     label?: string;

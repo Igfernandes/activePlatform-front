@@ -33,7 +33,7 @@ export function FormBoard({ charge }: Props) {
           label={i18n("Words.name")}
           name={"title"}
           dataTestId="title"
-          errors={errors.title}
+          errors={errors.title?.message}
           defaultValue={charge.title}
         />
         <TSelect
@@ -54,15 +54,15 @@ export function FormBoard({ charge }: Props) {
             label={i18n("Words.period")}
             name={"period"}
             dataTestId="period"
-            errors={errors.period}
-            defaultValue={charge.period}
+            errors={errors.period?.message}
+            defaultValue={String(charge.period)}
             type="number"
           />
           <TInput
             label={i18n("Words.started_at")}
             name={"started_at"}
             dataTestId="started_at"
-            errors={errors.started_at}
+            errors={errors.started_at?.message}
             defaultValue={charge.started_at}
             type="number"
           />
@@ -72,8 +72,8 @@ export function FormBoard({ charge }: Props) {
             label={i18n("Words.amount")}
             name={"amount"}
             dataTestId="amount"
-            errors={errors.amount}
-            defaultValue={charge.amount}
+            errors={errors.amount?.message}
+            defaultValue={String(charge.amount)}
             type="number"
           />
         </When>
@@ -81,16 +81,16 @@ export function FormBoard({ charge }: Props) {
           label={i18n("Words.price")}
           name={"price"}
           dataTestId="price"
-          errors={errors.price}
-          defaultValue={charge.price}
+          errors={errors.price?.message}
+          defaultValue={String(charge.price)}
           type="number"
         />
         <TInput
           label={i18n("Texts.promotional_price")}
           name={"promotional_price"}
           dataTestId="promotional_price"
-          errors={errors.promotional_price}
-          defaultValue={charge.promotional_price}
+          errors={errors.promotional_price?.message}
+          defaultValue={String(charge.promotional_price)}
           type="number"
         />
         <TInput
@@ -100,7 +100,7 @@ export function FormBoard({ charge }: Props) {
           className="bg-white"
           type="number"
           min={1}
-          defaultValue={charge.expired_days}
+          defaultValue={String(charge.expired_days)}
         />
       </InfoBoard>
     </div>

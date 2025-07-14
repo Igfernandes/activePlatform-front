@@ -1,5 +1,5 @@
-import { FieldsShape } from "@type/Fields";
 import { useFormContext } from "react-hook-form";
+import { TFields } from "../type";
 
 export function TEmail({
   label,
@@ -8,7 +8,7 @@ export function TEmail({
   type,
   required,
   ...props
-}: FieldsShape) {
+}: TFields) {
   const { register } = useFormContext();
   const currentId = `input_${name}`;
   return (

@@ -1,5 +1,5 @@
-import { FieldsShape } from "@type/Fields";
 import { useFormContext } from "react-hook-form";
+import { TFields } from "../type";
 
 export function TInput({
   label,
@@ -7,8 +7,9 @@ export function TInput({
   className,
   type,
   required,
+  defaultValue,
   ...props
-}: FieldsShape) {
+}: TFields) {
   const { register } = useFormContext();
   const currentId = `input_${name}`;
   return (
@@ -25,6 +26,7 @@ export function TInput({
           <input
             {...props}
             {...register(name)}
+            defaultValue={String(defaultValue)}
             required={required === "true"}
             className={`w-full pl-2 py-1 bg-zinc-100 ${className}`}
             data-testid={currentId}

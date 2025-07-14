@@ -1,11 +1,11 @@
 import { DependentsData } from "@components/shared/layouts/FormBuilder/fields/Dependents/type";
 import i18n from "@configs/i18n";
 import { getYearsOld } from "@helpers/date";
-import { FieldsShape } from "@type/Fields";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
+import { TFields } from "../type";
 
-export function TDependents({ label, type, name, defaultValue }: FieldsShape) {
+export function TDependents({ label, type, name, defaultValue }: TFields) {
   const [dependents, setDependents] = useState<Array<DependentsData>>([]);
 
   useEffect(() => {

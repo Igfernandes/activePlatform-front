@@ -20,7 +20,7 @@ export default function FillField({ fields, form }: FieldsPageProps) {
     ref: fields[0].ref,
     formId: form.id,
   });
-  const { formMethods,errors } = useFormRules({
+  const { formMethods, errors } = useFormRules({
     schema: z.object(
       Object.fromEntries(
         fieldsData.map(({ id }: FieldsShape) => [
@@ -31,7 +31,7 @@ export default function FillField({ fields, form }: FieldsPageProps) {
     ),
   });
 
-  console.log(errors)
+  console.log(errors);
 
   return (
     <DashboardContainer>
@@ -50,6 +50,7 @@ export default function FillField({ fields, form }: FieldsPageProps) {
             <TViewer
               key={`${props.label.replaceAll(" ", "")}_${key}`}
               {...props}
+              id={String(props.id)}
             />
           ))}
         </InfoBoard>

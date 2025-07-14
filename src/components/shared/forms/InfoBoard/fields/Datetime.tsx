@@ -1,9 +1,9 @@
 import { Calendar } from "@assets/Icons/black/Calendar";
 import i18n from "@configs/i18n";
 import { handleMaskDate } from "@helpers/date";
-import { FieldsShape } from "@type/Fields";
 import dayjs from "dayjs";
 import { useFormContext } from "react-hook-form";
+import { TFields } from "../type";
 
 export function TDatetime({
   label,
@@ -12,7 +12,7 @@ export function TDatetime({
   type,
   required,
   ...props
-}: FieldsShape) {
+}: TFields) {
   const { register, setValue } = useFormContext();
   const currentId = `input_${name}`;
 

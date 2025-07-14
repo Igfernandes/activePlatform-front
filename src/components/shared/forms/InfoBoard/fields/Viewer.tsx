@@ -11,7 +11,7 @@ export function TViewer({
   ...props
 }: BoardViewerProps) {
   if (!element || !components[element])
-    return <TSpan text={label} value={defaultValue ?? ""} />;
+    return <TSpan text={label ?? ""} value={defaultValue ?? ""} />;
   const Component = components[element];
 
   return (
@@ -25,7 +25,7 @@ export function TViewer({
         />
       </When>
       <When value={!Component}>
-        <TSpan text={label} value={defaultValue} />
+        <TSpan text={label ?? ""} value={defaultValue} />
       </When>
     </>
   );

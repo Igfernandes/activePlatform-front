@@ -1,6 +1,5 @@
 import { JSX } from "react";
 import { TInput } from "./Input";
-import { FieldsShape } from "@type/Fields";
 import { TEmail } from "./Email";
 import { TPhone } from "./Phone";
 import { TDate } from "./Date";
@@ -8,6 +7,7 @@ import { TDependents } from "./Dependents";
 import { TCpf } from "./Cpf";
 import { TGallery } from "./Gallery";
 import { TFile } from "./File";
+import { TFields } from "../type";
 
 export const components = {
   text: TInput,
@@ -22,4 +22,4 @@ export const components = {
   cpf: TCpf,
   gallery: TGallery,
   file: TFile,
-} as Record<string, (props: FieldsShape) => JSX.Element>;
+} as Record<string, (props: TFields) => JSX.Element>;

@@ -1,5 +1,6 @@
 import { ChangeEvent, CSSProperties, JSX } from "react";
 import { TabProps } from "./parts/Modal/tabs/type";
+import { FieldError } from "react-hook-form";
 
 export type OptionData = {
   id: string;
@@ -20,17 +21,19 @@ export type FieldShape = {
   name?: string;
   group?: string;
   style?: CSSProperties;
+  dataTestId?: string;
   placeholder?: string;
   defaultValue?: string;
   className?: string;
   width?: string;
   height?: string;
   margin?: string;
+  errors?: FieldError;
   options?: string;
   labelColor?: string;
   labelWeight?: string;
-  setValue?: SetValue;
   required?: string;
+  setValue?: SetValue
 };
 
 export type SetValue = (name: string, value: unknown) => void;

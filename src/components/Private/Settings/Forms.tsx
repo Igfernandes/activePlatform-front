@@ -38,14 +38,14 @@ export function SettingsForms() {
           label={i18n("Words.name")}
           name={"name"}
           dataTestId="name"
-          errors={errors.name}
+          errors={errors.name?.message}
           defaultValue={userAuth?.name}
         />
         <TInput
           label={i18n("Words.cpf")}
           name={"cpf"}
           dataTestId="cpf"
-          errors={errors.cpf}
+          errors={errors.cpf?.message}
           onChange={(ev) => {
             handleMaskCPF(ev);
             formMethods.setValue("cpf", ev.currentTarget.value);
@@ -56,7 +56,7 @@ export function SettingsForms() {
           label={i18n("Words.birthdate")}
           name={"birthdate"}
           dataTestId="birthdate"
-          errors={errors.birthdate}
+          errors={errors.birthdate?.message}
           defaultValue={dayjs(userAuth?.birthdate, "YYYY-MM-DD").format(
             "DD/MM/YYYY"
           )}
@@ -69,7 +69,7 @@ export function SettingsForms() {
           label={i18n("Words.phone")}
           name={"phone"}
           dataTestId="phone"
-          errors={errors.phone}
+          errors={errors.phone?.message}
           onChange={(ev) => {
             handleMaskPhone(ev);
             formMethods.setValue("phone", ev.currentTarget.value);
@@ -95,15 +95,15 @@ export function SettingsForms() {
             background: bgColors.white,
           }}
           placeholder="************"
-          action={
-            <button
-              onClick={() => handleToggleModel(true)}
-              type="button"
-              className="font-semibold text-red mr-1"
-            >
-              {i18n("Words.alter")}
-            </button>
-          }
+          // action={
+          //   <button
+          //     onClick={() => handleToggleModel(true)}
+          //     type="button"
+          //     className="font-semibold text-red mr-1"
+          //   >
+          //     {i18n("Words.alter")}
+          //   </button>
+          // }
           disabled
         />
       </InfoBoard>
