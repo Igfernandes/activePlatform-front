@@ -7,7 +7,6 @@ import { Close } from "@assets/Icons/black/CloseClean";
 export function DesktopDependentsViewer({
   rows,
   setRows,
-  setValue,
 }: DependentsViewerProps) {
   return (
     <table className="w-full">
@@ -36,7 +35,6 @@ export function DesktopDependentsViewer({
 
                   refRows[key].name = ev.currentTarget.value;
                   setRows(refRows);
-                  setValue(JSON.stringify(refRows));
                 }}
                 className="w-full outline-none"
                 type="text"
@@ -53,8 +51,6 @@ export function DesktopDependentsViewer({
                   refRows[key].cpf = ev.currentTarget.value;
                   handleMaskCPF(ev);
                   setRows(refRows);
-
-                  setValue(JSON.stringify(refRows));
                 }}
               />
             </td>
@@ -66,7 +62,6 @@ export function DesktopDependentsViewer({
 
                   refRows[key].birthdate = ev.currentTarget.value;
                   setRows(refRows);
-                  setValue(JSON.stringify(refRows));
                 }}
                 className="w-full outline-none"
                 type="Date"
@@ -77,7 +72,6 @@ export function DesktopDependentsViewer({
                 rows={rows}
                 index={key}
                 setRows={setRows}
-                setValue={setValue}
                 text={<Close fill={"red"} />}
               />
             </td>

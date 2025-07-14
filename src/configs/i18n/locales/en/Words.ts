@@ -17,6 +17,7 @@ export const Words = {
   services: "Services",
   finance: "Finance",
   system: "System",
+  mark: "Mark",
   subscribe: "Subscribe",
   desative: "Deactivate",
   fill_register: "Fill Register",

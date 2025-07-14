@@ -10,7 +10,6 @@ import { handleMaskCPF } from "@helpers/string";
 export function MobileDependentsViewer({
   rows,
   setRows,
-  setValue,
 }: DependentsViewerProps) {
   return (
     <Accordion>
@@ -37,7 +36,6 @@ export function MobileDependentsViewer({
 
                         refRows[key].name = ev.currentTarget.value;
                         setRows(refRows);
-                        setValue(JSON.stringify(refRows));
                       }}
                       className="w-full outline-none border-b-2"
                       type="text"
@@ -61,8 +59,6 @@ export function MobileDependentsViewer({
                         refRows[key].cpf = ev.currentTarget.value;
                         handleMaskCPF(ev);
                         setRows(refRows);
-
-                        setValue(JSON.stringify(refRows));
                       }}
                     />
                   </div>
@@ -81,7 +77,6 @@ export function MobileDependentsViewer({
 
                         refRows[key].birthdate = ev.currentTarget.value;
                         setRows(refRows);
-                        setValue(JSON.stringify(refRows));
                       }}
                       className="w-full outline-none border-b-2"
                       type="Date"
@@ -93,7 +88,6 @@ export function MobileDependentsViewer({
                     <BtnDelete
                       rows={rows}
                       setRows={setRows}
-                      setValue={setValue}
                       index={key}
                       text={
                         <span className="block w-full text-white bg-red p-2 rounded-md">

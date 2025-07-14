@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { InputProps } from "./type";
 import i18n from "@configs/i18n";
@@ -8,21 +8,19 @@ import { When } from "@components/utilities/When";
 import useWindow from "@hooks/useWindow";
 import { MobileDependentsViewer } from "./Mobile";
 
-export function Dependents({ id, label, name, errors }: InputProps) {
+export function Dependents({ id, label, name, errors, setValue }: InputProps) {
   const IdCurrent = id;
   const { rows, setRows } = useDependent();
-  const [value, setValue] = useState<string>();
   const { screenType } = useWindow();
 
   useEffect(() => {
     if (!rows) return;
 
-    setValue(JSON.stringify(rows));
+    if (setValue && name) setValue(name, JSON.stringify(rows));
   }, [rows, setRows]);
 
   return (
     <>
-      <input type="hidden" name={name} value={value} />
       <div
         className={`relative ${
           errors?.message ? "border-yellow" : ""
@@ -69,18 +67,10 @@ export function Dependents({ id, label, name, errors }: InputProps) {
           </div>
         </div>
         <When value={["DESKTOP", "TABLET"].includes(screenType)}>
-          <DesktopDependentsViewer
-            rows={rows}
-            setRows={setRows}
-            setValue={setValue}
-          />
+          <DesktopDependentsViewer rows={rows} setRows={setRows} />
         </When>
         <When value={screenType === "MOBILE"}>
-          <MobileDependentsViewer
-            rows={rows}
-            setRows={setRows}
-            setValue={setValue}
-          />
+          <MobileDependentsViewer rows={rows} setRows={setRows} />
         </When>
       </div>
     </>

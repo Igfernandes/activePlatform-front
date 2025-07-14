@@ -20,6 +20,7 @@ export const Words = {
   subscribe: "Suscribirse",
   desative: "Desactivar",
   settings: "Configuraciones",
+  mark: "Marcador",
   administrative: "Administrativo",
   list_from_a_to_z: "Listar de A a Z",
   research: "Buscar",

@@ -5,16 +5,33 @@ import { privateRoutes } from "@configs/routes/Web/navigation";
 import { getFillFields } from "@services/Forms/Fills/Get/SSR";
 import { getForms } from "@services/CustomForms/Get/SSR";
 import { FormFillField } from "@type/Forms/FormsFill";
-import { InfoBoard } from "@components/shared/forms/InfoBoard/viewer";
 import { useFillFields } from "@components/Private/Forms/Fills/hooks/useFillFields";
-import {
-  FieldsPageProps,
-  FillFieldData,
-} from "@components/Private/Forms/Fills/type";
+import { FieldsPageProps } from "@components/Private/Forms/Fills/type";
 import { TViewer } from "@components/shared/forms/InfoBoard/fields/Viewer";
+import { InfoBoard } from "@components/shared/forms/InfoBoard/form";
+import { useFormRules } from "@hooks/Forms/useFormRules";
+import { z } from "zod";
+import { useFillsSubmit } from "@components/Private/Forms/Fills/hooks/useFillsSubmit";
+import { FieldsShape } from "@type/Fields";
 
 export default function FillField({ fields, form }: FieldsPageProps) {
   const { fieldsData } = useFillFields({ fields, form });
+  const { handleSubmit } = useFillsSubmit({
+    ref: fields[0].ref,
+    formId: form.id,
+  });
+  const { formMethods,errors } = useFormRules({
+    schema: z.object(
+      Object.fromEntries(
+        fieldsData.map(({ id }: FieldsShape) => [
+          `input_${id}`,
+          z.string().optional().nullable(),
+        ])
+      )
+    ),
+  });
+
+  console.log(errors)
 
   return (
     <DashboardContainer>
@@ -24,10 +41,14 @@ export default function FillField({ fields, form }: FieldsPageProps) {
             {i18n("Words.fill_register")}
           </h1>
         </div>
-        <InfoBoard>
-          {fieldsData.map((props: FillFieldData, key) => (
+        <InfoBoard
+          submit={handleSubmit}
+          isLoading={false}
+          formMethods={formMethods}
+        >
+          {fieldsData.map((props: FieldsShape, key) => (
             <TViewer
-              key={`${props.text.replaceAll(" ", "")}_${key}`}
+              key={`${props.label.replaceAll(" ", "")}_${key}`}
               {...props}
             />
           ))}

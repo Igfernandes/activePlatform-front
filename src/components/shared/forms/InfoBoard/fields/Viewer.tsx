@@ -1,47 +1,32 @@
-import { Upload } from "@assets/Icons/black/Upload";
 import { When } from "@components/utilities/When";
-import i18n from "@configs/i18n";
-import Link from "next/link";
-import { FieldError } from "react-hook-form";
 
-type Props = React.HTMLAttributes<HTMLSpanElement> & {
-  text: string;
-  component: string;
-  value?: string | number | unknown;
-  dataTestId?: string;
-  errors?: FieldError;
-};
+import { components } from "./components";
+import { BoardViewerProps } from "../type";
+import { TSpan } from "./Span";
 
 export function TViewer({
-  text,
-  dataTestId,
-  component,
-  className,
-  value,
-}: Props) {
+  label,
+  element,
+  defaultValue,
+  ...props
+}: BoardViewerProps) {
+  if (!element || !components[element])
+    return <TSpan text={label} value={defaultValue ?? ""} />;
+  const Component = components[element];
+
   return (
-    <tr className={`border-t-2 border-t-zinc-200`}>
-      <td className="py-2 pl-4 w-2/6">
-        <strong>{text}</strong>
-      </td>
-      <td className="py-2">
-        <div className="flex">
-          <When value={component === "file"}>
-            <Link
-              href={value ?? ""}
-              target="_blank"
-              className={`w-full flex pl-2 py-1 bg-zinc-100 ${className}`}
-              data-testid={dataTestId}
-            >
-              <span className="mr-2">{i18n(`Texts.viewer_file`)}</span>{" "}
-              <Upload />
-            </Link>
-          </When>
-          <When value={!["file", "gallery"].includes(component)}>
-            <span>{String(value)}</span>
-          </When>
-        </div>
-      </td>
-    </tr>
+    <>
+      <When value={!!Component}>
+        <Component
+          {...props}
+          label={label}
+          defaultValue={defaultValue}
+          element={element}
+        />
+      </When>
+      <When value={!Component}>
+        <TSpan text={label} value={defaultValue} />
+      </When>
+    </>
   );
 }

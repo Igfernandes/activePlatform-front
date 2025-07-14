@@ -5,7 +5,7 @@ import useGetForms from "../../../../../services/CustomForms/Get/useGetForms";
 import { useModalContext } from "@contexts/Modal";
 import useDeleteForm from "@services/CustomForms/Delete/useDelete";
 
-export function useFormsOverview({ handleFilter }: HookFormsProps<FormsShape>) {
+export function useFormsOverview({ handleFilter, filter }: HookFormsProps<FormsShape>) {
   const [forms, setForms] = useState<FormsShape[]>([]);
   const { data: formsData } = useGetForms();
   const { mutateAsync: deleteForm, isPending: isLoadingDeleteForm } =
@@ -22,7 +22,7 @@ export function useFormsOverview({ handleFilter }: HookFormsProps<FormsShape>) {
     if (!formsData) return;
 
     setForms(formsData.filter((form) => handleFilter(form)));
-  }, [formsData]);
+  }, [formsData,filter]);
 
   return {
     forms,

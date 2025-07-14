@@ -5,3 +5,7 @@ export type FormPageProps = {
   form: FormsShape;
   csrf: CSRFShape;
 };
+
+export type FormSuccessfulPageProps = {
+  form: FormsShape;
+};

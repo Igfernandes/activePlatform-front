@@ -1,7 +1,7 @@
 import { When } from "@components/utilities/When";
 
 import { RotateClockwise } from "@assets/Icons/white/RotateClockwise";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { InputProps } from "./type";
 import { handleMaskDate } from "@helpers/date";
@@ -20,10 +20,15 @@ export function Date({
   required,
   labelColor,
   labelWeight,
+  setValue,
   ...rest
 }: InputProps & FieldShape) {
   const IdCurrent = id;
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (setValue && name) setValue(name, inputRef.current?.value);
+  }, [inputRef]);
 
   return (
     <>
@@ -62,8 +67,8 @@ export function Date({
         />
         <div className="absolute right-4 top-4">
           <label htmlFor={`calendar_${name}`}>
-            <Calendar fill={labelColor}  />
-          </label> 
+            <Calendar fill={labelColor} />
+          </label>
           <input
             id={`calendar_${name}`}
             type="date"

@@ -25,7 +25,15 @@ export const Screens = {
     confirmation: {
       title: "Confirmação de Presença",
       text: "Ao clicar no botão abaixo, você estará confirmando a sua presença no evento",
-      invalid_url: "A página encontra-se com recursos desatualizados ou inválidos. Copie o link completo e tente novamente, ou entre em contato com o central"
+      invalid_url:
+        "A página encontra-se com recursos desatualizados ou inválidos. Copie o link completo e tente novamente, ou entre em contato com o central",
+    },
+  },
+  forms: {
+    successful: {
+      form_received: "A AGM recebeu seu Formulário com Sucesso!",
+      form_message:
+        " Sua resposta é super importante para podermos entender e melhorar cada vez mais.",
     },
   },
   dashboard: {
@@ -71,6 +79,8 @@ export const Screens = {
       title_already_exclude: "Você deseja excluir este envio?",
     },
     forms: {
+      about_thanks_message:
+        "Escreva aqui instruções ou informações para serem exibidas após o preenchimento dos formulários",
       text_already_exclude:
         "Ao continuar, os dados vinculados a esse registro serão excluído do sistema.",
       title_already_exclude: "Você deseja excluir este registro?",
@@ -90,7 +100,8 @@ export const Screens = {
       text_alert_about_alerts_inscribes:
         "Escreva detalhes avisos para os inscritos",
       inscribes_alert: "Avisos para os inscritos",
-      "awaiting_inscribe": "Aguarde enquanto o cliente estará sendo inscrito e enviado a confirmação"
+      awaiting_inscribe:
+        "Aguarde enquanto o cliente estará sendo inscrito e enviado a confirmação",
     },
     users: {
       create_user_groups: "Criar grupos de usuários",

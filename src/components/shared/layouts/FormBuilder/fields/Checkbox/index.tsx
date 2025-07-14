@@ -12,6 +12,7 @@ export function Checkbox({
   name,
   placeholder,
   required,
+  setValue,
   ...rest
 }: InputProps) {
   const IdCurrent = id;
@@ -24,6 +25,9 @@ export function Checkbox({
           name={name}
           type="checkbox"
           required={required === "true"}
+          onChange={(ev) =>
+            setValue ? setValue(name ?? "", ev.currentTarget.value) : ""
+          }
           placeholder={rest.type == "date" ? " " : placeholder}
           className={`${className ?? ""} ${
             !!errors ? "border-amber-500 outline-amber-500" : ""

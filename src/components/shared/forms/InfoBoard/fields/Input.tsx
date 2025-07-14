@@ -1,27 +1,16 @@
-import ErrorMessage from "@components/shared/others/ErrorMessage";
-import { When } from "@components/utilities/When";
-import { FieldError, useFormContext } from "react-hook-form";
-
-type Props = React.InputHTMLAttributes<HTMLInputElement> & {
-  label: string;
-  name: string;
-  dataTestId?: string;
-  action?: React.ReactNode;
-  errors?: FieldError;
-};
+import { FieldsShape } from "@type/Fields";
+import { useFormContext } from "react-hook-form";
 
 export function TInput({
   label,
   name,
-  dataTestId,
   className,
-  action,
-  errors,
   type,
+  required,
   ...props
-}: Props) {
+}: FieldsShape) {
   const { register } = useFormContext();
-
+  const currentId = `input_${name}`;
   return (
     <tr
       className={`border-t-2 border-t-zinc-200 ${
@@ -34,16 +23,15 @@ export function TInput({
       <td className="py-2">
         <div className="flex">
           <input
-            className={`w-full pl-2 py-1 bg-zinc-100 ${className}`}
-            data-testid={dataTestId}
-            {...register(name)}
             {...props}
+            {...register(name)}
+            required={required === "true"}
+            className={`w-full pl-2 py-1 bg-zinc-100 ${className}`}
+            data-testid={currentId}
+            id={String(props.id)}
             type={type}
           />
-
-          <When value={!!action}>{action}</When>
         </div>
-        <ErrorMessage errors={errors?.message} />
       </td>
     </tr>
   );

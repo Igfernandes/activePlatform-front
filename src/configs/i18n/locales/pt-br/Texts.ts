@@ -39,4 +39,6 @@ export const Texts = {
   viewer_file: "Visualizar o anexo",
   file_invalid: "Arquivo inválido",
   field_required: "O campo é obrigatório",
+  thanks_message: "Mensagem de agradecimento",
+  linked_forms: "Formulário vinculados",
 };

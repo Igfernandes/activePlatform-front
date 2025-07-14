@@ -149,6 +149,18 @@ export const Api = {
       not_found_category: "A categoria escondida está inválida ou indisponível",
     },
   },
+  files: {
+    invalid: {
+      files:
+        "Algum arquivo foi mal inserido ou cancelado e por isso não pode ser finalizado.",
+    },
+  },
+  forms: {
+    invalid: {
+      fields:
+        "Os campos encontram-se sem alteração ou mal formulados e impossível de sofrer alteração",
+    },
+  },
   custom_forms: {
     fills: {
       success: {
@@ -178,6 +190,10 @@ export const Api = {
       updated_at: "A data de atualização do formulário está inválida",
       not_found: "O formulário não foi encontrada",
       client: "Operação inválida. O registro não contém um cliente vinculado.",
+      color_mark:
+        "A cor escolhida não atende o padrão hexadecimal permitido pelo sistema",
+      thanks_message:
+        "As informações inseridas no campo de mensagem de agradecimento encontram-se inválidas",
     },
     services: {
       success: {

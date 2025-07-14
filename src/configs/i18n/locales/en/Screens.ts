@@ -27,6 +27,13 @@ export const Screens = {
       text: "By clicking the button below, you will be confirming your attendance at the event",
     },
   },
+  forms: {
+    successful: {
+      form_received: "AGM has successfully received your form!",
+      form_message:
+        "Your response is very important to help us understand and improve continuously.",
+    },
+  },
   dashboard: {
     clients: {
       category: {

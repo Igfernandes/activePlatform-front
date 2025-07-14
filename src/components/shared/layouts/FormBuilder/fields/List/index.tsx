@@ -12,6 +12,7 @@ export function List({
   required,
   options,
   label,
+  setValue,
   ...rest
 }: InputProps) {
   const optionsRef = useRef<Array<OptionShape>>(
@@ -45,6 +46,9 @@ export function List({
               {...rest}
               name={name}
               type="radio"
+              onChange={(ev) => {
+                if (setValue) setValue(name ?? "", ev.currentTarget.value);
+              }}
               required={required === "true"}
               value={option.value}
               className={`${className ?? ""} ${

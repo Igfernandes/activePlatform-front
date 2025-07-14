@@ -173,6 +173,10 @@ export const Api = {
       updated_at: "The form update date is invalid",
       not_found: "Form not found",
       client: "Invalid operation. Record is not linked to a client.",
+      color_mark:
+        "The selected color does not match the hexadecimal format allowed by the system",
+      thanks_message:
+        "The information entered in the thank-you message field is invalid",
     },
   },
   dispatchers: {

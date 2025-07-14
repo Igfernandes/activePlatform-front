@@ -11,10 +11,11 @@ import useWindow from "@hooks/useWindow";
 import dayjs from "dayjs";
 
 export function FormsCard({ search, filterObjects }: FormsCardProps) {
-  const { forms, handleToggleStatusForm, isLoadingDeleteForm } = useFormsOverview({
-    filter: search,
-    handleFilter: filterObjects,
-  });
+  const { forms, handleToggleStatusForm, isLoadingDeleteForm } =
+    useFormsOverview({
+      filter: search,
+      handleFilter: filterObjects,
+    });
   const { forms: formsRoutePublic } = publicRoutes;
   const { handleCopy } = useNavigator();
   const { forms: formsRoute } = privateRoutes;
@@ -30,6 +31,7 @@ export function FormsCard({ search, filterObjects }: FormsCardProps) {
             description: form.name ?? "",
             alert: form.description ?? "",
             link: `${formsRoute}/${form.id}`,
+            color: form.color_mark,
             createdAt: dayjs(form.created_at).format("DD/MM/YYYY HH:mm"),
             dotsActions: [
               {

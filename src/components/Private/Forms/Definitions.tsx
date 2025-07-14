@@ -7,12 +7,10 @@ import { Select } from "@components/shared/forms/Select";
 import { useFormsData } from "./hooks/useFormsData";
 import { When } from "@components/utilities/When";
 import { ComponentsProps } from "./type";
-import { ToggleSwitch } from "@components/shared/forms/ToggleSwitch";
 import { ServicesShape } from "@type/Services";
-import useWindow from "@hooks/useWindow";
-import { useNavigator } from "@hooks/useNavigator";
 import { Datetime } from "@components/shared/forms/DateTime";
-import { Link } from "@assets/Icons/black/Link";
+import { TopBar } from "./TopBar";
+import { TextEdit } from "@components/shared/forms/TextEdit";
 
 type Props = Pick<ComponentsProps, "handleChangeFormFields"> & {
   slug?: string;
@@ -22,47 +20,13 @@ export function Definitions({ handleChangeFormFields, slug }: Props) {
   const { forms, services } = useFormsData();
   const {
     register,
-    setValue,
     getValues,
     formState: { errors },
   } = useFormContext<FormsPayload>();
-  const { baseUrl } = useWindow();
-  const { handleCopy } = useNavigator();
-  const formId = getValues("id");
 
   return (
     <div className="form-definitions">
-      <div className="flex justify-end">
-        <div className="mb-6">
-          <ToggleSwitch
-            setValue={setValue}
-            label={i18n("Words.status")}
-            dataTestId="status"
-            name="status"
-            defaultValue={getValues("status")}
-            options={{
-              left: {
-                text: i18n("Words.active"),
-                value: "PUBLISHED",
-              },
-              right: {
-                text: i18n("Words.inactive"),
-                value: "DRAFT",
-              },
-            }}
-          />
-        </div>
-        <When value={!!formId}>
-          <div>
-            <div
-              className="px-3 py-2 shadow-md hover:bg-red rounded-md cursor-pointer ml-2"
-              onClick={() => handleCopy(`${baseUrl}/forms/${slug}`)}
-            >
-              <Link  />
-            </div>
-          </div>
-        </When>
-      </div>
+      <TopBar slug={slug} />
       <div className="form-row flex flex-wrap mb-4 justify-between">
         <div className="form-group w-full">
           <Input
@@ -149,6 +113,16 @@ export function Definitions({ handleChangeFormFields, slug }: Props) {
           dataTestId="description"
           maxLength={800}
           errors={errors.description}
+        />
+      </div>
+      <div className="form-row mt-6">
+        <TextEdit
+          {...register("thanks_message")}
+          dataTestId="alerts"
+          label={i18n(`Texts.thanks_message`)}
+          defaultValue={getValues("thanks_message") ?? ""}
+          placeholder={i18n("Screens.dashboard.forms.about_thanks_message")}
+          errors={errors.thanks_message}
         />
       </div>
     </div>

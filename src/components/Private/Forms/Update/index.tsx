@@ -28,6 +28,8 @@ export function FillFieldsUpdate({ targetForm }: Props) {
       started_at: targetForm.started_at,
       expired_at: targetForm.expired_at,
       template: String(targetForm.id),
+      color_mark: String(targetForm?.color_mark),
+      thanks_message: targetForm?.thanks_message,
       service_id: targetForm.service_id
         ? String(targetForm.service_id)
         : undefined,

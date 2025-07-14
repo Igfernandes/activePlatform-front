@@ -16,6 +16,7 @@ export function Time({
   required,
   labelColor,
   labelWeight,
+  setValue,
   ...rest
 }: InputProps & FieldShape) {
   const IdCurrent = id;
@@ -47,6 +48,9 @@ export function Time({
           name={name}
           required={required === "true"}
           type={"time"}
+          onChange={(ev) => {
+            if (setValue) setValue(name ?? "", ev.currentTarget.value);
+          }}
           className={`${className ?? ""} ${
             !!errors ? "border-amber-500 outline-amber-500" : ""
           } w-full px-3 pt-8 pb-4 bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}

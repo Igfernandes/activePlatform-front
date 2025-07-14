@@ -1,7 +1,9 @@
+import { useFormDynamicFields } from "@components/shared/layouts/FormBuilder/hooks/useFormFields";
+import { FieldShape } from "@components/shared/layouts/FormBuilder/type";
 import { CSRFShape } from "@services/Authentications/CSRF/types";
 import usePostSubmitForm from "@services/Forms/Post/usePost";
 import { FormsShape } from "@type/Forms";
-import { FormEvent, useCallback, useRef } from "react";
+import { FormEvent, useCallback, useState } from "react";
 
 type Props = {
   form: FormsShape;
@@ -10,17 +12,11 @@ type Props = {
 
 export function useForm({ form, csrf }: Props) {
   const { mutateAsync: postSubmitForm, isPending: isLoading } =
-    usePostSubmitForm();
-  const fields = useRef<Record<string, unknown>>({});
-
-  const handleChangeField = (name: string, value: unknown) => {
-    const updateFields = {
-      ...fields.current,
-      [name]: value,
-    };
-
-    fields.current = updateFields;
-  };
+    usePostSubmitForm({ slug: form.slug });
+  const [components, setComponents] = useState<Array<FieldShape>>(
+    JSON.parse(form.components)
+  );
+  const { fields, handleChange} = useFormDynamicFields()
 
   const handleValidFields = useCallback((form: HTMLFormElement) => {
     const fields = Array.from(form.querySelectorAll("[name]")).filter(
@@ -47,7 +43,7 @@ export function useForm({ form, csrf }: Props) {
 
     if (!handleValidFields(formElement)) return;
 
-    const formData = new FormData(formElement);
+    const formData = new FormData();
 
     formData.append("form_id", String(form.id));
     Object.entries(fields.current).forEach(([name, value]) => {
@@ -58,11 +54,30 @@ export function useForm({ form, csrf }: Props) {
       }
     });
 
-    postSubmitForm({ payload: formData, csrf });
+    postSubmitForm({ payload: formData, csrf })
+      .then(() =>
+        setComponents((components) => {
+          return components.map((component) => ({
+            ...component,
+            defaultValue: "",
+          }));
+        })
+      )
+      .catch(() => {
+        setComponents((components) => {
+          return components.map((component) => ({
+            ...component,
+            defaultValue:
+              (fields.current[`input_${component.id}`] as string) ?? "",
+          }));
+        });
+      });
   };
   return {
     handleSubmit,
     isLoading: isLoading,
-    handleChangeField,
+    handleChange,
+    fields,
+    components,
   };
 }

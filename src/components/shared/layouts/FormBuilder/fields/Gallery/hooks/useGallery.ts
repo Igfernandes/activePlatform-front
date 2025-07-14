@@ -21,28 +21,22 @@ export function useGallery({ IdCurrent, setValue, name }: Props) {
       return files.filter((file, key) => fileIndex !== key);
     });
     if (setValue)
-      setValue(
-        name,
-        JSON.stringify({
-          package: galleryRef.current,
-          files: filesUploaded
-            .filter((file, key) => fileIndex !== key)
-            .map((file) => file.url),
-        })
-      );
+      setValue(name, {
+        package: galleryRef.current,
+        files: filesUploaded
+          .filter((file, key) => fileIndex !== key)
+          .map((file) => file.url),
+      });
   };
 
   const handleUpdateFilesUploaded = (files: Array<GalleryFileShape>) => {
     setFilesUploaded(files);
     handleModal(false);
     if (setValue)
-      setValue(
-        name,
-        JSON.stringify({
-          package: galleryRef.current,
-          files: files.map((file) => file.url),
-        })
-      );
+      setValue(name, {
+        package: galleryRef.current,
+        files: files.map((file) => file.url),
+      },);
   };
 
   return {

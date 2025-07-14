@@ -181,6 +181,10 @@ export const Api = {
       not_found: "El formulario no fue encontrado",
       client:
         "Operación inválida. El registro no contiene un cliente vinculado.",
+      color_mark:
+        "El color seleccionado no cumple con el formato hexadecimal permitido por el sistema",
+      thanks_message:
+        "La información ingresada en el campo del mensaje de agradecimiento no es válida",
     },
   },
   dispatchers: {

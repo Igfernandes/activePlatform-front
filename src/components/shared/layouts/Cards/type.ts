@@ -11,6 +11,7 @@ export type CardItemProps = {
   createdAt: string;
   description: string;
   alert: string;
+  color?: string;
 };
 
 type Foot = {

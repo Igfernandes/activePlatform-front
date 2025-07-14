@@ -11,7 +11,7 @@ export default function useGetForms(request: GetFormsRequest = {}) {
   }
 
   const { data, ...rest } = useQuery({
-    queryKey: ["forms", request],
+    queryKey: ["forms"],
     queryFn: handle,
     enabled: true,
   });

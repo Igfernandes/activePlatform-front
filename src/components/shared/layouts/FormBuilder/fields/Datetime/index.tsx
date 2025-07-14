@@ -1,7 +1,7 @@
 import { When } from "@components/utilities/When";
 
 import { RotateClockwise } from "@assets/Icons/white/RotateClockwise";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 
 import { InputProps } from "./type";
 import { getFormattedDatetime } from "@helpers/date";
@@ -20,10 +20,11 @@ export function Datetime({
   required,
   labelColor,
   labelWeight,
+  setValue,
+  defaultValue,
   ...rest
 }: InputProps & FieldShape) {
   const IdCurrent = id;
-  const [value, setValue] = useState<string>();
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
@@ -52,9 +53,9 @@ export function Datetime({
           name={name}
           required={required === "true"}
           type={"text"}
-          value={value}
+          value={defaultValue}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setValue(getFormattedDatetime(e))
+            setValue ? setValue(name ?? "", getFormattedDatetime(e)) : ""
           }
           className={`${className ?? ""} ${
             !!errors ? "border-amber-500 outline-amber-500" : ""
@@ -68,13 +69,16 @@ export function Datetime({
           <input
             id={`calendar_${name}`}
             type="datetime-local"
-            onChange={(ev) => {
-              setValue(
-                dayjs(ev.currentTarget.value).format(
-                  i18n("Configs.format.datetime")
-                )
-              );
-            }}
+            onChange={(ev) =>
+              setValue
+                ? setValue(
+                    name ?? "",
+                    dayjs(ev.currentTarget.value).format(
+                      i18n("Configs.format.datetime")
+                    )
+                  )
+                : ""
+            }
             className="opacity-0 absolute w-4 h-full top-0"
           />
         </div>

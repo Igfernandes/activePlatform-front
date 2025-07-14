@@ -12,11 +12,15 @@ export type FormBuilderContextData = {
   handleToggleField: (field: FieldShape) => void;
   handleChangeFields: (fields: Array<FieldShape>) => void;
   handleRemoveField: (fieldId: string) => void;
+  handleChangePositionField: (
+    currentPosition: number,
+    newPosition: number
+  ) => void;
 };
 
 export type FormBuilderProps = {
   children: React.ReactNode;
-  form: FieldShape[] ;
+  form: FieldShape[];
   onChangeForm: (fieldsForm: Array<FieldShape>) => void;
 };
 

@@ -8,7 +8,10 @@ import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { publicRoutes } from "@configs/routes/Web/navigation";
 
-export default function usePostSubmitForm() {
+type Props = {
+  slug?: string;
+};
+export default function usePostSubmitForm({ slug }: Props) {
   const { handleAxiosError } = useAxios();
   const { dispatchSnackbar } = useSnackbar();
   const { postForm } = usePostFormService();
@@ -29,7 +32,7 @@ export default function usePostSubmitForm() {
         type: "success",
       });
 
-      router.push(`${forms}/successful`);
+      router.push(`${forms}/successful?form=${slug}`);
     },
     onError: (err: AxiosError) => {
       handleAxiosError(err);

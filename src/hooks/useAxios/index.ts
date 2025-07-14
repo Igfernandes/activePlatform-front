@@ -44,7 +44,7 @@ export function useAxios() {
       : null;
 
     let responseError = "";
-    if (Array.isArray(responseData.errors))
+    if (responseData && Array.isArray(responseData.errors))
       responseError = !!responseData && responseData.errors[0];
     else responseError = !!responseData && responseData.errors;
 

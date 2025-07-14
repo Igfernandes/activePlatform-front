@@ -27,7 +27,7 @@ export default function usePutForm() {
       });
       queryClient.invalidateQueries({
         queryKey: ["forms"],
-        refetchType: "active",
+        refetchType: "active"
       });
     },
     onError: (err: AxiosError) => {

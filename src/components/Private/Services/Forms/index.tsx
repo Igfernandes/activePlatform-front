@@ -19,6 +19,7 @@ import { Input } from "@components/shared/forms/Input";
 import { Radio } from "@components/shared/forms/Radio";
 import { InscribesTable } from "./InscribesTable";
 import { TextEdit } from "@components/shared/forms/TextEdit";
+import { FormsTable } from "./FormsTable";
 
 type Props = {
   service?: ServicesShape;
@@ -161,6 +162,13 @@ export function ServicesForm({ service }: Props) {
                   )}
                   errors={errors.alerts}
                 />
+              </div>
+              <div className="my-10 ">
+                <When value={!!service}>
+                  <div className="my-10">
+                    <FormsTable service={service as ServicesShape} />
+                  </div>
+                </When>
               </div>
               <When value={!!service}>
                 <div className="my-10">

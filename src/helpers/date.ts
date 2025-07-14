@@ -86,3 +86,18 @@ export const getFormattedDatetime = (
 
   return datetime;
 };
+
+export function getYearsOld(birthdate: string) {
+  const hoje = new Date();
+  const nascimento = new Date(birthdate);
+
+  let idade = hoje.getFullYear() - nascimento.getFullYear();
+  const mes = hoje.getMonth() - nascimento.getMonth();
+  const hasNewYearByDate = mes === 0 && hoje.getDate() < nascimento.getDate();
+
+  if (mes < 0 || hasNewYearByDate) {
+    idade--;
+  }
+
+  return idade;
+}
