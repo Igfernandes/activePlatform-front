@@ -12,7 +12,7 @@ export function getRenderer(type: string) {
 }
 
 type InvalidComponentProps = {
-  type: string;
+  type?: string;
 };
 
 function InvalidComponent({ type }: InvalidComponentProps) {
