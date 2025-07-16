@@ -7,9 +7,9 @@ export function Field({ element, required, ...rest }: FieldShape) {
   return (
     <Component
       type={element}
-      name={`input_${rest.id}`}
       {...rest}
       required={required}
+      name={`input_${rest.id}`}
       defaultValue={
         ["button"].includes(element)
           ? rest.label ?? rest.defaultValue

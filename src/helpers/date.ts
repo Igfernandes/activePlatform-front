@@ -11,6 +11,19 @@ export const handleMaskDate = (event: React.ChangeEvent<HTMLInputElement>) => {
   event.target.value = value;
 };
 
+export const getMaskDate = (event: React.ChangeEvent<HTMLInputElement>) => {
+  let value = event.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+
+  if (value.length > 2) {
+    value = value.slice(0, 2) + "/" + value.slice(2);
+  }
+  if (value.length > 5) {
+    value = value.slice(0, 5) + "/" + value.slice(5, 9);
+  }
+
+  return value;
+};
+
 export const handleMaskDatetime = (
   event: React.ChangeEvent<HTMLInputElement>
 ) => {

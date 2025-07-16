@@ -18,7 +18,7 @@ export type FieldShape = {
   element: string;
   label?: string;
   type?: string;
-  name?: string;
+  name: string;
   group?: string;
   style?: CSSProperties;
   dataTestId?: string;
