@@ -11,16 +11,18 @@ export function handleDragEndSidebar(
   const field = data.field as OptionData;
   const date = new Date();
 
+  const id = String(date.getTime());
   const fieldData: FieldShape = {
-    id: String(date.getTime()),
+    id: String(id),
     label: field.field,
     element: field.field,
+    name: `input_${id}`,
     placeholder: "",
     group: data.group,
     width: "100%",
     style: {
       fontSize: "16px",
-    }
+    },
   };
   callback(fieldData);
 
