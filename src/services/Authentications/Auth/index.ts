@@ -11,14 +11,12 @@ export function usePostAuthService() {
     login,
     password,
     rememberMe,
-    recaptcha,
     csrf: { csrf_hash, csrf_token },
   }: PostAuthPayload) {
     const payload = {
       login,
       password,
       rememberMe: rememberMe,
-      recaptcha,
     };
 
     if (!rememberMe) {

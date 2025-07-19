@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { SnackbarProps } from "@contexts/Snackbar/types";
 
 type SnackbarHookProps = {
-  deleteSnackbar: () => void;
+  deleteSnackbar?: () => void;
   snackbar: SnackbarProps;
 };
 export default function useSnackbarMessage({
@@ -19,7 +19,7 @@ export default function useSnackbarMessage({
 
   const handleDeleteSnackbar = useCallback(() => {
     setShow(false);
-    deleteSnackbar();
+    if (deleteSnackbar) deleteSnackbar();
   }, [deleteSnackbar]);
 
   useEffect(() => {
@@ -38,12 +38,7 @@ export default function useSnackbarMessage({
 
     setTypeSnackbar(snackbar.type);
     return () => clearInterval(interval);
-  }, [
-    snackbar.message,
-    TIME_TO_LIVE_NOTIFICATION_IN_MS,
-    handleDeleteSnackbar,
-    snackbar,
-  ]);
+  }, [TIME_TO_LIVE_NOTIFICATION_IN_MS, handleDeleteSnackbar, snackbar]);
 
   return { show, handleDeleteSnackbar, typeSnackbar };
 }

@@ -22,7 +22,6 @@ export function LoginForm({ csrf }: Props) {
     isLoading,
     errors,
     updateValueRememberMe,
-    Recaptcha,
   } = useForm({ csrf });
   const { forgotPassword } = publicRoutes;
   return (
@@ -63,7 +62,6 @@ export function LoginForm({ csrf }: Props) {
             </Link>
           </div>
         </div>
-        <Recaptcha />
         <div className="form-submit mt-2">
           <Button
             text={i18n("Words.send")}

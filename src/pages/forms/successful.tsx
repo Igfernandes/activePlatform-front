@@ -6,6 +6,7 @@ import { getForm } from "@services/CustomForms/Get/SSR";
 import { GetServerSideProps } from "next";
 
 export default function Successful({ form }: FormSuccessfulPageProps) {
+ 
   return (
     <ExternalContainer>
       <div className="row">
@@ -18,13 +19,14 @@ export default function Successful({ form }: FormSuccessfulPageProps) {
               <strong>{i18n("Screens.forms.successful.form_received")}</strong>
             </h2>
           </div>
-          <div className="text-justify mb-6">
-            <p className="text-sm">
-              {form?.thanks_message ??
-                i18n("Screens.forms.successful.form_message")}
-             
-            </p>
-          </div>
+          <div
+            className="text-justify text-sm mb-6"
+            dangerouslySetInnerHTML={{
+              __html:
+                form?.thanks_message ??
+                i18n("Screens.forms.successful.form_message"),
+            }}
+          ></div>
         </div>
       </div>
     </ExternalContainer>
@@ -34,12 +36,12 @@ export default function Successful({ form }: FormSuccessfulPageProps) {
 export const getServerSideProps: GetServerSideProps<
   FormSuccessfulPageProps
 > = async (request) => {
-  const { slug } = request?.params as { slug: string } ?? {} ; // Tipando o params
-  const form = await getForm({ slug });
+  const { form } = (request?.query as { form: string }) ?? {}; // Tipando o params
+  const foundForm = await getForm({ slug: form });
 
   return {
     props: {
-      form, // Passa o ID para o componente
+      form: foundForm, // Passa o ID para o componente
     },
   };
 };

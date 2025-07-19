@@ -1,14 +1,81 @@
+import i18n from "@configs/i18n";
+import { handleSnackbar } from "./snackbar";
+
 export const handleMaskDate = (event: React.ChangeEvent<HTMLInputElement>) => {
   let value = event.target.value.replace(/\D/g, ""); // Remove tudo que não for número
 
   if (value.length > 2) {
-    value = value.slice(0, 2) + "/" + value.slice(2);
-  }
-  if (value.length > 5) {
-    value = value.slice(0, 5) + "/" + value.slice(5, 9);
+    const dateStringUpdated = value.slice(0, 2) + "/" + value.slice(2);
+
+    value = getDateWithDayValid(
+      dateStringUpdated,
+      i18n("Configs.format.separator"),
+      i18n("Configs.format.day_position")
+    );
   }
 
+  if (value.length > 5 && value) {
+    const dateStringUpdated = value.slice(0, 5) + "/" + value.slice(5, 9);
+    value = getDateWithMonthValid(
+      dateStringUpdated,
+      i18n("Configs.format.separator"),
+      i18n("Configs.format.month_position")
+    );
+  }
+
+  if (value.length == 10)
+    value = getDateWithYearValid(
+      value,
+      i18n("Configs.format.separator"),
+      i18n("Configs.format.year_position")
+    );
+
   event.target.value = value;
+};
+
+export const getDateWithMonthValid = (
+  date: string,
+  separator: string,
+  position: number
+) => {
+  const dateParts = date.split(separator);
+  const month = +dateParts[position];
+
+  if (month > 0 && month <= 12) return date;
+
+  handleSnackbar("error", `${i18n("Validations.invalid_month")}`);
+  return dateParts[0];
+};
+
+export const getDateWithYearValid = (
+  date: string,
+  separator: string,
+  position: number
+) => {
+  const dateParts = date.split(separator);
+  const year = +dateParts[position];
+
+  if (year > 1500) return date;
+
+  handleSnackbar("error", `${i18n("Validations.invalid_year")}`);
+  delete dateParts[position];
+
+  return dateParts.join(separator);
+};
+
+export const getDateWithDayValid = (
+  date: string,
+  separator: string,
+  position: number
+) => {
+  const dateParts = date.split(separator);
+  const day = +dateParts[position];
+
+  if (day > 0 && day <= 31) return date;
+
+  handleSnackbar("error", `${i18n("Validations.invalid_day")}`);
+
+  return "";
 };
 
 export const getMaskDate = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,11 +124,22 @@ export const handleMaskTime = (event: React.ChangeEvent<HTMLInputElement>) => {
   let value = event.target.value.replace(/\D/g, ""); // Remove tudo que não for número
 
   if (value.length > 2) {
-    value = value.slice(0, 2) + ":" + value.slice(2.4);
+    value = value.slice(0, 2) + ":" + value.slice(2,4);
   }
 
   event.target.value = value;
 };
+
+export const getMaskTime = (event: React.ChangeEvent<HTMLInputElement>) => {
+  let value = event.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+
+  if (value.length > 2) {
+    value = value.slice(0, 2) + ":" + value.slice(2.4);
+  }
+
+  return value;
+};
+
 
 export function isMonthValid(month: number) {
   return month > 0 && month <= 12;
@@ -113,4 +191,14 @@ export function getYearsOld(birthdate: string) {
   }
 
   return idade;
+}
+
+export function formatToYMD(date?: string) {
+  if (!date) return;
+
+  if (!date.includes("/") && date.split("-").length == 3) return date;
+
+  const partsDate = date.split("/").reverse();
+
+  return partsDate.join("-");
 }

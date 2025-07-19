@@ -3,6 +3,7 @@ import { Settings } from "@assets/Icons/black/Settings";
 import { Trash } from "@assets/Icons/black/Trash";
 
 import { Field } from "./Field";
+import { FieldSorter } from "./FieldSorter";
 export function FormBuilderContent() {
   const {
     fields,
@@ -23,24 +24,19 @@ export function FormBuilderContent() {
         {fields?.map((field, i) => (
           <div
             key={`${field.id}_${i}`}
-            className={`relative z-0 inline-block mr-1 ${
+            className={`relative z-0 inline-block pt-10 mr-1 ${
               field.className?.includes("w")
                 ? field.className
                 : `${field.className ?? ""} w-full`
             }`}
           >
-            <div className="flex items-center justify-end z-[999]">
+            <div className="absolute top-0 right-0 flex items-center justify-end z-[999]">
               <div>
-                <input
-                  className="w-10 border-[1px] pl-1 text-right rounded-md"
-                  type="number"
-                  name={`${field.id}_${i}`}
-                  min={0}
-                  max={fields.length - 1}
-                  value={i}
-                  onChange={(ev) => {
-                    handleChangePositionField(i, +ev.currentTarget.value);
-                  }}
+                <FieldSorter
+                  field={field}
+                  fields={fields}
+                  handleChange={handleChangePositionField}
+                  id={i}
                 />
               </div>
               <div className="mx-1 cursor-pointer">

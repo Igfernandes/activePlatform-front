@@ -40,7 +40,6 @@
     "react-hook-form": "^7.54.2",
     "react-query": "^3.39.3",
     "react-quill": "^2.0.0",
-    "react-turnstile": "^1.1.4",
     "swiper": "^11.2.5",
     "zod": "^3.24.1"
   },

@@ -1,13 +1,12 @@
 import { When } from "@components/utilities/When";
-
-import { RotateClockwise } from "@assets/Icons/white/RotateClockwise";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 import { InputProps } from "./type";
 import { FieldShape } from "../../type";
+import { Clock } from "@assets/Icons/black/Clock";
+import { getMaskTime } from "@helpers/date";
 
 export function Time({
-  isLoading = false,
   className,
   id,
   label,
@@ -21,6 +20,7 @@ export function Time({
 }: InputProps & FieldShape) {
   const IdCurrent = id;
   const inputRef = useRef<HTMLInputElement>(null);
+  const [time, setTime] = useState("");
 
   return (
     <>
@@ -44,31 +44,32 @@ export function Time({
         </label>
         <input
           {...rest}
+          type="text"
           ref={inputRef}
           name={name}
+          value={time}
           required={required === "true"}
-          type={"time"}
           onChange={(ev) => {
-            if (setValue) setValue(name ?? "", ev.currentTarget.value);
+            const value = getMaskTime(ev);
+            setTime(value);
+            if (setValue) setValue(name ?? "", value);
           }}
           className={`${className ?? ""} ${
             !!errors ? "border-amber-500 outline-amber-500" : ""
-          } w-full px-3 pt-8 pb-4 bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
+          } w-full min-h-[3.5rem] px-3 pt-8 pb-4 bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
           id={IdCurrent}
         />
-        <div className="absolute right-4 top-4">
+        <div className="absolute w-[30px] h-4 right-2 top-5">
+          <Clock className="h-full w-full" />
           <input
-            id={`calendar_${name}`}
-            type="time"
-            className="opacity-0 absolute w-4 h-full top-0"
+            type={"time"}
+            onChange={(ev) => {
+              setTime(ev.currentTarget.value);
+              if (setValue) setValue(name, ev.currentTarget.value);
+            }}
+            className=" opacity-0 absolute top-0 w-full h-full"
           />
         </div>
-        <When value={isLoading}>
-          <RotateClockwise
-            className="absolute right-3 top-4 animate-spin"
-            fill="black"
-          />
-        </When>
       </div>
     </>
   );

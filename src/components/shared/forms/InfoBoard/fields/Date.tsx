@@ -1,6 +1,6 @@
 import { Calendar } from "@assets/Icons/black/Calendar";
 import i18n from "@configs/i18n";
-import { handleMaskDate } from "@helpers/date";
+import { formatToYMD, handleMaskDate } from "@helpers/date";
 import dayjs from "dayjs";
 import { useFormContext } from "react-hook-form";
 import { TFields } from "../type";
@@ -34,7 +34,7 @@ export function TDate({
             type={"text"}
             required={required === "true"}
             onChange={handleMaskDate}
-            defaultValue={dayjs(defaultValue).format(
+            defaultValue={dayjs(formatToYMD(defaultValue)).format(
               i18n("Configs.format.date")
             )}
             placeholder="Dia/Mes/Ano"

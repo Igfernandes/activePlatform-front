@@ -40,6 +40,7 @@ export const Words = {
   group: "Grupo",
   users: "Usuários",
   update: "Atualizar",
+  textarea: "Texto Grande",
   edit: "Editar",
   exclude: "Excluir",
   mark: "Marcador",

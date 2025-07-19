@@ -1,10 +1,10 @@
-import { Button } from "../../fields/Button";
 import { Checkbox } from "../../fields/Checkbox";
 import { Date } from "../../fields/Date";
 import { Datetime } from "../../fields/Datetime";
 import { File } from "../../fields/File";
 import { Input } from "../../fields/Input";
 import { Radio } from "../../fields/Radio";
+import { Textarea } from "../../fields/Textarea";
 import { Time } from "../../fields/Time";
 import { FieldShape } from "../../type";
 
@@ -44,11 +44,8 @@ export const fieldsSimple = {
       {...props}
     />
   ),
-  "time": ({ className, ...props }: FieldShape) => (
-    <Time
-      className={`${classNameDefault} w-full ${className}`}
-      {...props}
-    />
+  time: ({ className, ...props }: FieldShape) => (
+    <Time className={`${classNameDefault} w-full ${className}`} {...props} />
   ),
   color: ({ className, ...props }: FieldShape) => (
     <Input
@@ -85,7 +82,7 @@ export const fieldsSimple = {
       {...props}
     />
   ),
-  button: ({ className, ...props }: FieldShape) => (
-    <Button className={`${classNameDefault} ${className}`} {...props} />
+  textarea: ({ className, ...props }: FieldShape) => (
+    <Textarea className={`${classNameDefault} ${className}`} {...props} />
   ),
 };

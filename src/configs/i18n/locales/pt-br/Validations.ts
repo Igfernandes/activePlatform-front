@@ -11,4 +11,7 @@ export const Validations = {
   has_min_one_special_character: "Pelo menos 1 caracteres especial.",
   invalid_file:
     "O arquivo encontra-se maior de 5 megas, corrompido ou com formato inválido",
+  invalid_day: "O dia inserido encontra-se inválido",
+  invalid_month: "O mês inserido encontra-se inválido",
+  invalid_year: "O ano inserido encontra-se inválido",
 };

@@ -5,5 +5,4 @@ export type PostAuthPayload = {
   password: string;
   rememberMe?: boolean;
   csrf: CSRFShape;
-  recaptcha: string;
 };

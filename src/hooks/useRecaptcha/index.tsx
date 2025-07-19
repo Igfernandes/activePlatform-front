@@ -1,27 +1,27 @@
-import { useCallback, useRef, useState } from "react";
-import Turnstile, { useTurnstile } from "react-turnstile";
+import { useEffect, useRef, useState } from "react";
+import { Recaptcha } from "./recaptcha";
 
 export function useRecaptcha() {
-  const turnstile = useTurnstile();
   const [token, setToken] = useState<string>("");
+  const [isLoadingRecaptcha, SetIsLoadingRecaptcha] = useState<boolean>(false);
   const SITE_KEY = useRef<string>(process.env.NEXT_PUBLIC_RECAPTCHA_PUBLIC_KEY);
 
-  const Recaptcha = useCallback(() => {
-    if (!SITE_KEY.current) return <></>;
+  useEffect(() => {
+    if (typeof window == "undefined") return;
 
-    return (
-      <Turnstile
-        sitekey={SITE_KEY.current}
-        onVerify={(token) => {
+    if (window.turnstile) {
+      window.turnstile.render("[data-recaptcha]", {
+        sitekey: SITE_KEY.current,
+        callback: (token: string) => {
           setToken(token);
-        }}
-      />
-    );
-  }, [SITE_KEY]);
+        },
+      });
+    }
+  }, [SITE_KEY, isLoadingRecaptcha]);
 
-  const loadReCaptcha = useCallback(() => {
-    if (turnstile) turnstile.reset();
-  }, []);
+  const loadReCaptcha = () => {
+    SetIsLoadingRecaptcha(!isLoadingRecaptcha);
+  };
 
   return { token, loadReCaptcha, Recaptcha };
 }

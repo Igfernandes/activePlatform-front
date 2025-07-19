@@ -12,7 +12,7 @@ const SnackbarProvider = ({ children }: { children: ReactNode }) => {
   const addSnackbar = useCallback(({ type, message, title }: SnackbarData) => {
     const timestamp = new Date();
     timestamp.setSeconds(timestamp.getSeconds() + 1);
-    
+
     setSnackbar({
       type,
       message,
@@ -32,12 +32,7 @@ const SnackbarProvider = ({ children }: { children: ReactNode }) => {
       }}
     >
       <When value={!!snackbar.message}>
-        <div style={{ position: "fixed", zIndex: 9998, right: 0 }}>
-          <SnackbarMessage
-            snackbar={snackbar}
-            deleteSnackbar={deleteSnackbar}
-          />
-        </div>
+        <SnackbarMessage snackbar={snackbar} deleteSnackbar={deleteSnackbar} />
       </When>
       {children}
     </SnackbarContext.Provider>

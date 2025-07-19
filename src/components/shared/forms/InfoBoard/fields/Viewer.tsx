@@ -20,7 +20,7 @@ export function TViewer({
         <Component
           {...props}
           label={label}
-          defaultValue={defaultValue}
+          defaultValue={defaultValue ?? ""}
           element={element}
         />
       </When>

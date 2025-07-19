@@ -14,10 +14,11 @@ export type FormBuilderContextData = {
   handleRemoveField: (fieldId: string) => void;
   handleChangePositionField: (
     currentPosition: number,
-    newPosition: number
+    newPosition: OptionsPositionField
   ) => void;
 };
 
+export type OptionsPositionField = number | "DOWN" | "UP";
 export type FormBuilderProps = {
   children: React.ReactNode;
   form: FieldShape[];

@@ -6,8 +6,10 @@ export type TurnsTile = {
   ready: () => Promise<void>;
   remove: (widgetId?: string) => void;
   render: (
-    container: HTMLDivElement | null,
-    context: ShapeContextRecaptcha
+    container: string | HTMLDivElement | null,
+    context: ShapeContextRecaptcha & {
+      callback: (token: string) => void;
+    }
   ) => string;
   reset: (widgetId?: string) => void;
 };

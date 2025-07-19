@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { InputProps } from "./type";
 import i18n from "@configs/i18n";
@@ -10,14 +10,8 @@ import { MobileDependentsViewer } from "./Mobile";
 
 export function Dependents({ id, label, name, errors, setValue }: InputProps) {
   const IdCurrent = id;
-  const { rows, setRows } = useDependent();
+  const { rows, handleChanges, setRows } = useDependent({ setValue, name });
   const { screenType } = useWindow();
-
-  useEffect(() => {
-    if (!rows) return;
-
-    if (setValue && name) setValue(name, JSON.stringify(rows));
-  }, [rows, setRows]);
 
   return (
     <>
@@ -53,24 +47,11 @@ export function Dependents({ id, label, name, errors, setValue }: InputProps) {
             </button>
           </div>
         </div>
-        <div className="dependents">
-          <div className="header flex">
-            <div>
-              <span>{}</span>
-            </div>
-            <div>
-              <span>{i18n("Words.cpf")}</span>
-            </div>
-            <div>
-              <span>{i18n("Words.birthdate")}</span>
-            </div>
-          </div>
-        </div>
         <When value={["DESKTOP", "TABLET"].includes(screenType)}>
-          <DesktopDependentsViewer rows={rows} setRows={setRows} />
+          <DesktopDependentsViewer rows={rows} setRows={handleChanges} />
         </When>
         <When value={screenType === "MOBILE"}>
-          <MobileDependentsViewer rows={rows} setRows={setRows} />
+          <MobileDependentsViewer rows={rows} setRows={handleChanges} />
         </When>
       </div>
     </>

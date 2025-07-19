@@ -51,8 +51,19 @@ const FormBuilderProvider = ({
 
   const handleChangePositionField = (
     currentPosition: number,
-    newPosition: number
+    newPosition: number | "DOWN" | "UP"
   ) => {
+    if (String(currentPosition) === "NaN") return;
+
+    switch (newPosition) {
+      case "DOWN":
+        newPosition = +currentPosition + 1;
+        break;
+      case "UP":
+        newPosition = +currentPosition - 1;
+        break;
+    }
+
     if (currentPosition >= fields.length || newPosition >= fields.length) {
       return;
     }

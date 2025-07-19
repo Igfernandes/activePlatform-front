@@ -5,7 +5,6 @@ export type InputProps = Omit<
   DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
   "required"
 > & {
-  isLoading?: boolean;
   label?: string;
   errors?: FieldError;
   required?: string | null;

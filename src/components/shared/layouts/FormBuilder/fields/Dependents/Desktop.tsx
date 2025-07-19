@@ -3,6 +3,7 @@ import { handleMaskCPF } from "@helpers/string";
 import { DependentsViewerProps } from "./type";
 import { BtnDelete } from "./BtnDelete";
 import { Close } from "@assets/Icons/black/CloseClean";
+import { handleMaskDate } from "@helpers/date";
 
 export function DesktopDependentsViewer({
   rows,
@@ -60,11 +61,12 @@ export function DesktopDependentsViewer({
                 onChange={(ev) => {
                   const refRows = rows;
 
+                  handleMaskDate(ev);
                   refRows[key].birthdate = ev.currentTarget.value;
                   setRows(refRows);
                 }}
                 className="w-full outline-none"
-                type="Date"
+                type="text"
               />
             </td>
             <td className="px-2 border-2 border-cross-white-primary w-10">

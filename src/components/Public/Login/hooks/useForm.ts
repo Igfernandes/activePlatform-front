@@ -3,7 +3,6 @@ import { PostAuthPayload } from "../../../../services/Authentications/Auth/type"
 import usePostAuth from "../../../../services/Authentications/Auth/usePostAuth";
 import { useFormRules } from "@hooks/Forms/useFormRules";
 import { CSRFShape } from "@services/Authentications/CSRF/types";
-import { useRecaptcha } from "@hooks/useRecaptcha";
 
 type Payload = PostAuthPayload;
 
@@ -12,7 +11,6 @@ type Props = {
 };
 
 export function useForm({ csrf }: Props) {
-  const { Recaptcha, loadReCaptcha, token } = useRecaptcha();
   const { mutateAsync: postAuth } = usePostAuth();
   const { formMethods, hasAllFilledFields } = useFormRules<Payload>({
     schema: loginFormSchema,
@@ -31,10 +29,7 @@ export function useForm({ csrf }: Props) {
       password,
       rememberMe,
       csrf,
-      recaptcha: token,
     });
-
-    loadReCaptcha();
   };
   /**
    * @function updateValueRememberMe
@@ -53,8 +48,7 @@ export function useForm({ csrf }: Props) {
     errors,
     formMethods,
     hasAllFilledFields,
-    isLoading: isSubmitting || !token,
+    isLoading: isSubmitting,
     updateValueRememberMe,
-    Recaptcha,
   };
 }

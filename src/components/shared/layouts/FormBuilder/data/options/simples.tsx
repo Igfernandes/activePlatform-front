@@ -65,8 +65,8 @@ export const optionsSimples = [
     icon: <Pen width={12} height={12} />,
   },
   {
-    id: "button",
-    field: "button",
+    id: "textarea",
+    field: "textarea",
     icon: <RectangleAd width={12} height={12} />,
   },
 ].map((option) => ({
