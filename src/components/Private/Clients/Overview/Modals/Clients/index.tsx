@@ -113,6 +113,7 @@ export function ClientCreateModal({
               <Checkbox
                 {...register("hasContinueRegister")}
                 dataTestId="continue_register"
+                id={'continue_register'}
                 label={i18n(`Texts.continue_register`)}
               />
             </div>

@@ -65,6 +65,7 @@ export const Api = {
     categories: {
       success: {
         post: "As categorias foram atualizadas com sucesso!",
+        patch: "A categoria do(s) cliente(s) foi alterada com sucesso",
       },
       invalid: {
         id: "A categoria informado não existe ou está inválido",
@@ -130,12 +131,14 @@ export const Api = {
       in_ids: "Os clientes informados encontram-se com alguma irregularidade",
       client: "O cliente informado encontra-se inexistente ou inválido",
       clients: "Os clientes informados encontram-se inexistentes ou inválidos",
-      category: "A categoria do cliente informada encontra-se inválida",
+      category:
+        "A categoria do cliente informada encontra-se vazia ou inválida",
       name: "O nome informado do cliente encontra-se inválido",
       name_max_length_100:
         "O cliente contém nome com o limite acima do máximo de 100 caracteres.",
       avatar: "O avatar do cliente contém uma url inválida",
-      phone: "O telefone informado do cliente encontra-se inválido",
+      phone:
+        "O telefone informado do cliente encontra-se utilizado ou inválido",
       phone_max_length_35:
         "O cliente contém telefone com o limite acima do máximo de 35 caracteres.",
       birthdate:

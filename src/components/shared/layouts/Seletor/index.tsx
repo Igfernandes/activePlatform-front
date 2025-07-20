@@ -39,7 +39,7 @@ export function Selector({ label, value, textSize, ...props }: SelectorProps) {
       </div>
       <label
         htmlFor={IdCurrent}
-        className={`${textSize ? textSize : "text-md"} ml-2 cursor-pointer`}
+        className={`${textSize ? textSize : "text-base"} ml-2 cursor-pointer`}
       >
         {label}
       </label>

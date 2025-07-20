@@ -22,7 +22,7 @@ export function Shared({ entity, in_ids }: Props) {
       >
         <FileSymlink className="hover:fill-red" />
         <When value={isShow}>
-          <ul className="absolute z-50 bg-white p-4 left-0 shadow-lg rounded-md">
+          <ul className="absolute z-50 bg-white p-4 top-4 right-0 shadow-lg rounded-md">
             <li
               onClick={() =>
                 postExport({

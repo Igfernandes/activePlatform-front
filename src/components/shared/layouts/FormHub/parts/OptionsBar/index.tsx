@@ -8,9 +8,9 @@ import { useModalContext } from "../../context/Modal";
 import { useFieldContext } from "../../context/Fields";
 import { Pencil } from "@assets/Icons/black/Pencil";
 
-type Props = Pick<FormBuildProps, "handleShared" | "handleUpdateClient">;
+type Props = Pick<FormBuildProps, "handleUpdateClient">;
 
-export function OptionsBar({ handleShared, handleUpdateClient }: Props) {
+export function OptionsBar({ handleUpdateClient }: Props) {
   const { handleToggleModal } = useModalContext();
   const { viewedField } = useFieldContext();
 
@@ -41,18 +41,10 @@ export function OptionsBar({ handleShared, handleUpdateClient }: Props) {
         </div>
       </div>
       <div className="flex flex-wrap my-1 lg:my-0 lg:flex-none justify-center">
-        <div className="mx-2 my-2 lg:my-0 w-full lg:w-auto">
-          <Button
-            className="border border-zinc-300 px-3 font-bold rounded-xl bg-secondary text-primary"
-            text={i18n("Words.shared")}
-            type="button"
-            onClick={() => handleShared(viewedField.id)}
-          />
-        </div>
         <div className="mx-2 w-full lg:w-auto">
           <Button
             className="border border-zinc-300 px-3 font-bold rounded-xl"
-            text={i18n("Words.new_register")}
+            text={i18n("Texts.new_field")}
             type="button"
             onClick={() => handleToggleModal(true)}
           />

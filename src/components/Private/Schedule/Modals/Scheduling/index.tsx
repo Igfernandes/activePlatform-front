@@ -35,16 +35,17 @@ export function SchedulingModal({ schedules }: Props) {
   } = formMethods;
 
   useEffect(() => {
-    const current = schedules?.find((schedule) => schedule.id === modal.id);
+    const current = schedules?.find((schedule) => schedule.id === +modal.id);
 
     if (!current) return reset();
 
     Object.entries(current).forEach(([key, value]) => {
       setValue(key as keyof ScheduleUpdatePayload, value as string);
     });
-    const targetSchedule = current.linked?.map((user) => String(user.id)) ?? [];
-    setValue("linked", targetSchedule);
-    setSchedule(targetSchedule);
+    const linkedUsers = current.linked?.map((user) => String(user.id)) ?? [];
+    console.log();
+    setValue("linked", linkedUsers);
+    setSchedule(linkedUsers);
   }, [schedules, modal]);
 
   return (

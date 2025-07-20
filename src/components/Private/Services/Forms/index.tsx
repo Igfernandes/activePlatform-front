@@ -11,7 +11,6 @@ import { useEffect } from "react";
 import { useStateFields } from "./hooks/useStateFields";
 import { getFileUrl } from "@helpers/file";
 import Image from "next/image";
-import { FloppyDisk } from "@assets/Icons/black/FloppyDisck";
 import { useNavigator } from "@hooks/useNavigator";
 import useWindow from "@hooks/useWindow";
 import { ToggleSwitch } from "@components/shared/forms/ToggleSwitch";
@@ -20,6 +19,7 @@ import { Radio } from "@components/shared/forms/Radio";
 import { InscribesTable } from "./InscribesTable";
 import { TextEdit } from "@components/shared/forms/TextEdit";
 import { FormsTable } from "./FormsTable";
+import { Link } from "@assets/Icons/black/Link";
 
 type Props = {
   service?: ServicesShape;
@@ -91,12 +91,12 @@ export function ServicesForm({ service }: Props) {
             </div>
             <When value={!!service}>
               <div
-                className="px-4 py-2 shadow-md rounded-md cursor-pointer ml-2"
+                className="px-3 py-2 shadow-md rounded-md cursor-pointer hover:bg-red ml-2"
                 onClick={() =>
                   handleCopy(`${baseUrl}/services?key=${service?.id}`)
                 }
               >
-                <FloppyDisk className="hover:fill-red" />
+                <Link className="" />
               </div>
             </When>
           </div>

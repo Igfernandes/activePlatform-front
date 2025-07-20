@@ -7,8 +7,8 @@ import { ItemProps } from "./type";
 import { useSortable } from "@dnd-kit/sortable";
 import { useEffect, useState } from "react";
 import { Close } from "@assets/Icons/black/CloseClean";
-import { Config } from "@assets/Icons/black/Config";
 import { When } from "@components/utilities/When";
+import { Pencil } from "@assets/Icons/black/Pencil";
 
 export function SortableItem<Payload extends FieldValues>({
   id,
@@ -45,7 +45,7 @@ export function SortableItem<Payload extends FieldValues>({
       </div>
       <div className="flex-1">
         <Input
-          {...register(`${name}.${position}` as Path<Payload>)}
+          {...register(`${name}.${position}.value` as Path<Payload>)}
           dataTestId={`group_fields_${name}`}
           defaultValue={value}
           disabled={!isTargetElement}
@@ -63,7 +63,7 @@ export function SortableItem<Payload extends FieldValues>({
           />
         </When>
         <When value={!isTargetElement}>
-          <Config
+          <Pencil
             className="w-5 cursor-pointer"
             onClick={() => onChange(id, "EDIT")}
           />

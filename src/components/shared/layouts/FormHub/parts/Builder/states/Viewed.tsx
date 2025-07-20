@@ -1,6 +1,9 @@
 import { When } from "@components/utilities/When";
 import { FormBuildProps } from "../type";
 import { translateOrFallback } from "@helpers/i18nHelper";
+import Link from "next/link";
+import i18n from "@configs/i18n";
+import { Upload } from "@assets/Icons/black/Upload";
 
 type Props = Pick<FormBuildProps, "isEditing" | "fields">;
 
@@ -31,7 +34,10 @@ export function FormBuilderViewed({ isEditing, fields }: Props) {
                   />
                 </When>
                 <When value={field.type == "FILE"}>
-                  <span>{field.value?.split("uploads/")[1]}</span>
+                  <Link className="flex bg-cross-white-secondary pl-2" href={field.value ?? ""} target="_blank">
+                    <Upload />
+                    <span className="ml-2">{i18n("Texts.see_more")}</span>
+                  </Link>
                 </When>
               </div>
             </li>

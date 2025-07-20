@@ -7,10 +7,13 @@ export const ScheduleSchema = z.object({
       .replace("${field}", i18n("Words.name"))
       .replace("${length}", "3"),
   }),
-  date: z.string({ required_error: i18n("Validations.required") }),
+  date: z
+    .string({ required_error: i18n("Validations.required") })
+    .nonempty({ message: i18n("Validations.required") }),
   end_date: z
     .string({ required_error: i18n("Validations.required") })
-    .optional().nullable(),
+    .optional()
+    .nullable(),
   describe: z.string({ required_error: i18n("Validations.required") }),
   color: z.string({ required_error: i18n("Validations.required") }),
   linked: z.array(z.string().or(z.boolean())),

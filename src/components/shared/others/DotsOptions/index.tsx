@@ -15,7 +15,7 @@ export function DotsOptions({ actions = [] }: DotsOptionsProps) {
         />
       </div>
       <When value={showOptions}>
-        <div className="absolute right-[0rem] top-4 bg-white shadow-xl z-[10000] w-40 px-3 py-2 rounded-xl">
+        <div className="absolute right-[0rem] top-3 bg-white shadow-xl z-[10000] w-40 px-3 py-2 rounded-xl">
           <ul>
             {actions.map((action, index) => (
               <li

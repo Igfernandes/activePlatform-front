@@ -3,7 +3,6 @@ import { FieldsShape, ScopeFields } from "../../../../types/Fields";
 import { PayloadFieldValues, ViewedEntityShape } from "./context/Fields/types";
 
 export type FormBuildProps = {
-  handleShared: (entityId: number) => void;
   entity: ViewedEntityShape;
   fields: Array<FieldsShape>;
   groups: Array<FieldsGroupsShape>;

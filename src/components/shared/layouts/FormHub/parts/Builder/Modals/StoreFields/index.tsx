@@ -15,7 +15,7 @@ export function StoreFieldsModal({
   onModal,
   groups,
 }: StoreFieldsModalProps) {
-  const { formMethods, register, errors, handleSubmit, submit } =
+  const { formMethods, register, errors, handleSubmit, submit, isLoading } =
     useStoreFieldsModal({ handleModal: onModal });
   const [isFileField, setIsFileField] = useState<boolean>(false);
   const { watch } = formMethods;
@@ -125,6 +125,7 @@ export function StoreFieldsModal({
                   type="submit"
                   className="bg-red text-white"
                   text={i18n("Words.save")}
+                  isLoading={isLoading}
                 />
               </div>
             </div>

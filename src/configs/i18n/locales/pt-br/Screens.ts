@@ -28,6 +28,8 @@ export const Screens = {
       invalid_url:
         "A página encontra-se com recursos desatualizados ou inválidos. Copie o link completo e tente novamente, ou entre em contato com o central",
     },
+    switch_event: "Escolha um evento",
+    selected_form: "Selecione um formulário"
   },
   forms: {
     successful: {

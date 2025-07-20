@@ -26,10 +26,10 @@ export type ServicePreviewShape = Pick<
   | "realized_at"
 > & {
   title: string;
-  form: {
-    title: string;
-    id: string;
-  };
+  forms: {
+    name: string;
+    slug: string;
+  }[];
   charge: Pick<
     ChargeShape,
     "title" | "price" | "promotional_price" | "amount" | "reference"

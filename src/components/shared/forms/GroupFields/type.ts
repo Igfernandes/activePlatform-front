@@ -12,6 +12,7 @@ export type GroupFieldsProps<Payload extends FieldValues> = {
 };
 
 export type GroupFieldsDataShape = {
+  id: number;
   value: string;
   position: number;
 };

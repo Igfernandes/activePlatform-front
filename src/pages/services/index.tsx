@@ -2,6 +2,7 @@ import { Footer } from "@components/Public/External/Footer";
 import { Header } from "@components/Public/External/Header";
 import { BoardCharge } from "@components/Public/Services/boards/Charge";
 import { BoardDefault } from "@components/Public/Services/boards/Default";
+import { BoardForm } from "@components/Public/Services/boards/Form";
 import { ServicesPageProps } from "@components/Public/Services/types";
 import { Subscribe } from "@components/shared/layouts/Subscribe";
 import { When } from "@components/utilities/When";
@@ -13,7 +14,7 @@ import Script from "next/script";
 import { useRef } from "react";
 
 export default function Services({ service }: ServicesPageProps) {
-  const { charge, photo, form } = service;
+  const { charge, photo, forms } = service;
   const address = useRef<string>(process.env.NEXT_PUBLIC_COMPANY_ADDRESS);
   const email = useRef<string>(process.env.NEXT_PUBLIC_COMPANY_EMAIL);
   const phone = useRef<string>(process.env.NEXT_PUBLIC_COMPANY_PHONE);
@@ -89,7 +90,10 @@ export default function Services({ service }: ServicesPageProps) {
             <When value={!!charge}>
               <BoardCharge charge={charge} />
             </When>
-            <When value={!charge && !form}>
+            <When value={!!forms}>
+              <BoardForm {...service} forms={forms} />
+            </When>
+            <When value={!charge && !forms}>
               <BoardDefault {...service} />
             </When>
           </div>

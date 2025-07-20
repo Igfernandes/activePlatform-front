@@ -3,6 +3,7 @@ export type PostCreateCategoryPayload = {
 };
 
 type CategoryData = {
+  id: number;
   name: string;
   description?: string;
 };

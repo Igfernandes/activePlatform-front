@@ -17,7 +17,8 @@ export function useStoreFieldsModal({ handleModal }: Props) {
         is_sensitive: "NOT",
       },
     });
-  const { mutateAsync: postFields } = usePostCreateFields();
+  const { mutateAsync: postFields, isPending: isLoading } =
+    usePostCreateFields();
 
   const submit = ({
     is_required,
@@ -50,5 +51,6 @@ export function useStoreFieldsModal({ handleModal }: Props) {
     errors,
     handleSubmit,
     register,
+    isLoading,
   };
 }

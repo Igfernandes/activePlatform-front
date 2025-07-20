@@ -30,13 +30,13 @@ export function List({
         </h4>
       </div>
       <div
-        className={`flex flex-wrap md:flex-nowrap ${
+        className={`flex flex-wrap  ${
           errors?.message ? "border-yellow" : ""
         } my-4`}
       >
         {optionsRef.current.map((option, key) => (
           <div
-            className="w-full md:w-full flex flex-row-reverse md:block my-2 cursor-pointer"
+            className="w-full md:w-auto flex flex-row-reverse md:block my-2 cursor-pointer"
             key={`list_option_key`}
           >
             <label htmlFor={`option_${key}`} className="w-[90%] md:w-auto ml-2">

@@ -5,11 +5,11 @@ import { Selector } from "@components/shared/layouts/Seletor";
 import { ModalFormCategories } from "./Modals/Categories";
 import { useModalContext } from "@contexts/Modal";
 import { ModalClientsOperationType, ClientsStructProps } from "../type";
-import { ClientSharedModal } from "./Modals/ClientShared";
 import { ClientCreateModal } from "./Modals/Clients";
 import SelectorProvider from "@components/shared/layouts/Seletor/contexts";
 import { SmartTable } from "@components/shared/layouts/Tables/presets/SmartTable";
 import { ClientCategoriesModal } from "./Modals/ClientCategories";
+import { Shared } from "@components/shared/others/Shared";
 export function Clients({ search, filterObjects }: ClientsStructProps) {
   const {
     tDataClients,
@@ -38,10 +38,6 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
               },
               actions: [
                 {
-                  handle: () => handleToggleModal("SHARED"),
-                  text: i18n("Texts.data_shared"),
-                },
-                {
                   handle: () => handleToggleModal("CHANGE_CATEGORY"),
                   text: i18n("Texts.category_alter"),
                 },
@@ -55,11 +51,17 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
                 },
               ],
               buttons: (
-                <Selector
-                  value={"all"}
-                  label={i18n(`Words.select_all`)}
-                  textSize="text-[0px] md:text-lg"
-                />
+                <>
+                  <Selector
+                    value={"all"}
+                    label={i18n(`Words.select_all`)}
+                    textSize="text-[0px] md:text-base"
+                  />
+                  <Shared
+                    entity="CLIENTS"
+                    in_ids={selectors.map((selector) => +selector.value)}
+                  />
+                </>
               ),
               filters: {
                 tag: {
@@ -94,15 +96,10 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
           onModal={handleToggleModal}
           isLoading={isLoadingClientDelete}
         />
-        <ClientSharedModal
-          isShowModal={modal.type === "SHARED"}
-          onModal={handleToggleModal}
-          title={i18n("Texts.data_shared")}
-        />
         <ClientCategoriesModal
           isShowModal={modal.type === "CHANGE_CATEGORY"}
           onModal={handleToggleModal}
-          title={i18n("Words.category_alter")}
+          title={i18n("Texts.category_alter")}
           categories={categories}
           selectors={selectors}
         />

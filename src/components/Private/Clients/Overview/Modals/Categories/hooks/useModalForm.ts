@@ -9,16 +9,23 @@ export function useModalForm() {
     schema: CategoryModalSchema,
   });
   const { handleToggleModal } = useModalContext<ModalClientsOperationType>();
-
   const { handleSubmit } = formMethods;
   const { mutateAsync: postCategory, isPending: isLoading } =
     usePostCategories();
 
-  const submit = (payload: CategoryPayload) => {
-    const categories = payload.categories.map((category) => ({
-      name: category,
+  const submit = ({ categories }: CategoryPayload) => {
+    const categoriesData = categories.map((category) => ({
+      id: category.id,
+      name: category.value,
     }));
-    postCategory({ categories }).then(() => handleToggleModal(false));
+    postCategory({ categories: categoriesData })
+      .catch(() => {})
+      .then((response) => {
+        if (!response) {
+        } else {
+          handleToggleModal(false);
+        }
+      });
   };
 
   return {

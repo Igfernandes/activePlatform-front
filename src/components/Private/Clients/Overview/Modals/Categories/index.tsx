@@ -21,15 +21,20 @@ export function ModalFormCategories({
           <div className="form-title mb-4">
             <h4 className="text-base text-justify lg:text-left xl:text-lg leading-6">
               <strong>
-                {i18n("Screens.dashboard.clients.category.text_create_category")}
+                {i18n(
+                  "Screens.dashboard.clients.category.text_create_category"
+                )}
               </strong>
             </h4>
-            <span className="text-xs lg:text-base">{i18n("Screens.dashboard.clients.category.text_organized_items")}</span>
+            <span className="text-xs lg:text-base">
+              {i18n("Screens.dashboard.clients.category.text_organized_items")}
+            </span>
           </div>
           <GroupFields
             name="categories"
             data={
               categories?.map((category) => ({
+                id: category.id,
                 value: category.name,
                 position: category.position,
               })) ?? []

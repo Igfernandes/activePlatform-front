@@ -27,7 +27,6 @@ export default function ClientPerfil({ targetClient }: ClientPageProps) {
         entity={targetClient}
         groups={fieldsGroups}
         fields={fields ?? []}
-        handleShared={() => ""}
         handleUpdateClient={handleToggleModal}
       />
       <ClientUpdateModal

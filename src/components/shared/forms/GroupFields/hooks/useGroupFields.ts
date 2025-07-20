@@ -24,7 +24,7 @@ export function useGroupFields<Payload extends FieldValues>({
 
   const handleDragEnd = (event: EventDragProps) => {
     const { active, over } = event;
-    
+
     if (active.id !== over?.id) {
       const updatedItemsValue = handleUpdateItemsValue(items);
       const oldIndex = updatedItemsValue.findIndex(
@@ -38,21 +38,19 @@ export function useGroupFields<Payload extends FieldValues>({
       handleUpdateValues(updatedItems);
     }
   };
-  const handleUpdateItemsValue = (items: ItemShape[]) => {
-    const itemsValue = getValues(name);
 
+  const handleUpdateItemsValue = (items: ItemShape[]) => {
+    const itemsValue = getValues(name) as ItemShape[];
     return items.map((item, key) => ({
       ...item,
-      value: itemsValue[key],
+      value: itemsValue[key]?.value ?? "",
     }));
   };
-  const handleUpdateValues = (items: ItemShape[]) => {
-    setValue(
-      name as Path<Payload>,
-      items.map((item) => item.value) as PathValue<Payload, Path<Payload>>
-    );
-  };
 
+  const handleUpdateValues = (items: ItemShape[]) => {
+    setValue(name as Path<Payload>, items as PathValue<Payload, Path<Payload>>);
+  };
+  
   const handleUpdateItems = (name: Path<Payload>) => {
     const itemsValue = getValues(name);
 
@@ -67,11 +65,10 @@ export function useGroupFields<Payload extends FieldValues>({
   const handleAddingItem = () => {
     const itemId = items.length;
     const newItem = { id: itemId, value: "" };
-    const itemsUpdated = [...items, newItem].map((item, key) => ({
+    const itemsUpdated = [...items, newItem].map((item, index) => ({
       ...item,
-      id: key,
+      id: index,
     }));
-
     handleUpdateValues(itemsUpdated);
     setItems(itemsUpdated);
     setTargetItem(itemId);
@@ -106,18 +103,14 @@ export function useGroupFields<Payload extends FieldValues>({
 
   useEffect(() => {
     const itemsOrganized = data.sort((a, b) => a.position - b.position);
-    setItems(
-      itemsOrganized.map(({ value, position }) => ({
-        id: position,
-        value,
-      }))
-    );
-    setValue(
-      name as Path<Payload>,
-      items.map((item) => `${item.value}`) as PathValue<Payload, Path<Payload>>
-    );
-  }, []);
+    const initialItems = itemsOrganized.map(({ id, value }) => ({
+      id,
+      value,
+    }));
 
+    setItems(initialItems);
+    setValue(name, initialItems as PathValue<Payload, Path<Payload>>);
+  }, []);
   return {
     handleDragEnd,
     items,

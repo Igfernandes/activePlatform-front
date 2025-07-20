@@ -11,7 +11,6 @@ export function FormHub({
   fields,
   entity,
   groups,
-  handleShared,
   entityType,
   handleSubmitFields,
   handleUpdateClient,
@@ -28,7 +27,6 @@ export function FormHub({
               handleSubmitFields={handleSubmitFields}
             >
               <OptionsBar
-                handleShared={handleShared}
                 handleUpdateClient={handleUpdateClient}
               />
               <FieldsTabs />

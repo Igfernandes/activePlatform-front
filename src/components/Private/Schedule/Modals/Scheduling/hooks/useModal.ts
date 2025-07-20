@@ -19,14 +19,20 @@ export function useModal() {
   const { handleToggleModal, modal } = useModalContext();
   const [users, setUsers] = useState<UsersShape[]>([]);
   const { data: usersData, isFetched: isFetchedUsers } = useGetUsers();
-  const { mutateAsync: postSchedule } = usePostCreateSchedule();
-  const { mutateAsync: putSchedule } = usePutCreateSchedule();
-  const { mutateAsync: deleteSchedule } = useDeleteSchedule();
+  const { mutateAsync: postSchedule, isPending: isLoadingPost } =
+    usePostCreateSchedule();
+  const { mutateAsync: putSchedule, isPending: isLoadingPut } =
+    usePutCreateSchedule();
+  const { mutateAsync: deleteSchedule, isPending: isLoadingDelete } =
+    useDeleteSchedule();
 
   const handleDeleteSchedule = () => {
     deleteSchedule({
       id: parseInt(modal.id as string),
-    }).then(() => handleToggleModal(false));
+    }).then(() => {
+      handleToggleModal(false);
+      formMethods.reset();
+    });
   };
 
   useEffect(() => {
@@ -38,7 +44,7 @@ export function useModal() {
   const submit = async ({ linked, ...rest }: ScheduleUpdatePayload) => {
     const payload = {
       ...rest,
-      linked: linked.map((user) => +user),
+      linked: linked.filter((user) => !!user).map((user) => +user),
     };
 
     if (modal.id) {
@@ -57,7 +63,7 @@ export function useModal() {
     formMethods,
     handleSubmit,
     submit,
-    isLoading: false,
+    isLoading: isLoadingPost || isLoadingPut || isLoadingDelete,
     users,
     handleDeleteSchedule,
   };

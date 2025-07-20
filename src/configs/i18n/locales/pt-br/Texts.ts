@@ -41,4 +41,6 @@ export const Texts = {
   field_required: "O campo é obrigatório",
   thanks_message: "Mensagem de agradecimento",
   linked_forms: "Formulário vinculados",
+  new_field: "Novo campo"
+  
 };
