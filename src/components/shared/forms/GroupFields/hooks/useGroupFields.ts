@@ -50,7 +50,7 @@ export function useGroupFields<Payload extends FieldValues>({
   const handleUpdateValues = (items: ItemShape[]) => {
     setValue(name as Path<Payload>, items as PathValue<Payload, Path<Payload>>);
   };
-  
+
   const handleUpdateItems = (name: Path<Payload>) => {
     const itemsValue = getValues(name);
 
@@ -65,10 +65,7 @@ export function useGroupFields<Payload extends FieldValues>({
   const handleAddingItem = () => {
     const itemId = items.length;
     const newItem = { id: itemId, value: "" };
-    const itemsUpdated = [...items, newItem].map((item, index) => ({
-      ...item,
-      id: index,
-    }));
+    const itemsUpdated = [...items, newItem];
     handleUpdateValues(itemsUpdated);
     setItems(itemsUpdated);
     setTargetItem(itemId);
