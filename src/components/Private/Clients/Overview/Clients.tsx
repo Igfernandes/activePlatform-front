@@ -66,7 +66,9 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
                   />
                   <Shared
                     entity="CLIENTS"
-                    in_ids={selectors.map((selector) => +selector.value)}
+                    in_ids={selectors
+                      .filter((selector) => !!selector.isChecked)
+                      .map((selector) => +selector.value)}
                   />
                 </>
               ),
