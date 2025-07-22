@@ -11,6 +11,7 @@ import { ServicesActions } from "../ServicesActions";
 import dayjs from "dayjs";
 import useGetServices from "../../../../../services/Services/Get/useGetServices";
 import useDeleteServices from "../../../../../services/Services/Delete/useDelete";
+import { Status } from "@type/status";
 
 export function useServices({
   handleFilter,
@@ -43,7 +44,7 @@ export function useServices({
       id,
       name,
       stock,
-      status: i18n(`Words.${status.toLowerCase()}`),
+      status: i18n(`Words.${status.toLowerCase()}`) as Status,
       created_at: dayjs(created_at).format(i18n("Configs.format.date")),
       actions: (
         <ServicesActions handleToggleModal={handleToggleModal} id={id} />

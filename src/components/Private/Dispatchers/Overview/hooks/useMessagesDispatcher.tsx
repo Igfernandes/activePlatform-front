@@ -10,6 +10,7 @@ import { NotificationsActions } from "../NotificationsActions";
 import useGetMessagesDispatcher from "@services/Dispatchers/Get/useGet";
 import { MessagesDispatcherShape } from "@type/MessagesDispatcherShape";
 import useDeleteMessageDispatcher from "@services/Dispatchers/Delete/useDelete";
+import { Status } from "@type/status";
 
 export function useMessagesDispatcher({
   handleFilter,
@@ -46,7 +47,7 @@ export function useMessagesDispatcher({
       title,
       linked,
       author,
-      status: i18n(`Words.${status.toLowerCase()}`),
+      status: i18n(`Words.${status.toLowerCase()}`) as Status,
       actions: (
         <NotificationsActions handleToggleModal={handleToggleModal} id={id} />
       ),

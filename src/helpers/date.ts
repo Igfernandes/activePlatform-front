@@ -10,7 +10,7 @@ export const handleMaskDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     value = getDateWithDayValid(
       dateStringUpdated,
       i18n("Configs.format.separator"),
-      i18n("Configs.format.day_position")
+      +i18n("Configs.format.day_position")
     );
   }
 
@@ -19,7 +19,7 @@ export const handleMaskDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     value = getDateWithMonthValid(
       dateStringUpdated,
       i18n("Configs.format.separator"),
-      i18n("Configs.format.month_position")
+      +i18n("Configs.format.month_position")
     );
   }
 
@@ -27,7 +27,7 @@ export const handleMaskDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     value = getDateWithYearValid(
       value,
       i18n("Configs.format.separator"),
-      i18n("Configs.format.year_position")
+      +i18n("Configs.format.year_position")
     );
 
   event.target.value = value;
