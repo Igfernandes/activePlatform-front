@@ -8,24 +8,41 @@ import { useModalContext } from "../../context/Modal";
 import { useFieldContext } from "../../context/Fields";
 import { Pencil } from "@assets/Icons/black/Pencil";
 import { AccessControl } from "@components/shared/settings/AccessControl";
+import { useUserNavigationContext } from "@contexts/UserNavigation";
+import { Avatar } from "@assets/Icons/black/Avatar";
+import { useEffect, useState } from "react";
 
 type Props = Pick<FormBuildProps, "handleUpdateClient">;
 
 export function OptionsBar({ handleUpdateClient }: Props) {
   const { handleToggleModal } = useModalContext();
   const { viewedField } = useFieldContext();
+  const { hasPermission, permissions } = useUserNavigationContext();
+  const [isAvailableUpdateClients, setIsAvailableUpdateClients] =
+    useState<boolean>(false);
+
+  useEffect(() => {
+    setIsAvailableUpdateClients(hasPermission(permissions, ["clients_update"]));
+  }, [permissions]);
 
   return (
     <div className="flex justify-center lg:justify-between flex-wrap lg:flex-none mt-2 lg:mt-0 relative z-0">
       <div className="flex items-center relative">
         <div
           className="flex items-center"
-          onClick={() => handleUpdateClient(true)}
+          onClick={() =>
+            isAvailableUpdateClients ? handleUpdateClient(true) : null
+          }
         >
           <div className="mr-2">
             <When value={!viewedField.avatar}>
               <div className="bg-white p-2 rounded-full cursor-pointer">
-                <Pencil />
+                <When value={isAvailableUpdateClients}>
+                  <Pencil />
+                </When>
+                <When value={!isAvailableUpdateClients}>
+                  <Avatar />
+                </When>
               </div>
             </When>
           </div>
