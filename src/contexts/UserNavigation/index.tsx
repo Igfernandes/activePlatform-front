@@ -14,14 +14,19 @@ import { getCookie } from "cookies-next";
 import { handleLogout } from "@helpers/handlers";
 import { useQueryClient } from "@tanstack/react-query";
 import { useJsonWebToken } from "@hooks/useJsonWebToken";
+import useGetGroupsPermissions from "@services/Permissions/Groups/Get/useGet";
+import { usePermissions } from "@hooks/usePermissions";
 
 export const UserNavigationContext = createContext(
   {} as UserNavigationContextData
 );
 
 const UserNavigationProvider = ({ children }: UserNavigationProps) => {
-  const [userAuth, setUserAuth] = useState<UsersShape>();
-
+  const [userAuth, setUserAuth] = useState<UsersShape>({} as UsersShape);
+  const { data: groups } = useGetGroupsPermissions({
+    id: userAuth?.groups ? userAuth?.groups[0].id : 0,
+  });
+  const { permissions, setPermissions, hasPermission } = usePermissions();
   const router = useRouter();
   const queryClient = useQueryClient();
   const { verifyJwt } = useJsonWebToken();
@@ -44,13 +49,22 @@ const UserNavigationProvider = ({ children }: UserNavigationProps) => {
           setUserAuth(user);
         })
         .catch(() => handleDisconnect());
+    else handleDisconnect();
   }, [verifyJwt, handleDisconnect]);
+
+  useEffect(() => {
+    if (!Array.isArray(groups) || groups.length == 0) return;
+
+    setPermissions(groups[0].permissions);
+  }, [groups, setPermissions]);
 
   const userProps = useMemo(
     () => ({
       userAuth,
+      permissions,
+      hasPermission,
     }),
-    [userAuth]
+    [userAuth, permissions]
   );
 
   return (

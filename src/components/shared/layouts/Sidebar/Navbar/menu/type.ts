@@ -5,4 +5,5 @@ export type MenuShape = {
   link: string;
   Icon: (props: SVGProps<SVGSVGElement>) => JSX.Element;
   isActive: boolean;
+  permissions?: Array<string>;
 };

@@ -10,6 +10,8 @@ import SelectorProvider from "@components/shared/layouts/Seletor/contexts";
 import { SmartTable } from "@components/shared/layouts/Tables/presets/SmartTable";
 import { ClientCategoriesModal } from "./Modals/ClientCategories";
 import { Shared } from "@components/shared/others/Shared";
+import { PERMISSIONS } from "@constants/permissions";
+import { useUserNavigationContext } from "@contexts/UserNavigation";
 export function Clients({ search, filterObjects }: ClientsStructProps) {
   const {
     tDataClients,
@@ -26,6 +28,7 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
   });
   const { handleToggleModal, modal } =
     useModalContext<ModalClientsOperationType>();
+  const { permissions, hasPermission } = useUserNavigationContext();
 
   return (
     <>
@@ -40,6 +43,7 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
                 {
                   handle: () => handleToggleModal("CHANGE_CATEGORY"),
                   text: i18n("Texts.category_alter"),
+                  permissions: [PERMISSIONS.clients.update],
                 },
                 {
                   handle: () =>
@@ -48,8 +52,11 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
                       getSelectedClientsName(selectors)
                     ),
                   text: i18n("Words.exclude"),
+                  permissions: [PERMISSIONS.clients.delete],
                 },
-              ],
+              ].filter((action) =>
+                hasPermission(permissions, action.permissions)
+              ),
               buttons: (
                 <>
                   <Selector

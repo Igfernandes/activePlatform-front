@@ -17,4 +17,7 @@ export const Components = {
     modal_upload_text: "Clique para carregar ou arraste e solte",
     modal_upload_max_file: "Tamanho máximo do arquivo 5 MB"
   },
+  shared: {
+    awaiting_text: "Aguarde! Estamos processando o seu arquivo."
+  }
 };

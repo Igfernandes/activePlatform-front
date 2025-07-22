@@ -9,6 +9,8 @@ import { AmountInscribes } from "./AmountInscribes";
 import { useNavigator } from "@hooks/useNavigator";
 import useWindow from "@hooks/useWindow";
 import dayjs from "dayjs";
+import { usePermissions } from "@hooks/usePermissions";
+import { useUserNavigationContext } from "@contexts/UserNavigation";
 
 export function FormsCard({ search, filterObjects }: FormsCardProps) {
   const { forms, handleToggleStatusForm, isLoadingDeleteForm } =
@@ -22,7 +24,8 @@ export function FormsCard({ search, filterObjects }: FormsCardProps) {
   const { handleToggleModal, modal } =
     useModalContext<ModalFormsOperationType>();
   const { baseUrl } = useWindow();
-
+  const { hasPermission } = usePermissions();
+  const { permissions } = useUserNavigationContext();
   return (
     <>
       <div>
@@ -37,13 +40,18 @@ export function FormsCard({ search, filterObjects }: FormsCardProps) {
               {
                 handle: () =>
                   handleCopy(`${baseUrl}${formsRoutePublic}/${form.slug}`),
-                text: i18n(`Words.link_copy`),
+                text: i18n(`Words.link_copy`) as string,
               },
               {
                 handle: () => handleToggleModal("EXCLUDE", form.id),
-                text: i18n(`Words.exclude`),
+                text: i18n(`Words.exclude`) as string,
+                permissions: ["form_delete"],
               },
-            ],
+            ].filter(
+              (dotAction) =>
+                !dotAction.permissions ||
+                hasPermission(permissions, dotAction.permissions)
+            ),
             foot: {
               items: [<AmountInscribes key={"amountInscribes"} />],
             },

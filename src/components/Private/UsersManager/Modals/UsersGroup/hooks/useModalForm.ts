@@ -8,6 +8,7 @@ import { UsersGroupShape } from "../../../../../../types/Users/UsersGroup";
 import { useModalContext } from "@contexts/Modal";
 import useGetGroupsPermissions from "../../../../../../services/Permissions/Groups/Get/useGet";
 import usePutGroup from "../../../../../../services/Users/Groups/Put/usePutGroup";
+import { convertToBooleanArray } from "@helpers/array";
 
 type Props = {
   onModal: (isShow: boolean) => void;
@@ -75,9 +76,9 @@ export function useModalForm({ onModal, groups }: Props) {
 
     if (!group) return setValue("permissions", []);
 
-    const permissionsId = group.permissions.map((permission) => permission.id);
+    const permissionIds = group.permissions.map((permission) => permission.id);
 
-    setValue("permissions", permissionsId);
+    setValue("permissions", convertToBooleanArray(permissionIds));
   }, [modal, dataGroupPermissions, groups, isFetched]);
 
   return {

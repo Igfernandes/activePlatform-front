@@ -4,6 +4,9 @@ import { ModalClientsOperationType } from "../type";
 import { useRouter } from "next/navigation";
 import { privateRoutes } from "@configs/routes/Web/navigation";
 import { Shared } from "@components/shared/others/Shared";
+import { PERMISSIONS } from "@constants/permissions";
+import { usePermissions } from "@hooks/usePermissions";
+import { useUserNavigationContext } from "@contexts/UserNavigation";
 
 type Props = {
   handleToggleModal: (
@@ -16,6 +19,8 @@ type Props = {
 export function ClientActions({ handleToggleModal, id }: Props) {
   const router = useRouter();
   const { clients } = privateRoutes;
+  const { permissions } = useUserNavigationContext();
+  const { hasPermission } = usePermissions();
 
   return (
     <div className="flex">
@@ -23,16 +28,18 @@ export function ClientActions({ handleToggleModal, id }: Props) {
       <DotsOptions
         actions={[
           {
-            text: i18n("Words.edit"),
+            text: i18n("Words.edit") as string,
             handle: () => {
               router.push(`${clients}/${id}`);
             },
+            permissions: [PERMISSIONS.clients.update],
           },
           {
-            text: i18n("Words.exclude"),
+            text: i18n("Words.exclude") as string,
             handle: () => handleToggleModal("DELETE", id),
+            permissions: [PERMISSIONS.clients.delete],
           },
-        ]}
+        ].filter((action) => hasPermission(permissions, action.permissions))}
       />
     </div>
   );

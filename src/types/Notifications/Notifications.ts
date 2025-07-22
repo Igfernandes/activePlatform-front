@@ -6,5 +6,9 @@ export type NotificationShape = {
   scope: string;
   key: string | number;
   author_id: number;
+  author: {
+    id: number;
+    name: string;
+  };
   created_at: string;
 };

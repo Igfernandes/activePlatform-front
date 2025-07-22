@@ -6,6 +6,8 @@ import { useOptions } from "./hooks";
 export function Options({ actions }: TableOptionsProps) {
   const { handleToggleOptions, showOptions } = useOptions();
 
+  if (actions.length === 0) return <></>;
+
   return (
     <div className="relative" onMouseLeave={() => handleToggleOptions(false)}>
       <div>

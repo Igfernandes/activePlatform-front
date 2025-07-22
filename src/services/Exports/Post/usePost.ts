@@ -12,6 +12,10 @@ export default function usePostExports() {
   const { postForm } = usePostFormService();
 
   const handleMutate = async (payload: PostExportsPayload) => {
+    dispatchSnackbar({
+      type: "notice",
+      message: i18n("Components.shared.awaiting_text")
+    });
     const { data } = await postForm(payload);
 
     return data;

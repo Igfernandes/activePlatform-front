@@ -13,6 +13,7 @@ import {
 } from "@helpers/string";
 import { handleMaskDate } from "@helpers/date";
 import { ModalAlterPassword } from "./modals/AlterPassword";
+import { TSpan } from "@components/shared/forms/InfoBoard/fields/Span";
 
 dayjs.extend(customParseFormat);
 
@@ -39,7 +40,7 @@ export function SettingsForms() {
           name={"name"}
           dataTestId="name"
           errors={errors.name?.message}
-          defaultValue={userAuth?.name}
+          defaultValue={userAuth.name}
         />
         <TInput
           label={i18n("Words.cpf")}
@@ -50,14 +51,14 @@ export function SettingsForms() {
             handleMaskCPF(ev);
             formMethods.setValue("cpf", ev.currentTarget.value);
           }}
-          defaultValue={getCPFFormatted(userAuth?.cpf)}
+          defaultValue={getCPFFormatted(userAuth.cpf)}
         />
         <TInput
           label={i18n("Words.birthdate")}
           name={"birthdate"}
           dataTestId="birthdate"
           errors={errors.birthdate?.message}
-          defaultValue={dayjs(userAuth?.birthdate, "YYYY-MM-DD").format(
+          defaultValue={dayjs(userAuth.birthdate, "YYYY-MM-DD").format(
             "DD/MM/YYYY"
           )}
           onChange={(ev) => {
@@ -74,14 +75,12 @@ export function SettingsForms() {
             handleMaskPhone(ev);
             formMethods.setValue("phone", ev.currentTarget.value);
           }}
-          defaultValue={getNumberFormatted(userAuth?.phone)}
+          defaultValue={getNumberFormatted(userAuth.phone)}
         />
-        <TInput
-          label={i18n("Words.email")}
-          name={"email"}
+        <TSpan
+          text={i18n("Words.email")}
           dataTestId="email"
-          disabled
-          defaultValue={userAuth?.email}
+          value={userAuth.email}
           style={{
             background: bgColors.white,
           }}

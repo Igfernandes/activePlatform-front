@@ -19,6 +19,7 @@ export default function Home({ csrf }: LoginPageProps) {
 }
 export const getServerSideProps: GetServerSideProps<LoginPageProps> = async ({
   req,
+  res,
 }) => {
   const tokenNavigation = req.cookies["token_navigation"] ?? "";
   const csrf = await getCSRF();
@@ -33,7 +34,8 @@ export const getServerSideProps: GetServerSideProps<LoginPageProps> = async ({
 
   const referenceToken = req.cookies["remember_referenceToken"] ?? "";
 
-  if (referenceToken) return handleRememberMe({ referenceToken, csrf });
+  if (referenceToken)
+    return handleRememberMe({ referenceToken, csrf, req, res });
 
   return {
     props: {

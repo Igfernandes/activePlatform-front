@@ -40,18 +40,18 @@ export function Sidebar({ handleToggleSidebar, showSidebar }: Props) {
             <Bars onClick={handleToggleSidebar} />
           </div>
         </div>
-        <div className="h-[82vh] lg:h-full flex flex-col  justify-between overflow-x-hidden overflow-y-auto hidden-scroll transition-all duration-500">
+        <div className="h-[82vh] lg:h-full flex flex-col   overflow-x-hidden overflow-y-auto hidden-scroll transition-all duration-500">
           <Navbar
             sidebarState={showSidebar}
             menu={MAIN_MENU}
             title={i18n("Words.main")}
-            className="mb-6 lg:mb-0 xl:mb-3"
+            className="mb-6 lg:mb-0 xl:mb-8"
           />
           <Navbar
             sidebarState={showSidebar}
             menu={ADMINISTRATIVE_MENU}
             title={i18n("Words.administrative")}
-            className="mb-6 xl:mb-3"
+            className="mb-6 xl:mb-8"
           />
           <Navbar
             sidebarState={showSidebar}
