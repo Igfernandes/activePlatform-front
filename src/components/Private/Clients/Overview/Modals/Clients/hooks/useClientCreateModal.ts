@@ -23,8 +23,14 @@ export function useModalForm() {
         : undefined,
     }).then(() => {
       const isContinueRegister = watch("hasContinueRegister");
-      formMethods.reset();
-      formMethods.setValue("hasContinueRegister", isContinueRegister);
+      formMethods.reset({
+        category: "",
+        name: "",
+        birthdate: "",
+        email: "",
+        phone: "",
+        hasContinueRegister: isContinueRegister,
+      });
 
       if (isContinueRegister == false) handleToggleModal(false);
     });
