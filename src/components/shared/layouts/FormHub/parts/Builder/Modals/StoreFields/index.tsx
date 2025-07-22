@@ -115,7 +115,8 @@ export function StoreFieldsModal({
             <div className="flex items-center">
               <Checkbox
                 {...register("hasContinueRegister")}
-                dataTestId="continue_register"
+                dataTestId="continue_register_field"
+                id="continue_register_field"
                 label={i18n(`Texts.continue_register`)}
               />
             </div>

@@ -16,7 +16,7 @@ export function Shared({ entity, in_ids }: Props) {
   return (
     <div className="relative">
       <div
-        className=" rounded-md cursor-pointer ml-2"
+        className="rounded-md cursor-pointer ml-2"
         onMouseEnter={() => setIsShow(true)}
         onMouseLeave={() => setIsShow(false)}
       >

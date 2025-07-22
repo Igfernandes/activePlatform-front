@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import ErrorMessage from "@components/shared/others/ErrorMessage";
 import { useSelect } from "./hooks/useSelect";
 import { ArrowDownSimple } from "@assets/Icons/black/ArrowDownSimple";
-import { useFieldsAnimation } from "@hooks/Forms/useFieldsAnimation";;
+import { useFieldsAnimation } from "@hooks/Forms/useFieldsAnimation";
 
 export const SelectSearch = React.forwardRef<HTMLInputElement, SelectProps>(
   function SelectSearch(
@@ -30,10 +30,11 @@ export const SelectSearch = React.forwardRef<HTMLInputElement, SelectProps>(
       selected,
       handleSearch,
       search,
-    } = useSelect({ name: name as string });
+    } = useSelect();
     const IdCurrent = id ?? dataTestId;
 
     useEffect(() => {
+      if (!!selected) return;
       const defaultSelected = options.filter((options) => options.selected);
 
       if (defaultSelected[0]) handleChangeValue(name ?? "", defaultSelected[0]);
