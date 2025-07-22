@@ -21,6 +21,7 @@ export async function authenticationsMiddleware(
   };
 
   const token_navigation = req.cookies.get("token_navigation");
+
   if (typeof token_navigation == "undefined") {
     handleDelete();
     return NextResponse.redirect(new URL(publicRoutes.login, req.url));

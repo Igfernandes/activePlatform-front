@@ -9,6 +9,7 @@ import { ChargesActions } from "../ChargesActions";
 import { useModalContext } from "@contexts/Modal";
 import { TDataCharges } from "../type";
 import useDeleteCharges from "@services/Charges/Delete/useDelete";
+import { Period } from "@type/status";
 
 export function useMyCharges({
   filter,
@@ -50,7 +51,7 @@ export function useMyCharges({
     return {
       id,
       title,
-      type: i18n(`Words.${type?.toLowerCase()}`),
+      type: i18n(`Words.${type?.toLowerCase()}`) as Period,
       status: (
         <span
           className={`font-semibold ${

@@ -11,7 +11,7 @@ export const Api = {
       post: "A exportação foi concluída com sucesso",
     },
     service_problem:
-      "Ao tentar criar ou retornar o arquivo, ocorreu um problema. Verifique se o arquivo já foi criado no histórico de arquivos ou tente novamente.",
+      "Ao tentar criar ou retornar o arquivo, ocorreu um problema. Verifique se o arquivo já foi criado no histórico de arquivos, há dados disponíveis ou tente novamente.",
   },
   mailer: {
     invalid: {

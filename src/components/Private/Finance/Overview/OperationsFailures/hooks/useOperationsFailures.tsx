@@ -3,7 +3,10 @@ import i18n from "@configs/i18n";
 
 import { SelectorShape } from "@components/shared/layouts/Seletor/type";
 import { HookFinancesProps, TDataOperationsFailures } from "../../type";
-import { OperationFailureShape } from "@type/OperationsFailures";
+import {
+  OperationFailureShape,
+  StatusOperationsFailures,
+} from "@type/OperationsFailures";
 import useGetOperationsFailures from "@services/OperationsFailures/Get/useGet";
 import { OperationsFailuresActions } from "../OperationsFailuresActions";
 
@@ -37,7 +40,9 @@ export function useOperationsFailures({ filter, handleFilter }: Props) {
     return {
       id,
       operation_type,
-      status: i18n(`Words.${status.toLocaleLowerCase()}`),
+      status: i18n(
+        `Words.${status.toLocaleLowerCase()}`
+      ) as StatusOperationsFailures,
       error: error_message,
       resolved_at: resolved_at,
       actions: <OperationsFailuresActions id={id} />,

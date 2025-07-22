@@ -18,7 +18,6 @@ export function GroupChecks<Payload extends FieldValues>({
               label={item.label}
               defaultValue={item.value}
               defaultChecked={item.isChecked}
-              groupName={name}
               dataTestId={`key_group_checks_${index}`}
             />
           </div>

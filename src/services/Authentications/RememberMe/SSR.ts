@@ -1,20 +1,19 @@
 import { authenticationRoutes } from "@configs/routes/Api/authentications";
-import { PostRememberMePayload } from "./type";
+import { PostRememberMePayload, PostRememberMeResponse } from "./type";
 import { axios } from "@configs/axios";
 import { getPayloadJSON } from "@helpers/payload";
-import { STATUS_SERVICE } from "@constants/http";
 
 export async function postRememberMe({
   referenceToken,
-}: PostRememberMePayload): Promise<boolean> {
+}: PostRememberMePayload): Promise<PostRememberMeResponse> {
   const { rememberMe } = authenticationRoutes;
 
-  const { status } = await axios.post(
+  const { data } = await axios.post(
     rememberMe,
     getPayloadJSON({
       "reference-token": referenceToken,
     })
   );
 
-  return status == STATUS_SERVICE.OK;
+  return data;
 }

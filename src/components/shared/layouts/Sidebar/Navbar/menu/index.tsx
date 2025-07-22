@@ -24,31 +24,37 @@ export function useMenu() {
       title: i18n("Words.clients"),
       Icon: Peoples,
       link: privateRoutes.clients,
+      permissions: ["clients_view"],
     },
     {
       title: i18n("Texts.sending_management"),
       Icon: Spreadsheet,
       link: privateRoutes.dispatcher,
+      permissions: ["dispatchers_view"],
     },
     {
       title: i18n("Words.forms"),
       Icon: Form,
       link: privateRoutes.forms,
+      permissions: ["forms_view"],
     },
     {
       title: i18n("Words.schedule"),
       Icon: Schedule,
       link: privateRoutes.schedule,
+      permissions: ["dispatchers_view"],
     },
     {
       title: i18n("Words.services"),
       Icon: Box,
       link: privateRoutes.services,
+      permissions: ["services_view"],
     },
     {
       title: i18n("Words.finance"),
       Icon: Wallet,
       link: privateRoutes.finance,
+      permissions: ["charges_view"],
     },
   ] as Array<MenuShape>;
 
@@ -57,11 +63,13 @@ export function useMenu() {
       title: i18n("Texts.users_manager"),
       Icon: UsersManager,
       link: privateRoutes.usersManager,
+      permissions: ["users_view"],
     },
     {
       title: i18n("Texts.apis_manager"),
       Icon: Config,
       link: privateRoutes.apisManager,
+      permissions: ["integrations_view"],
     },
     {
       title: i18n("Words.settings"),

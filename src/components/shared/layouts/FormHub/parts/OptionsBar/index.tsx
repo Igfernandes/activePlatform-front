@@ -7,6 +7,7 @@ import { FormBuildProps } from "../../type";
 import { useModalContext } from "../../context/Modal";
 import { useFieldContext } from "../../context/Fields";
 import { Pencil } from "@assets/Icons/black/Pencil";
+import { AccessControl } from "@components/shared/settings/AccessControl";
 
 type Props = Pick<FormBuildProps, "handleUpdateClient">;
 
@@ -40,16 +41,18 @@ export function OptionsBar({ handleUpdateClient }: Props) {
           </span>
         </div>
       </div>
-      <div className="flex flex-wrap my-1 lg:my-0 lg:flex-none justify-center">
-        <div className="mx-2 w-full lg:w-auto">
-          <Button
-            className="border border-zinc-300 px-3 font-bold rounded-xl"
-            text={i18n("Texts.new_field")}
-            type="button"
-            onClick={() => handleToggleModal(true)}
-          />
+      <AccessControl targetPermissions={["fields_create"]}>
+        <div className="flex flex-wrap my-1 lg:my-0 lg:flex-none justify-center">
+          <div className="mx-2 w-full lg:w-auto">
+            <Button
+              className="border border-zinc-300 px-3 font-bold rounded-xl"
+              text={i18n("Texts.new_field")}
+              type="button"
+              onClick={() => handleToggleModal(true)}
+            />
+          </div>
         </div>
-      </div>
+      </AccessControl>
     </div>
   );
 }

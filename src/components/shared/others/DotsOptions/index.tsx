@@ -6,6 +6,8 @@ import { DotsOptionsProps } from "./type";
 export function DotsOptions({ actions = [] }: DotsOptionsProps) {
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
+  if (actions.length === 0) return <></>;
+  
   return (
     <div className="relative" onMouseLeave={() => setShowOptions(false)}>
       <div>

@@ -9,18 +9,18 @@ type Props = {
   props: NotificationShape;
 };
 export function NotificationItem({
-  props: { action, scope, message, key },
+  props: { action, scope, message, key, author },
 }: Props) {
   return (
     <div className="bg-tertiary p-4 rounded-xl my-4">
-      <div className="flex">
+      <div className="flex justify-between">
         <div>
           <h4 className="font-semibold">
             {i18n(`Notifications.title_${scope}_${action.toLowerCase()}`)}
           </h4>
         </div>
-        <div>
-          <span></span>
+        <div className="text-sm">
+          <span><strong>{i18n("Words.author")}</strong>:  {author?.name}</span>
         </div>
       </div>
       <div className="">
