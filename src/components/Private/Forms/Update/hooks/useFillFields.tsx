@@ -43,11 +43,20 @@ export function useFillFields({ formId, serviceId, components }: Props) {
   const handleChangeColumn = (fieldId: string) => setFirstColumn(fieldId);
 
   const updateFieldForTable = useCallback(
-    ({ id, form_id, value, ref, created_at }: FormFillField): TDataForms => {
+    ({
+      id,
+      form_id,
+      value,
+      ref,
+      created_at,
+      client_id,
+    }: FormFillField): TDataForms => {
       const inscribedService = clientsService?.find(
         (clientsService: ClientServiceShape) =>
-          clientsService.service.id === serviceId
+          clientsService.service.id === serviceId &&
+          clientsService.id == client_id
       );
+
       const serviceName = inscribedService?.service
         ? inscribedService?.service.name
         : "";
@@ -67,7 +76,7 @@ export function useFillFields({ formId, serviceId, components }: Props) {
         ),
       };
     },
-    [handleToggleModal, firstColumnId]
+    [handleToggleModal, firstColumnId, clientsService]
   );
 
   const handleDeleteFillField = () => {

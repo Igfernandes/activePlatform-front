@@ -88,3 +88,40 @@ export function getMoneyBrFormatted(money: number) {
     currency: "BRL",
   }).format(+money);
 }
+
+export const WppTextFormatter = {
+  bold: (text: string) => `*${text}*`,
+  italic: (text: string) => `_${text}_`,
+  strikethrough: (text: string) => `~${text}~`,
+  monospace: (text: string) => `\`\`\`${text}\`\`\``,
+
+  // Combinando múltiplas formatações
+  boldItalic: (text: string) => `_*${text}*_`,
+  boldStrikethrough: (text: string) => `*~${text}~*`,
+};
+
+export function formatAllString(
+  text: string,
+  rules: Record<string, (text: string) => string>
+) {
+  let formattedText = text;
+  Object.entries(rules).forEach(([index, callback]) => {
+    if (!index) return;
+    formattedText = callback(text);
+  });
+
+  return formattedText;
+}
+export function formatTemplate(
+  template: string,
+  replacements: Record<string, (text: string) => string>
+) {
+  // replacements: { chave: funçãoFormatacao }
+  // exemplo: { nome: WppTextFormatter.bold }
+  return template.replace(/\{(\w+)\}/g, (match, key) => {
+    if (replacements[key]) {
+      return replacements[key](key);
+    }
+    return match;
+  });
+}

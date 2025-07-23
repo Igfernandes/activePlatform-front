@@ -13,7 +13,7 @@ type Props = {
 
 export function FormsTable({ service }: Props) {
   const { data: forms = [] } = useGetForms({ service_id: service.id });
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <div>
@@ -22,15 +22,20 @@ export function FormsTable({ service }: Props) {
           ID: form.id,
           name: form.name,
           status: i18n(`Words.${form.status.toLocaleLowerCase()}`),
-          started_at: dayjs(form.started_at).format("DD/MM/YYYY HH:MM"),
-          expired_at: dayjs(form.expired_at).format("DD/MM/YYYY HH:MM"),
+          started_at: form.started_at
+            ? dayjs(form.started_at).format("DD/MM/YYYY HH:MM")
+            : null,
+          expired_at: form.expired_at
+            ? dayjs(form.expired_at).format("DD/MM/YYYY HH:MM")
+            : null,
           actions: (
             <DotsOptions
               actions={[
-              {
-                handle: () => router.push(`${privateRoutes.forms}/${form.id}`),
-                text: i18n("Texts.see_more"),
-              }
+                {
+                  handle: () =>
+                    router.push(`${privateRoutes.forms}/${form.id}`),
+                  text: i18n("Texts.see_more"),
+                },
               ]}
             />
           ),
