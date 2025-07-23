@@ -39,9 +39,14 @@ export function ClientsModal({
   useEffect(() => {
     if (!clientsSelected) return;
 
+    const clientsSelectedId = clientsSelected.map(
+      (clientSelect) => clientSelect.id
+    );
     formMethods.setValue(
       "clients",
-      clientsSelected.map((clientSelect) => String(clientSelect.id))
+      clients.map((client) =>
+        clientsSelectedId.includes(client.id) ? String(client.id) : ""
+      )
     );
   }, [clientsSelected, clients]);
 

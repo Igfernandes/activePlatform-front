@@ -170,15 +170,7 @@ export function ServicesForm({ service }: Props) {
                   </div>
                 </When>
               </div>
-              <When value={!!service}>
-                <div className="my-10">
-                  <InscribesTable
-                    service={service as ServicesShape}
-                    stock={+formMethods.watch("stock")}
-                    title={i18n("Words.inscribes")}
-                  />
-                </div>
-              </When>
+
               <div className="flex flex-wrap lg:flex-none justify-between mt-12 items-center relative">
                 <When value={!service}>
                   <div className="w-full lg:w-auto mb-4 lg:mb-auto">
@@ -219,6 +211,15 @@ export function ServicesForm({ service }: Props) {
           </FormProvider>
         </div>
       </div>
+      <When value={!!service}>
+        <div className="relative z-10 my-10">
+          <InscribesTable
+            service={service as ServicesShape}
+            stock={+formMethods.watch("stock")}
+            title={i18n("Words.inscribes")}
+          />
+        </div>
+      </When>
     </>
   );
 }

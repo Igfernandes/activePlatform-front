@@ -10,6 +10,9 @@ import { useEffect, useState } from "react";
 import { useInscribeService } from "../hooks/useInscribeService";
 import { ServicesShape } from "@type/Services";
 import { ClientsModal } from "@components/shared/others/ClientsTable/modals/ClientsModal";
+import Link from "next/link";
+import { getMessageConfirmation } from "./message";
+import useWindow from "@hooks/useWindow";
 
 type Props = {
   service: ServicesShape;
@@ -27,6 +30,7 @@ export function InscribesTable({ title, service, stock }: Props) {
   const { data: inscribesData } = useGetClientsServices({
     serviceId: service.id,
   });
+  const { baseUrl } = useWindow();
   const { handleToggleModal, modal } = useModalContext();
   const [inscribesId, setInscribesId] = useState<Array<number>>([]);
 
@@ -34,7 +38,7 @@ export function InscribesTable({ title, service, stock }: Props) {
     if (!inscribesData) return;
 
     const clientIds = inscribesData.map((inscribe) => inscribe.id);
-  
+
     setInscribesId(inscribesId);
     handleUpdateClientsSelected(
       clients.filter((client) => clientIds.includes(client.id))
@@ -47,11 +51,25 @@ export function InscribesTable({ title, service, stock }: Props) {
         data={clientsSelected.map((client) => ({
           ID: client.id,
           name: client.name,
-          phone: getNumberFormatted(client.phone),
+          phone: (
+            <Link
+              className="underline text-red"
+              target="_blank"
+              href={`https://wa.me/${client.phone}?text=${encodeURIComponent(
+                getMessageConfirmation({
+                  service,
+                  clientName: client.name,
+                  link: `${baseUrl}/services/confirmation?key=${service.id}&client=${client.id}`,
+                })
+              )}`}
+            >
+              {getNumberFormatted(client.phone)}
+            </Link>
+          ),
           category: client.categories
             .map((category) => category.name)
             .join("/"),
-          confirmation: false,
+          confirmation: client.is_confirm ? "Confirmado" : "Pendente",
           action: <ClientActions id={client.id} />,
         }))}
         tHeads={{
