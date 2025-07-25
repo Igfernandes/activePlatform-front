@@ -12,7 +12,7 @@ export function hasErrorAuthentication(error: AxiosError) {
   if (process.env.NEXT_PUBLIC_ENVIRONMENT == "DEV") return response;
   const { BAD_AUTH } = STATUS_SERVICE;
   const isStatusValid =
-    !error.response?.status || [BAD_AUTH].includes(error.response?.status);
+    error.response?.status && [BAD_AUTH].includes(error.response?.status);
 
   if (isStatusValid) {
     handleLogout();
