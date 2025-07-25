@@ -21,7 +21,7 @@ export function OptionsBar({ handleSearch }: Props) {
         handleSearch={handleSearch}
         className="w-full md:w-[45%] xl:w-[25%]"
       />
-      <AccessControl targetPermissions={['form_create']}>
+      <AccessControl targetPermissions={['forms_create']}>
         <div className="w-full md:w-[55%] xl:w-[75%] flex justify-end mt-2 md:mt-0">
           <div className="mx-2 w-full md:w-auto">
             <Button

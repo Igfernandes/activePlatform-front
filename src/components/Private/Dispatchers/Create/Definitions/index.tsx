@@ -9,7 +9,7 @@ import { GroupCards } from "@components/shared/forms/GroupCards";
 import { Radio } from "@components/shared/forms/Radio";
 import { useDefinitions } from "./hooks/useDefinitions";
 import { When } from "@components/utilities/When";
-import { Date } from "@components/shared/forms/Date";
+import { Datetime } from "@components/shared/forms/DateTime";
 
 export function Definitions() {
   const {
@@ -38,12 +38,13 @@ export function Definitions() {
       </div>
       <div className="form-row flex flex-wrap md:mb-4 justify-between">
         <div className="form-group w-full md:w-[48%]">
-          <Date
+          <Datetime
             {...register("started_at")}
             label={i18n(`Words.started_at`)}
             dataTestId="started_at"
             type="datetime-local"
-            defaultValue={dayjs().format("YYYY-MM-DD H:s")}
+            min={dayjs().format("YYYY-MM-DD H:m")}
+            defaultValue={dayjs().format("YYYY-MM-DD H:m")}
             errors={errors.started_at}
           />
         </div>
@@ -110,7 +111,11 @@ export function Definitions() {
             </div>
           </When>
           <div className="my-2">
-            <span>{i18n("Screens.dashboard.dispatchers.ask_about_send_files_images")}</span>
+            <span>
+              {i18n(
+                "Screens.dashboard.dispatchers.ask_about_send_files_images"
+              )}
+            </span>
             <div className="flex mt-2">
               <div className="mr-2">
                 <Radio
@@ -158,10 +163,13 @@ export function Definitions() {
         </div>
       </div>
       <div className="form-row mt-6">
-        <div className="form-title mb-4">
-          <h4 className="font-bold">
+        <div className="form-title flex items-center mb-4">
+          <h4 className="font-bold mr-2">
             {i18n("Screens.dashboard.dispatchers.select_shape_send")}
           </h4>
+          <span className="text-red text-xs">
+            <u>{errors.platforms?.message}</u>
+          </span>
         </div>
         <div className="form-group">
           <GroupCards register={register} name="platforms" items={platforms} />
