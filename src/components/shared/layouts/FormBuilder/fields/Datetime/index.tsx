@@ -1,7 +1,7 @@
 import { When } from "@components/utilities/When";
 
 import { RotateClockwise } from "@assets/Icons/white/RotateClockwise";
-import React, { useRef } from "react";
+import React, { useState } from "react";
 
 import { InputProps } from "./type";
 import { getFormattedDatetime } from "@helpers/date";
@@ -9,6 +9,9 @@ import { Calendar } from "@assets/Icons/black/Calendar";
 import dayjs from "dayjs";
 import i18n from "@configs/i18n";
 import { FieldShape } from "../../type";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+dayjs.extend(customParseFormat);
 
 export function Datetime({
   isLoading = false,
@@ -25,7 +28,7 @@ export function Datetime({
   ...rest
 }: InputProps & FieldShape) {
   const IdCurrent = id;
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [date, setDate] = useState<string | undefined>(defaultValue);
 
   return (
     <>
@@ -49,14 +52,17 @@ export function Datetime({
         </label>
         <input
           {...rest}
-          ref={inputRef}
           name={name}
           required={required === "true"}
           type={"text"}
-          value={defaultValue}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setValue ? setValue(name ?? "", getFormattedDatetime(e)) : ""
-          }
+          placeholder="Dia/Mes/Ano Hora:Minuto"
+          value={defaultValue ?? date}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            const numberFormatted = getFormattedDatetime(e);
+
+            if (setValue) setValue(name ?? "", numberFormatted);
+            setDate(numberFormatted);
+          }}
           className={`${className ?? ""} ${
             !!errors ? "border-amber-500 outline-amber-500" : ""
           } w-full px-3 pt-8 pb-4 bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
@@ -69,16 +75,15 @@ export function Datetime({
           <input
             id={`calendar_${name}`}
             type="datetime-local"
-            onChange={(ev) =>
-              setValue
-                ? setValue(
-                    name ?? "",
-                    dayjs(ev.currentTarget.value).format(
-                      i18n("Configs.format.datetime")
-                    )
-                  )
-                : ""
-            }
+            value={dayjs(date, "DD/MM/YYYY HH:mm").format("YYYY-MM-DD HH:mm")}
+            onChange={(ev) => {
+              const dateFormatted = dayjs(ev.currentTarget.value).format(
+                i18n("Configs.format.datetime")
+              );
+              if (setValue) setValue(name ?? "", dateFormatted);
+
+              setDate(dateFormatted);
+            }}
             className="opacity-0 absolute w-4 h-full top-0"
           />
         </div>

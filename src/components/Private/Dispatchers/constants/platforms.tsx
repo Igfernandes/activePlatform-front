@@ -1,4 +1,4 @@
-import { CellPhone } from "@assets/Icons/black/CellPhone";
+
 import { Email } from "@assets/Icons/black/Email";
 import { Facebook } from "@assets/Icons/black/Facebook";
 import { Instagram } from "@assets/Icons/black/Instagram";
@@ -38,12 +38,12 @@ export const platformsCards = [
     hasFile: "NÃO",
     hasImage: "NÃO",
   },
-  {
-    icon: <CellPhone />,
-    label: i18n("Words.device") as string,
-    value: "DEVICE",
-    text: "Só pode enviar textos.",
-    hasFile: "NÃO",
-    hasImage: "NÃO",
-  },
+  // {
+  //   icon: <CellPhone />,
+  //   label: i18n("Words.device") as string,
+  //   value: "DEVICE",
+  //   text: "Só pode enviar textos.",
+  //   hasFile: "NÃO",
+  //   hasImage: "NÃO",
+  // },
 ];

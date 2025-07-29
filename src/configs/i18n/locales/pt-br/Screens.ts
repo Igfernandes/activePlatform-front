@@ -38,6 +38,9 @@ export const Screens = {
         " Sua resposta é super importante para podermos entender e melhorar cada vez mais.",
     },
   },
+  logout: {
+    "text": "Você saiu com segurança. A AGM te espera na próxima! 🐾"
+  },
   dashboard: {
     clients: {
       category: {

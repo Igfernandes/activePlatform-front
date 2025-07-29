@@ -51,7 +51,7 @@ export function getNumberFormatted(number?: string) {
     value = value.replace(/^(\d{2})(\d{1})(\d{1,4})(\d{1,4})/, "($1) $2 $3-$4");
   }
 
-  return `+55 ${value.slice(0, 16)}`;
+  return `${value.slice(0, 16)}`;
 }
 
 export function handleMaskCPF(e: React.ChangeEvent<HTMLInputElement>) {

@@ -16,7 +16,7 @@ import { FieldsShape } from "@type/Fields";
 
 export default function FillField({ fields, form }: FieldsPageProps) {
   const { fieldsData } = useFillFields({ fields, form });
-  const { handleSubmit } = useFillsSubmit({
+  const { handleSubmit, isLoading } = useFillsSubmit({
     ref: fields[0].ref,
     formId: form.id,
   });
@@ -42,7 +42,7 @@ export default function FillField({ fields, form }: FieldsPageProps) {
         </div>
         <InfoBoard
           submit={handleSubmit}
-          isLoading={false}
+          isLoading={isLoading}
           formMethods={formMethods}
         >
           {fieldsData.map((props: FieldsShape, key) => (

@@ -6,7 +6,7 @@ type Props = {
 };
 
 export function useFillsSubmit({ ref, formId }: Props) {
-  const { mutateAsync: putFills } = usePutFills();
+  const { mutateAsync: putFills, isPending: isLoading } = usePutFills();
   const handleSubmit = (payload: Record<string, string>) => {
     const matrizValuesNotEmpty = Object.entries(payload).filter(
       ([key, value]) => !!value && key
@@ -23,5 +23,6 @@ export function useFillsSubmit({ ref, formId }: Props) {
   };
   return {
     handleSubmit,
+    isLoading,
   };
 }

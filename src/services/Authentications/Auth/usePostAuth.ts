@@ -5,7 +5,6 @@ import { useSnackbar } from "@hooks/useSnackbar";
 import { useAxios } from "@hooks/useAxios";
 import { useRememberMe } from "@hooks/useRememberMe";
 import i18n from "@configs/i18n";
-import { useRouter } from "next/navigation";
 import { privateRoutes } from "@configs/routes/Web/navigation";
 import { useCookies } from "@hooks/useCookies";
 
@@ -15,7 +14,6 @@ export default function usePostAuth() {
   const { postAuth } = usePostAuthService();
   const { saveReferenceToken } = useRememberMe();
   const { saveCookies } = useCookies();
-  const router = useRouter();
 
   const handleMutate = async (payload: PostAuthPayload) => {
     const { data } = await postAuth(payload);
@@ -49,7 +47,7 @@ export default function usePostAuth() {
         token_navigation: data.token_navigation,
       });
 
-      router.push(privateRoutes.dashboard);
+      window.location.href = privateRoutes.dashboard;
     },
     onError: (err) => {
       handleAxiosError(err);

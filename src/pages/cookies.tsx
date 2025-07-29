@@ -7,7 +7,7 @@ export default function Cookies() {
   return (
     <>
       <Header />
-      <div className="flex flex-col justify-between min-h-[85vh] mx-w-[1440px]">
+      <div className="flex flex-col justify-between min-h-[85vh] max-w-[1440px]">
         <main className="w-full lg:w-[800px] mx-auto">
           <div className="bg-tertiary p-4 mx-auto mt-4">
             <div className="text-center">
@@ -46,7 +46,8 @@ export default function Cookies() {
                     <p>
                       Essenciais para o funcionamento do site e para garantir
                       funcionalidades básicas, como login, segurança e
-                      movimentação entre páginas.
+                      movimentação entre páginas. Estes cookies não requerem seu
+                      consentimento.
                     </p>
                   </li>
                   <li>
@@ -55,7 +56,8 @@ export default function Cookies() {
                     <p>
                       Coletam informações sobre como os visitantes usam o site
                       (ex.: páginas visitadas, tempo de navegação), com o
-                      objetivo de melhorar sua funcionalidade.
+                      objetivo de melhorar sua funcionalidade. Só são usados
+                      após seu consentimento explícito.
                     </p>
                   </li>
                   <li>
@@ -64,6 +66,7 @@ export default function Cookies() {
                     <p>
                       Permitem que o site lembre escolhas que você fez (ex.:
                       idioma, região), fornecendo uma experiência personalizada.
+                      Só são usados após seu consentimento explícito.
                     </p>
                   </li>
                   <li>
@@ -71,7 +74,9 @@ export default function Cookies() {
                     <br />
                     <p>
                       Usados para exibir anúncios relevantes com base em seus
-                      interesses e medir a eficácia das campanhas publicitárias.
+                      interesses, remarketing e medir a eficácia das campanhas
+                      publicitárias. Só são usados após seu consentimento
+                      explícito.
                     </p>
                   </li>
                 </ol>
@@ -86,21 +91,42 @@ export default function Cookies() {
                 </p>
                 <ol className="pl-6">
                   {[
-                    "Google Analytics;",
-                    "Facebook Pixel;",
+                    <span key="google-analytics">
+                      Google Analytics:{" "}
+                      <Link
+                        href="https://policies.google.com/privacy"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-red underline"
+                      >
+                        Política do Google
+                      </Link>
+                    </span>,
+                    <span key="facebook-pixel">
+                      Facebook Pixel (Meta):{" "}
+                      <Link
+                        href="https://www.facebook.com/policy.php"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-red underline"
+                      >
+                        Política do Facebook
+                      </Link>
+                    </span>,
                     "Google Ads;",
                     "Ferramentas de chat online;",
                     "Plataformas de vídeo incorporado (YouTube, Vimeo).",
                   ].map((li, key) => (
                     <li key={`li_${key}`} className="text-base my-2">
-                      {"- "}
-                      <span>{li}</span>
+                      {"- "} <span>{li}</span>
                     </li>
                   ))}
                 </ol>
-                <p>
-                  Esses cookies são regidos pelas respectivas políticas de
-                  privacidade dos provedores.
+                <p className="mt-2">
+                  Estes cookies são regidos pelas respectivas políticas de
+                  privacidade dos provedores e podem coletar dados para fins
+                  próprios. Recomendamos consultar as políticas acima para mais
+                  informações.
                 </p>
               </li>
               <li className="mt-8">
@@ -108,23 +134,31 @@ export default function Cookies() {
                   <strong>Consentimento e Gerenciamento de Cookies</strong>
                 </h2>
                 <p className="text-base mt-4">
-                  Ao acessar nosso site pela primeira vez, você verá um banner
-                  solicitando o seu consentimento para o uso de cookies, exceto
-                  os estritamente necessários. Você pode, a qualquer momento:
+                  Ao acessar nosso site pela primeira vez, um banner solicitará
+                  seu consentimento para o uso de cookies não essenciais,
+                  permitindo que você aceite ou recuse categorias específicas,
+                  como cookies de desempenho, funcionalidade e marketing.
                 </p>
-                <ol className="pl-6">
-                  {[
-                    "Aceitar ou rejeitar cookies não essenciais por meio do banner de cookies;",
-                    "Modificar as permissões de cookies diretamente nas configurações do seu navegador;",
-                    "Excluir cookies armazenados no seu dispositivo.",
-                    "Lembre-se: a desativação de alguns cookies pode afetar o funcionamento do site e limitar funcionalidades.",
-                  ].map((li, key) => (
-                    <li key={`li_${key}`} className="text-base my-3">
-                      {"- "}
-                      <span>{li}</span>
-                    </li>
-                  ))}
-                </ol>
+                <p className="text-base mt-2">
+                  Os cookies estritamente necessários são essenciais para o
+                  funcionamento do site e não exigem consentimento.
+                </p>
+                <p className="text-base mt-2">
+                  Você pode modificar suas permissões de cookies a qualquer
+                  momento, por meio do link {"Gerenciar Cookies"} disponível no
+                  rodapé do site ou diretamente nas configurações do seu
+                  navegador.
+                </p>
+                <p className="text-base mt-2">
+                  Lembre-se: a desativação de alguns cookies pode afetar o
+                  funcionamento do site e limitar funcionalidades.
+                </p>
+                <p className="text-base mt-2">
+                  Para revogar o consentimento a cookies de marketing ou
+                  publicidade, você pode usar as opções disponíveis no banner,
+                  nas configurações do site ou nos links das políticas dos
+                  provedores.
+                </p>
               </li>
               <li className="mt-8">
                 <h2 className="text-2xl">
@@ -141,8 +175,7 @@ export default function Cookies() {
                     "Safari: Preferências > Privacidade > Gerenciar Dados do Site",
                   ].map((li, key) => (
                     <li key={`li_${key}`} className="text-base my-3">
-                      {"- "}
-                      <span>{li}</span>
+                      {"- "} <span>{li}</span>
                     </li>
                   ))}
                 </ol>
@@ -154,7 +187,8 @@ export default function Cookies() {
                 <p className="text-base mt-4">
                   Podemos atualizar esta Política de Cookies conforme mudanças
                   tecnológicas ou regulatórias. Recomendamos que você revise
-                  este documento periodicamente.
+                  este documento periodicamente. Mudanças relevantes serão
+                  comunicadas por e-mail ou notificações no site.
                 </p>
               </li>
               <li className="mt-8">
@@ -166,16 +200,16 @@ export default function Cookies() {
                   mais informações sobre o tratamento de seus dados, entre em
                   contato:
                 </p>
-               
+
                 <ol className="pl-6">
                   {[
                     <span key={"email"} className="break-words">
-                      E-mail:
+                      E-mail:{" "}
                       <Link
                         href="mailto:contato@agmturismomarica.com.br"
-                        className="text-red"
+                        className="text-red underline"
+                        rel="noopener noreferrer"
                       >
-                        {" "}
                         contato@agmturismomarica.com.br
                       </Link>
                     </span>,

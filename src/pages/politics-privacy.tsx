@@ -7,13 +7,16 @@ export default function PoliticsPrivacy() {
   return (
     <>
       <Header />
-      <div className="flex flex-col justify-between min-h-[85vh] mx-w-[1440px]">
+      <div className="flex flex-col justify-between min-h-[85vh] max-w-[1440px] mx-auto">
         <main className="w-full lg:w-[800px] mx-auto">
           <div className="bg-tertiary p-4 mx-auto mt-4">
             <div className="text-center">
               <h1 className="text-2xl font-semibold">
                 {i18n("Words.politics_privacy")}
               </h1>
+              <p className="text-sm mt-1">
+                Associação de Turismo de Maricá - CNPJ: 44.431.497/0001-78
+              </p>
             </div>
           </div>
           <div className="w-full mt-6 px-6 mx-auto mb-10">
@@ -29,14 +32,16 @@ export default function PoliticsPrivacy() {
                   esclarecer como os dados pessoais dos usuários são coletados,
                   utilizados, armazenados e protegidos pelo site
                   [agmturismomarica.com.br], de acordo com a Lei nº 13.709/2018
-                  (Lei Geral de Proteção de Dados - LGPD), o Marco Civil da
-                  Internet (Lei nº 12.965/2014) e, quando aplicável, o GDPR.
+                  (LGPD), o Marco Civil da Internet (Lei nº 12.965/2014), o
+                  GDPR, e demais legislações aplicáveis.
                 </p>
                 <p className="text-sm text-justify mt-2">
                   Ao utilizar nossos serviços, você declara que leu, compreendeu
-                  e concorda com os termos desta política.
+                  e concorda com os termos desta política, incluindo o uso do
+                  WhatsApp para comunicação e atendimento ao cliente.
                 </p>
               </li>
+
               <li className="mt-8">
                 <h2 className="text-2xl">
                   <strong>Dados Pessoais Coletados</strong>
@@ -70,7 +75,7 @@ export default function PoliticsPrivacy() {
                 </ol>
                 <ol className="list-item text-base mt-6">
                   <li>
-                    <span>b) Dados fornecidos pelo usuário:</span>
+                    <span>b) Dados coletados automaticamente:</span>
                     <br />
                     <ul className="pl-5 mt-2">
                       {[
@@ -90,30 +95,54 @@ export default function PoliticsPrivacy() {
                   </li>
                 </ol>
               </li>
+
               <li className="mt-8">
                 <h2 className="text-2xl">
                   <strong>Finalidade do Tratamento de Dados</strong>
                 </h2>
                 <p className="text-base mt-4">
-                  Os dados coletados são tratados com as seguintes finalidades:
+                  Os dados coletados são tratados para as seguintes finalidades:
                 </p>
                 <ol className="pl-6">
                   {[
                     "Processamento de compras e entregas;",
                     "Criação e gerenciamento de contas de usuário;",
-                    "Comunicação com o usuário (e-mails, notificações, atendimento ao cliente);",
-                    "Envio de ofertas, promoções e conteúdos personalizados, mediante consentimento;",
+                    "Comunicação com o usuário (e-mails, notificações, atendimento ao cliente, inclusive via WhatsApp Business);",
+                    "Envio de ofertas, promoções e conteúdos personalizados, mediante consentimento explícito do usuário (ex.: cadastro com opção de marketing);",
                     "Cumprimento de obrigações legais e regulatórias;",
                     "Prevenção à fraude, segurança e integridade da plataforma;",
                     "Análise de uso e melhorias nos serviços prestados.",
                   ].map((li, key) => (
                     <li key={`li_${key}`} className="text-base my-2">
-                      {"- "}
-                      <span>{li}</span>
+                      - <span>{li}</span>
                     </li>
                   ))}
                 </ol>
               </li>
+
+              <li className="mt-8">
+                <h2 className="text-2xl">
+                  <strong>Política de Cookies e Rastreamento</strong>
+                </h2>
+                <p className="text-base mt-4">
+                  Utilizamos cookies e ferramentas de rastreamento, como Google
+                  Analytics e Facebook Pixel, para melhorar a experiência do
+                  usuário, analisar tráfego e fornecer conteúdos e anúncios
+                  personalizados. Você pode gerenciar suas preferências de
+                  cookies a qualquer momento. Para mais informações, consulte
+                  nossa&nbsp;
+                  <Link
+                    href="/cookies"
+                    className="text-red underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Política de Cookies
+                  </Link>
+                  .
+                </p>
+              </li>
+
               <li className="mt-8">
                 <h2 className="text-2xl">
                   <strong>Compartilhamento de Dados</strong>
@@ -126,16 +155,16 @@ export default function PoliticsPrivacy() {
                   {[
                     "Com prestadores de serviços essenciais para a operação da plataforma (ex.: meios de pagamento, servidores, marketing, segurança da informação);",
                     "Com autoridades públicas, mediante requisição ou cumprimento legal;",
-                    "Com parceiros comerciais, apenas mediante consentimento expresso do titular.",
+                    "Com parceiros comerciais, somente mediante consentimento expresso do titular.",
                     "Todos os terceiros que tratam dados em nosso nome são contratualmente obrigados a manter a confidencialidade e segurança das informações.",
                   ].map((li, key) => (
                     <li key={`li_${key}`} className="text-base my-3">
-                      {"- "}
-                      <span>{li}</span>
+                      - <span>{li}</span>
                     </li>
                   ))}
                 </ol>
               </li>
+
               <li className="mt-8">
                 <h2 className="text-2xl">
                   <strong>Armazenamento e Retenção dos Dados</strong>
@@ -152,12 +181,12 @@ export default function PoliticsPrivacy() {
                     "Até a solicitação de exclusão dos dados, quando aplicável.",
                   ].map((li, key) => (
                     <li key={`li_${key}`} className="text-base my-3">
-                      {"- "}
-                      <span>{li}</span>
+                      - <span>{li}</span>
                     </li>
                   ))}
                 </ol>
               </li>
+
               <li className="mt-8">
                 <h2 className="text-2xl">
                   <strong>Direitos do Titular dos Dados</strong>
@@ -177,17 +206,23 @@ export default function PoliticsPrivacy() {
                     "Revogação do consentimento.",
                   ].map((li, key) => (
                     <li key={`li_${key}`} className="text-base my-3">
-                      {"- "}
-                      <span>{li}</span>
+                      - <span>{li}</span>
                     </li>
                   ))}
                 </ol>
                 <br />
                 <p>
-                  Solicitações podem ser feitas pelo e-mail:
-                  contato@agmturismomarica.com.br.
+                  Solicitações podem ser feitas pelo e-mail:&nbsp;
+                  <Link
+                    href="mailto:contato@agmturismomarica.com.br"
+                    className="text-red underline"
+                  >
+                    contato@agmturismomarica.com.br
+                  </Link>
+                  .
                 </p>
               </li>
+
               <li className="mt-8">
                 <h2 className="text-2xl">
                   <strong>Segurança da Informação</strong>
@@ -205,12 +240,12 @@ export default function PoliticsPrivacy() {
                     "Armazenamento seguro em servidores com proteção física e lógica.",
                   ].map((li, key) => (
                     <li key={`li_${key}`} className="text-base my-3">
-                      {"- "}
-                      <span>{li}</span>
+                      - <span>{li}</span>
                     </li>
                   ))}
                 </ol>
               </li>
+
               <li className="mt-8">
                 <h2 className="text-2xl">
                   <strong>Transferência Internacional de Dados</strong>
@@ -223,6 +258,7 @@ export default function PoliticsPrivacy() {
                   grau adequado de proteção.
                 </p>
               </li>
+
               <li className="mt-8">
                 <h2 className="text-2xl">
                   <strong>Alterações nesta Política</strong>
@@ -230,9 +266,11 @@ export default function PoliticsPrivacy() {
                 <p className="text-base mt-4">
                   Esta política pode ser atualizada a qualquer momento.
                   Recomendamos a leitura periódica. Mudanças relevantes serão
-                  comunicadas por e-mail ou notificações no site.
+                  comunicadas por e-mail, notificações no site ou banner
+                  informativo.
                 </p>
               </li>
+
               <li className="mt-8">
                 <h2 className="text-2xl">
                   <strong>Contato</strong>
@@ -244,18 +282,17 @@ export default function PoliticsPrivacy() {
                 </p>
                 <ol className="pl-6">
                   {[
-                    "Alberto luiz Alves Rodrigues;",
+                    "Alberto Luiz Alves Rodrigues;",
                     <span key={"email"} className="break-words">
-                      E-mail:
+                      E-mail:&nbsp;
                       <Link
                         href="mailto:contato@agmturismomarica.com.br"
-                        className="text-red"
+                        className="text-red underline"
                       >
-                        {" "}
                         contato@agmturismomarica.com.br
                       </Link>
                     </span>,
-                    "Endereço: Rua Vinicius Oliveira da Rocha, 079, Lagoa Amendoeiras, São José do Imbassai, 24931315",
+                    "Endereço: Rua Vinicius Oliveira da Rocha, 079, Lagoa Amendoeiras, São José do Imbassai, 24931-315",
                   ].map((li, key) => (
                     <li key={`li_${key}`} className="text-base my-3">
                       <span>{li}</span>

@@ -1,9 +1,9 @@
-import { Checkbox } from "../../fields/Checkbox";
+import { Color } from "../../fields/Color";
 import { Date } from "../../fields/Date";
 import { Datetime } from "../../fields/Datetime";
 import { File } from "../../fields/File";
+import { Hidden } from "../../fields/Hidden";
 import { Input } from "../../fields/Input";
-import { Radio } from "../../fields/Radio";
 import { Textarea } from "../../fields/Textarea";
 import { Time } from "../../fields/Time";
 import { FieldShape } from "../../type";
@@ -17,12 +17,6 @@ export const fieldsSimple = {
       className={`${classNameDefault} w-full ${className}`}
       {...props}
     />
-  ),
-  radio: ({ className, ...props }: FieldShape) => (
-    <Radio className={`${classNameDefault} ml-2 ${className}`} {...props} />
-  ),
-  checkbox: ({ className, ...props }: FieldShape) => (
-    <Checkbox className={`${classNameDefault} ml-2 ${className}`} {...props} />
   ),
   select: ({ className, required, ...props }: FieldShape) => (
     <select
@@ -48,11 +42,7 @@ export const fieldsSimple = {
     <Time className={`${classNameDefault} w-full ${className}`} {...props} />
   ),
   color: ({ className, ...props }: FieldShape) => (
-    <Input
-      type="color"
-      className={`${classNameDefault} w-full ${className}`}
-      {...props}
-    />
+    <Color className={` w-full ${className}`} {...props} />
   ),
   file: ({ required, ...props }: FieldShape) => (
     <File
@@ -61,13 +51,7 @@ export const fieldsSimple = {
       {...props}
     />
   ),
-  hidden: ({ className, ...props }: FieldShape) => (
-    <Input
-      type="hidden"
-      className={`${classNameDefault} w-full ${className}`}
-      {...props}
-    />
-  ),
+  hidden: (props: FieldShape) => <Hidden {...props} />,
   number: ({ className, ...props }: FieldShape) => (
     <Input
       type="number"

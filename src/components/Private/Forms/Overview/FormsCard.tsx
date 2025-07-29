@@ -45,7 +45,7 @@ export function FormsCard({ search, filterObjects }: FormsCardProps) {
               {
                 handle: () => handleToggleModal("EXCLUDE", form.id),
                 text: i18n(`Words.exclude`) as string,
-                permissions: ["form_delete"],
+                permissions: ["forms_delete"],
               },
             ].filter(
               (dotAction) =>

@@ -3,7 +3,6 @@ import { DetailedHTMLProps, InputHTMLAttributes } from "react";
 export function useInput() {
   const isUpLabel = ({
     placeholder,
-    type,
     value,
     defaultValue,
   }: DetailedHTMLProps<
@@ -11,13 +10,6 @@ export function useInput() {
     HTMLInputElement
   >) => {
     if (placeholder) return true;
-
-    if (
-      ["file", "date", "datetime-local", "color"].includes(
-        `${type?.toLowerCase()}`
-      )
-    )
-      return true;
 
     if (value || defaultValue) return true;
   };
