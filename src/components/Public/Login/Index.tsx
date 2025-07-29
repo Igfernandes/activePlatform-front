@@ -9,7 +9,10 @@ type Props = {
 };
 
 export function LoginContent({ csrf }: Props) {
-  const [texts, setTexts] = useState<Record<string, string>>({});
+  const [texts, setTexts] = useState<Record<string, string>>({
+      title: "Screens.login.title",
+      text: "Screens.login.text",
+    });
 
   useEffect(() => {
     setTexts({

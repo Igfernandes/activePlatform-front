@@ -16,11 +16,12 @@ export function Time({
   labelColor,
   labelWeight,
   setValue,
+  defaultValue,
   ...rest
 }: InputProps & FieldShape) {
   const IdCurrent = id;
   const inputRef = useRef<HTMLInputElement>(null);
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState(defaultValue);
 
   return (
     <>
@@ -48,6 +49,7 @@ export function Time({
           ref={inputRef}
           name={name}
           value={time}
+          placeholder="HH:MM"
           required={required === "true"}
           onChange={(ev) => {
             const value = getMaskTime(ev);
@@ -63,6 +65,7 @@ export function Time({
           <Clock className="h-full w-full" />
           <input
             type={"time"}
+            value={time}
             onChange={(ev) => {
               setTime(ev.currentTarget.value);
               if (setValue) setValue(name, ev.currentTarget.value);

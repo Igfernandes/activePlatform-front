@@ -6,7 +6,7 @@ import {
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ZodType } from "zod";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 type Props<Payload> = {
   schema: ZodType;
@@ -29,6 +29,7 @@ export function useFormRules<Payload extends FieldValues>({
     defaultValues,
     shouldUseNativeValidation,
     criteriaMode,
+    shouldFocusError: true, // já vem true por padrão
   });
   const {
     register,
@@ -59,6 +60,17 @@ export function useFormRules<Payload extends FieldValues>({
     return true;
   };
 
+  useEffect(() => {
+    if (Object.keys(errors).length > 0) {
+      const firstErrorField = Object.keys(errors)[0];
+      const el = document.querySelector(`[name="${firstErrorField}"]`);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        (el as HTMLElement).focus();
+      }
+    }
+  }, [errors]);
+
   return useMemo(
     () => ({
       register,
@@ -68,6 +80,6 @@ export function useFormRules<Payload extends FieldValues>({
       hasAllFilledFields,
       isLoading: isSubmitting,
     }),
-    [schema, exclude, defaultValues]
+    [schema, exclude, errors, isSubmitting, formMethods, defaultValues]
   );
 }

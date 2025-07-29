@@ -1,14 +1,17 @@
 import { When } from "@components/utilities/When";
 
 import { RotateClockwise } from "@assets/Icons/white/RotateClockwise";
-import React, { useRef } from "react";
+import React, { useState } from "react";
 
 import { InputProps } from "./type";
-import { getMaskDate, handleMaskDate } from "@helpers/date";
+import { getMaskDate } from "@helpers/date";
 import { Calendar } from "@assets/Icons/black/Calendar";
 import dayjs from "dayjs";
 import i18n from "@configs/i18n";
 import { FieldShape } from "../../type";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+dayjs.extend(customParseFormat);
 
 export function Date({
   isLoading = false,
@@ -19,12 +22,13 @@ export function Date({
   name,
   required,
   labelColor,
+  defaultValue,
   labelWeight,
   setValue,
   ...rest
 }: InputProps & FieldShape) {
   const IdCurrent = id;
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [date, setDate] = useState<string | undefined>(defaultValue);
 
   return (
     <>
@@ -48,13 +52,14 @@ export function Date({
         </label>
         <input
           {...rest}
-          ref={inputRef}
           name={name}
           required={required === "true"}
           type={"text"}
+          value={date}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            handleMaskDate(e);
-            if (setValue) setValue(name, getMaskDate(e));
+            const dateFormatted = getMaskDate(e);
+            if (setValue) setValue(name, dateFormatted);
+            setDate(dateFormatted);
           }}
           placeholder="Dia/Mes/Ano"
           className={`${className ?? ""} ${
@@ -69,12 +74,14 @@ export function Date({
           <input
             id={`calendar_${name}`}
             type="date"
+            value={dayjs(date, "DD/MM/YYYY").format("YYYY-MM-DD")}
             onChange={(ev) => {
-              const value = dayjs(ev.currentTarget.value).format(
-                i18n("Configs.format.date")
-              );
-              inputRef.current?.setAttribute("value", value);
+              const rawValue = ev.currentTarget.value;
 
+              if (!rawValue) return; // <-- evita setar vazio
+
+              const value = dayjs(rawValue).format(i18n("Configs.format.date"));
+              setDate(value);
               if (setValue) setValue(name, value);
             }}
             className="opacity-0 absolute w-4 h-full top-0"

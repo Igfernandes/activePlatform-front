@@ -4,13 +4,11 @@ import { BoardCharge } from "@components/Public/Services/boards/Charge";
 import { BoardDefault } from "@components/Public/Services/boards/Default";
 import { BoardForm } from "@components/Public/Services/boards/Form";
 import { ServicesPageProps } from "@components/Public/Services/types";
-import { Subscribe } from "@components/shared/layouts/Subscribe";
 import { When } from "@components/utilities/When";
 import i18n from "@configs/i18n";
 import { getServicePreview } from "@services/Services/GetPreview/SSR";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
-import Script from "next/script";
 import { useRef } from "react";
 
 export default function Services({ service }: ServicesPageProps) {
@@ -22,11 +20,6 @@ export default function Services({ service }: ServicesPageProps) {
   return (
     <div className="min-h-[100vh] flex flex-col justify-between">
       <div>
-        <Subscribe />
-        <Script
-          src="https://sdk.mercadopago.com/js/v2"
-          strategy="afterInteractive"
-        ></Script>
         <Header />
         <div className="container max-w-[1100px] mx-auto my-12">
           <div className="image shadow-md rounded-xl mb-6">

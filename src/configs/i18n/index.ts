@@ -26,7 +26,7 @@ export const setLanguageToI18n = (code: string = "pt-br") => {
   dayjs.locale(code);
 };
 
-configureI18n();
+configureI18n("pt-br");
 export const handleChangeLanguage = (language: string) => {
   setCookie("language", language ?? "pt-br");
   if (typeof window !== "undefined") {

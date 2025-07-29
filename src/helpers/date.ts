@@ -134,7 +134,7 @@ export const getMaskTime = (event: React.ChangeEvent<HTMLInputElement>) => {
   let value = event.target.value.replace(/\D/g, ""); // Remove tudo que não for número
 
   if (value.length > 2) {
-    value = value.slice(0, 2) + ":" + value.slice(2.4);
+    value = value.slice(0, 2) + ":" + value.slice(2,4);
   }
 
   return value;
