@@ -6,8 +6,10 @@ export type TextAreaProps = DetailedHTMLProps<
   HTMLTextAreaElement
 > & {
   dataTestId: string;
-  isLoading?: boolean;
   label: string;
+  name: string;
   errors?: FieldError;
-  handledChange?: (ev: React.ChangeEvent<HTMLTextAreaElement> | undefined) => void;
+  handledChange?: (
+    ev: React.ChangeEvent<HTMLTextAreaElement> | undefined
+  ) => void;
 };

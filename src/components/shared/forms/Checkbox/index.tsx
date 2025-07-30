@@ -12,7 +12,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       dataTestId,
       errors,
       defaultValue,
-      defaultChecked,
       ...props
     }: CheckboxProps,
     ref
@@ -27,7 +26,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               {...props}
               ref={ref}
               type={type}
-              defaultChecked={defaultChecked}
               defaultValue={defaultValue}
               data-testid={IdCurrent}
               id={IdCurrent}
@@ -35,7 +33,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             />
           </div>
           <label htmlFor={IdCurrent} className="text-sm ml-2 cursor-pointer">
-            <SymbolChecked className="absolute left-[.4rem] top-[32%]" />
+            <SymbolChecked className="absolute left-[.35rem] top-[32%]" />
             {label}
           </label>
         </div>

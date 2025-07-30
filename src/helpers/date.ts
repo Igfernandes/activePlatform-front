@@ -124,7 +124,7 @@ export const handleMaskTime = (event: React.ChangeEvent<HTMLInputElement>) => {
   let value = event.target.value.replace(/\D/g, ""); // Remove tudo que não for número
 
   if (value.length > 2) {
-    value = value.slice(0, 2) + ":" + value.slice(2,4);
+    value = value.slice(0, 2) + ":" + value.slice(2, 4);
   }
 
   event.target.value = value;
@@ -134,12 +134,11 @@ export const getMaskTime = (event: React.ChangeEvent<HTMLInputElement>) => {
   let value = event.target.value.replace(/\D/g, ""); // Remove tudo que não for número
 
   if (value.length > 2) {
-    value = value.slice(0, 2) + ":" + value.slice(2,4);
+    value = value.slice(0, 2) + ":" + value.slice(2, 4);
   }
 
   return value;
 };
-
 
 export function isMonthValid(month: number) {
   return month > 0 && month <= 12;
@@ -177,7 +176,37 @@ export const getFormattedDatetime = (
 
   return datetime;
 };
+export const getDatetime = (datetime: string) => {
+  datetime = datetime.replace(/\D/g, ""); // Remove tudo que não for número
+  let datetimeUpdated = "";
 
+  if (datetime.length <= 2) {
+    datetimeUpdated = datetime;
+  } else if (datetime.length <= 4) {
+    datetimeUpdated = datetime.slice(0, 2) + "/" + datetime.slice(2);
+  } else if (datetime.length <= 8) {
+    datetimeUpdated =
+      datetime.slice(0, 2) +
+      "/" +
+      datetime.slice(2, 4) +
+      "/" +
+      datetime.slice(4);
+  } else {
+    datetimeUpdated =
+      datetime.slice(0, 2) +
+      "/" +
+      datetime.slice(2, 4) +
+      "/" +
+      datetime.slice(4, 8) +
+      " " +
+      datetime.slice(8, 10) +
+      ":" +
+      datetime.slice(10, 12);
+  }
+
+  console.log(datetimeUpdated)
+  return datetimeUpdated;
+};
 export function getYearsOld(birthdate: string) {
   const hoje = new Date();
   const nascimento = new Date(birthdate);

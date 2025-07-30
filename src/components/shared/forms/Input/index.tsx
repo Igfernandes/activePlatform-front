@@ -19,6 +19,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       errors,
       name,
       placeholder,
+      defaultValue,
       required,
       handledChange,
       ...rest
@@ -30,12 +31,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const IdCurrent = id ?? dataTestId;
     const { watch, setError, setValue } = useFormContext();
     const { isUpLabel } = useInput();
+    const value = watch(name); // obtém o valor atual
 
     useEffect(() => {
-      if (watch(`${name}`)) {
+      if (value || defaultValue) {
         changeLabelClass("UP");
       }
-    }, [watch, name, changeLabelClass]);
+    }, [value, changeLabelClass]);
 
     useEffect(() => {
       changeLabelClass(isUpLabel({ placeholder, ...rest }) ? "UP" : "DOWN");
@@ -73,6 +75,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 }
               }
             }}
+            defaultValue={defaultValue}
             onFocus={handleTransitionLabel}
             onBlur={handleTransitionLabel}
             placeholder={rest.type == "date" ? " " : placeholder}

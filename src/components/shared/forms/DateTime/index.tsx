@@ -1,30 +1,40 @@
 import { When } from "@components/utilities/When";
 import { InputProps } from "./type";
-import { RotateClockwise } from "@assets/Icons/white/RotateClockwise";
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import ErrorMessage from "@components/shared/others/ErrorMessage";
-import i18n from "@configs/i18n";
+import { Schedule } from "@assets/Icons/black/Schedule";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import { useDatetime } from "./hooks/useDatetime";
 
+dayjs.extend(customParseFormat);
 export const Datetime = React.forwardRef<HTMLInputElement, InputProps>(
   function Datetime(
     {
       dataTestId,
-      isLoading = false,
       className,
       id,
       label,
       errors,
       name,
-      placeholder,
       required,
       handledChange,
+      defaultValue,
       ...rest
     }: InputProps,
     ref
   ) {
+    const { handleUpdateDatetimePreview, datetime, setDatetime } =
+      useDatetime();
     const IdCurrent = id ?? dataTestId;
-    const { setError, setValue } = useFormContext();
+    const { setValue } = useFormContext();
+
+    useEffect(() => {
+      if (!defaultValue) return;
+
+      setDatetime(dayjs(defaultValue as string).format("DD/MM/YYYY HH:mm"));
+    }, [defaultValue]);
 
     return (
       <>
@@ -39,38 +49,41 @@ export const Datetime = React.forwardRef<HTMLInputElement, InputProps>(
             </When>
           </label>
           <input
-            {...rest}
-            ref={ref}
-            type={"datetime-local"}
-            name={name}
-            onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
-              if (rest.onChange) rest.onChange(ev);
-              if (handledChange) handledChange(ev);
+            type={"text"}
+            name={`datetime_ref_${name}`}
+            onChange={(ev) => {
+              const value = ev.currentTarget.value;
+              const datetimeUpdated = dayjs(value, "DD/MM/YYYY HH:mm");
 
-              if (rest.type?.toLowerCase() === "file") {
-                const file = ev.target.files?.[0];
-                if (file && file.size > 3 * 1024 * 1024) {
-                  setError(`${name}`, {
-                    message: i18n("Validations.file"),
-                  });
-                  setValue(`${name}`, null);
-                  ev.target.value = ""; // limpa o input
-                }
+              if (datetimeUpdated.isValid()) {
+                setValue(name, datetimeUpdated.format("YYYY-MM-DD HH:mm"));
               }
+              handleUpdateDatetimePreview(value);
             }}
-            placeholder={rest.type == "date" ? " " : placeholder}
+            value={datetime}
+            placeholder={"DD/MM/YYYY HH:mm"}
             className={`${className} ${
               !!errors ? "border-amber-500 outline-amber-500" : ""
             } w-full px-3 pt-6 pb-2 bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
             data-testid={dataTestId}
             id={IdCurrent}
           />
-          <When value={isLoading}>
-            <RotateClockwise
-              className="absolute right-3 top-4 animate-spin"
-              fill="black"
+          <div className="absolute right-3 bottom-4">
+            <input
+              {...rest}
+              ref={ref}
+              name={name}
+              defaultValue={defaultValue}
+              type="datetime-local"
+              onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
+                if (rest.onChange) rest.onChange(ev);
+                if (handledChange) handledChange(ev);
+                handleUpdateDatetimePreview(ev.currentTarget.value);
+              }}
+              className="absolute w-full h-full top-0 opacity-0 z-20"
             />
-          </When>
+            <Schedule className="w-5" />
+          </div>
         </div>
         <ErrorMessage errors={errors?.message} />
       </>

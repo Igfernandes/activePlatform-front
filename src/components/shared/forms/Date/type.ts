@@ -6,7 +6,6 @@ export type InputProps = DetailedHTMLProps<
   HTMLInputElement
 > & {
   dataTestId: string;
-  isLoading?: boolean;
   label: string;
   errors?: FieldError;
   tooltip?: string;

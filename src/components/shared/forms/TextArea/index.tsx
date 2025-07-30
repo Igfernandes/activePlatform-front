@@ -1,5 +1,4 @@
 import { When } from "@components/utilities/When";
-import { RotateClockwise } from "@assets/Icons/white/RotateClockwise";
 import React, { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import ErrorMessage from "@components/shared/others/ErrorMessage";
@@ -10,7 +9,6 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   function TextArea(
     {
       dataTestId,
-      isLoading = false,
       className,
       id,
       label,
@@ -18,6 +16,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       name,
       placeholder,
       required,
+      defaultValue,
       handledChange,
       ...rest
     }: TextAreaProps,
@@ -27,10 +26,13 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       useFieldsAnimation();
     const IdCurrent = id ?? dataTestId;
     const { watch } = useFormContext();
+    const value = watch(name); // obtém o valor atual
 
     useEffect(() => {
-      if (watch(`${name}`)) changeLabelClass("UP");
-    }, [watch, name, changeLabelClass]);
+      if (value || defaultValue) {
+        changeLabelClass("UP");
+      }
+    }, [value, changeLabelClass]);
 
     useEffect(() => {
       changeLabelClass(placeholder ? "UP" : "DOWN");
@@ -61,6 +63,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             }}
             onFocus={handleTransitionLabel}
             onBlur={handleTransitionLabel}
+            defaultValue={defaultValue}
             placeholder={placeholder}
             className={`${className} ${
               !!errors ? "border-amber-500 outline-amber-500" : ""
@@ -68,12 +71,6 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             data-testid={dataTestId}
             id={IdCurrent}
           />
-          <When value={isLoading}>
-            <RotateClockwise
-              className="absolute right-3 top-4 animate-spin"
-              fill="black"
-            />
-          </When>
         </div>
         <ErrorMessage errors={errors?.message} />
       </>

@@ -6,6 +6,7 @@ export const Words = {
   send: "Enviar",
   await: "Aguarde",
   password: "Senha",
+  start: "Começa",
   password_confirmation: "Confirmação de senha",
   name: "Nome",
   main: "Principal",
@@ -353,5 +354,5 @@ export const Words = {
   reservations: "Reservas",
   custom: "Customizado",
   gallery: "Galeria",
-  fill_register: "Formulário Preenchido"
+  fill_register: "Formulário Preenchido",
 };

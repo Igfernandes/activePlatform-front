@@ -10,7 +10,8 @@ import { TextArea } from "@components/shared/forms/TextArea";
 import { Color } from "@components/shared/forms/Color";
 import { ScheduleShape } from "@type/Schedule";
 import { useEffect, useState } from "react";
-import { ScheduleUpdatePayload } from "./schemas";
+import { Datetime } from "@components/shared/forms/DateTime";
+import dayjs from "dayjs";
 
 type Props = {
   schedules?: Array<ScheduleShape>;
@@ -18,7 +19,7 @@ type Props = {
 
 export function SchedulingModal({ schedules }: Props) {
   const { modal, handleToggleModal } = useModalContext();
-  const [schedule, setSchedule] = useState<Array<string>>([]);
+  const [schedule, setSchedule] = useState<ScheduleShape>();
   const {
     formMethods,
     handleSubmit,
@@ -37,16 +38,19 @@ export function SchedulingModal({ schedules }: Props) {
   useEffect(() => {
     const current = schedules?.find((schedule) => schedule.id === +modal.id);
 
-    if (!current) return reset();
+    setSchedule(current);
+    if (!current) {
+      return reset();
+    }
+    const linkedUsers = current.linked?.map((user) => user.id) ?? [];
 
-    Object.entries(current).forEach(([key, value]) => {
-      setValue(key as keyof ScheduleUpdatePayload, value as string);
-    });
-    const linkedUsers = current.linked?.map((user) => String(user.id)) ?? [];
-    console.log();
-    setValue("linked", linkedUsers);
-    setSchedule(linkedUsers);
-  }, [schedules, modal]);
+    setValue(
+      "linked",
+      users.map((user) =>
+        linkedUsers.includes(user.id) ? String(user.id) : false
+      )
+    );
+  }, [schedules, modal.id]);
 
   return (
     <Modal
@@ -62,25 +66,31 @@ export function SchedulingModal({ schedules }: Props) {
                 {...register("title")}
                 label={i18n("Words.title")}
                 dataTestId="title"
+                required={true}
+                defaultValue={schedule?.title}
                 errors={errors.title}
               />
             </div>
             <div className="form-group my-4">
-              <Input
+              <Datetime
                 {...register("date")}
-                label={i18n("Words.date")}
+                label={i18n("Words.start")}
                 dataTestId="date"
+                min={dayjs().format("YYYY-MM-DD HH:MM")}
+                required={true}
+                defaultValue={schedule?.date}
                 placeholder={i18n(`Configs.format.date`)}
                 type="datetime-local"
                 errors={errors.date}
               />
             </div>
             <div className="form-group my-4">
-              <Input
+              <Datetime
                 {...register("end_date")}
                 label={i18n("Words.until")}
                 dataTestId="end_date"
-                type="datetime-local"
+                defaultValue={schedule?.end_date ?? ""}
+                required={true}
                 errors={errors.end_date}
               />
             </div>
@@ -89,6 +99,7 @@ export function SchedulingModal({ schedules }: Props) {
                 {...register("describe")}
                 label="describe"
                 dataTestId="describe"
+                defaultValue={schedule?.describe}
               />
             </div>
             <div className="w-full ">
@@ -113,8 +124,7 @@ export function SchedulingModal({ schedules }: Props) {
                 register={register}
                 items={users.map((user) => ({
                   label: user.name,
-                  value: user.id,
-                  isChecked: schedule.includes(String(user.id)),
+                  value: String(user.id),
                 }))}
               />
             </div>

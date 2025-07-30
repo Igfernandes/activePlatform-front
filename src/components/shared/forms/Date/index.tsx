@@ -1,16 +1,12 @@
 import { When } from "@components/utilities/When";
 import { InputProps } from "./type";
-import { RotateClockwise } from "@assets/Icons/white/RotateClockwise";
 import React from "react";
-import { useFormContext } from "react-hook-form";
 import ErrorMessage from "@components/shared/others/ErrorMessage";
-import i18n from "@configs/i18n";
 
 export const Date = React.forwardRef<HTMLInputElement, InputProps>(
   function Date(
     {
       dataTestId,
-      isLoading = false,
       className,
       id,
       label,
@@ -24,7 +20,6 @@ export const Date = React.forwardRef<HTMLInputElement, InputProps>(
     ref
   ) {
     const IdCurrent = id ?? dataTestId;
-    const { setError, setValue } = useFormContext();
 
     return (
       <>
@@ -46,17 +41,6 @@ export const Date = React.forwardRef<HTMLInputElement, InputProps>(
             onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
               if (rest.onChange) rest.onChange(ev);
               if (handledChange) handledChange(ev);
-
-              if (rest.type?.toLowerCase() === "file") {
-                const file = ev.target.files?.[0];
-                if (file && file.size > 3 * 1024 * 1024) {
-                  setError(`${name}`, {
-                    message: i18n("Validations.file"),
-                  });
-                  setValue(`${name}`, null);
-                  ev.target.value = ""; // limpa o input
-                }
-              }
             }}
             placeholder={rest.type == "date" ? " " : placeholder}
             className={`${className} ${
@@ -65,12 +49,6 @@ export const Date = React.forwardRef<HTMLInputElement, InputProps>(
             data-testid={dataTestId}
             id={IdCurrent}
           />
-          <When value={isLoading}>
-            <RotateClockwise
-              className="absolute right-3 top-4 animate-spin"
-              fill="black"
-            />
-          </When>
         </div>
         <ErrorMessage errors={errors?.message} />
       </>

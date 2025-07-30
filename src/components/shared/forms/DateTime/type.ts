@@ -6,8 +6,8 @@ export type InputProps = DetailedHTMLProps<
   HTMLInputElement
 > & {
   dataTestId: string;
-  isLoading?: boolean;
   label: string;
+  name: string;
   errors?: FieldError;
   tooltip?: string;
   handledChange?: (ev: React.ChangeEvent<HTMLInputElement> | undefined) => void;
