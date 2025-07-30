@@ -1,5 +1,4 @@
 import { When } from "@components/utilities/When";
-import { RotateClockwise } from "@assets/Icons/white/RotateClockwise";
 import React from "react";
 import ErrorMessage from "@components/shared/others/ErrorMessage";
 import { TextAreaProps } from "../TextArea/type";
@@ -47,7 +46,6 @@ export const TextEdit = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   function TextEdit(
     {
       dataTestId,
-      isLoading = false,
       id,
       label,
       errors,
@@ -86,12 +84,6 @@ export const TextEdit = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
               placeholder={placeholder}
             />
           </div>
-          <When value={isLoading}>
-            <RotateClockwise
-              className="absolute right-3 top-4 animate-spin"
-              fill="black"
-            />
-          </When>
         </div>
         <ErrorMessage errors={errors?.message} />
       </>

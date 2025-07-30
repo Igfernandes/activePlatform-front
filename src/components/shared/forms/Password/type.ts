@@ -8,6 +8,7 @@ export type PasswordProps = DetailedHTMLProps<
   dataTestId: string;
   isLoading?: boolean;
   label: string;
+  name: string;
   type?: "password";
   errors?: FieldError;
 };
