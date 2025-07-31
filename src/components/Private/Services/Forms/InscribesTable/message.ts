@@ -15,26 +15,27 @@ export const getMessageConfirmation = ({
 }: Props) => {
   return `Confirmação de Inscrição - ${service.name}
 
-    Olá, ${clientName}!
-    Confirme a sua inscrição no link: ${link} 
+Olá, *${clientName}*!
+Confirme a sua inscrição no link: ${link} 
 
-     Data: ${
-       service.realized_at
-         ? dayjs(service.realized_at).format(i18n("configs.format.date"))
-         : "Não definido"
-     }
-     Horário: ${
-       service.realized_at
-         ? dayjs(service.realized_at).format("HH:mm")
-         : "Não definido"
-     }
-     Local: ${service.address ?? "Não definido"}
+${service.alerts ? `*Instruções:* \n ${service.alerts}` : ""}
 
-    Fique atento(a) às nossas próximas mensagens com mais informações importantes.
+*Data:* ${
+    service.realized_at
+      ? dayjs(service.realized_at ?? "").format(i18n("Configs.format.date"))
+      : "Não definido"
+  }
+*Horário:* ${
+    service.realized_at
+      ? dayjs(service.realized_at ?? "", "YYYY-MM-DD HH:mm:ss").format("HH:mm")
+      : "Não definido"
+  }
+*Local:* ${service.address ?? "Não definido"}
 
-    Se precisar de qualquer ajuda, é só responder aqui! Estamos à disposição.
+*Fique atento(a)* às nossas próximas mensagens com mais informações importantes.
+Se precisar de qualquer ajuda, é só responder aqui! Estamos à disposição.
 
-    Até lá!
-    Equipe AGM
+Até lá!
+Equipe AGM
 `.trim();
 };

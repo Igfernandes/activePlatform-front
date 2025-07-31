@@ -44,6 +44,7 @@ export function InscribesTable({ title, service, stock }: Props) {
       clients.filter((client) => clientIds.includes(client.id))
     );
   }, [inscribesData, clients]);
+  
 
   return (
     <div>
