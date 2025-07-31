@@ -6,7 +6,7 @@ import { ServicesPayload } from "./Schemas";
 import { File } from "@components/shared/forms/File";
 import { getFileName } from "@helpers/file";
 import { ServicesShape } from "@type/Services";
-import { Date } from "@components/shared/forms/Date";
+import { Datetime } from "@components/shared/forms/DateTime";
 
 type Props = {
   service?: ServicesShape;
@@ -31,7 +31,7 @@ export function DefinitionsForm({ service }: Props) {
       </div>
       <div className="form-row flex flex-wrap lg:flex-none justify-between">
         <div className="form-select w-full lg:w-[48%]">
-          <Date
+          <Datetime
             {...register("realized_at")}
             dataTestId="realized_at"
             type="datetime-local"
@@ -40,7 +40,7 @@ export function DefinitionsForm({ service }: Props) {
           />
         </div>
         <div className="form-select w-full lg:w-[48%]">
-          <Date
+          <Datetime
             {...register("expired_at")}
             dataTestId="expired_at"
             type="datetime-local"
