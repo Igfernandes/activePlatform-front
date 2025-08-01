@@ -26,6 +26,7 @@ export function useInscribeService({ service, stock }: Props) {
     usePostClientsService();
 
   const handleInscribes = async (inscribes: Array<ClientShape>) => {
+    setClientsSelected(inscribes);
     if (!service) return;
 
     const inscribesWithoutGratuity = inscribes.filter(
@@ -54,6 +55,7 @@ export function useInscribeService({ service, stock }: Props) {
       )
     );
   };
+
   return {
     clients,
     clientsSelected,
