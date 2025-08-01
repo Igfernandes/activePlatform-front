@@ -57,7 +57,7 @@ export const TextEdit = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     ref
   ) {
     const IdCurrent = id ?? dataTestId;
-    const { setValue: updateValue } = useFormContext();
+    const { setValue: updateValue, getValues } = useFormContext();
 
     return (
       <>
@@ -74,6 +74,7 @@ export const TextEdit = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
               theme="snow"
               modules={modules}
               formats={formats}
+              value={getValues(rest.name)}
               className="h-[30vh] md:h-60 "
               defaultValue={String(defaultValue ?? "")}
               onChange={(value) => {

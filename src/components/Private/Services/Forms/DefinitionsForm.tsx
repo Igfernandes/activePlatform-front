@@ -15,7 +15,6 @@ type Props = {
 export function DefinitionsForm({ service }: Props) {
   const {
     register,
-    getValues,
     formState: { errors },
   } = useFormContext<ServicesPayload>();
   return (
@@ -35,6 +34,7 @@ export function DefinitionsForm({ service }: Props) {
             {...register("realized_at")}
             dataTestId="realized_at"
             type="datetime-local"
+            defaultValue={service?.realized_at}
             label={i18n(`Words.realized_at`)}
             errors={errors.realized_at}
           />
@@ -44,6 +44,7 @@ export function DefinitionsForm({ service }: Props) {
             {...register("expired_at")}
             dataTestId="expired_at"
             type="datetime-local"
+            defaultValue={service?.expired_at}
             label={i18n(`Words.expired_at`)}
             errors={errors.expired_at}
           />
@@ -65,6 +66,7 @@ export function DefinitionsForm({ service }: Props) {
         <Input
           {...register("address")}
           dataTestId="address"
+          defaultValue={getFileName(service?.address)}
           label={i18n(`Words.address`)}
           errors={errors.address}
         />
@@ -76,6 +78,7 @@ export function DefinitionsForm({ service }: Props) {
           dataTestId="gratuity"
           min={0}
           max={120}
+          defaultValue={service?.gratuity}
           label={i18n(`Texts.until_years_gratuity`)}
           errors={errors.gratuity}
         />
@@ -85,7 +88,7 @@ export function DefinitionsForm({ service }: Props) {
           {...register("description")}
           dataTestId="describe"
           label={i18n(`Words.describe`)}
-          defaultValue={getValues("description")}
+          defaultValue={service?.description}
           placeholder="Escreva detalhes sobre o passeio"
           errors={errors.description}
         />

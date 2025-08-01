@@ -30,7 +30,7 @@ export function ServicesForm({ service }: Props) {
     useServicesForm({ service });
   const router = useRouter();
   const { handleCleanForm, handleUpdateForm } = useStateFields({ formMethods });
-  const { watch, setValue, getValues } = formMethods;
+  const { watch, setValue } = formMethods;
   const { handleCopy } = useNavigator();
   const { baseUrl } = useWindow();
 
@@ -76,6 +76,7 @@ export function ServicesForm({ service }: Props) {
                 name="status"
                 dataTestId="status"
                 label={i18n(`Words.service_status`)}
+                defaultValue={service?.status}
                 options={{
                   left: {
                     text: i18n("Words.active"),
@@ -96,7 +97,7 @@ export function ServicesForm({ service }: Props) {
                   handleCopy(`${baseUrl}/services?key=${service?.id}`)
                 }
               >
-                <Link className="" />
+                <Link />
               </div>
             </When>
           </div>
@@ -156,7 +157,7 @@ export function ServicesForm({ service }: Props) {
                   {...register("alerts")}
                   dataTestId="alerts"
                   label={i18n(`Screens.dashboard.services.inscribes_alert`)}
-                  defaultValue={getValues("alerts")}
+                  defaultValue={service?.alerts}
                   placeholder={i18n(
                     "Screens.dashboard.services.text_alert_about_alerts_inscribes"
                   )}

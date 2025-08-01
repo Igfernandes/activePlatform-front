@@ -59,7 +59,7 @@ export function useServicesForm({ service }: Props) {
     register,
     submit,
     handleSubmit,
-    isLoading: isLoadingPost ?? isLoadingPut,
+    isLoading: isLoadingPost || isLoadingPut,
     errors,
   };
 }
