@@ -97,6 +97,10 @@ export const Api = {
       isConfirm: {
         success: "Confirmado com sucesso!",
       },
+      invalid: {
+        status:
+          "O serviço está inativado e não poderá receber novas inscrições",
+      },
     },
     fields: {
       success: {

@@ -22,9 +22,10 @@ export function useInscribeService({ service, stock }: Props) {
     []
   );
   const { dispatchSnackbar } = useSnackbar();
-  const { mutateAsync: postClientsService } = usePostClientsService();
+  const { mutateAsync: postClientsService, isPending: isLoadingInscribes } =
+    usePostClientsService();
 
-  const handleInscribes = (inscribes: Array<ClientShape>) => {
+  const handleInscribes = async (inscribes: Array<ClientShape>) => {
     if (!service) return;
 
     const inscribesWithoutGratuity = inscribes.filter(
@@ -44,7 +45,7 @@ export function useInscribeService({ service, stock }: Props) {
       });
 
     const clientIds = inscribes.map((client) => client.id);
-    postClientsService({
+    await postClientsService({
       client_ids: inscribes.map((client) => client.id),
       serviceId: service.id,
     }).then(() =>
@@ -58,5 +59,6 @@ export function useInscribeService({ service, stock }: Props) {
     clientsSelected,
     handleInscribes,
     handleUpdateClientsSelected,
+    isLoadingInscribes,
   };
 }

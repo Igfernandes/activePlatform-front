@@ -26,6 +26,7 @@ export function InscribesTable({ title, service, stock }: Props) {
     clientsSelected,
     handleUpdateClientsSelected,
     handleInscribes,
+    isLoadingInscribes,
   } = useInscribeService({ service, stock });
   const { data: inscribesData } = useGetClientsServices({
     serviceId: service.id,
@@ -44,7 +45,6 @@ export function InscribesTable({ title, service, stock }: Props) {
       clients.filter((client) => clientIds.includes(client.id))
     );
   }, [inscribesData, clients]);
-  
 
   return (
     <div>
@@ -116,6 +116,7 @@ export function InscribesTable({ title, service, stock }: Props) {
         clients={clients}
         clientsSelected={clientsSelected}
         handleAddClients={handleInscribes}
+        isLoading={isLoadingInscribes}
       />
     </div>
   );

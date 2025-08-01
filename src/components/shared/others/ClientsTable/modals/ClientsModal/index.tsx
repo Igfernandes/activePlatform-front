@@ -15,12 +15,14 @@ type Props = {
   clients: ClientShape[];
   handleAddClients: (clients: Array<ClientShape>) => void;
   clientsSelected: Array<ClientShape>;
+  isLoading?: boolean;
 };
 
 export function ClientsModal({
   clients,
   handleAddClients,
   clientsSelected,
+  isLoading,
 }: Props) {
   const {
     formMethods,
@@ -103,6 +105,7 @@ export function ClientsModal({
           <div>
             <Button
               type="submit"
+              isLoading={isLoading}
               text={i18n("Words.save")}
               className="bg-red text-white"
             />
