@@ -27,9 +27,9 @@ export function useClientsPayed({ handleAddClients, clients }: Props) {
     []
   );
 
-  const submit = (payload: ClientsPayedPayload) => {
+  const submit = async (payload: ClientsPayedPayload) => {
     const clientsId = payload.clients;
-    handleAddClients(
+    await handleAddClients(
       clients.filter((client) => clientsId.includes(String(client.id)))
     );
     handleToggleModal(formMethods.getValues());
