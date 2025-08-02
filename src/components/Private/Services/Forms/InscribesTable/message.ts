@@ -18,7 +18,11 @@ export const getMessageConfirmation = ({
 Olá, *${clientName}*!
 Confirme a sua inscrição no link: ${link} 
 
-${service.alerts ? `*Instruções:* \n ${service.alerts}` : ""}
+${
+  service.alerts
+    ? `*Instruções:* \n ${service.alerts.replace(/<[^>]*>/g, "")}`
+    : ""
+}
 
 *Data:* ${
     service.realized_at
