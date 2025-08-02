@@ -14,16 +14,11 @@ export const optionsSimples = [
     field: "number",
     icon: <Pen width={12} height={12} />,
   },
-  // {
-  //   id: "radio",
-  //   field: "radio",
-  //   icon: <Pen width={12} height={12} />,
-  // },
-  // {
-  //   id: "checkbox",
-  //   field: "checkbox",
-  //   icon: <Pen width={12} height={12} />,
-  // },
+  {
+    id: "checkbox",
+    field: "checkbox",
+    icon: <Pen width={12} height={12} />,
+  },
   // {
   //   id: "select",
   //   field: "select",

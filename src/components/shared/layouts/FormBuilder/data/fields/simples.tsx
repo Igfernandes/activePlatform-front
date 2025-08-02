@@ -1,3 +1,4 @@
+import { Checkbox } from "../../fields/Checkbox";
 import { Color } from "../../fields/Color";
 import { Date } from "../../fields/Date";
 import { Datetime } from "../../fields/Datetime";
@@ -65,6 +66,9 @@ export const fieldsSimple = {
       className={`${classNameDefault} ${className}`}
       {...props}
     />
+  ),
+  checkbox: ({ className, ...props }: FieldShape) => (
+    <Checkbox className={`${className}`} {...props} />
   ),
   textarea: ({ className, ...props }: FieldShape) => (
     <Textarea className={`${classNameDefault} ${className}`} {...props} />
