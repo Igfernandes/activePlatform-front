@@ -18,7 +18,9 @@ export function useClientCategoriesModal({ selectors }: Props) {
   const { mutateAsync: patchClientsCategory } = usePatchClientCategory();
 
   const submit = (payload: Pick<PatchClientsCategoryPayload, "category">) => {
-    const selectorsChecked = selectors.filter((selector) => selector.isChecked);
+    const selectorsChecked = selectors.filter(
+      (selector) => selector.isChecked && !!selector.value
+    );
 
     patchClientsCategory({
       ...payload,

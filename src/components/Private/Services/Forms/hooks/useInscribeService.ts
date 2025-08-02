@@ -1,11 +1,13 @@
 import { useClients } from "@components/shared/others/ClientsTable/hooks/useClients";
 import i18n from "@configs/i18n";
 import { useSnackbar } from "@hooks/useSnackbar";
+import useGetClientsServices from "@services/Clients/Services/Get/useGet";
 import usePostClientsService from "@services/Clients/Services/Post/usePost";
 import { ClientShape } from "@type/Clients";
+import { ClientServiceShape } from "@type/Clients/ClientService";
 import { ServicesShape } from "@type/Services";
 import dayjs from "dayjs";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type Props = {
   service?: ServicesShape;
@@ -13,48 +15,70 @@ type Props = {
 };
 
 export function useInscribeService({ service, stock }: Props) {
-  const [clientsSelected, setClientsSelected] = useState<Array<ClientShape>>(
-    []
-  );
   const { clients } = useClients();
-  const handleUpdateClientsSelected = useCallback(
-    (clients: Array<ClientShape>) => setClientsSelected(clients),
-    []
-  );
   const { dispatchSnackbar } = useSnackbar();
+
+  const { data: inscribesData } = useGetClientsServices({
+    serviceId: service?.id ?? 0,
+  });
+
   const { mutateAsync: postClientsService, isPending: isLoadingInscribes } =
     usePostClientsService();
 
-  const handleInscribes = async (inscribes: Array<ClientShape>) => {
-    setClientsSelected(inscribes);
-    if (!service) return;
+  const [clientsSelected, setClientsSelected] = useState<ClientServiceShape[]>(
+    []
+  );
 
-    const inscribesWithoutGratuity = inscribes.filter(
-      (inscribe) =>
-        !service.gratuity ||
-        dayjs(inscribe.birthdate).isAfter(
-          dayjs().subtract(service.gratuity ?? 0, "years")
-        )
-    );
+  const handleUpdateClientsSelected = useCallback(
+    (list: ClientServiceShape[]) => setClientsSelected(list),
+    []
+  );
 
-    if (clientsSelected.length > inscribes.length || stock == 0) {
-      // Situação oposta
-    } else if (stock && +stock < inscribesWithoutGratuity.length)
-      return dispatchSnackbar({
-        type: "notice",
-        message: i18n(`Texts.not_stocks`),
+  const filterByGratuity = useCallback(
+    (list: ClientShape[]) => {
+      if (!service?.gratuity) return list;
+      return list.filter(
+        (client) =>
+          !dayjs(client.birthdate).isAfter(
+            dayjs().subtract(service.gratuity ?? 0, "years")
+          )
+      );
+    },
+    [service?.gratuity]
+  );
+
+  const handleInscribes = useCallback(
+    async (inscribeIds: number[]) => {
+      if (!service) return;
+
+      const clientsSelected = clients.filter((Client) =>
+        inscribeIds.includes(Client.id)
+      );
+
+      const validInscribes = filterByGratuity(clientsSelected);
+
+      if (stock && +stock < validInscribes.length) {
+        return dispatchSnackbar({
+          type: "notice",
+          message: i18n(`Texts.not_stocks`),
+        });
+      }
+
+      await postClientsService({
+        client_ids: inscribeIds,
+        serviceId: service.id,
       });
 
-    const clientIds = inscribes.map((client) => client.id);
-    await postClientsService({
-      client_ids: inscribes.map((client) => client.id),
-      serviceId: service.id,
-    }).then(() =>
-      handleUpdateClientsSelected(
-        clients.filter((client) => clientIds.includes(client.id))
-      )
-    );
-  };
+      handleUpdateClientsSelected(inscribesData ?? []);
+    },
+    [service, stock, inscribesData]
+  );
+
+  useEffect(() => {
+    if (!inscribesData) return;
+
+    handleUpdateClientsSelected(inscribesData);
+  }, [inscribesData, clients, handleUpdateClientsSelected]);
 
   return {
     clients,

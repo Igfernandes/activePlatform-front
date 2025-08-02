@@ -5,14 +5,12 @@ import { useModalContext } from "@contexts/Modal";
 import { Notice } from "@components/shared/others/Notice";
 import { getNumberFormatted } from "@helpers/string";
 import { ClientActions } from "@components/shared/others/ClientsTable/ClientActions";
-import useGetClientsServices from "@services/Clients/Services/Get/useGet";
-import { useEffect, useState } from "react";
 import { useInscribeService } from "../hooks/useInscribeService";
 import { ServicesShape } from "@type/Services";
-import { ClientsModal } from "@components/shared/others/ClientsTable/modals/ClientsModal";
 import Link from "next/link";
 import { getMessageConfirmation } from "./message";
 import useWindow from "@hooks/useWindow";
+import { ClientsModal } from "./ClientsModal";
 
 type Props = {
   service: ServicesShape;
@@ -21,30 +19,11 @@ type Props = {
 };
 
 export function InscribesTable({ title, service, stock }: Props) {
-  const {
-    clients,
-    clientsSelected,
-    handleUpdateClientsSelected,
-    handleInscribes,
-    isLoadingInscribes,
-  } = useInscribeService({ service, stock });
-  const { data: inscribesData } = useGetClientsServices({
-    serviceId: service.id,
-  });
+  const { clients, clientsSelected, handleInscribes, isLoadingInscribes } =
+    useInscribeService({ service, stock });
+
   const { baseUrl } = useWindow();
   const { handleToggleModal, modal } = useModalContext();
-  const [inscribesId, setInscribesId] = useState<Array<number>>([]);
-
-  useEffect(() => {
-    if (!inscribesData) return;
-
-    const clientIds = inscribesData.map((inscribe) => inscribe.id);
-
-    setInscribesId(inscribesId);
-    handleUpdateClientsSelected(
-      clients.filter((client) => clientIds.includes(client.id))
-    );
-  }, [inscribesData, clients]);
 
   return (
     <div>
@@ -105,9 +84,10 @@ export function InscribesTable({ title, service, stock }: Props) {
         text={i18n("Components.clients_table.text_already_exclude")}
         onSubmit={() => {
           handleToggleModal(false);
-          handleInscribes(
-            clientsSelected.filter((client) => client.id !== modal.id)
+          const inscribes = clientsSelected.filter(
+            (client) => client.id !== modal.id
           );
+          handleInscribes(inscribes.map((inscribe) => inscribe.id));
         }}
         isShowModal={modal.type === "EXCLUDE"}
         onModal={handleToggleModal}

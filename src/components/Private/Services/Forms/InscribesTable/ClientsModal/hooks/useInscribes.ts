@@ -1,4 +1,3 @@
-import { ClientShape } from "@type/Clients";
 import { ClientsPayedPayload } from "../type";
 import { useModalContext } from "@contexts/Modal";
 import { useFormRules } from "@hooks/Forms/useFormRules";
@@ -7,13 +6,15 @@ import { useSearch } from "@components/shared/forms/Search/hooks/useSearch";
 import useGetCategories from "@services/Clients/Categories/Get/useGetCategories";
 import { useEffect, useState } from "react";
 import { ClientCategoriesShape } from "@type/Clients/ClientCategories";
+import { ClientShape } from "@type/Clients";
+import { ClientServiceShape } from "@type/Clients/ClientService";
 
 type Props = {
-  clients: ClientShape[];
-  handleAddClients: (clients: Array<ClientShape>) => void;
+  handleAddClients: (inscribeIds: Array<number>) => void;
+  clientsSelected: Array<ClientServiceShape>;
 };
 
-export function useClientsPayed({ handleAddClients, clients }: Props) {
+export function useInscribes({ handleAddClients, clientsSelected }: Props) {
   const { formMethods, handleSubmit, register } =
     useFormRules<ClientsPayedPayload>({
       schema: z.object({
@@ -28,13 +29,14 @@ export function useClientsPayed({ handleAddClients, clients }: Props) {
   );
 
   const submit = async (payload: ClientsPayedPayload) => {
-    const clientsId = payload.clients;
+    const clientsId = payload.clients.filter((clientId) => !!clientId);
 
-    formMethods.reset();
-    await handleAddClients(
-      clients.filter((client) => clientsId.includes(String(client.id)))
-    );
+    await handleAddClients(clientsId.map((client) => +client));
     handleToggleModal(formMethods.getValues());
+    formMethods.setValue(
+      "clients",
+      clientsSelected.map((client) => String(client.id))
+    );
   };
 
   const getClientsFiltered = (clients: Array<ClientShape>) => {

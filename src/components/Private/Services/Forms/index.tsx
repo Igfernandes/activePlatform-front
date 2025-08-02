@@ -15,7 +15,6 @@ import { useNavigator } from "@hooks/useNavigator";
 import useWindow from "@hooks/useWindow";
 import { ToggleSwitch } from "@components/shared/forms/ToggleSwitch";
 import { Input } from "@components/shared/forms/Input";
-import { Radio } from "@components/shared/forms/Radio";
 import { InscribesTable } from "./InscribesTable";
 import { TextEdit } from "@components/shared/forms/TextEdit";
 import { FormsTable } from "./FormsTable";
@@ -113,31 +112,6 @@ export function ServicesForm({ service }: Props) {
                   </strong>
                 </h2>
               </div>
-              <div className="my-3 lg:my-6 flex flex-wrap lg:flex-none">
-                <div>
-                  <p>
-                    {i18n(`Screens.dashboard.services.has_limit_vacancies`)}
-                  </p>
-                </div>
-                <div className="flex mt-2 lg:mt-auto">
-                  <div className="mx-0 lg:mx-1">
-                    <Radio
-                      {...register("disabledLimitVacancies")}
-                      dataTestId="disabled_limit_vacancies_yes"
-                      label={i18n(`Words.yes`)}
-                      value={i18n(`Words.yes`)}
-                    />
-                  </div>
-                  <div className="mx-1">
-                    <Radio
-                      {...register("disabledLimitVacancies")}
-                      dataTestId="disabled_limit_vacancies_no"
-                      label={i18n(`Words.not`)}
-                      value={i18n(`Words.not`)}
-                    />
-                  </div>
-                </div>
-              </div>
               <div className="my-6">
                 <Input
                   {...register("stock")}
@@ -146,7 +120,6 @@ export function ServicesForm({ service }: Props) {
                   label={i18n(
                     "Screens.dashboard.services.inform_limit_vacancies"
                   )}
-                  disabled={watch("disabledLimitVacancies") === "Não"}
                   max={99999}
                   className="line-clamp-1"
                   errors={errors.stock}
@@ -215,7 +188,11 @@ export function ServicesForm({ service }: Props) {
       <When value={!!service}>
         <div className="relative z-10 my-10">
           <InscribesTable
-            service={service as ServicesShape}
+            service={{
+              ...(service as ServicesShape),
+              stock: parseInt(formMethods.getValues("stock")),
+              gratuity: parseInt(formMethods.getValues("gratuity") ?? "" ),
+            }}
             stock={+formMethods.watch("stock")}
             title={i18n("Words.inscribes")}
           />

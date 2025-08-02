@@ -3,6 +3,7 @@ import { CategoryData } from "@services/Clients/Get/types";
 export type ClientServiceShape = {
   id: number;
   name: string;
+  birthdate?: string;
   categories: Array<CategoryData>;
   phone: string;
   is_confirm: boolean;

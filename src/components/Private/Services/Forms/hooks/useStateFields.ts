@@ -28,6 +28,7 @@ export function useStateFields({ formMethods }: Props) {
     setValue("realized_at", service.realized_at);
     setValue("stock", String(service.stock));
     setValue("gratuity", String(service.gratuity));
+    setValue("disabledLimitVacancies", service.stock ? "Não" : "Sim");
   };
 
   return {

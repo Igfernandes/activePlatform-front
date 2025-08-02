@@ -1,5 +1,6 @@
 export const clientsRoutes = {
   clients: "/clients",
+  clientsById: "/clients/{id}",
   categories: "/clients/categories",
   clientsFields: "/clients/{id}/fields/{fieldId}",
   clientPreview: "/clients/preview",
