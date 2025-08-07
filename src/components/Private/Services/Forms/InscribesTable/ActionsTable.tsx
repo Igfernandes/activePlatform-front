@@ -1,7 +1,6 @@
 import { UserPlus } from "@assets/Icons/red/UserPlus";
 import { Shared } from "@components/shared/others/Shared";
 import i18n from "@configs/i18n";
-import { ClientServiceShape } from "@type/Clients/ClientService";
 
 type Props = {
   serviceId: number;
