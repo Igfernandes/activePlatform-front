@@ -1,6 +1,5 @@
 import { SmartTable } from "@components/shared/layouts/Tables/presets/SmartTable";
 import i18n from "@configs/i18n";
-import { UserPlus } from "@assets/Icons/red/UserPlus";
 import { useModalContext } from "@contexts/Modal";
 import { Notice } from "@components/shared/others/Notice";
 import { getNumberFormatted } from "@helpers/string";
@@ -11,6 +10,7 @@ import Link from "next/link";
 import { getMessageConfirmation } from "./message";
 import useWindow from "@hooks/useWindow";
 import { ClientsModal } from "./ClientsModal";
+import { ActionsTable } from "./ActionsTable";
 
 type Props = {
   service: ServicesShape;
@@ -71,16 +71,16 @@ export function InscribesTable({ title, service, stock }: Props) {
           pagination: {
             max: 10,
           },
+          filters: {
+            tag: {
+              key: "confirmation",
+            },
+          },
           buttons: (
-            <a
-              className="flex items-center cursor-pointer"
-              onClick={() => handleToggleModal("ADD_CLIENT")}
-            >
-              <UserPlus />
-              <span className="text-red font-semibold ml-2">
-                {i18n("Texts.clients_add")}
-              </span>
-            </a>
+            <ActionsTable
+              inscribes={clientsSelected}
+              handleToggleModal={handleToggleModal}
+            />
           ),
         }}
         title={title ?? i18n("Texts.link_clients")}

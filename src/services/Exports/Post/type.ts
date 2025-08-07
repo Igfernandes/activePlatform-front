@@ -4,4 +4,11 @@ export type PostExportsPayload = {
   type: "EXCEL" | "PDF";
 };
 
-export type EntitiesShape = "CLIENTS" | "USERS" | "SERVICES" | "FORMS" | "CHARGES" | "FORMS_FILLS";
+export type EntitiesShape =
+  | "CLIENTS"
+  | "USERS"
+  | "SERVICES"
+  | "FORMS"
+  | "CHARGES"
+  | "FORMS_FILLS"
+  | "INSCRIBES";

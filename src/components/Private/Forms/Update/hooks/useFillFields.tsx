@@ -59,7 +59,7 @@ export function useFillFields({ formId, serviceId, components }: Props) {
 
       const serviceName = inscribedService?.service
         ? inscribedService?.service.name
-        : "";
+        : "Sem Inscrição";
 
       return {
         id,
@@ -94,22 +94,24 @@ export function useFillFields({ formId, serviceId, components }: Props) {
   useEffect(() => {
     if (!fieldsData) return;
 
-    const nameColumnId = components.find(
+    const nameColumn = components.find(
       (field) => field.element === "name" || field.label?.includes("nome")
     );
 
-    if (nameColumnId) tHeadsFields.current[1] = i18n("Words.name");
-    else if (firstColumnId) {
+    if (nameColumn) {
+      tHeadsFields.current[1] = i18n("Words.name");
+      setFirstColumn(nameColumn.id);
+    } else if (firstColumnId) {
       const field = components.find((field) => field.id == firstColumnId);
       tHeadsFields.current[1] = field?.label ?? "";
     } else tHeadsFields.current[1] = i18n("Texts.first_column");
 
-    console.log("UPDATE", clientsService)
     const tDataFields = fieldsData.map((FieldsProps) => {
+      FieldsProps.sort((a, b) => a.field_id - b.field_id);
       const fieldProps = FieldsProps.find(
         (field) => field.field_id == +(firstColumnId ?? 0)
       );
-
+      
       return updateFieldForTable(fieldProps ?? FieldsProps[0]);
     });
     setTDataFields(tDataFields);
