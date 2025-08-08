@@ -4,17 +4,12 @@ import { Input } from "@components/shared/forms/Input";
 import { TextEdit } from "@components/shared/forms/TextEdit";
 import { ServicesPayload } from "./Schemas";
 import { File } from "@components/shared/forms/File";
-import { getFileName } from "@helpers/file";
-import { ServicesShape } from "@type/Services";
 import { Datetime } from "@components/shared/forms/DateTime";
 
-type Props = {
-  service?: ServicesShape;
-};
-
-export function DefinitionsForm({ service }: Props) {
+export function DefinitionsForm() {
   const {
     register,
+    getValues,
     formState: { errors },
   } = useFormContext<ServicesPayload>();
   return (
@@ -34,8 +29,8 @@ export function DefinitionsForm({ service }: Props) {
             {...register("realized_at")}
             dataTestId="realized_at"
             type="datetime-local"
-            defaultValue={service?.realized_at}
             label={i18n(`Words.realized_at`)}
+            defaultValue={getValues("realized_at") ?? ""}
             errors={errors.realized_at}
           />
         </div>
@@ -44,8 +39,8 @@ export function DefinitionsForm({ service }: Props) {
             {...register("expired_at")}
             dataTestId="expired_at"
             type="datetime-local"
-            defaultValue={service?.expired_at}
             label={i18n(`Words.expired_at`)}
+            defaultValue={getValues("expired_at") ?? ""}
             errors={errors.expired_at}
           />
         </div>
@@ -57,7 +52,6 @@ export function DefinitionsForm({ service }: Props) {
             dataTestId="service_image"
             label={i18n(`Screens.dashboard.services.service_image`)}
             accept=".jpg,.jpge,.png"
-            defaultValue={getFileName(service?.photo)}
             errors={errors.photo}
           />
         </div>
@@ -66,7 +60,6 @@ export function DefinitionsForm({ service }: Props) {
         <Input
           {...register("address")}
           dataTestId="address"
-          defaultValue={getFileName(service?.address)}
           label={i18n(`Words.address`)}
           errors={errors.address}
         />
@@ -78,7 +71,6 @@ export function DefinitionsForm({ service }: Props) {
           dataTestId="gratuity"
           min={0}
           max={120}
-          defaultValue={service?.gratuity}
           label={i18n(`Texts.until_years_gratuity`)}
           errors={errors.gratuity}
         />
@@ -88,7 +80,6 @@ export function DefinitionsForm({ service }: Props) {
           {...register("description")}
           dataTestId="describe"
           label={i18n(`Words.describe`)}
-          defaultValue={service?.description}
           placeholder="Escreva detalhes sobre o passeio"
           errors={errors.description}
         />

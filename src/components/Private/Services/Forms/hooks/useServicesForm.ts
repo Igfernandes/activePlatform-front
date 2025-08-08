@@ -29,12 +29,11 @@ export function useServicesForm({ service }: Props) {
     const payload = {
       ...formData,
       gratuity: formData.gratuity ? +formData.gratuity : undefined,
-      stock:
-        formData.disabledLimitVacancies == "Não" ? 0 : parseInt(formData.stock),
+      stock: parseInt(formData.stock),
       address: formData.address ?? "",
       realized_at: formData.realized_at ?? "",
       expired_at: formData.expired_at ?? "",
-      description: formData.description ?? ""
+      description: formData.description ?? "",
     };
 
     if (!service) {

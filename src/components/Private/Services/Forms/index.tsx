@@ -7,7 +7,6 @@ import { ServicesShape } from "../../../../types/Services";
 import { When } from "@components/utilities/When";
 import { useRouter } from "next/navigation";
 import { privateRoutes } from "@configs/routes/Web/navigation";
-import { useEffect } from "react";
 import { useStateFields } from "./hooks/useStateFields";
 import { getFileUrl } from "@helpers/file";
 import Image from "next/image";
@@ -19,6 +18,7 @@ import { InscribesTable } from "./InscribesTable";
 import { TextEdit } from "@components/shared/forms/TextEdit";
 import { FormsTable } from "./FormsTable";
 import { Link } from "@assets/Icons/black/Link";
+import { useEffect } from "react";
 
 type Props = {
   service?: ServicesShape;
@@ -35,6 +35,7 @@ export function ServicesForm({ service }: Props) {
 
   useEffect(() => {
     if (!service) return;
+
     handleUpdateForm(service);
   }, [service]);
 
@@ -104,7 +105,7 @@ export function ServicesForm({ service }: Props) {
         <div>
           <FormProvider {...formMethods}>
             <form onSubmit={handleSubmit(submit)}>
-              <DefinitionsForm service={service} />
+              <DefinitionsForm />
               <div className="form-subtitle my-6">
                 <h2>
                   <strong>
@@ -130,7 +131,6 @@ export function ServicesForm({ service }: Props) {
                   {...register("alerts")}
                   dataTestId="alerts"
                   label={i18n(`Screens.dashboard.services.inscribes_alert`)}
-                  defaultValue={service?.alerts}
                   placeholder={i18n(
                     "Screens.dashboard.services.text_alert_about_alerts_inscribes"
                   )}
@@ -191,7 +191,7 @@ export function ServicesForm({ service }: Props) {
             service={{
               ...(service as ServicesShape),
               stock: parseInt(formMethods.getValues("stock")),
-              gratuity: parseInt(formMethods.getValues("gratuity") ?? "" ),
+              gratuity: parseInt(formMethods.getValues("gratuity") ?? ""),
             }}
             stock={+formMethods.watch("stock")}
             title={i18n("Words.inscribes")}
