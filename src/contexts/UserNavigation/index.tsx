@@ -42,7 +42,7 @@ const UserNavigationProvider = ({ children, user }: UserNavigationProps) => {
   }, [queryClient, router]);
 
   useEffect(() => {
-    if (!isFetched || user) return;
+    if (!isFetched || Object.values(user ?? {}).length > 0) return;
 
     if (data) setUserAuth(data);
     else handleDisconnect();
