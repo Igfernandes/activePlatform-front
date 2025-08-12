@@ -20,8 +20,8 @@ export const UserNavigationContext = createContext(
   {} as UserNavigationContextData
 );
 
-const UserNavigationProvider = ({ children }: UserNavigationProps) => {
-  const [userAuth, setUserAuth] = useState<UsersShape>({} as UsersShape);
+const UserNavigationProvider = ({ children, user }: UserNavigationProps) => {
+  const [userAuth, setUserAuth] = useState<UsersShape>(user as UsersShape);
   const { data } = useGetUser({
     current: true,
   });

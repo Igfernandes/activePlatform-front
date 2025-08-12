@@ -15,7 +15,7 @@ export function DashboardContainer<ModalOptions>({
   user,
 }: Props) {
   return (
-    <UserNavigationProvider user={user}>
+    <UserNavigationProvider user={user ?? {} as UsersShape}>
       <ModalProvider<ModalOptions>>
         <DashboardContent title={title}>{children}</DashboardContent>
       </ModalProvider>

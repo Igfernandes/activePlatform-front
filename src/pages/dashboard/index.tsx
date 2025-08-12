@@ -8,6 +8,9 @@ import { useServicesData } from "@components/Private/Dashboard/hooks/useServices
 import { useUsersData } from "@components/Private/Dashboard/hooks/useUsersData";
 import { DashboardPageProps } from "@components/Private/Dashboard/type";
 import { DashboardContainer } from "@components/shared/layouts/Dashboard";
+import { publicRoutes } from "@configs/routes/Web/navigation";
+import { getUserAuth } from "@services/Users/GetAuth/SSR";
+import { GetServerSideProps } from "next";
 
 export default function Dashboard({ user }: DashboardPageProps) {
   const { clients, categories, clientsByDDD } = useClientsData();
@@ -41,3 +44,26 @@ export default function Dashboard({ user }: DashboardPageProps) {
     </DashboardContainer>
   );
 }
+
+// Tipagem para getServerSideProps
+export const getServerSideProps: GetServerSideProps<
+  DashboardPageProps
+> = async ({ req }) => {
+  const tokenNavigation = req.cookies["token_navigation"] ?? "";
+  const { data: user } = await getUserAuth(tokenNavigation);
+
+  if (!user) {
+    return {
+      redirect: {
+        destination: `${publicRoutes.login}`, // Redireciona para a página principal
+        permanent: true, // Define como redirecionamento temporário (status 307)
+      },
+    };
+  }
+
+  return {
+    props: {
+      user, // Passa o ID para o componente
+    },
+  };
+};
