@@ -13,7 +13,7 @@ export default function HeadSettings() {
       />
       <meta
         property="og:image"
-        content="./imgs/backgrounds/default-service.png"
+        content="https://agmturismomarica.com.br/imgs/backgrounds/default-service.png"
       />
       <meta property="og:url" content="https://agmturismomarica.com.br/" />
       <meta property="og:type" content="platform" />
