@@ -15,7 +15,7 @@ export default function PoliticsPrivacy() {
                 {i18n("Words.politics_privacy")}
               </h1>
               <p className="text-sm mt-1">
-                Associação de Turismo de Maricá - CNPJ: 44.431.497/0001-78
+                Associação de Guias de Turismo de Maricá- CNPJ: 44.431.497/0001-78
               </p>
             </div>
           </div>
@@ -38,7 +38,7 @@ export default function PoliticsPrivacy() {
                 <p className="text-sm text-justify mt-2">
                   Ao utilizar nossos serviços, você declara que leu, compreendeu
                   e concorda com os termos desta política, incluindo o uso do
-                  WhatsApp para comunicação e atendimento ao cliente.
+                  WhatsApp para comunicação e atendimento ao cliente. 
                 </p>
               </li>
 
@@ -108,6 +108,7 @@ export default function PoliticsPrivacy() {
                     "Processamento de compras e entregas;",
                     "Criação e gerenciamento de contas de usuário;",
                     "Comunicação com o usuário (e-mails, notificações, atendimento ao cliente, inclusive via WhatsApp Business);",
+                    "O contato via WhatsApp será feito apenas mediante consentimento do usuário, que poderá revogar a qualquer momento.",
                     "Envio de ofertas, promoções e conteúdos personalizados, mediante consentimento explícito do usuário (ex.: cadastro com opção de marketing);",
                     "Cumprimento de obrigações legais e regulatórias;",
                     "Prevenção à fraude, segurança e integridade da plataforma;",
@@ -292,7 +293,7 @@ export default function PoliticsPrivacy() {
                         contato@agmturismomarica.com.br
                       </Link>
                     </span>,
-                    "Endereço: Rua Vinicius Oliveira da Rocha, 079, Lagoa Amendoeiras, São José do Imbassai, 24931-315",
+                    "Endereço: Rua Vinicius Oliveira da Rocha 79, Quadra 19, Lote 5, São José do Imbassai, 24931-315",
                   ].map((li, key) => (
                     <li key={`li_${key}`} className="text-base my-3">
                       <span>{li}</span>
