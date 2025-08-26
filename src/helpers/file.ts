@@ -30,10 +30,10 @@ export function getFileName(file?: string) {
   return fileParts[fileParts.length - 1] || "";
 }
 
-export function getFileUrl(file: File | null) {
+export function getFileUrl(file: File | null, alternative?: string) {
   if (file) return URL.createObjectURL(file);
 
-  return "";
+  return alternative ?? "";
 }
 
 export function bytesToMB(bytes: number, decimalPlaces: number = 4): string {

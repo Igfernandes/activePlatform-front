@@ -34,6 +34,7 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
       setValue,
       watch,
     } = useFile();
+    const files = watch(`${name}`);
 
     useEffect(() => {
       if (value || defaultValue) {
@@ -43,12 +44,10 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
         return;
       }
 
-      const files = watch(`${name}`);
-
       if (!files) return;
 
       setCurrentValue(files[0]);
-    }, [watch(`${name}`), name, defaultValue, value]);
+    }, [files, defaultValue, value]);
 
     return (
       <>

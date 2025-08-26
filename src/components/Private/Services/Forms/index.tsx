@@ -32,6 +32,7 @@ export function ServicesForm({ service }: Props) {
   const { watch, setValue } = formMethods;
   const { handleCopy } = useNavigator();
   const { baseUrl } = useWindow();
+  const photo = watch("photo") ?? [];
 
   useEffect(() => {
     if (!service) return;
@@ -41,18 +42,13 @@ export function ServicesForm({ service }: Props) {
 
   return (
     <>
-      <When
-        value={
-          !!service?.photo ||
-          !!getFileUrl(watch("photo") ? watch("photo")[0] : null)
-        }
-      >
+      <When value={photo.length > 0 || !!service?.photo}>
         <div className="image mb-2 bg-white rounded-xl">
           <div className="">
             <Image
               src={
-                service?.photo ??
-                getFileUrl(watch("photo") ? watch("photo")[0] : null)
+                getFileUrl(photo ? photo[0] : null, service?.photo) ??
+                service?.photo
               }
               width={200}
               height={100}
