@@ -76,7 +76,7 @@ export function useFillFields({ formId, serviceId, components }: Props) {
         ),
       };
     },
-    [handleToggleModal, clientsService, fieldsData, serviceId]
+    [handleToggleModal, clientsService, serviceId]
   );
 
   const handleDeleteFillField = () => {
@@ -98,7 +98,7 @@ export function useFillFields({ formId, serviceId, components }: Props) {
       (field) => field.element === "name" || field.label?.includes("nome")
     );
 
-    if (nameColumn) {
+    if (nameColumn && !firstColumnId) {
       tHeadsFields.current[1] = i18n("Words.name");
       setFirstColumn(nameColumn.id);
     } else if (firstColumnId) {
