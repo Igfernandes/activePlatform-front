@@ -4,17 +4,14 @@ export default function HeadSettings() {
   return (
     <Head>
       <title>AGM - Associação de Guias de Turismo de Maricá</title>
-
       <meta
         name="description"
         content="A AGM é uma entidade sem fins lucrativos que reúne profissionais qualificados para promover o turismo responsável e sustentável em Maricá e região."
       />
-
       <meta
         name="keywords"
         content="AGM, Associação de Guias de Turismo de Maricá, turismo sustentável, guias de turismo, passeios em Maricá, Maricá RJ"
       />
-
       <meta
         name="author"
         content="AGM - Associação de Guias de Turismo de Maricá"
@@ -23,8 +20,8 @@ export default function HeadSettings() {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
       <meta name="robots" content="index, follow" />
-
-      <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+      <link rel="icon" href="/agm_logo.png" type="image/x-icon" />
+      <link rel="shortcut icon" href="/agm_logo.png" type="image/x-icon" />
 
       <meta
         property="og:title"
