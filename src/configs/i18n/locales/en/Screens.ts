@@ -152,4 +152,132 @@ export const Screens = {
       text_fill_information: "Fill in the integration information:",
     },
   },
+  home: {
+    contact: {
+      address_title: "Our Address",
+      address: "São José do Imbassai, Maricá - RJ",
+      phone_title: "Contact us",
+      phone: "(21) 97129-2030",
+      email_title: "Send us an email",
+      email: "contato@agmturismomarica.com.br",
+    },
+    menu: {
+      logo: "AGM logotype",
+      about_us: "About Us",
+      partners: "Our Partners",
+    },
+    status: {
+      tours: "+100 Tours",
+      guides: "+40 Guides",
+      modalities: "+6 Modalities",
+      travelers: "+1000 Travelers",
+    },
+    about: {
+      title: "A little about us",
+      subtitle: "Maricá Tourist Guides Association",
+      description_1:
+        "The Maricá Tourist Guides Association (AGM) is a non-profit entity that brings together qualified professionals committed to promoting responsible, sustainable, and high-quality tourism in Maricá and the region.",
+      description_2:
+        "Founded with the aim of valuing and strengthening the tour guide profession, AGM acts as a reference point for visitors, agencies, operators, and partners in the tourism trade, always prioritizing excellence in service, safety, and the preservation of natural, cultural, and historical heritage.",
+    },
+    events: {
+      title: "Schedule and services",
+      subtitle: "Our attractions and activities",
+      not_available: {
+        title: "No events available",
+        text: "At the moment there are no events available, but soon we will have news. Stay tuned!",
+      },
+    },
+    gallery: {
+      title: "AGM & YOU",
+      subtitle: "Our memories",
+      description:
+        "Each photo here holds a piece of our history. For AGM, it is a great joy to share unique moments with our clients and friends who participate in our tourist activities. Every smile and every experience we share reinforces our purpose: to transform tours into unforgettable memories.",
+    },
+    support_network: {
+      title: "Support network",
+      subtitle: "Institutions that strengthen our work",
+    },
+    faq: {
+      title: "Questions & Answers",
+      description: "Find the answers in our FAQ",
+      questions: [
+        {
+          question: "What are the Association’s functions?",
+          answer:
+            "AGM acts as a driving force for local tourism, promoting sustainable and high-quality tourism. We offer training, market updates, and networking opportunities for tour guides. We also work in partnership with local authorities to regulate and strengthen the profession.",
+        },
+        {
+          question: "When was the Association founded?",
+          answer: "AGM was founded on July 13, 2021.",
+        },
+        {
+          question: "Who is the president of AGM?",
+          answer:
+            "Currently, the president is Alberto Matrilhas and the vice-president is Thaís Bellotti.",
+        },
+        {
+          question: "Where is AGM’s headquarters?",
+          answer:
+            "Our headquarters, also called the Central de Passeios, is located at Rua Abreu Sodré, 43 - Centro, Maricá - RJ, 24913-775.",
+        },
+        {
+          question: "What are the service days and hours?",
+          answer:
+            "We are open every day of the week, Monday to Sunday, from 9 a.m. to 5 p.m.",
+        },
+        {
+          question: "Why become a member of AGM?",
+          answer:
+            "By becoming a member, you join a community that values the history, culture, and tourist attractions of the region. In addition to expanding knowledge and opportunities, you contribute to providing tourists with authentic and safe experiences, further strengthening tourism in Maricá.",
+        },
+        {
+          question: "Who can become a member?",
+          answer:
+            "Both individuals and legal entities can join, including tour guides, conductors, monitors, tourism professionals and companies, hotels, gastronomy establishments, printing companies, collaborators, and supporters.",
+        },
+        {
+          question: "What is AGM’s contribution to tourism in Maricá?",
+          answer:
+            "AGM actively participates in local events and initiatives, such as Caravana Celebrar Maricá, Expo Valley, Expo Maricá, Vem Viver Maricá, Vem Viver Espraiado, Recantando, Curta Itaocaia, Espraiado de Portas Abertas, Conheça Maricá, Maricá Games, FLIN, Hydrogen Congress, Career Fair, BRICS+, as well as technical visits and training sessions. Our commitment is the continuous strengthening of tourism in Maricá through partnerships and actions that value professionals and raise the quality of the sector.",
+        },
+      ],
+    },
+    newsletter: {
+      title: "Travel with us",
+      subtitle: "Be another traveler connected with us",
+      description: "Sign up to receive news and updates",
+      form: {
+        name: "Name",
+        phone: "Phone",
+        button: "Subscribe",
+      },
+    },
+    testimonials: [
+      {
+        title: "Traveler’s comment",
+        text: "I loved joining the tour in Maricá with AGM in the jeeps! It was a wonderful experience, full of beautiful landscapes and unforgettable moments.",
+        author: "Igor Fernandes",
+        info: "Resident of Maricá - RJ",
+      },
+      {
+        title: "Traveler’s comment",
+        text: "It was amazing to live this experience with AGM! The activities were very well organized, with fun and special moments from start to finish. I can’t wait to join again!",
+        author: "Joyce Pedro",
+        info: "Resident of Ouro Preto - MG",
+      },
+      {
+        title: "Traveler’s comment",
+        text: "Congratulations to AGM! Taking part in the activities was wonderful, everything was well planned and full of unique moments. I highly recommend it!",
+        author: "Jofre Martins",
+        info: "Resident of São Gonçalo - RJ",
+      },
+      {
+        title: "Traveler’s comment",
+        text: "An unforgettable experience with AGM! Every detail of the activities was carefully planned, providing fun, learning, and lots of positive energy.",
+        author: "Henrique José",
+        info: "Resident of Maricá - RJ",
+      },
+    ],
+  },
 };

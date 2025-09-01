@@ -1,17 +1,22 @@
 import { When } from "@components/utilities/When";
-import { FooterSimple } from "./Simple";
+import { FooterLogin } from "./Login";
 import { PrivacyAndCookies } from "@components/shared/layouts/PrivacyAndCookies";
+import { FooterOptions } from "./type";
+import { FooterDefault } from "./Default";
 
 export type FooterProps = {
-  type?: "SIMPLE";
+  type?: FooterOptions;
 };
 
-export function Footer({ type = "SIMPLE" }: FooterProps) {
+export function Footer({ type = "DEFAULT" }: FooterProps) {
   return (
     <footer>
       <PrivacyAndCookies />
-      <When value={type === "SIMPLE"}>
-        <FooterSimple />
+      <When value={type === "DEFAULT" || !type}>
+        <FooterDefault />
+      </When>{" "}
+      <When value={type === "LOGIN"}>
+        <FooterLogin />
       </When>
     </footer>
   );

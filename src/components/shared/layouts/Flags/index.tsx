@@ -1,8 +1,9 @@
 import { ArrowDownSimple } from "@assets/Icons/black/ArrowDownSimple";
 import { useEffect, useRef, useState } from "react";
 import { flags } from "./constants/flags";
-import { handleChangeLanguage, setLanguageToI18n } from "@configs/i18n";
 import { getCookie } from "cookies-next";
+import { useI18n } from "@contexts/I18n";
+import { TranslateOptions } from "@contexts/I18n/types";
 
 export function Flags() {
   const styleFlags = useRef<string>(
@@ -10,16 +11,16 @@ export function Flags() {
   );
   const [targetFlag, setTargetFlag] = useState<number>(0);
   const [isShowFlags, setIsShowFlags] = useState<boolean>(false);
+  const { setLocale } = useI18n();
 
   useEffect(() => {
     const language = getCookie("language");
     const flagIndexSwitched = flags.findIndex(
       (flag) => flag.language === language
     );
-    
+
     if (flagIndexSwitched === -1) return;
 
-    setLanguageToI18n(flags[flagIndexSwitched].language);
     setTargetFlag(flagIndexSwitched);
   }, []);
 
@@ -45,7 +46,7 @@ export function Flags() {
             className={styleFlags.current}
             onClick={() => {
               setTargetFlag(key);
-              handleChangeLanguage(flag.language);
+              setLocale(flag.language as TranslateOptions);
             }}
           >
             {flag.icon}

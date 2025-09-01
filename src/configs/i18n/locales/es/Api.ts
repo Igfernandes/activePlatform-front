@@ -61,6 +61,15 @@ export const Api = {
     },
   },
   clients: {
+    subscribes: {
+      success: {
+        post: "AGM le agradece su inscripción y le mantendrá informado sobre todas las novedades",
+      },
+      invalid: {
+        name: "Es obligatorio completar su nombre",
+        phone: "Es obligatorio completar su teléfono",
+      },
+    },
     categories: {
       success: {
         post: "¡Las categorías se actualizaron con éxito!",

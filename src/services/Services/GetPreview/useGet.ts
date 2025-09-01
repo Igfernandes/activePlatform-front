@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useGet from ".";
 import { GetServicePreviewRequest } from "./types";
 
-export default function useGetCharges(request: GetServicePreviewRequest) {
+export default function useGetServicesPreview(request: GetServicePreviewRequest) {
   const { getService } = useGet();
 
   async function handle() {

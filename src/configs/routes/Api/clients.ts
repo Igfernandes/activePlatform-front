@@ -6,4 +6,5 @@ export const clientsRoutes = {
   clientPreview: "/clients/preview",
   clientsDispatchers: "/clients/dispatchers",
   clientsServices: "/clients/{id}/services/{serviceId}",
+  clientsSubscribe: "/clients/subscribe",
 };

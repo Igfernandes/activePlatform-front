@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export function FooterSimple() {
+export function FooterLogin() {
   return (
     <div>
       <div className="text-center">

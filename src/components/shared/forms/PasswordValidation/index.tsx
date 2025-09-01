@@ -30,7 +30,7 @@ export function PasswordValidation({
           type={"text"}
           dataTestId={name}
           label={label}
-          handledChange={handleChangeValidationsStatus}
+          handleChange={handleChangeValidationsStatus}
           style={{
             outlineColor: ColorStatus,
             borderColor: ColorStatus,

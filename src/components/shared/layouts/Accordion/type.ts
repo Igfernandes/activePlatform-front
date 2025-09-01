@@ -5,6 +5,7 @@ export type TabHeaderProps = AccordionItemData & {
 
 export type AccordionProps = {
   children: React.ReactNode;
+  className?: string;
 };
 
 export type AccordionItemData = {

@@ -6,7 +6,6 @@ import { useFormContext } from "react-hook-form";
 import ErrorMessage from "@components/shared/others/ErrorMessage";
 import { useFieldsAnimation } from "@hooks/Forms/useFieldsAnimation";
 import { useInput } from "./hooks/useInput";
-import i18n from "@configs/i18n";
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   function Input(
@@ -21,7 +20,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       placeholder,
       defaultValue,
       required,
-      handledChange,
+      handleChange,
       ...rest
     }: InputProps,
     ref
@@ -29,7 +28,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const { labelStyledState, handleTransitionLabel, changeLabelClass } =
       useFieldsAnimation();
     const IdCurrent = id ?? dataTestId;
-    const { watch, setError, setValue } = useFormContext();
+    const { watch } = useFormContext();
     const { isUpLabel } = useInput();
     const value = watch(name); // obtém o valor atual
 
@@ -62,18 +61,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             name={name}
             onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
               if (rest.onChange) rest.onChange(ev);
-              if (handledChange) handledChange(ev);
-
-              if (rest.type?.toLowerCase() === "file") {
-                const file = ev.target.files?.[0];
-                if (file && file.size > 3 * 1024 * 1024) {
-                  setError(`${name}`, {
-                    message: i18n("Validations.file"),
-                  });
-                  setValue(`${name}`, null);
-                  ev.target.value = ""; // limpa o input
-                }
-              }
+              if (handleChange) handleChange(ev);
             }}
             defaultValue={defaultValue}
             onFocus={handleTransitionLabel}

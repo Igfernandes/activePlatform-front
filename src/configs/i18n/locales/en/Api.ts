@@ -59,6 +59,15 @@ export const Api = {
     },
   },
   clients: {
+    subscribes: {
+      success: {
+        post: "AGM thanks you for your subscription and will keep you informed about all news",
+      },
+      invalid: {
+        name: "Name is required",
+        phone: "Phone is required",
+      },
+    },
     categories: {
       success: {
         post: "Categories updated successfully!",

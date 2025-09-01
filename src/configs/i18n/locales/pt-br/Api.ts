@@ -80,6 +80,15 @@ export const Api = {
           "Desvincule as categorias aos clientes antes de excluir-las",
       },
     },
+    subscribes: {
+      success: {
+        post: "A AGM agradece a sua inscrição e manterá você informado sobre todas as novidades",
+      },
+      invalid: {
+        name: "É obrigatório preencher o seu nome",
+        phone: "É obrigatório preencher o seu telefone",
+      },
+    },
     dispatchers: {
       invalid: {
         client_id:

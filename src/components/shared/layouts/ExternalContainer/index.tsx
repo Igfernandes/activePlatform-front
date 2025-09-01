@@ -1,13 +1,15 @@
 import { Footer } from "@components/Public/Footer";
 import { PrivacyAndCookies } from "../PrivacyAndCookies";
 import { Flags } from "@components/shared/layouts/Flags";
+import { FooterOptions } from "@components/Public/Footer/type";
 
 type Props = {
   children: React.ReactNode;
   className?: string;
+  footer?: FooterOptions;
 };
 
-export function ExternalContainer({ children, className = "" }: Props) {
+export function ExternalContainer({ children, className = "", footer = "LOGIN" }: Props) {
   return (
     <main
       className={`${className} bg-[url(/imgs/backgrounds/3d-wave.png)] bg-cover bg-no-repeat min-h-[100vh] flex items-center flex-col justify-center font-poppins`}
@@ -20,7 +22,7 @@ export function ExternalContainer({ children, className = "" }: Props) {
       >
         {children}
       </div>
-      <Footer />
+      <Footer type={footer} />
       <PrivacyAndCookies />
     </main>
   );

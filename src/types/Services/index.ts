@@ -7,6 +7,7 @@ export type ServicesShape = {
   description?: string;
   alerts?: string;
   stock: number;
+  snippet?: string;
   status: "ACTIVE" | "INACTIVE";
   address?: string;
   realized_at?: string;

@@ -1,45 +1,25 @@
-import { ExternalContainer } from "@components/shared/layouts/ExternalContainer";
-import { GetServerSideProps } from "next";
-import { privateRoutes } from "@configs/routes/Web/navigation";
-import { handleRememberMe } from "../server/handleRememberMe";
-import { getCSRF } from "@services/Authentications/CSRF/SSR";
-import { LoginPageProps } from "@components/Public/Login/types";
-import { LoginContent } from "@components/Public/Login/Index";
+import { Header } from "@components/Public/Header";
+import { AboutUs } from "@components/Public/Home/AboutUs";
+import { Events } from "@components/Public/Home/Events";
+import { FAQ } from "@components/Public/Home/FAQ";
+import { Gallery } from "@components/Public/Home/Gallery";
+import { Partners } from "@components/Public/Home/Partners";
+import { Main } from "@components/Public/Home/Main";
+import { Footer } from "@components/Public/Footer";
+import { Subscribe } from "@components/Public/Home/Subscribe";
 
-export default function Home({ csrf }: LoginPageProps) {
+export default function Home() {
   return (
-    <ExternalContainer>
-      <div className="row">
-        <div className="column text-center">
-          <LoginContent csrf={csrf} />
-        </div>
-      </div>
-    </ExternalContainer>
+    <>
+      <Header />
+      <Main />
+      <AboutUs />
+      <Events />
+      <Gallery />
+      <Partners />
+      <FAQ />
+      <Subscribe />
+      <Footer type="DEFAULT" />
+    </>
   );
 }
-export const getServerSideProps: GetServerSideProps<LoginPageProps> = async ({
-  req,
-  res,
-}) => {
-  const tokenNavigation = req.cookies["token_navigation"] ?? "";
-  const csrf = await getCSRF();
-
-  if (tokenNavigation)
-    return {
-      redirect: {
-        destination: privateRoutes.dashboard,
-        permanent: false,
-      },
-    };
-
-  const referenceToken = req.cookies["remember_referenceToken"] ?? "";
-
-  if (referenceToken)
-    return handleRememberMe({ referenceToken, csrf, req, res });
-
-  return {
-    props: {
-      csrf: csrf,
-    },
-  };
-};

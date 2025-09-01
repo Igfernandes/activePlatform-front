@@ -3,12 +3,15 @@ import { useAccordionItem } from "./hooks/useAccordionItem";
 
 type Props = {
   children: React.ReactNode;
+  className?: string;
 };
 
-export function AccordionItem({ children }: Props) {
+export function AccordionItem({ children, className }: Props) {
   const { hasChildrenRequired } = useAccordionItem();
 
   hasChildrenRequired(children);
 
-  return <li className="accordion-item relative z-0">{children}</li>;
+  return (
+    <li className={`accordion-item relative z-0 ${className}`}>{children}</li>
+  );
 }
