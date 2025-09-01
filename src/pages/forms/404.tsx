@@ -65,21 +65,19 @@ export default function Form404({ service, formSlug }: Form404PageProps) {
 
 // Tipagem para getServerSideProps
 export const getServerSideProps: GetServerSideProps<Form404PageProps> = async ({
-  query
+  query,
 }) => {
-  const { slug } = (query as { slug: string }) ?? { slug: null };
-  const service = slug
+  const { form } = (query as { form: string }) ?? { form: null };
+  const service = form
     ? await getServicePreview({
-        form: [slug],
+        form: form,
       })
     : null;
-
-    console.log(query)
 
   return {
     props: {
       service, // Passa o ID para o componente
-      formSlug: slug,
+      formSlug: form ?? "",
     },
   };
 };
