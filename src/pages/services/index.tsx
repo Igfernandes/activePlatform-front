@@ -105,11 +105,11 @@ export const getServerSideProps: GetServerSideProps<
     charge: string;
     form: string;
     key: string;
-  }; // Tipando o params
+  };
   const service = await getServicePreview({
     id: +key,
     form: [form],
-    charge: [+charge],
+    charge: charge,
   });
 
   if (!service || Object.hasOwn(service, "errors")) {
