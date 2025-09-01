@@ -33,6 +33,7 @@ export const Texts = {
   send_form: "Formulário enviado",
   is_confirmation: "Está confirmado?",
   inscribe_at: "Inscrito em",
+  event_page: "Página do evento",
   text_thanks:
     "Agradecemos suas cooperação para nossas métricas e análises. Agora aguarde o retorno da nossa equipe e tenha um excelente dia!",
   first_column: "Primeira coluna",
@@ -41,6 +42,5 @@ export const Texts = {
   field_required: "O campo é obrigatório",
   thanks_message: "Mensagem de agradecimento",
   linked_forms: "Formulário vinculados",
-  new_field: "Novo campo"
-  
+  new_field: "Novo campo",
 };

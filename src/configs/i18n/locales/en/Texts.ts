@@ -34,6 +34,7 @@ export const Texts = {
   send_form: "Form submitted",
   is_confirmation: "Is it confirmed?",
   inscribe_at: "Registered at",
+  event_page: "Event page",
   text_thanks:
     "Thank you for your cooperation with our metrics and analyses. Now please wait for our team's feedback and have a great day!",
   first_column: "First column",

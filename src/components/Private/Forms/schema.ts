@@ -11,6 +11,7 @@ export const formsSchema = z.object({
   status: z.enum(["PUBLISHED", "DRAFT"]),
   service_id: z.string().nullable().optional(),
   color_mark: z.string(),
+  stock: z.string(),
   template: z
     .string({ required_error: i18n("Validations.required") })
     .nullable()

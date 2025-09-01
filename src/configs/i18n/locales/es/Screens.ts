@@ -29,6 +29,10 @@ export const Screens = {
     },
   },
   forms: {
+    not_found:
+      "Formulario no disponible. Por favor, contacte con la central al número",
+    not_stock:
+      "No hay cupos disponibles para esta actividad. Visite la página del evento para ver otras actividades disponibles para inscripción",
     successful: {
       form_received: "¡AGM ha recibido su formulario con éxito!",
       form_message:

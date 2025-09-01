@@ -32,6 +32,10 @@ export const Screens = {
     selected_form: "Selecione um formulário",
   },
   forms: {
+    not_found:
+      "Formulário indisponível. Entre em contato com a central pelo número",
+    not_stock:
+      "Não há vagas para essa atividade. Acesse a página do evento e veja outras atividades disponíveis para inscrição",
     successful: {
       form_received: "A AGM recebeu seu Formulário com Sucesso!",
       form_message:

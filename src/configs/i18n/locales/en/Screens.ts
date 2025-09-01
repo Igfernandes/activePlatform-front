@@ -28,8 +28,13 @@ export const Screens = {
     },
   },
   forms: {
+    not_found:
+      "Form unavailable. Please contact the central office at the number",
+    not_stock:
+      "No slots available for this activity. Visit the event page to see other activities available for registration",
     successful: {
-      form_received: "AGM has successfully received your form!",
+      form_received:
+        "Form unavailable. Please contact the central office at the number",
       form_message:
         "Your response is very important to help us understand and improve continuously.",
     },

@@ -72,6 +72,14 @@ export function Definitions({ handleChangeFormFields, slug }: Props) {
           </span>
         </When>
       </div>
+      <div className="form-group w-full">
+        <Input
+          {...register("stock")}
+          label={i18n(`Words.vacancies_total`)}
+          dataTestId="form_stock"
+          errors={errors.stock}
+        />
+      </div>
       <div className="my-4">
         <Select
           {...register("service_id")}

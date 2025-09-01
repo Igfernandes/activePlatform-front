@@ -32,6 +32,7 @@ export const Texts = {
   see_more: "Ver más",
   send_form: "Formulario enviado",
   is_confirmation: "¿Está confirmado?",
+  event_page: "Página del evento",
   inscribe_at: "Inscrito en",
   text_thanks:
     "Agradecemos su cooperación para nuestras métricas y análisis. Ahora espere la respuesta de nuestro equipo y que tenga un excelente día.",

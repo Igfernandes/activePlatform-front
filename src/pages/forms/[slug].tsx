@@ -67,7 +67,7 @@ export const getServerSideProps: GetServerSideProps<FormPageProps> = async ({
   if (!form || isErrorRequest(form)) {
     return {
       redirect: {
-        destination: `/404`, // Redireciona para a página principal
+        destination: `/forms/404?slug=${slug}`, // Redireciona para a página principal
         permanent: false, // Define como redirecionamento temporário (status 307)
       },
     };

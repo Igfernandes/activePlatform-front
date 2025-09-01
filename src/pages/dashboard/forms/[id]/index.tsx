@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps<FormsPageProps> = async ({
   req,
 }) => {
   const tokenNavigation = req.cookies["token_navigation"] ?? "";
-  const { id } = params as { id: string }; // Tipando o params
+  const { id } = params as { id: string } ?? {}; // Tipando o params
   const services = await getForms(tokenNavigation, { id: parseInt(id) });
   const currentForm = Array.isArray(services) ? services[0] : services;
 
