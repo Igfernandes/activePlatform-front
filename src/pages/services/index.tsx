@@ -106,12 +106,16 @@ export const getServerSideProps: GetServerSideProps<
     form: string;
     key: string;
   };
-  const service = await getServicePreview({
-    id: +key,
-    form: [form],
-    charge: charge,
-  });
 
+  const payload = {
+    id: key ? +key : undefined,
+    form: form,
+    charge: charge,
+  };
+
+  const service = await getServicePreview(payload);
+
+  console.log(service)
   if (!service || Object.hasOwn(service, "errors")) {
     return {
       redirect: {
