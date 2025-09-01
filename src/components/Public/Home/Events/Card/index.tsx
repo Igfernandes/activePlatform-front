@@ -112,7 +112,7 @@ export function Card({
         </div>
       </div>
       <div className="px-3 mt-5">
-        <When value={dayjs(realized_at).isAfter(today)}>
+        <When value={dayjs(realized_at).isAfter(today) && !!stock}>
           <Link
             href={`/services/?key=${id}`}
             className={`block  bg-red text-white p-2 text-center rounded-md`}
