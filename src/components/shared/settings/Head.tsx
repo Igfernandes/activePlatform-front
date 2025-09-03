@@ -35,7 +35,7 @@ export default function HeadSettings() {
       <meta property="og:url" content="https://agmturismomarica.com.br" />
       <meta
         property="og:image"
-        content="https://agmturismomarica.com.br/assets/agm_logo.png"
+        content="https://agmturismomarica.com.br/agm_logo.png"
       />
       <meta
         property="og:site_name"
@@ -53,7 +53,7 @@ export default function HeadSettings() {
       />
       <meta
         name="twitter:image"
-        content="https://agmturismomarica.com.br/assets/agm_logo.png"
+        content="https://agmturismomarica.com.br/agm_logo.png"
       />
       <meta name="twitter:site" content="@AGMMarica" />
 
@@ -67,7 +67,7 @@ export default function HeadSettings() {
       />
       <meta
         itemProp="image"
-        content="https://agmturismomarica.com.br/assets/agm_logo.png"
+        content="https://agmturismomarica.com.br/agm_logo.png"
       />
     </Head>
   );
