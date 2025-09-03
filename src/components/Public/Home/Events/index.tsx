@@ -85,13 +85,15 @@ export function Events() {
                 </SwiperSlide>
               ))}
             </When>
-            <Card
-              id={0}
-              name={t("Screens.home.events.not_available.title")}
-              photo=""
-              stock={0}
-              snippet={t("Screens.home.events.not_available.text")}
-            />
+            <When value={services.length == 0}>
+              <Card
+                id={0}
+                name={t("Screens.home.events.not_available.title")}
+                photo=""
+                stock={0}
+                snippet={t("Screens.home.events.not_available.text")}
+              />
+            </When>
           </Swiper>
         </div>
       </div>

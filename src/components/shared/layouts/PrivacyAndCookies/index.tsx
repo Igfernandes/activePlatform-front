@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function PrivacyAndCookies() {
   return (
-    <div className="fixed left-0 bottom-10">
+    <div className="fixed left-0 bottom-10 z-[9999]">
       <div className="cursor-pointer ml-[-11rem] hover:ml-[0vw] transition-all duration-500 flex items-center bg-red shadow-lg rounded-l-md border-2 border-red py-1 px-2">
         <div>
           <span className="text-white">

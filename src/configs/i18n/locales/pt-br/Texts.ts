@@ -34,6 +34,8 @@ export const Texts = {
   is_confirmation: "Está confirmado?",
   inscribe_at: "Inscrito em",
   event_page: "Página do evento",
+  brief_description: "Breve descrição",
+  max_length_40: "O máximo são 40 caracteres",
   text_thanks:
     "Agradecemos suas cooperação para nossas métricas e análises. Agora aguarde o retorno da nossa equipe e tenha um excelente dia!",
   first_column: "Primeira coluna",

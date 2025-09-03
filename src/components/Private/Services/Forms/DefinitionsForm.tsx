@@ -75,6 +75,18 @@ export function DefinitionsForm() {
           errors={errors.gratuity}
         />
       </div>
+      <div className="mt-6">
+        <Input
+          {...register("snippet")}
+          type={"text"}
+          dataTestId="snippet"
+          min={0}
+          maxLength={40}
+          label={i18n(`Texts.brief_description`)}
+          errors={errors.snippet}
+        />
+        <span className="text-xs text-red">{i18n("Texts.max_length_40")}</span>
+      </div>
       <div className="form-row mt-6">
         <TextEdit
           {...register("description")}

@@ -10,14 +10,16 @@ export type FooterProps = {
 
 export function Footer({ type = "DEFAULT" }: FooterProps) {
   return (
-    <footer>
+    <>
+      <footer>
+        <When value={type === "DEFAULT" || !type}>
+          <FooterDefault />
+        </When>{" "}
+        <When value={type === "LOGIN"}>
+          <FooterLogin />
+        </When>
+      </footer>
       <PrivacyAndCookies />
-      <When value={type === "DEFAULT" || !type}>
-        <FooterDefault />
-      </When>{" "}
-      <When value={type === "LOGIN"}>
-        <FooterLogin />
-      </When>
-    </footer>
+    </>
   );
 }

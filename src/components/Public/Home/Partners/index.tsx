@@ -32,13 +32,15 @@ export function Partners() {
                     />
                   </div>
                   <div className="bg-slate-50 min-h-20">
-                    <div className="agm absolute w-16 left-16 md:left-24 bottom-[60] bg-white p-2 shadow-sm rounded-md">
-                      <Image
-                        src={"/imgs/selo.png"}
-                        width={400}
-                        height={400}
-                        alt="selo AGM"
-                      />
+                    <div className="agm absolute w-full left-0 bottom-[20rem]">
+                      <div className="w-16 mx-auto bg-white p-2 shadow-sm rounded-md">
+                        <Image
+                          src={"/imgs/selo.png"}
+                          width={400}
+                          height={400}
+                          alt="selo AGM"
+                        />
+                      </div>
                     </div>
                     <div className="social-media  text-red font-semibold text-center pt-6 pb-2 ">
                       <h3>{name}</h3>

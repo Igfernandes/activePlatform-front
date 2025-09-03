@@ -9,6 +9,7 @@ export const ServicesModalSchema = z
     description: descriptionSchema,
     alerts: descriptionSchema,
     stock: z.string(),
+    snippet: z.string(),
     expired_at: z.string().optional().nullable(),
     realized_at: z.string().optional().nullable(),
     address: z.string().optional().nullable(),
