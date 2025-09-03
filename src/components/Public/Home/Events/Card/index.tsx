@@ -32,7 +32,6 @@ export function Card({
   snippet,
 }: Props) {
   const { handleIsAvailableDate } = useCard();
-  const today = dayjs().startOf("day");
 
   return (
     <div className="bg-white w-[95%] md:w-full mx-auto min-h-[400px] max-h-[400px] max-w-[300px] flex flex-col justify-between rounded-lg border-2 border-white shadow-sm shadow-white pb-3">
@@ -112,7 +111,7 @@ export function Card({
         </div>
       </div>
       <div className="px-3 mt-5">
-        <When value={dayjs(realized_at).isAfter(today) && !!stock}>
+        <When value={handleIsAvailableDate(realized_at, expired_at) && !!stock}>
           <Link
             href={`/services/?key=${id}`}
             className={`block  bg-red text-white p-2 text-center rounded-md`}
@@ -120,7 +119,7 @@ export function Card({
             <span>{"Inscrever-se"}</span>
           </Link>
         </When>
-        <When value={!dayjs(realized_at).isAfter(today)}>
+        <When value={!handleIsAvailableDate(realized_at, expired_at) || !stock}>
           <p
             className={`block bg-disabled text-white p-2 text-center rounded-md`}
           >
