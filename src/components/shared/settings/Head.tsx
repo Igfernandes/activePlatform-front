@@ -16,7 +16,10 @@ export default function HeadSettings() {
         name="author"
         content="AGM - Associação de Guias de Turismo de Maricá"
       />
-
+      <meta
+        name="facebook-domain-verification"
+        content="q1za1zyxwbb5m0x251xukl6vypyslb"
+      />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
       <meta name="robots" content="index, follow" />
