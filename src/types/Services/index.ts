@@ -13,6 +13,7 @@ export type ServicesShape = {
   realized_at?: string;
   gratuity?: number;
   inscribes?: Array<InscribeData>;
+  confirmation_expired_time?: number;
   expired_at?: string;
   created_at: string;
   updated_at: string;

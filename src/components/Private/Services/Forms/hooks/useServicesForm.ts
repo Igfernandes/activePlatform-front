@@ -34,6 +34,9 @@ export function useServicesForm({ service }: Props) {
       realized_at: formData.realized_at ?? "",
       expired_at: formData.expired_at ?? "",
       description: formData.description ?? "",
+      confirmation_expired_time: formData.confirmation_expired_time
+        ? +formData.confirmation_expired_time
+        : undefined,
     };
 
     if (!service) {
