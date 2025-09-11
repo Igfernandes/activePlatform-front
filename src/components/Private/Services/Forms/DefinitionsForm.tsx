@@ -82,7 +82,6 @@ export function DefinitionsForm() {
             type={"number"}
             dataTestId="confirmation_expired_time"
             min={0}
-            max={800}
             label={i18n(`Texts.confirm_expired_time`)}
             errors={errors.confirmation_expired_time}
           />

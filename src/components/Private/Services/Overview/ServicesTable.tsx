@@ -38,8 +38,8 @@ export function ServicesTable({ search, filterObjects }: ServicesProps) {
       </div>
       <Notice
         headerTitle={i18n("Words.attention")}
-        title={i18n("services.modal.title_already_exclude")}
-        text={i18n("services.modal.text_already_exclude")}
+        title={i18n("Screens.services.modal.title_already_exclude")}
+        text={i18n("Screens.services.modal.text_already_exclude")}
         onSubmit={handleDeleteService}
         isShowModal={modal.type === "DELETE"}
         onModal={handleToggleModal}

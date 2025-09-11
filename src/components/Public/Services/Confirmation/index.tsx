@@ -28,11 +28,10 @@ export function ConfirmationContent({ service }: Props) {
             <strong>{i18n("Words.activity")}:</strong> {service.name}
           </li>
           <li className="my-2">
-            <strong>{i18n("Words.date")}:</strong>{" "}
+            <strong>{i18n("Words.date")}:</strong>
             {dayjs(service.realized_at).format(i18n("Configs.format.datetime"))}
             <When value={!!service.expired_at}>
-              {" "}
-              até{" "}
+              até
               {dayjs(service.expired_at).format(
                 i18n("Configs.format.datetime")
               )}

@@ -1,4 +1,5 @@
 import i18n from "@configs/i18n";
+import { decodeHtmlToWhatsApp } from "@helpers/html";
 import { ServicesShape } from "@type/Services";
 import dayjs from "dayjs";
 
@@ -20,7 +21,7 @@ Confirme a sua inscrição no link: ${link}
 
 ${
   service.alerts
-    ? `*Instruções:* \n ${service.alerts.replace(/<[^>]*>/g, "")}`
+    ? `*Instruções:* \n ${decodeHtmlToWhatsApp(service.alerts)}`
     : ""
 }
 

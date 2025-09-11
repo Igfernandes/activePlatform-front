@@ -30,6 +30,11 @@ export const Screens = {
       expired:
         "O convite encontra-se expirado ou inválido. Entre em contato com a AGM para mais detalhes.",
     },
+    modal: {
+      title_already_exclude: "Você tem certeza que deseja excluir?",
+      text_already_exclude:
+        "Ao confirmar, o serviço será excluído junto com todas as suas inscrições e demais registros relacionados.",
+    },
     switch_event: "Escolha um evento",
     selected_form: "Selecione um formulário",
   },
