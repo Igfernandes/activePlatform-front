@@ -24,9 +24,11 @@ export const Screens = {
   services: {
     confirmation: {
       title: "Confirmação de Presença",
-      text: "Ao clicar no botão abaixo, você estará confirmando a sua presença no evento",
+      text: "Ao clicar no botão abaixo, você estará confirmando oficialmente a sua presença e garantindo a sua reserva no evento. Você confirma sua presença?",
       invalid_url:
         "A página encontra-se com recursos desatualizados ou inválidos. Copie o link completo e tente novamente, ou entre em contato com o central",
+      expired:
+        "O convite encontra-se expirado ou inválido. Entre em contato com a AGM para mais detalhes.",
     },
     switch_event: "Escolha um evento",
     selected_form: "Selecione um formulário",

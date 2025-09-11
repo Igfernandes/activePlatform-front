@@ -10,7 +10,7 @@ export function useServiceConfirmation() {
   const { dispatchSnackbar } = useSnackbar();
   const router = useRouter();
 
-  const handleConfirmInscribe = () => {
+  const handleConfirmInscribe = (isConfirmation: boolean) => {
     const serviceId = searchParams.get("key");
     const clientId = searchParams.get("client");
 
@@ -22,6 +22,7 @@ export function useServiceConfirmation() {
     patchServiceIsConfirm({
       service_id: +serviceId,
       client_id: +clientId,
+      is_confirm: isConfirmation,
     }).then(() => router.push("/services/successful"));
   };
   return {

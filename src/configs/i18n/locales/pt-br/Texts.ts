@@ -36,6 +36,7 @@ export const Texts = {
   event_page: "Página do evento",
   brief_description: "Breve descrição",
   max_length_40: "O máximo são 40 caracteres",
+  confirm_expired_time: "Validade das confirmações (Minutos)",
   text_thanks:
     "Agradecemos suas cooperação para nossas métricas e análises. Agora aguarde o retorno da nossa equipe e tenha um excelente dia!",
   first_column: "Primeira coluna",
