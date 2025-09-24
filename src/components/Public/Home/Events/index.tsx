@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 import { ServicesShape } from "@type/Services";
 import { useEffect, useState } from "react";
-import useGetServicesPreview from "@services/Services/GetPreview/useGet";
+// import useGetServicesPreview from "@services/Services/GetPreview/useGet";
 import { Card } from "./Card";
 
 import { Autoplay, Navigation } from "swiper/modules";
@@ -12,15 +12,13 @@ import { When } from "@components/utilities/When";
 import { useI18n } from "@contexts/I18n";
 
 export function Events() {
-  const { data } = useGetServicesPreview({});
+  // const { data } = useGetServicesPreview({});
   const [services, SetServices] = useState<Array<ServicesShape>>([]);
   const { t } = useI18n();
 
   useEffect(() => {
-    if (!data) return;
-
-    SetServices(data as Array<ServicesShape>);
-  }, [data]);
+    SetServices([] as Array<ServicesShape>);
+  }, []);
 
   return (
     <section id={"events"} className="relative pt-10 mt-16 pb-10 ">
