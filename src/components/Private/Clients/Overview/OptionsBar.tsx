@@ -41,6 +41,16 @@ export function OptionsBar({ handleSearch }: Props) {
             />
           </AccessControl>
         </div>
+        <div>
+          <AccessControl targetPermissions={[PERMISSIONS.clients.create]}>
+            <Button
+              className="border border-zinc-300 px-3 font-bold rounded-xl"
+              text={i18n("Words.import_clients")}
+              type="button"
+              onClick={() => handleToggleModal("IMPORT")}
+            ></Button>
+          </AccessControl>
+        </div>
       </div>
     </div>
   );

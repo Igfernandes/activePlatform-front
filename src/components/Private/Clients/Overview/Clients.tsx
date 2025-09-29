@@ -12,6 +12,7 @@ import { ClientCategoriesModal } from "./Modals/ClientCategories";
 import { Shared } from "@components/shared/others/Shared";
 import { PERMISSIONS } from "@constants/permissions";
 import { useUserNavigationContext } from "@contexts/UserNavigation";
+import { ImportModal } from "./Modals/Import";
 export function Clients({ search, filterObjects }: ClientsStructProps) {
   const {
     tDataClients,
@@ -117,6 +118,10 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
           onModal={handleToggleModal}
           title={i18n("Words.new_client")}
           categories={categories ?? []}
+        />
+        <ImportModal
+          isShowModal={modal.type === "IMPORT"}
+          onModal={handleToggleModal}
         />
       </div>
     </>

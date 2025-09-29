@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
       },
       {
         hostname: "api.agmturismomarica.com.br/**",
+      },{
+        hostname: "192.168.1.2"
       }
     ],
   },

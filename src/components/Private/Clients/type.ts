@@ -28,6 +28,7 @@ export type ModalClientsOperationType =
   | "DELETE"
   | "SHARED"
   | "CHANGE_CATEGORY"
+  | "IMPORT"
   | boolean;
 
 export type ClientPageProps = {

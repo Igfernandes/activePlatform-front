@@ -11,6 +11,7 @@ export const Words = {
   name: "Nome",
   more: "Mais",
   main: "Principal",
+  import_clients: "Importar Clientes",
   view_client: "Visualizar Cliente",
   time: "Hora",
   my_users: "Meus usuários",

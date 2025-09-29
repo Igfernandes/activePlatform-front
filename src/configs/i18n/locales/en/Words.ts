@@ -15,6 +15,7 @@ export const Words = {
   go_out: "Logout",
   more: "More",
   schedule: "Schedule",
+  import_clients: "Import clients",
   services: "Services",
   finance: "Finance",
   system: "System",

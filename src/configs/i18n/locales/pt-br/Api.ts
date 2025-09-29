@@ -132,6 +132,7 @@ export const Api = {
       },
     },
     success: {
+      imports: "Os clientes foram importados com sucesso",
       post: "O cliente foi criado com sucesso!",
       put: "O cliente foi atualizado com sucesso!",
       delete: "O cliente foi excluído com sucesso!",

@@ -26,6 +26,7 @@ export const Texts = {
   service_image: "Imagem do serviço",
   text_upload: "Clique para adicionar uma imagem",
   allowed_formats_image: "Formatos aceitos: PDF, PNG e JPEG",
+  allowed_formats_excel: "Formatos aceitos: Excel",
   allowed_size_image: "Tamanho máximo aceito: 5MB",
   feedback_auth: "Operação Não Autorizada",
   not_stocks: "Não há mais vagas disponíveis",
