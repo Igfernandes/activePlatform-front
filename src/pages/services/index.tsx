@@ -115,7 +115,6 @@ export const getServerSideProps: GetServerSideProps<
 
   const service = await getServicePreview(payload);
 
-  console.log(service)
   if (!service || Object.hasOwn(service, "errors")) {
     return {
       redirect: {

@@ -10,7 +10,8 @@ export function useImportModal({ onModal }: ImportModalsProps) {
     schema: ImportSchema,
   });
   const { watch } = formMethods;
-  const { mutateAsync: postImport } = usePostImportClient();
+  const { mutateAsync: postImport, isPending: isLoading } =
+    usePostImportClient();
 
   const [fileName, setFileName] = useState<string>(""); // estado para armazenar o nome
   const fileList = watch("excel"); // retorna o File | undefined
@@ -34,5 +35,6 @@ export function useImportModal({ onModal }: ImportModalsProps) {
     handleSubmit,
     onSubmit,
     fileName,
+    isLoading,
   };
 }

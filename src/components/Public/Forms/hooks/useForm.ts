@@ -14,8 +14,9 @@ export function useForm({ form, csrf }: Props) {
   const { mutateAsync: postSubmitForm, isPending: isLoading } =
     usePostSubmitForm({ slug: form.slug });
   const [components, setComponents] = useState<Array<FieldShape>>(
-    JSON.parse(form.components)
+    JSON.parse(form.components ?? "[]")
   );
+  console.log(form)
   const { fields, handleChange} = useFormDynamicFields()
 
   const handleValidFields = useCallback((form: HTMLFormElement) => {

@@ -59,7 +59,7 @@ export function useClients({
         id: <Selector label={clientId} value={clientId} />,
         name,
         status: i18n(`Words.${status.toLocaleLowerCase()}`) as "ACTIVE" | "INACTIVE",
-        phone: getNumberFormatted(phone.replace("55", "")),
+        phone: getNumberFormatted(phone),
         category: categories
           .map((category: UserCategoryData) => category.name)
           .join(", "),

@@ -36,7 +36,7 @@ export default function Form({ form, csrf }: FormPageProps) {
             >
               <FormBuilderPreview
                 handleValue={handleChange}
-                fields={components}
+                fields={components ?? "{}"}
               />
               <div className="flex justify-end items-center">
                 <div className="mt-4 ml-4 mb-6">

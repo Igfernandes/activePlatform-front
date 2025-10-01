@@ -12,6 +12,7 @@ export const formsSchema = z.object({
   service_id: z.string().nullable().optional(),
   color_mark: z.string(),
   stock: z.string(),
+  category: z.string(),
   template: z
     .string({ required_error: i18n("Validations.required") })
     .nullable()

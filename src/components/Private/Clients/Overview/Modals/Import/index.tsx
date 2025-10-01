@@ -6,10 +6,11 @@ import { ImportModalsProps } from "./type";
 import { useImportModal } from "./hook/useImportModal";
 
 export function ImportModal({ onModal, isShowModal }: ImportModalsProps) {
-  const { register, handleSubmit, onSubmit, fileName } = useImportModal({
-    onModal,
-    isShowModal,
-  });
+  const { register, handleSubmit, onSubmit, fileName, isLoading } =
+    useImportModal({
+      onModal,
+      isShowModal,
+    });
 
   return (
     <Modal title={"Upload"} isShowModal={isShowModal} handleModal={onModal}>
@@ -58,6 +59,7 @@ export function ImportModal({ onModal, isShowModal }: ImportModalsProps) {
           <div className="w-[47%]">
             <Button
               type="submit"
+              isLoading={isLoading}
               text={i18n(`Words.save`)}
               className="bg-red  text-white font-semibold disabled:bg-disable"
             />

@@ -31,6 +31,9 @@ export const ClientSchema = z.object({
       message: i18n("Validations.email"),
     }),
   phone: z.string({ required_error: i18n("Validations.required") }),
+  cpf: z
+    .string({ required_error: i18n("Validations.required") })
+    .nonempty(i18n("Validations.required")),
 });
 
 export type ClientUpdatePayload = z.infer<typeof ClientSchema>;

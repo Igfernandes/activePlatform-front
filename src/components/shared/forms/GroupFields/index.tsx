@@ -22,6 +22,7 @@ export function GroupFields<Payload extends FieldValues>({
     register,
   } = useGroupFields<Payload>({ data, name });
 
+  console.log(items)
   return (
     <div>
       <div className="btn-add mb-4">

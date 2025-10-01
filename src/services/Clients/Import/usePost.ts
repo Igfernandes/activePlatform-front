@@ -25,8 +25,14 @@ export default function usePostImportClient() {
         message: i18n(success),
         type: "success",
       });
+
       queryClient.invalidateQueries({
-        queryKey: ["clients"],
+        queryKey: ["clients" , {}],
+        refetchType: "active",
+      });
+
+       queryClient.invalidateQueries({
+        queryKey: ["categories", {}],
         refetchType: "active",
       });
     },

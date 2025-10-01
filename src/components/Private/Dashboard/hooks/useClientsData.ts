@@ -6,8 +6,9 @@ import { getOnlyNumbers } from "@helpers/numbers";
 export function useClientsData() {
   const { data: clients } = useGetClients();
   const [categories, setCategories] = useState<Array<CategoryStaticData>>([]);
-  const [clientsByDDD, setClientsByDDD] =
-    useState<Array<ClientsByDDDStaticData>>([]);
+  const [clientsByDDD, setClientsByDDD] = useState<
+    Array<ClientsByDDDStaticData>
+  >([]);
 
   useEffect(() => {
     if (!clients) return;
@@ -15,8 +16,10 @@ export function useClientsData() {
     const clientsByDDD: Array<ClientsByDDDStaticData> = [];
 
     clients.forEach((client) => {
+      if (!client.phone) return;
+
       const phoneDDD = parseInt(
-        getOnlyNumbers(client.phone).slice(2, 4)
+        getOnlyNumbers(client.phone).slice(0, 2)
       ) as number;
       clientsByDDD[phoneDDD] = {
         ddd: String(phoneDDD),

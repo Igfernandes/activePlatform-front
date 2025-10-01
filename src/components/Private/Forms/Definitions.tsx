@@ -11,13 +11,14 @@ import { ServicesShape } from "@type/Services";
 import { Datetime } from "@components/shared/forms/DateTime";
 import { TopBar } from "./TopBar";
 import { TextEdit } from "@components/shared/forms/TextEdit";
+import { ClientCategoriesShape } from "@type/Clients/ClientCategories";
 
 type Props = Pick<ComponentsProps, "handleChangeFormFields"> & {
   slug?: string;
 };
 
 export function Definitions({ handleChangeFormFields, slug }: Props) {
-  const { forms, services } = useFormsData();
+  const { forms, services, categories } = useFormsData();
   const {
     register,
     getValues,
@@ -113,6 +114,28 @@ export function Definitions({ handleChangeFormFields, slug }: Props) {
             dataTestId="expired_at"
           />
         </div>
+      </div>
+      <div className="form-group my-6">
+        <Select
+          {...register("category")}
+          label={i18n("Words.category")}
+          dataTestId="category"
+          options={[
+            {
+              text: "--",
+              value: "",
+            },
+            ...(categories ?? [])?.map((category: ClientCategoriesShape) => ({
+              text: category.name,
+              value: category.id,
+              selected: getValues("category") === String(category.id),
+            })),
+          ]}
+        />
+        <span  className="text-red text-sm">
+          <strong>AVISO:</strong> A categoria acima selecionada será atrelada aos clientes gerados por
+          esse formulário.
+        </span>
       </div>
       <div className="form-group">
         <TextArea

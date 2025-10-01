@@ -31,7 +31,8 @@ export const ClientCreateSchema = z.object({
       message: i18n("Validations.email"),
     }),
   hasContinueRegister: z.boolean(),
-  phone: z
+  phone: z.string({ required_error: i18n("Validations.required") }).optional(),
+  cpf: z
     .string({ required_error: i18n("Validations.required") })
     .nonempty(i18n("Validations.required")),
 });

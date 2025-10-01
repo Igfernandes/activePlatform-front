@@ -51,15 +51,15 @@ export function useGroupFields<Payload extends FieldValues>({
     setValue(name as Path<Payload>, items as PathValue<Payload, Path<Payload>>);
   };
 
-  const handleUpdateItems = (name: Path<Payload>) => {
+  const handleUpdateItems = () => {
     const itemsValue = getValues(name);
 
-    setItems(
-      items.map((item) => ({
+    setItems((items) => {
+      return items.map((item, key) => ({
         ...item,
-        value: itemsValue[item.id],
-      })) as PathValue<Payload, Path<Payload>>
-    );
+        value: itemsValue[key]?.value ?? "",
+      })) as PathValue<Payload, Path<Payload>>;
+    });
   };
 
   const handleAddingItem = () => {
@@ -77,11 +77,12 @@ export function useGroupFields<Payload extends FieldValues>({
   ) => {
     if (action === "DELETE") {
       const itemsFiltered = items.filter((item) => item.id != id);
+
       handleUpdateValues(itemsFiltered);
       return setItems(itemsFiltered);
     }
 
-    handleUpdateItems(name);
+    handleUpdateItems();
     setTargetItem(id !== targetItem ? id : -1);
   };
 
@@ -108,6 +109,8 @@ export function useGroupFields<Payload extends FieldValues>({
     setItems(initialItems);
     setValue(name, initialItems as PathValue<Payload, Path<Payload>>);
   }, []);
+
+  console.log("values", getValues(name));
   return {
     handleDragEnd,
     items,

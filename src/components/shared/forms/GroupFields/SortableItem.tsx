@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { Close } from "@assets/Icons/black/CloseClean";
 import { When } from "@components/utilities/When";
 import { Pencil } from "@assets/Icons/black/Pencil";
+import { Settings } from "@assets/Icons/black/Settings";
 
 export function SortableItem<Payload extends FieldValues>({
   id,
@@ -57,13 +58,13 @@ export function SortableItem<Payload extends FieldValues>({
       </div>
       <div className="mx-2 flex">
         <When value={isTargetElement}>
-          <Close
+          <Pencil
             className="w-5 cursor-pointer"
             onClick={() => onChange(id, "EDIT")}
           />
         </When>
         <When value={!isTargetElement}>
-          <Pencil
+          <Settings
             className="w-5 cursor-pointer"
             onClick={() => onChange(id, "EDIT")}
           />

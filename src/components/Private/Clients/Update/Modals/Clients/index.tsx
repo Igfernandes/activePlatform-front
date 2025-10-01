@@ -4,7 +4,7 @@ import { Modal } from "../../../../../shared/layouts/Modal";
 import { FormProvider } from "react-hook-form";
 import { Button } from "@components/shared/layouts/Button";
 import { handleMaskDate } from "@helpers/date";
-import { getNumberFormatted, handleMaskPhone } from "@helpers/string";
+import { getCPFFormatted, getNumberFormatted, handleMaskCPF, handleMaskPhone } from "@helpers/string";
 import { ModalFormProps } from "./type";
 import { useClientModal } from "./hooks/useClientModal";
 import dayjs from "dayjs";
@@ -90,6 +90,20 @@ export function ClientUpdateModal({
               </div>
               <div className="form-group my-4">
                 <Input
+                  {...register("cpf")}
+                  label={i18n("Words.cpf")}
+                  dataTestId="cpf"
+                  defaultValue={getCPFFormatted(client.cpf)}
+                  onChange={(ev) => {
+                    handleMaskCPF(ev);
+                    setValue("cpf", ev.currentTarget.value);
+                  }}
+                  required={true}
+                  errors={errors.cpf}
+                />
+              </div>
+              <div className="form-group my-4">
+                <Input
                   {...register("birthdate")}
                   label={i18n("Words.birthdate")}
                   dataTestId="birthdate"
@@ -120,7 +134,7 @@ export function ClientUpdateModal({
                   {...register("phone")}
                   label={i18n("Words.phone")}
                   dataTestId="phone"
-                  defaultValue={getNumberFormatted(client.phone)}
+                  defaultValue={getNumberFormatted(client?.phone ?? "")}
                   onChange={(ev) => {
                     handleMaskPhone(ev);
                     setValue("phone", ev.currentTarget.value);

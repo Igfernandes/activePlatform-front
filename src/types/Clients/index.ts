@@ -2,7 +2,8 @@ export type ClientShape = {
   id: number;
   name: string;
   avatar?: string;
-  phone: string;
+  phone?: string;
+  cpf: string;
   status: "ACTIVE" | "INACTIVE";
   email?: string;
   categories: UserCategoryData[];

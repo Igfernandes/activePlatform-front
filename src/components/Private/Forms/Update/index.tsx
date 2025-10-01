@@ -29,6 +29,7 @@ export function FillFieldsUpdate({ targetForm }: Props) {
       expired_at: targetForm.expired_at,
       template: String(targetForm.id),
       stock: String(targetForm.stock),
+      category: String(targetForm?.category?.id),
       color_mark: String(targetForm?.color_mark),
       thanks_message: targetForm?.thanks_message,
       service_id: targetForm.service_id

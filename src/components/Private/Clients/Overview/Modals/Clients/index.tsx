@@ -7,7 +7,7 @@ import { FormProvider } from "react-hook-form";
 import { Button } from "@components/shared/layouts/Button";
 import { Checkbox } from "@components/shared/layouts/Checkbox";
 import { handleMaskDate } from "@helpers/date";
-import { handleMaskPhone } from "@helpers/string";
+import { handleMaskCPF, handleMaskPhone } from "@helpers/string";
 import { SelectSearch } from "@components/shared/forms/SelectSearch";
 
 export function ClientCreateModal({
@@ -53,7 +53,9 @@ export function ClientCreateModal({
             <div className="form-title mt-4 md:mt-6 mb-2 md:mb-4">
               <h4 className="text-sm md:text-lg">
                 <strong>
-                  {i18n("Screens.dashboard.clients.client.text_fill_information")}
+                  {i18n(
+                    "Screens.dashboard.clients.client.text_fill_information"
+                  )}
                 </strong>
               </h4>
             </div>
@@ -70,6 +72,19 @@ export function ClientCreateModal({
                   dataTestId="name"
                   required={true}
                   errors={errors.name}
+                />
+              </div>
+              <div className="form-group my-4">
+                <Input
+                  {...register("cpf")}
+                  label={i18n("Words.cpf")}
+                  dataTestId="cpf"
+                  onChange={(ev) => {
+                    handleMaskCPF(ev);
+                    setValue("cpf", ev.currentTarget.value);
+                  }}
+                  required={true}
+                  errors={errors.cpf}
                 />
               </div>
               <div className="form-group my-4">
@@ -102,7 +117,6 @@ export function ClientCreateModal({
                     handleMaskPhone(ev);
                     setValue("phone", ev.currentTarget.value);
                   }}
-                  required={true}
                   errors={errors.phone}
                 />
               </div>
@@ -113,7 +127,7 @@ export function ClientCreateModal({
               <Checkbox
                 {...register("hasContinueRegister")}
                 dataTestId="continue_register"
-                id={'continue_register'}
+                id={"continue_register"}
                 label={i18n(`Texts.continue_register`)}
               />
             </div>
