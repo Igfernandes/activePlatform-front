@@ -3,6 +3,7 @@ import { FormsPayload } from "../schema";
 import { FieldShape } from "@components/shared/layouts/FormBuilder/type";
 import usePostCreateForm from "../../../../services/CustomForms/Post/usePost";
 import usePutForm from "@services/CustomForms/Put/usePut";
+import { getOnlyNumbers } from "@helpers/numbers";
 
 export function useForms() {
   const [components, setComponents] = useState<Array<FieldShape>>([]);
@@ -14,7 +15,8 @@ export function useForms() {
     const payload = {
       ...FormsPayload,
       components: JSON.stringify(components),
-      status: "PUBLISHED" as "PUBLISHED" | "DRAFT",
+      category: getOnlyNumbers(FormsPayload.category),
+      status: FormsPayload.status as "PUBLISHED" | "DRAFT",
     };
 
     if (FormsPayload.id)
