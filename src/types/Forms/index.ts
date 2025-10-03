@@ -6,7 +6,7 @@ export type FormsShape = {
   slug: string;
   components: string;
   description?: string;
-  status: "PUBLISHED" | "DRAFT";
+  status: FormStatus;
   color_mark?: string;
   stock?: number;
   category?: CategoryData;
@@ -18,3 +18,5 @@ export type FormsShape = {
   created_at: string;
   updated_at: string;
 };
+
+export type FormStatus = "PUBLISHED" | "DRAFT"

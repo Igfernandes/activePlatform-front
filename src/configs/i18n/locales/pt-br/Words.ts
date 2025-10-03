@@ -10,6 +10,7 @@ export const Words = {
   password_confirmation: "Confirmação de senha",
   name: "Nome",
   more: "Mais",
+  client: "Cliente",
   main: "Principal",
   import_clients: "Importar Clientes",
   view_client: "Visualizar Cliente",

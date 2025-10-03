@@ -78,6 +78,7 @@ export function Definitions({ handleChangeFormFields, slug }: Props) {
           {...register("stock")}
           label={i18n(`Words.vacancies_total`)}
           dataTestId="form_stock"
+          type="number"
           errors={errors.stock}
         />
       </div>
