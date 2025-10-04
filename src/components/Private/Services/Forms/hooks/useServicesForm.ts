@@ -15,9 +15,6 @@ export function useServicesForm({ service }: Props) {
   const { formMethods, register, handleSubmit, errors } =
     useFormRules<ServicesPayload>({
       schema: ServicesModalSchema,
-      defaultValues: {
-        disabledLimitVacancies: (service?.stock ?? 0) > 0 ? "Sim" : "Não",
-      },
     });
   const { mutateAsync: postService, isPending: isLoadingPost } =
     usePostCreateService();
@@ -28,15 +25,10 @@ export function useServicesForm({ service }: Props) {
   const submit = (formData: ServicesPayload) => {
     const payload = {
       ...formData,
-      gratuity: formData.gratuity ? +formData.gratuity : undefined,
-      stock: parseInt(formData.stock),
       address: formData.address ?? "",
       realized_at: formData.realized_at ?? "",
       expired_at: formData.expired_at ?? "",
       description: formData.description ?? "",
-      confirmation_expired_time: formData.confirmation_expired_time
-        ? +formData.confirmation_expired_time
-        : undefined,
     };
 
     if (!service) {
@@ -44,7 +36,6 @@ export function useServicesForm({ service }: Props) {
         router.push(services);
       });
     } else {
-      formMethods.setValue("stock", String(payload.stock));
       putService({
         ...payload,
         photo:

@@ -6,9 +6,9 @@ import { ModalFormsOperationType } from "./type";
 import { useFormContext } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { ActionsData } from "@components/shared/others/DotsOptions/type";
-import usePostInscribesServices from "@services/Forms/Services/Post/usePost";
 import { useSnackbar } from "@hooks/useSnackbar";
 import { Shared } from "@components/shared/others/Shared";
+import usePostInscribesEvents from "@services/Forms/Events/Post/usePost";
 
 type Props = {
   handleToggleModal: (
@@ -32,7 +32,7 @@ export function FillFieldsActions({
   const serviceId = watch("service_id");
   const { dispatchSnackbar } = useSnackbar();
   const [actions, setActions] = useState<Array<ActionsData>>([]);
-  const { mutateAsync: postInscribeServices } = usePostInscribesServices();
+  const { mutateAsync: postInscribeServices } = usePostInscribesEvents();
 
   useEffect(() => {
     const data = [
@@ -53,7 +53,6 @@ export function FillFieldsActions({
             type: "notice",
           });
           postInscribeServices({
-            serviceId: watch("service_id"),
             formPackage: refPackage,
           });
         },

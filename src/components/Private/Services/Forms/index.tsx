@@ -13,8 +13,6 @@ import Image from "next/image";
 import { useNavigator } from "@hooks/useNavigator";
 import useWindow from "@hooks/useWindow";
 import { ToggleSwitch } from "@components/shared/forms/ToggleSwitch";
-import { Input } from "@components/shared/forms/Input";
-import { InscribesTable } from "./InscribesTable";
 import { TextEdit } from "@components/shared/forms/TextEdit";
 import { FormsTable } from "./FormsTable";
 import { Link } from "@assets/Icons/black/Link";
@@ -109,19 +107,6 @@ export function ServicesForm({ service }: Props) {
                   </strong>
                 </h2>
               </div>
-              <div className="my-6">
-                <Input
-                  {...register("stock")}
-                  type="number"
-                  dataTestId="limit_vacancies"
-                  label={i18n(
-                    "Screens.dashboard.services.inform_limit_vacancies"
-                  )}
-                  max={99999}
-                  className="line-clamp-1"
-                  errors={errors.stock}
-                />
-              </div>
               <div className="form-row mt-6">
                 <TextEdit
                   {...register("alerts")}
@@ -181,19 +166,6 @@ export function ServicesForm({ service }: Props) {
           </FormProvider>
         </div>
       </div>
-      <When value={!!service}>
-        <div className="relative z-10 my-10">
-          <InscribesTable
-            service={{
-              ...(service as ServicesShape),
-              stock: parseInt(formMethods.getValues("stock")),
-              gratuity: parseInt(formMethods.getValues("gratuity") ?? ""),
-            }}
-            stock={+formMethods.watch("stock")}
-            title={i18n("Words.inscribes")}
-          />
-        </div>
-      </When>
     </>
   );
 }

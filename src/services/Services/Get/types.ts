@@ -6,7 +6,6 @@ export type GetServicesRequest = {
   description_contains?: string;
   type?: "APPELLANT" | "PUNCTUAL";
   status?: "ACTIVE" | "INACTIVE";
-  privacy?: "PUBLIC" | "PRIVACY";
   created_at?: string;
   updated_at?: string;
 };

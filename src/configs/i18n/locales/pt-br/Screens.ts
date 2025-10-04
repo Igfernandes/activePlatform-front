@@ -22,6 +22,15 @@ export const Screens = {
     text: "Para acessar a plataforma, informe como gostaria de ser chamado e crie uma senha.",
   },
   services: {
+    modal: {
+      title_already_exclude: "Você tem certeza que deseja excluir?",
+      text_already_exclude:
+        "Ao confirmar, o serviço será excluído e os demais registros relacionados.",
+    },
+    switch_event: "Escolha um evento",
+    selected_form: "Selecione um formulário",
+  },
+  events: {
     confirmation: {
       title: "Confirmação de Presença",
       text: "Ao clicar no botão abaixo, você estará confirmando oficialmente a sua presença e garantindo a sua reserva no evento. Você confirma sua presença?",
@@ -33,10 +42,9 @@ export const Screens = {
     modal: {
       title_already_exclude: "Você tem certeza que deseja excluir?",
       text_already_exclude:
-        "Ao confirmar, o serviço será excluído junto com todas as suas inscrições e demais registros relacionados.",
+        "Ao confirmar, o evento será excluído junto com todas as suas inscrições e demais registros relacionados.",
     },
     switch_event: "Escolha um evento",
-    selected_form: "Selecione um formulário",
   },
   forms: {
     not_found:
@@ -113,6 +121,16 @@ export const Screens = {
       has_limit_reservation: "Será possível aderir a vagas de reserva?",
       inform_limit_reservation: "Informe o limite máximo de reserva",
       service_image: "Adicione uma imagem ao serviço:",
+      text_alert_about_alerts_inscribes:
+        "Escreva detalhes avisos para os inscritos",
+      inscribes_alert: "Avisos para os inscritos",
+      awaiting_inscribe:
+        "Aguarde enquanto o cliente estará sendo inscrito e enviado a confirmação",
+    },
+    events: {
+      has_limit_vacancies: "Haverá um limite de vagas?",
+      inform_limit_vacancies: "Informe o limite máximo de vagas",
+      event_image: "Adicione uma imagem ao evento:",
       text_alert_about_alerts_inscribes:
         "Escreva detalhes avisos para os inscritos",
       inscribes_alert: "Avisos para os inscritos",

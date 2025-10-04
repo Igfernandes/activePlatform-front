@@ -6,35 +6,18 @@ export type ServicesShape = {
   photo: string;
   description?: string;
   alerts?: string;
-  stock: number;
   snippet?: string;
   status: "ACTIVE" | "INACTIVE";
   address?: string;
   realized_at?: string;
-  gratuity?: number;
-  inscribes?: Array<InscribeData>;
-  confirmation_expired_time?: number;
   expired_at?: string;
   created_at: string;
   updated_at: string;
 };
 
-type InscribeData = {
-  service_id: number;
-  client_id: number;
-  is_confirm: boolean;
-  created_at: string;
-};
-
 export type ServicePreviewShape = Pick<
   ServicesShape,
-  | "name"
-  | "description"
-  | "photo"
-  | "stock"
-  | "address"
-  | "expired_at"
-  | "realized_at"
+  "name" | "description" | "photo" | "address" | "expired_at" | "realized_at"
 > & {
   title: string;
   forms: {

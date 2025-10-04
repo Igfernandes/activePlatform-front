@@ -88,7 +88,6 @@ export function Events() {
                 id={0}
                 name={t("Screens.home.events.not_available.title")}
                 photo=""
-                stock={0}
                 snippet={t("Screens.home.events.not_available.text")}
               />
             </When>

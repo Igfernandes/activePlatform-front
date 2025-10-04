@@ -12,6 +12,7 @@ import { Peoples } from "@assets/Icons/black/Peoples";
 import { Config } from "@assets/Icons/black/Config";
 import { Schedule } from "@assets/Icons/black/Schedule";
 import { Form } from "@assets/Icons/black/Form";
+import { TravelBag } from "@assets/Icons/black/TravelBag";
 
 export function useMenu() {
   const MAIN_MENU = [
@@ -37,6 +38,12 @@ export function useMenu() {
       Icon: Form,
       link: privateRoutes.forms,
       permissions: ["forms_view"],
+    },
+    {
+      title: i18n("Words.events"),
+      Icon: TravelBag,
+      link: privateRoutes.events,
+      permissions: ["events_view"],
     },
     {
       title: i18n("Words.schedule"),

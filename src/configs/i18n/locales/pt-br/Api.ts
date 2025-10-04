@@ -98,7 +98,7 @@ export const Api = {
         message_id: "O conteúdo do envio encontra-se inválido",
       },
     },
-    services: {
+    events: {
       success: {
         post: "O(s) cliente(s) foi(ram) inscrito(s) com sucesso!",
         inscribe: "O usuário foi inscrito com sucesso!",
@@ -107,8 +107,7 @@ export const Api = {
         success: "Confirmado com sucesso!",
       },
       invalid: {
-        status:
-          "O serviço está inativado e não poderá receber novas inscrições",
+        status: "O evento está inativado e não poderá receber novas inscrições",
       },
     },
     fields: {
@@ -419,6 +418,33 @@ export const Api = {
       realized_at: "A data de realização está com formato inválido",
       expired_at: "A data de expiração está com o formato inválido",
       not_found: "O serviço não foi encontrado",
+    },
+  },
+  events: {
+    success: {
+      post: "O evento foi criado com sucesso!",
+      put: "O evento foi atualizado com sucesso!",
+      delete: "O evento foi excluído com sucesso!",
+      inscribe: "O cliente foi inscrito com sucesso!",
+      unsubscribe: "A inscrição do cliente foi excluída com sucesso!",
+    },
+    invalid: {
+      already_inscribe: "O cliente selecionado já está inscrito.",
+      name: "O nome do evento informado está inválido",
+      type: "O tipo do evento está inválido",
+      description: "A descrição do evento informado está inválido",
+      privacy: "A privacidade só poderá ser 'Publica' e 'Privado'",
+      stock: "O valor referente a quantidade disponíveis está inválido",
+      reservations: "O valor referente as reservas está inválido",
+      address: "O endereço informado está com o formato inválido",
+      photo: "A imagem do evento fornecida está inválida",
+      photo_max_size_1024:
+        "A imagem do evento ultrapassa o tamanho permitido 1 mega",
+      photo_mime_type:
+        "A imagem do evento contém uma extensão diferente de .png,.jpeg,.jpg",
+      realized_at: "A data de realização está com formato inválido",
+      expired_at: "A data de expiração está com o formato inválido",
+      not_found: "O evento não foi encontrado",
     },
   },
   users: {

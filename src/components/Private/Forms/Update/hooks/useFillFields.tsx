@@ -7,8 +7,8 @@ import { FormFillField } from "@type/Forms/FormsFill";
 import { FillFieldsActions } from "../FillFieldsActions";
 import useGetFillFields from "@services/Forms/Fills/Get/useGetFillFields";
 import useDeleteFillField from "@services/Forms/Fills/Delete/useDelete";
-import useGetClientsServices from "@services/Clients/Services/Get/useGet";
-import { ClientServiceShape } from "@type/Clients/ClientService";
+import useGetClientsEvents from "@services/Clients/Events/Get/useGet";
+import { ClientEventShape } from "@type/Clients/ClientEvent";
 import { FieldShape } from "@components/shared/layouts/FormBuilder/type";
 
 type Props = {
@@ -28,8 +28,8 @@ export function useFillFields({ formId, serviceId, components }: Props) {
   const { mutateAsync: deleteFillField, isPending: isLoadingFillFieldDelete } =
     useDeleteFillField();
   const { data: fieldsData } = useGetFillFields({ formId });
-  const { data: clientsService } = useGetClientsServices({
-    serviceId: serviceId ?? 0,
+  const { data: clientsService } = useGetClientsEvents({
+    eventId: serviceId ?? 0,
   });
 
   const tHeadsFields = useRef<Array<string>>([
@@ -52,7 +52,7 @@ export function useFillFields({ formId, serviceId, components }: Props) {
       client_id,
     }: FormFillField): TDataForms => {
       const inscribedService = clientsService?.find(
-        (clientsService: ClientServiceShape) =>
+        (clientsService: ClientEventShape) =>
           clientsService.service.id === serviceId &&
           clientsService.id == client_id
       );

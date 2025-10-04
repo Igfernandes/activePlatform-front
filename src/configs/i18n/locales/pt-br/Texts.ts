@@ -11,6 +11,7 @@ export const Texts = {
   users_group: "Grupo de Usuários",
   user_group: "Grupo de Usuário",
   send_confirmation: "Confirmação Enviada",
+  send_subscribe: "Inscrição Cancelada",
   until_years_gratuity: "Gratuidade até quantos anos?",
   select_event: "Selecione o evento",
   promotional_price: "Preço promocional",

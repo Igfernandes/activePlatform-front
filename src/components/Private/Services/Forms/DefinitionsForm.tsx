@@ -64,29 +64,6 @@ export function DefinitionsForm() {
           errors={errors.address}
         />
       </div>
-      <div className="flex flex-wrap md:flex-nowrap mt-6">
-        <div className="w-full md:w-1/2 mx-2">
-          <Input
-            {...register("gratuity")}
-            type={"number"}
-            dataTestId="gratuity"
-            min={0}
-            max={120}
-            label={i18n(`Texts.until_years_gratuity`)}
-            errors={errors.gratuity}
-          />
-        </div>
-        <div className="w-full md:w-1/2 mx-2">
-          <Input
-            {...register("confirmation_expired_time")}
-            type={"number"}
-            dataTestId="confirmation_expired_time"
-            min={0}
-            label={i18n(`Texts.confirm_expired_time`)}
-            errors={errors.confirmation_expired_time}
-          />
-        </div>
-      </div>
       <div className="mt-6">
         <Input
           {...register("snippet")}

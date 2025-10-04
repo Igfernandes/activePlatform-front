@@ -12,9 +12,6 @@ export function useStateFields({ formMethods }: Props) {
   const handleCleanForm = () => {
     resetField("description");
     resetField("name");
-    setValue("disabledLimitVacancies", "Não");
-    setValue("disabledLimitVacancies", "Não");
-    resetField("stock");
     resetField("photo");
   };
 
@@ -24,12 +21,8 @@ export function useStateFields({ formMethods }: Props) {
     setValue("alerts", service.alerts ?? "");
     setValue("status", service.status);
     setValue("address", service.address);
-    setValue("confirmation_expired_time", String(service.confirmation_expired_time));
     setValue("expired_at", service.expired_at);
     setValue("realized_at", service.realized_at);
-    setValue("stock", String(service.stock));
-    setValue("gratuity", String(service.gratuity));
-    setValue("disabledLimitVacancies", service.stock ? "Não" : "Sim");
   };
 
   return {

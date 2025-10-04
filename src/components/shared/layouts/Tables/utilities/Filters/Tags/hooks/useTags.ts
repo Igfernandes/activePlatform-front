@@ -1,6 +1,6 @@
 import { useTableContext } from "@components/shared/layouts/Tables/contexts/Table";
 import { TagProps } from "../type";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { TableDataShape } from "@components/shared/layouts/Seletor/contexts/types";
 
 type Props<TableData> = TagProps<TableData>;
@@ -24,12 +24,9 @@ export function useTags<TableData extends Array<Record<string, unknown>>>({
   const [tags, setTags] = useState<TagsShape[]>([]);
   const [targetTag, setTargetTag] = useState<string>();
   const { handleChangeFilters, handleChangeEvent } = useTableContext();
-  const totalTags = useRef<number>(0);
+  const [totalTags, setTotalTags] = useState<number>(0);
 
-  /**
-   * Generates a list of unique tags based on the provided column.
-   */
-  const getListTags = () => {
+  const getListTags = useCallback(() => {
     const tagsCount: Record<string, number> = {};
 
     data.forEach((entity) => {
@@ -42,7 +39,7 @@ export function useTags<TableData extends Array<Record<string, unknown>>>({
     setTags(
       Object.entries(tagsCount).map(([text, amount]) => ({ text, amount }))
     );
-  };
+  }, [data, column]);
 
   /**
    * Filters table data based on a given tag.
@@ -68,7 +65,7 @@ export function useTags<TableData extends Array<Record<string, unknown>>>({
     handleChangeFilters({
       tags: (data: TableDataShape) => handleFilterByTag(data, tag),
     });
-    setTargetTag(tag)
+    setTargetTag(tag);
     handleChangeEvent(true);
   };
 
@@ -77,7 +74,7 @@ export function useTags<TableData extends Array<Record<string, unknown>>>({
   }, [data]);
 
   useEffect(() => {
-    totalTags.current = tags.reduce((sum, tag) => sum + tag.amount, 0);
+    setTotalTags(tags.reduce((sum, tag) => sum + tag.amount, 0));
   }, [tags]);
 
   return {
@@ -85,6 +82,6 @@ export function useTags<TableData extends Array<Record<string, unknown>>>({
     totalTags,
     handleFilterByTag,
     handleChangeTargetTag,
-    targetTag
+    targetTag,
   };
 }

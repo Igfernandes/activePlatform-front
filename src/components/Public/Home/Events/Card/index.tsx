@@ -1,6 +1,5 @@
 import { CalendarAccept } from "@assets/Icons/black/CalendarAccept";
 import { CalendarExpired } from "@assets/Icons/black/CalendarExpired";
-import { Ticket } from "@assets/Icons/black/Ticket";
 import { SafeImage } from "@components/shared/layouts/Image";
 import { When } from "@components/utilities/When";
 import i18n from "@configs/i18n";
@@ -11,14 +10,7 @@ import { useCard } from "./hooks/useCard";
 
 type Props = Pick<
   ServicesShape,
-  | "id"
-  | "name"
-  | "photo"
-  | "gratuity"
-  | "snippet"
-  | "realized_at"
-  | "expired_at"
-  | "stock"
+  "id" | "name" | "photo" | "snippet" | "realized_at" | "expired_at"
 >;
 
 export function Card({
@@ -27,8 +19,6 @@ export function Card({
   photo,
   realized_at,
   expired_at,
-  stock,
-  gratuity,
   snippet,
 }: Props) {
   const { handleIsAvailableDate } = useCard();
@@ -59,11 +49,7 @@ export function Card({
                     <span className="font-semibold">Inscrições em: &nbsp;</span>
                     {dayjs(realized_at).format(i18n("Configs.format.datetime"))}
                   </When>
-                  <When
-                    value={
-                      handleIsAvailableDate(realized_at, expired_at) && !!stock
-                    }
-                  >
+                  <When value={handleIsAvailableDate(realized_at, expired_at)}>
                     <CalendarAccept className="fill-slate-500 mr-2" />
                     <span className="font-semibold text-emerald-800">
                       Inscrições Abertas
@@ -81,23 +67,6 @@ export function Card({
                   </p>
                 </li>
               </When>
-              <When value={!!stock}>
-                <li className="flex my-2">
-                  <Ticket className="fill-slate-500 mr-2" />
-                  <p className="text-xs">
-                    <span className="font-semibold">Vagas: </span>
-                    {stock ?? "Indisponíveis"}
-                  </p>
-                </li>
-              </When>
-              <When value={!!gratuity}>
-                <li>
-                  <p className="text-xs">
-                    <span className="font-semibold">Gratuidades:</span>
-                    {gratuity}
-                  </p>
-                </li>
-              </When>
             </ul>
           </div>
           <div>
@@ -111,7 +80,7 @@ export function Card({
         </div>
       </div>
       <div className="px-3 mt-5">
-        <When value={handleIsAvailableDate(realized_at, expired_at) && !!stock}>
+        <When value={handleIsAvailableDate(realized_at, expired_at)}>
           <Link
             href={`/services/?key=${id}`}
             className={`block  bg-red text-white p-2 text-center rounded-md`}
@@ -119,7 +88,7 @@ export function Card({
             <span>{"Inscrever-se"}</span>
           </Link>
         </When>
-        <When value={!handleIsAvailableDate(realized_at, expired_at) || !stock}>
+        <When value={!handleIsAvailableDate(realized_at, expired_at)}>
           <p
             className={`block bg-disabled text-white p-2 text-center rounded-md`}
           >

@@ -1,0 +1,15 @@
+import { CategoryData } from "@services/Clients/Get/types";
+
+export type ClientEventShape = {
+  id: number;
+  name: string;
+  cpf: string;
+  birthdate?: string;
+  categories: Array<CategoryData>;
+  phone?: string;
+  is_confirm: boolean;
+  service: {
+    id: number;
+    name: string;
+  };
+};
