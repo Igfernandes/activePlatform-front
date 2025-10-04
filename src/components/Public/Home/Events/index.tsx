@@ -10,15 +10,18 @@ import { ArrowLeft } from "@assets/Icons/black/ArrowLeft";
 import { ArrowRight } from "@assets/Icons/black/ArrowRight";
 import { When } from "@components/utilities/When";
 import { useI18n } from "@contexts/I18n";
+import useGetServicesPreview from "@services/Services/GetPreview/useGet";
 
 export function Events() {
-  // const { data } = useGetServicesPreview({});
+  const { data } = useGetServicesPreview({});
   const [services, SetServices] = useState<Array<ServicesShape>>([]);
   const { t } = useI18n();
 
   useEffect(() => {
-    SetServices([] as Array<ServicesShape>);
-  }, []);
+    if (!data) return;
+
+    SetServices(data as Array<ServicesShape>);
+  }, [data]);
 
   return (
     <section id={"events"} className="relative pt-10 mt-16 pb-10 ">
