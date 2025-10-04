@@ -22,7 +22,7 @@ export function BoardDefault({ name, address, realized_at }: Props) {
           <div className="mt-2">
             <p className="text-xs">
               {i18n("Words.started_date")}:{" "}
-              {dayjs(realized_at).format("DD/MM/YYYY HH:MM")}
+              {dayjs(realized_at).format("DD/MM/YYYY HH:mm")}
             </p>
           </div>
         </When>

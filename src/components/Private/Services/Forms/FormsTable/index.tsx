@@ -23,10 +23,10 @@ export function FormsTable({ service }: Props) {
           name: form.name,
           status: i18n(`Words.${form.status.toLocaleLowerCase()}`),
           started_at: form.started_at
-            ? dayjs(form.started_at).format("DD/MM/YYYY HH:MM")
+            ? dayjs(form.started_at).format("DD/MM/YYYY HH:mm")
             : null,
           expired_at: form.expired_at
-            ? dayjs(form.expired_at).format("DD/MM/YYYY HH:MM")
+            ? dayjs(form.expired_at).format("DD/MM/YYYY HH:mm")
             : null,
           actions: (
             <DotsOptions
