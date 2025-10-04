@@ -69,9 +69,10 @@ export function useForm({ form, csrf }: Props) {
           return components.map((component) => ({
             ...component,
             defaultValue:
-              component.element !== "file"
+              component.element !== "file" &&
+              fields.current[`input_${component.id}`]
                 ? (fields.current[`input_${component.id}`] as string)
-                : "",
+                : component.defaultValue,
           }));
         });
       });
