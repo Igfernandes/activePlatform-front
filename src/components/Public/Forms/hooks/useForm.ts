@@ -16,8 +16,8 @@ export function useForm({ form, csrf }: Props) {
   const [components, setComponents] = useState<Array<FieldShape>>(
     JSON.parse(form.components ?? "[]")
   );
-  console.log(form)
-  const { fields, handleChange} = useFormDynamicFields()
+
+  const { fields, handleChange } = useFormDynamicFields();
 
   const handleValidFields = useCallback((form: HTMLFormElement) => {
     const fields = Array.from(form.querySelectorAll("[name]")).filter(
@@ -55,7 +55,7 @@ export function useForm({ form, csrf }: Props) {
       }
     });
 
-    postSubmitForm({ payload: formData, csrf })
+    await postSubmitForm({ payload: formData, csrf })
       .then(() =>
         setComponents((components) => {
           return components.map((component) => ({
@@ -69,7 +69,9 @@ export function useForm({ form, csrf }: Props) {
           return components.map((component) => ({
             ...component,
             defaultValue:
-              (fields.current[`input_${component.id}`] as string) ?? "",
+              component.element !== "file"
+                ? (fields.current[`input_${component.id}`] as string)
+                : "",
           }));
         });
       });
