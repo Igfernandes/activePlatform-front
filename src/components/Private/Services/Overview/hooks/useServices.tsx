@@ -27,9 +27,9 @@ export function useServices({
   const tHeadsServices = useRef<Array<string>>([
     "ID",
     i18n("Words.name"),
-    i18n("Words.inscribes"),
     i18n("Words.status"),
     i18n("Words.data_initial"),
+    i18n("Words.data_expired"),
     i18n("Words.actions"),
   ]);
 
@@ -38,12 +38,14 @@ export function useServices({
     name,
     status,
     created_at,
+    expired_at,
   }: ServicesShape): TDataServices => {
     return {
       id,
       name,
       status: i18n(`Words.${status.toLowerCase()}`) as Status,
       created_at: dayjs(created_at).format(i18n("Configs.format.date")),
+      expired_at:  expired_at ? dayjs(expired_at).format(i18n("Configs.format.date")) : "--",
       actions: (
         <ServicesActions handleToggleModal={handleToggleModal} id={id} />
       ),
