@@ -107,6 +107,8 @@ export const Api = {
         success: "Confirmado com sucesso!",
       },
       invalid: {
+        already_inscribe:
+          "O seu cpf já está vinculado a uma inscrição. Insira outro e tente novamente",
         status: "O evento está inativado e não poderá receber novas inscrições",
       },
     },
