@@ -36,7 +36,7 @@ export const Texts = {
   inscribe_at: "Registered at",
   event_page: "Event page",
   text_thanks:
-    "Confirmation successful! Thank you for your cooperation; if you wish to cancel, access the same link and click 'No'. Please wait for our team’s response and have a great day!",
+    "Confirmation successful! Thank you for your cooperation; if you wish to cancel, access the same link and click 'No'. Have a great day!",
   first_column: "First column",
   field_required: "This field is required",
   viewer_file: "View attachment",

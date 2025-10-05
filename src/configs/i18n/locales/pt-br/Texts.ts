@@ -40,7 +40,7 @@ export const Texts = {
   max_length_40: "O máximo são 40 caracteres",
   confirm_expired_time: "Validade das confirmações (Minutos)",
   text_thanks:
-    "Confirmação realizada com sucesso! Agradecemos sua colaboração; caso queira cancelar, acesse o mesmo link e clique em 'Não'. Aguarde o retorno da nossa equipe e tenha um excelente dia!",
+    "Confirmação realizada com sucesso! Agradecemos sua colaboração; caso queira cancelar, acesse o mesmo link e clique em 'Não'. Tenha um excelente dia!",
   first_column: "Primeira coluna",
   viewer_file: "Visualizar o anexo",
   file_invalid: "Arquivo inválido",
