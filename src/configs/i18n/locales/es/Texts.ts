@@ -35,7 +35,7 @@ export const Texts = {
   event_page: "Página del evento",
   inscribe_at: "Inscrito en",
   text_thanks:
-    "Agradecemos su cooperación para nuestras métricas y análisis. Ahora espere la respuesta de nuestro equipo y que tenga un excelente día.",
+    "¡Confirmación realizada con éxito! Gracias por su colaboración; si desea cancelar, acceda al mismo enlace y haga clic en 'No'. Espere la respuesta de nuestro equipo y que tenga un excelente día!",
   first_column: "Primera columna",
   viewer_file: "Ver adjunto",
 };
