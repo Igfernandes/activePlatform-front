@@ -42,7 +42,7 @@ export function Header() {
               <br />
               <Link
                 className="text-sm hover:text-rose-300"
-                href="tel:+55 21 97129-2030"
+                href="https://wa.me/5521971292030?text=Ol%C3%A1%20AGM.%20Preciso%20de%20ajuda%20e%20tenho%20d%C3%BAvidas"
               >
                 {t("Screens.home.contact.phone")}
               </Link>

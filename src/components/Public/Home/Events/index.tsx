@@ -2,7 +2,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 import { ServicesShape } from "@type/Services";
 import { useEffect, useState } from "react";
-// import useGetServicesPreview from "@services/Services/GetPreview/useGet";
 import { Card } from "./Card";
 
 import { Autoplay, Navigation } from "swiper/modules";
@@ -61,7 +60,7 @@ export function Events() {
               prevEl: ".button-prev",
             }}
             autoplay={{
-              delay: 1000,
+              delay: 6000,
               disableOnInteraction: false,
             }}
             breakpoints={{

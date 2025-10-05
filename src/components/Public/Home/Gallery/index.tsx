@@ -33,7 +33,7 @@ export function Gallery() {
               nextEl: ".gallery-button-next",
             }}
             autoplay={{
-              delay: 2000,
+              delay: 4000,
               disableOnInteraction: false,
             }}
             breakpoints={{
