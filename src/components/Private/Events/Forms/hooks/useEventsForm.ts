@@ -26,11 +26,12 @@ export function useEventsForm({ event }: Props) {
   const router = useRouter();
   const { events } = privateRoutes;
 
-  const submit = ({ form_id, ...formData }: EventsPayload) => {
+  const submit = ({ form_id, feedback_id, ...formData }: EventsPayload) => {
     const payload = {
       ...formData,
       stock: parseInt(formData.stock),
       form_id: form_id ? parseInt(form_id) : undefined,
+      feedback_id: feedback_id ? parseInt(feedback_id) : undefined,
       address: formData.address ?? "",
       realized_at: formData.realized_at ?? "",
       completed_at: formData.completed_at ?? "",
@@ -64,6 +65,6 @@ export function useEventsForm({ event }: Props) {
     handleSubmit,
     isLoading: isLoadingPost || isLoadingPut,
     errors,
-    forms
+    forms,
   };
 }

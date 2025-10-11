@@ -11,6 +11,7 @@ export type EventShape = {
   inscribes?: Array<InscribeData>;
   confirmation_expired_time?: number;
   form_id?: number;
+  feedback_id?: number;
   completed_at?: string;
   created_at: string;
   updated_at: string;

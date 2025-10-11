@@ -29,6 +29,7 @@ export function useStateFields({ formMethods }: Props) {
       String(event.confirmation_expired_time)
     );
     setValue("form_id", String(event.form_id ?? ""));
+    setValue("feedback_id", String(event.feedback_id ?? ""));
     setValue("completed_at", event.completed_at);
     setValue("realized_at", event.realized_at);
     setValue("stock", String(event.stock));

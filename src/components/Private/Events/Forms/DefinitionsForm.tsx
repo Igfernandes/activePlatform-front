@@ -99,6 +99,24 @@ export function DefinitionsForm({ forms }: Props) {
           ]}
         />
       </div>
+      <div className="w-full my-4">
+        <Select
+          {...register("feedback_id")}
+          label={'Feedback'}
+          dataTestId="forms"
+          options={[
+            {
+              text: "--",
+              value: "",
+            },
+            ...(forms ?? [])?.map((form: FormsShape) => ({
+              text: form.name,
+              value: form.id,
+              selected: getValues("feedback_id") === String(form.id),
+            })),
+          ]}
+        />
+      </div>
       <div className="form-row mt-6">
         <TextEdit
           {...register("description")}

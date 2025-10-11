@@ -14,7 +14,8 @@ export const EventsModalSchema = z
     realized_at: z.string().optional().nullable(),
     address: z.string().optional().nullable(),
     status: z.enum(["ACTIVE", "INACTIVE"]),
-    form_id:  z.string().optional().nullable(),
+    feedback_id: z.string().optional().nullable(),
+    form_id: z.string().optional().nullable(),
     disabledLimitVacancies: z.enum(["Sim", "Não"]),
     banner: bannerSchema.optional(),
   })
