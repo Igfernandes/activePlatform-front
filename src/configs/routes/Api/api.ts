@@ -33,4 +33,5 @@ export const API_ROUTES = {
   ...filesRoutes,
   ...eventsRoutes,
   exports: "/exports",
+  confirmations: "/confirmations",
 };

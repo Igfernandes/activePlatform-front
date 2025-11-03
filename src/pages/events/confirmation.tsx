@@ -5,9 +5,7 @@ import { EventConfirmationPageProps } from "@components/Public/Events/Confirmati
 import { GetServerSideProps } from "next";
 import { getEventPreview } from "@services/Events/GetPreview/SSR";
 
-export default function Confirmation({
-  event,
-}: EventConfirmationPageProps) {
+export default function Confirmation({ event }: EventConfirmationPageProps) {
   return (
     <>
       <Header />
@@ -30,7 +28,7 @@ export const getServerSideProps: GetServerSideProps<
   };
   const event = await getEventPreview({ id: +key });
 
-  if (!event || Object.hasOwn(event, "errors")) {
+  if (!event.name|| Object.hasOwn(event, "errors")) {
     return {
       redirect: {
         destination: `/404`, // Redireciona para a página principal

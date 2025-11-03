@@ -8,4 +8,5 @@ export const clientsRoutes = {
   clientsDispatchers: "/clients/dispatchers",
   clientsEvents: "/clients/{id}/events/{eventId}",
   clientsSubscribe: "/clients/subscribe",
+  clientsConfirmation: "/clients/confirmation",
 };

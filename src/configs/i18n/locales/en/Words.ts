@@ -6,6 +6,8 @@ export const Words = {
   send: "Send",
   await: "Wait",
   password: "Password",
+  verify: "Verify",
+  code: "Code",
   password_confirmation: "Password confirmation",
   name: "Name",
   main: "Main",
