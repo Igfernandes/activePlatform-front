@@ -115,7 +115,7 @@ export const getServerSideProps: GetServerSideProps<
 
   const service = await getServicePreview(payload);
 
-  if (!service['title'] || Object.hasOwn(service, "errors")) {
+  if (!service['name'] || Object.hasOwn(service, "errors")) {
     return {
       redirect: {
         destination: `/404`, // Redireciona para a página principal
