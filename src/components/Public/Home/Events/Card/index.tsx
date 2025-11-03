@@ -82,8 +82,10 @@ export function Card({
       <div className="px-3 mt-5">
         <When value={handleIsAvailableDate(realized_at, expired_at)}>
           <Link
-            href={`/services/?key=${id}`}
-            className={`block  bg-red text-white p-2 text-center rounded-md`}
+            href={id > 0 ? `/services/?key=${id}` : "#"}
+            className={`block ${
+              id > 0 ? "bg-red" : "bg-disabled"
+            }  text-white p-2 text-center rounded-md`}
           >
             <span>{"Inscrever-se"}</span>
           </Link>

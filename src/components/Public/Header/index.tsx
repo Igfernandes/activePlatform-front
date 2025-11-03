@@ -91,6 +91,14 @@ export function Header() {
             <div className="languages">
               <Flags />
             </div>
+            <div className="confirmations  ml-2">
+              <Link
+                className="border-red  border-2 py-2 px-4 rounded-full font-semibold text-red"
+                href={"/confirmations"}
+              >
+                {t("Words.confirmations")}
+              </Link>
+            </div>
             <div className="events  ml-2">
               <Link
                 className="bg-red py-2 px-4 rounded-full font-semibold text-white"

@@ -5,6 +5,8 @@ export const Words = {
   success: "Éxito",
   send: "Enviar",
   await: "Espere",
+  verify: "Verificar",
+  code: "Código",
   password: "Contraseña",
   password_confirmation: "Confirmación de contraseña",
   name: "Nombre",

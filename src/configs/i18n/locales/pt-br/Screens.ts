@@ -9,6 +9,10 @@ export const Screens = {
     title: "Informe o seu e-mail cadastrado",
     text: "Se você tiver cadastro na plataforma, enviaremos um link para o e-mail cadastrado para que você possa recuperar a conta.",
   },
+  "confirmations": {
+    title: "Confira sua inscrição",
+    text: "Insira seu CPF para saber se você já está cadastrado em algum evento."
+  },
   "alter-password": {
     title: "Nova senha",
     text: "Crie uma nova senha para acessar a plataforma.",
