@@ -4,5 +4,5 @@ export type GetFormsRequest = {
   slug?: string;
   description_contains?: string;
   service_id?: number;
-  status?: "ACTIVE" | "INACTIVE";
+  status?: "PUBLISHED" | "DRAFT";
 };

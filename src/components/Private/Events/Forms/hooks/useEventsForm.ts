@@ -20,7 +20,9 @@ export function useEventsForm({ event }: Props) {
         disabledLimitVacancies: (event?.stock ?? 0) > 0 ? "Sim" : "Não",
       },
     });
-  const { data: forms } = useGetForms();
+  const { data: forms } = useGetForms({
+    status: "PUBLISHED",
+  });
   const { mutateAsync: postEvent, isPending: isLoadingPost } = usePostEvent();
   const { mutateAsync: putEvent, isPending: isLoadingPut } = usePutEvents();
   const router = useRouter();

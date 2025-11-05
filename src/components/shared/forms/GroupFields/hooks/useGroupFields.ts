@@ -110,7 +110,6 @@ export function useGroupFields<Payload extends FieldValues>({
     setValue(name, initialItems as PathValue<Payload, Path<Payload>>);
   }, []);
 
-  console.log("values", getValues(name));
   return {
     handleDragEnd,
     items,

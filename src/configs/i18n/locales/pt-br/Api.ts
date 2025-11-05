@@ -108,7 +108,7 @@ export const Api = {
       },
       invalid: {
         already_inscribe:
-          "O seu cpf já está vinculado a uma inscrição. Insira outro e tente novamente",
+          "O seu cpf já está vinculado a um preenchimento deste formulário. Uso outro e tente novamente",
         status: "O evento está inativado e não poderá receber novas inscrições",
       },
     },

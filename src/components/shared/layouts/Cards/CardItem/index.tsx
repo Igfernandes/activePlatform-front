@@ -15,7 +15,7 @@ export function CardItem({
   color,
 }: CardItemProps) {
   return (
-    <div className="card-item flex flex-col justify-between w-full md:w-[32%] bg-white p-6 mr-2 ">
+    <div className="card-item flex flex-col justify-between w-full md:w-[32%] bg-white p-6 mr-2 my-1">
       <div className="w-full">
         <div className="card-header flex justify-between">
           <div>

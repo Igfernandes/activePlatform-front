@@ -18,7 +18,6 @@ export function useAxios() {
   });
 
   axios.interceptors.request.use(AuthenticationsInterceptor, (error) => {
-    // Trata erros na requisição
     return Promise.reject(error);
   });
   axios.interceptors.response.use(DataInterceptor, hasErrorAuthentication);
@@ -36,7 +35,6 @@ export function useAxios() {
       message: i18n("Api.default.error") as string,
     };
     const typedError = error as CustomAxiosError;
-
     const status = typedError.response?.status ?? STATUS_SERVICE.INTERNAL_ERROR;
     const jsonResponseData = typedError.response?.data ?? "";
     const responseData = isValidJSON(jsonResponseData)
@@ -55,7 +53,7 @@ export function useAxios() {
 
     dispatchSnackbar({
       ...shapeError,
-      type: status === 401 ? "notice" : "error",
+      type: status === 403 ? "notice" : "error",
     });
 
     return shapeError;

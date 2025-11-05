@@ -204,7 +204,6 @@ export const getDatetime = (datetime: string) => {
       datetime.slice(10, 12);
   }
 
-  console.log(datetimeUpdated);
   return datetimeUpdated;
 };
 export function getYearsOld(birthdate: string) {
