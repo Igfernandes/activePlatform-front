@@ -6,7 +6,6 @@ import { FieldShape } from "@components/shared/layouts/FormBuilder/type";
 
 type Props = {
   formId: number;
-  serviceId: number;
   components: FieldShape[];
 };
 

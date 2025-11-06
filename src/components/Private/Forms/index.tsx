@@ -29,7 +29,6 @@ export function Forms({
           <FilledFormsTable
             components={components}
             formId={form?.id ?? 0}
-            serviceId={form?.service_id ?? 0}
           />
         </div>
       </When>

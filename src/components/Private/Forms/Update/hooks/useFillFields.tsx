@@ -7,18 +7,16 @@ import { FormFillField } from "@type/Forms/FormsFill";
 import { FillFieldsActions } from "../FillFieldsActions";
 import useGetFillFields from "@services/Forms/Fills/Get/useGetFillFields";
 import useDeleteFillField from "@services/Forms/Fills/Delete/useDelete";
-import useGetClientsEvents from "@services/Clients/Events/Get/useGet";
-import { ClientEventShape } from "@type/Clients/ClientEvent";
 import { FieldShape } from "@components/shared/layouts/FormBuilder/type";
 
 type Props = {
   formId: number;
 
   components: FieldShape[];
-  serviceId?: number;
+  eventId?: number;
 };
 
-export function useFillFields({ formId, serviceId, components }: Props) {
+export function useFillFields({ formId, components }: Props) {
   const [tDataFields, setTDataFields] = useState<
     Array<Record<string, unknown>>
   >([]);
@@ -28,9 +26,6 @@ export function useFillFields({ formId, serviceId, components }: Props) {
   const { mutateAsync: deleteFillField, isPending: isLoadingFillFieldDelete } =
     useDeleteFillField();
   const { data: fieldsData } = useGetFillFields({ formId });
-  const { data: clientsService } = useGetClientsEvents({
-    eventId: serviceId ?? 0,
-  });
 
   const tHeadsFields = useRef<Array<string>>([
     "ID",
@@ -48,23 +43,13 @@ export function useFillFields({ formId, serviceId, components }: Props) {
       form_id,
       value,
       ref,
+      inscribed_at,
       created_at,
-      client_id,
     }: FormFillField): TDataForms => {
-      const inscribedService = clientsService?.find(
-        (clientsService: ClientEventShape) =>
-          clientsService.service.id === serviceId &&
-          clientsService.id == client_id
-      );
-
-      const serviceName = inscribedService?.service
-        ? inscribedService?.service.name
-        : "Sem Inscrição";
-
       return {
         id,
         value: value.length > 40 ? value.slice(0, 40) + "..." : value,
-        inscribe_at: serviceName,
+        inscribe_at: inscribed_at ?? "",
         created_at: dayjs(created_at).format("DD/MM/YYYY HH:mm:ss"),
         actions: (
           <FillFieldsActions
@@ -76,7 +61,7 @@ export function useFillFields({ formId, serviceId, components }: Props) {
         ),
       };
     },
-    [handleToggleModal, clientsService, serviceId]
+    [handleToggleModal]
   );
 
   const handleDeleteFillField = () => {
@@ -111,7 +96,7 @@ export function useFillFields({ formId, serviceId, components }: Props) {
       const fieldProps = FieldsProps.find(
         (field) => field.field_id == +(firstColumnId ?? 0)
       );
-      
+
       return updateFieldForTable(fieldProps ?? FieldsProps[0]);
     });
     setTDataFields(tDataFields);
@@ -120,7 +105,6 @@ export function useFillFields({ formId, serviceId, components }: Props) {
     updateFieldForTable,
     firstColumnId,
     components,
-    clientsService,
   ]);
 
   return {
