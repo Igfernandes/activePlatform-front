@@ -26,15 +26,12 @@ export function Forms({
       <When value={step === 1}>
         <Definitions slug={slug} handleChangeFormFields={onChangeFormFields} />
         <div className="mt-4">
-          <FilledFormsTable
-            components={components}
-            formId={form?.id ?? 0}
-          />
+          <FilledFormsTable components={components} formId={form?.id ?? 0} />
         </div>
       </When>
       <When value={step === 2}>
         <Customizations
-          form={components}
+          components={components}
           handleChangeFormFields={onChangeFormFields}
         />
       </When>

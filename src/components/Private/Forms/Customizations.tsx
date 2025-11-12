@@ -2,14 +2,17 @@ import { FormBuilder } from "@components/shared/layouts/FormBuilder";
 import { FieldShape } from "@components/shared/layouts/FormBuilder/type";
 
 type Props = {
-  form: FieldShape[];
+  components: FieldShape[];
   handleChangeFormFields: (fieldsForm: Array<FieldShape>) => void;
 };
 
-export function Customizations({ form, handleChangeFormFields }: Props) {
+export function Customizations({ components, handleChangeFormFields }: Props) {
   return (
     <div>
-      <FormBuilder form={form} onChangeForm={handleChangeFormFields} />
+      <FormBuilder
+        components={components}
+        onChangeForm={handleChangeFormFields}
+      />
     </div>
   );
 }

@@ -40,4 +40,5 @@ export const Texts = {
   first_column: "First column",
   field_required: "This field is required",
   viewer_file: "View attachment",
+  uploading_file_please_wait: "Uploading file, please wait...",
 };

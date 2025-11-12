@@ -1,7 +1,5 @@
 import { Notice } from "@components/shared/others/Notice";
 import { useFormStep } from "../hooks/useFormsStep";
-import { useFormRules } from "@hooks/Forms/useFormRules";
-import { FormsPayload, formsSchema } from "../schema";
 import { FormsShape } from "@type/Forms";
 import { FormProvider } from "react-hook-form";
 import { StepBar } from "@components/shared/layouts/StepBar";
@@ -12,6 +10,7 @@ import { Forms } from "..";
 import { FooterForms } from "../FooterForms";
 import { useModalContext } from "@contexts/Modal";
 import { useFillFieldsModal } from "./hooks/useFillFieldsModal";
+import { useFormData } from "./hooks/useFormData";
 
 type Props = {
   targetForm: FormsShape;
@@ -19,25 +18,7 @@ type Props = {
 
 export function FillFieldsUpdate({ targetForm }: Props) {
   const { submit, components, handleChangeFormFields, isLoading } = useForms();
-  const { formMethods } = useFormRules<FormsPayload>({
-    schema: formsSchema,
-    defaultValues: {
-      id: targetForm.id,
-      name: targetForm.name,
-      description: targetForm.description,
-      started_at: targetForm.started_at,
-      expired_at: targetForm.expired_at,
-      template: String(targetForm.id),
-      stock: String(targetForm.stock ?? 0),
-      category: String(targetForm?.category?.id),
-      color_mark: String(targetForm?.color_mark),
-      thanks_message: targetForm?.thanks_message,
-      service_id: targetForm.service_id
-        ? String(targetForm.service_id)
-        : undefined,
-    },
-  });
-
+  const { formMethods } = useFormData({ targetForm });
   const { modal, handleToggleModal } = useModalContext();
   const { handleNextStep, handlePrevStep, stepActive, isLastStep } =
     useFormStep({

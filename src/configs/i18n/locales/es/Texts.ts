@@ -38,4 +38,5 @@ export const Texts = {
     "¡Confirmación realizada con éxito! Gracias por su colaboración; si desea cancelar, acceda al mismo enlace y haga clic en 'No'. Tenga un excelente día!",
   first_column: "Primera columna",
   viewer_file: "Ver adjunto",
+  uploading_file_please_wait: "Subiendo archivo, por favor espere...",
 };
