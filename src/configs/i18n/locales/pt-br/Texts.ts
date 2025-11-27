@@ -48,5 +48,7 @@ export const Texts = {
   thanks_message: "Mensagem de agradecimento",
   linked_forms: "Formulário vinculados",
   new_field: "Novo campo",
+  has_event: "Possui evento?",
+  view_event: "Visualizar Evento",
   uploading_file_please_wait: "Enviando arquivo, por favor aguarde...",
 };

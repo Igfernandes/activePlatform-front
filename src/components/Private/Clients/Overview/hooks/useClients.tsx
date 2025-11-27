@@ -5,8 +5,8 @@ import {
   ModalClientsOperationType,
   TDataClient,
 } from "../../type";
-import { SelectorShape } from "@components/shared/layouts/Seletor/type";
-import { Selector } from "@components/shared/layouts/Seletor";
+import { SelectorShape } from "@components/shared/layouts/Selector/type";
+import { Selector } from "@components/shared/layouts/Selector";
 import { useModalContext } from "@contexts/Modal";
 import { ClientActions } from "../ClientActions";
 import { ClientShape, UserCategoryData } from "../../../../../types/Clients";

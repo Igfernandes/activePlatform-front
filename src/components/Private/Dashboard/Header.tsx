@@ -17,6 +17,7 @@ export function DashboardHeader({
   return (
     <CardAmountBoard
       viewLimit={5}
+      isLoading={!users || !clients || !services || !forms || !charges}
       items={[
         {
           icon: <UserGroup fill="white" />,

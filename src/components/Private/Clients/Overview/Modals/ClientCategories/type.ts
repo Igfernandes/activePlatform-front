@@ -1,4 +1,4 @@
-import { SelectorShape } from "@components/shared/layouts/Seletor/type";
+import { SelectorShape } from "@components/shared/layouts/Selector/type";
 import { ClientCategoriesShape } from "../../../../../../types/Clients/ClientCategories";
 
 export type ModalFormProps = {

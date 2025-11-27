@@ -311,6 +311,7 @@ export const Api = {
     },
     invalid: {
       not_found: "Integration not found",
+      not_found_bank: "NNo valid bank is configured in the system",
     },
   },
   invites: {

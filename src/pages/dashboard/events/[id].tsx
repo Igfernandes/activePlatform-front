@@ -10,10 +10,10 @@ import useGetEvents from "@services/Events/Get/useGetServices";
 import { EventsForm } from "@components/Private/Events/Forms";
 
 export default function EventUpdate({ eventId }: EventPageProps) {
-  const { data, isFetched } = useGetEvents({
+  const { data, isFetched } = useGetEvents<{ id: number }>({
     id: eventId,
   });
-  const [service, setEvent] = useState<EventShape>();
+  const [event, setEvent] = useState<EventShape>();
   const router = useRouter();
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function EventUpdate({ eventId }: EventPageProps) {
 
   return (
     <DashboardContainer>
-      <EventsForm event={service} />
+      <EventsForm event={event} />
     </DashboardContainer>
   );
 }

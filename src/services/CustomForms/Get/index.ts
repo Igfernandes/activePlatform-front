@@ -1,18 +1,19 @@
 import { API_ROUTES } from "@configs/routes/Api/api";
-import { GetFormsRequest } from "./types";
+import { GetFormsRequest, FormsResponse } from "./types";
 import { useAxios } from "@hooks/useAxios";
 import { useRoutes } from "@hooks/useRoutes";
-import { FormsShape } from "../../../types/Forms";
 
 export default function useGet() {
   const { forms } = API_ROUTES;
-  const { axios } = useAxios();
+  const { axios} = useAxios();
   const { setParams, setQueries } = useRoutes();
 
-  async function getForms(request?: GetFormsRequest) {
+  async function getForms<T extends GetFormsRequest>(
+    request?: T
+  ): Promise<FormsResponse<T>> {
     const { id, ...query } = request ?? {};
 
-    return await axios.get<FormsShape[]>(
+    const { data } = await axios.get<FormsResponse<T>>(
       setQueries({
         url: setParams({
           url: forms,
@@ -23,9 +24,10 @@ export default function useGet() {
         query,
       })
     );
+    return data;
   }
 
   return {
-    getForms,
+    getForms
   };
 }

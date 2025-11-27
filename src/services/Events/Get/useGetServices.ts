@@ -1,19 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
 import useGet from ".";
-import { GetEventsRequest } from "./types";
+import { EventsResponse, GetEventsRequest } from "./types";
+import { useQueryGuard } from "@hooks/useAxios";
 
-export default function useGetEvents(request: GetEventsRequest = {}) {
+export default function useGetEvents<T extends GetEventsRequest>(request: T = {} as T) {
   const { getEvent } = useGet();
 
-  async function handle() {
-    const { data } = await getEvent(request);
-    return data ?? null;
-  }
-
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQueryGuard<EventsResponse<T>>({
     queryKey: ["events", request],
-    queryFn: handle,
+    queryFn: () => getEvent(request),
     enabled: true,
   });
+
   return { data, ...rest };
 }

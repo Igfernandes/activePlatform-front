@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import useGet from ".";
 import { GetInvitesRequest } from "./types";
+import { useQueryGuard } from "@hooks/useAxios";
 
 export default function useGetUsersInvite(request: GetInvitesRequest = {}) {
   const { getInvites } = useGet();
@@ -10,10 +10,9 @@ export default function useGetUsersInvite(request: GetInvitesRequest = {}) {
     return data ?? null;
   }
 
-  const { data, ...rest } = useQuery({
+  return useQueryGuard({
     queryKey: ["invites/users", request],
     queryFn: handle,
     enabled: true,
   });
-  return { data, ...rest };
 }

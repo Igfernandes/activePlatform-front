@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import useGet from ".";
 import { GetOperationsFailuresRequest } from "./types";
+import { useQueryGuard } from "@hooks/useAxios";
 
 export default function useGetOperationsFailures(
   request: GetOperationsFailuresRequest = {}
@@ -12,7 +12,7 @@ export default function useGetOperationsFailures(
     return data ?? null;
   }
 
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQueryGuard({
     queryKey: ["operationsFailures", request],
     queryFn: handle,
     enabled: true,

@@ -9,7 +9,7 @@ export function GroupCards<Payload extends FieldValues>({
 }: GroupCardsProps<Payload>) {
   return (
     <div className="relative">
-      <div className="flex flex-wrap justify-between">
+      <div className="flex flex-wrap ">
         {items.map((item, index) => (
           <Card
             {...register(`${name}.${index}` as Path<Payload>)}

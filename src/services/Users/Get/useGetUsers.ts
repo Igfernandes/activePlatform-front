@@ -1,16 +1,18 @@
-import { useQuery } from "@tanstack/react-query";
 import useGet from "./";
 import { GetUsersRequest } from "./types";
+import { useQueryGuard } from "@hooks/useAxios";
 
 export default function useGetUsers(payload?: GetUsersRequest) {
   const { getUsers } = useGet();
 
-  return useQuery({
+  async function handle() {
+    const { data } = await getUsers(payload);
+    return data ?? false;
+  }
+
+  return useQueryGuard({
     queryKey: ["users", payload],
     enabled: true,
-    queryFn: async () => {
-      const { data } = await getUsers(payload);
-      return data ?? false;
-    },
+    queryFn: handle,
   });
 }

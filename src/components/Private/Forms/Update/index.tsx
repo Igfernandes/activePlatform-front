@@ -66,6 +66,7 @@ export function FillFieldsUpdate({ targetForm }: Props) {
           />
 
           <FooterForms
+            formId={targetForm.id}
             isFirstStep={stepActive == 1}
             onNextStep={handleNextStep}
             onPrevStep={handlePrevStep}

@@ -1,3 +1,5 @@
+import { PermissionData } from "@type/Permissions/GroupsPermissions";
+
 export type UsersShape = {
   id: number;
   name: string;
@@ -10,6 +12,7 @@ export type UsersShape = {
   email: string;
   phone: string;
   groups: Array<GroupData>;
+  permissions: Array<PermissionData>;
   created_at: string;
   updated_at: string;
 };

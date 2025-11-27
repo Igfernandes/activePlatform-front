@@ -12,7 +12,7 @@ export function useUsersData() {
     if (!invites) return;
 
     setInvitesValid(invites.filter((invite) => invite.is_valid));
-  }, []);
+  }, [invites]);
 
   return {
     users,

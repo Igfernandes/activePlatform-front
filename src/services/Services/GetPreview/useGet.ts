@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import useGet from ".";
 import { GetServicePreviewRequest } from "./types";
+import { useQueryGuard } from "@hooks/useAxios";
 
 export default function useGetServicesPreview(request: GetServicePreviewRequest) {
   const { getService } = useGet();
@@ -10,7 +10,7 @@ export default function useGetServicesPreview(request: GetServicePreviewRequest)
     return data ?? null;
   }
 
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQueryGuard({
     queryKey: [`services/preview`, request],
     queryFn: handle,
     enabled: true,

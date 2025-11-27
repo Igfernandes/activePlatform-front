@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
 import useGetAuth from ".";
+import { useQueryGuard } from "@hooks/useAxios";
 
 type Props = {
   tokenNavigation: string;
@@ -15,7 +15,7 @@ export default function useGetUserAuth({
     return data ?? null;
   }
 
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQueryGuard({
     queryKey: ["userAuth"],
     queryFn: handle,
     enabled: true,

@@ -10,6 +10,7 @@ type Props = {
   isLoading: boolean;
   isLastStep: boolean;
   isFirstStep: boolean;
+  formId?: number;
   handleSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
 };
 
@@ -20,6 +21,7 @@ export function FooterForms({
   isLastStep,
   isFirstStep,
   handleSubmit,
+  formId
 }: Props) {
   const { reset } = useFormContext();
 
@@ -34,33 +36,32 @@ export function FooterForms({
         <div className="mx-2">
           <Button
             type="button"
-            className={`font-semibold border-2 border-zinc-300 px-2 ${
-              isFirstStep ? "bg-disabled text-gray" : ""
-            }`}
+            className={`font-semibold border-2 border-zinc-300 px-2 ${isFirstStep ? "bg-disabled text-gray" : ""
+              }`}
             text={i18n("Words.back")}
             onClick={onPrevStep}
           />
         </div>
-        <div className="mx-2">
-          <When value={isLastStep}>
-            <Button
-              type={"button"}
-              className="bg-red py-2 px-6 md:px-3 text-white"
-              text={i18n("Words.save")}
-              rightIcon={<SquareRoundedChevronRight fill={"#fff"} />}
-              onClick={handleSubmit}
-              isLoading={isLoading}
-            />
-          </When>
+        <div className="flex  mx-2">
           <When value={!isLastStep}>
             <Button
               type={"button"}
-              className="bg-red py-2 px-3 text-white"
+              className="border-red border-2 py-2 px-3 text-red"
               text={i18n("Words.continue")}
-              rightIcon={<SquareRoundedChevronRight fill={"#fff"} />}
+              rightIcon={<SquareRoundedChevronRight fill={"#f00"} />}
               onClick={onNextStep}
-              isLoading={isLoading}
             />
+          </When>
+          <When value={!!formId || isLastStep}>
+            <div className="mx-2">
+              <Button
+                type={"button"}
+                className="bg-red py-2 px-6 md:px-3 text-white"
+                text={i18n("Words.save")}
+                onClick={handleSubmit}
+                isLoading={isLoading}
+              />
+            </div>
           </When>
         </div>
       </div>

@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import useGet from ".";
 import { GetFillFieldsRequest } from "./types";
+import { useQueryGuard } from "@hooks/useAxios";
 
 export default function useGetFillFields(request: GetFillFieldsRequest) {
   const { getForms } = useGet();
@@ -10,10 +10,10 @@ export default function useGetFillFields(request: GetFillFieldsRequest) {
     return data ?? null;
   }
 
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQueryGuard({
     queryKey: ["forms/fills", request],
     queryFn: handle,
     enabled: true,
   });
-  return { data, ...rest };
+  return { data: data, ...rest };
 }

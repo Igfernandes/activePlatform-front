@@ -1,17 +1,17 @@
 import { API_ROUTES } from "@configs/routes/Api/api";
-import { GetEventsRequest } from "./types";
+import { EventsResponse, GetEventsRequest } from "./types";
 import { useAxios } from "@hooks/useAxios";
 import { useRoutes } from "@hooks/useRoutes";
-import { EventShape } from "@type/Events";
 
 export default function useGet() {
   const { eventById } = API_ROUTES;
   const { axios } = useAxios();
   const { setParams, setQueries } = useRoutes();
 
-  async function getEvent(request?: GetEventsRequest) {
+  async function getEvent<T extends GetEventsRequest>(request?: T) {
+    
     const { id, ...query } = request ?? {};
-    return await axios.get<EventShape[]|EventShape>(
+    const { data } = await axios.get<EventsResponse<T>>(
       setQueries({
         url: setParams({
           url: eventById,
@@ -22,6 +22,7 @@ export default function useGet() {
         query,
       })
     );
+    return data;
   }
 
   return {

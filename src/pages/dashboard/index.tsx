@@ -1,23 +1,23 @@
 import { GeneralCalendar } from "@components/Private/Dashboard/GeneralCalendar";
 import { GraphicsClients } from "@components/Private/Dashboard/GraphicsClients";
 import { DashboardHeader } from "@components/Private/Dashboard/Header";
-import { useChargesData } from "@components/Private/Dashboard/hooks/useChargesData";
 import { useClientsData } from "@components/Private/Dashboard/hooks/useClientsData";
-import { useFormsData } from "@components/Private/Dashboard/hooks/useFormsData";
-import { useServicesData } from "@components/Private/Dashboard/hooks/useServicesData";
 import { useUsersData } from "@components/Private/Dashboard/hooks/useUsersData";
 import { DashboardPageProps } from "@components/Private/Dashboard/type";
 import { DashboardContainer } from "@components/shared/layouts/Dashboard";
 import { publicRoutes } from "@configs/routes/Web/navigation";
+import useGetCharges from "@services/Charges/Get/useGetCharges";
+import useGetForms from "@services/CustomForms/Get/useGetForms";
+import useGetServices from "@services/Services/Get/useGetServices";
 import { getUserAuth } from "@services/Users/GetAuth/SSR";
 import { GetServerSideProps } from "next";
 
 export default function Dashboard({ user }: DashboardPageProps) {
   const { clients, categories, clientsByDDD } = useClientsData();
-  const { services } = useServicesData();
+  const { data: services  } = useGetServices();
   const { users, invitesValid } = useUsersData();
-  const { forms } = useFormsData();
-  const { charges } = useChargesData();
+  const { data: forms } = useGetForms();
+  const { data: charges } = useGetCharges();
 
   return (
     <DashboardContainer user={user}>

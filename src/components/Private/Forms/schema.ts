@@ -13,6 +13,7 @@ export const formsSchema = z.object({
   color_mark: z.string(),
   stock: z.string(),
   category: z.string(),
+  has_event: z.enum(["0", "1"]).optional(),
   template: z
     .string({ required_error: i18n("Validations.required") })
     .nullable()

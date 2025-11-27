@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import useGet from ".";
 import { GetSchedulesRequest } from "./types";
+import { useQueryGuard } from "@hooks/useAxios";
 
 export default function useGetSchedules(request: GetSchedulesRequest = {}) {
   const { getSchedules } = useGet();
@@ -10,7 +10,7 @@ export default function useGetSchedules(request: GetSchedulesRequest = {}) {
     return data ?? null;
   }
 
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQueryGuard({
     queryKey: ["schedules", request],
     queryFn: handle,
     enabled: true,

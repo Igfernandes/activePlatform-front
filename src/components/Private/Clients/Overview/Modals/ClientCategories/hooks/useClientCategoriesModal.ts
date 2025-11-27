@@ -1,6 +1,6 @@
 import { useFormRules } from "@hooks/Forms/useFormRules";
 import { ClientCategoryModalSchema, ClientCategoryPayload } from "../schemas";
-import { SelectorShape } from "@components/shared/layouts/Seletor/type";
+import { SelectorShape } from "@components/shared/layouts/Selector/type";
 import { PatchClientsCategoryPayload } from "../../../../../../../services/Clients/PatchCategory/type";
 import usePatchClientCategory from "../../../../../../../services/Clients/PatchCategory/usePatch";
 import { useModalContext } from "@contexts/Modal";

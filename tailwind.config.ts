@@ -14,6 +14,12 @@ export default {
   ],
   theme: {
     extend: {
+      keyframes: {
+        skeleton: {
+          "0%": { left: "-100%" },
+          "100%": { left: "100%" },
+        },
+      },
       borderColor: {
         ...borderColors,
         ...othersColors,
@@ -33,6 +39,9 @@ export default {
       },
       fontFamily: {
         poppins: ["var(--font-poppins)"],
+      },
+      animation: {
+        skeleton: "skeleton 1.4s infinite",
       },
     },
   },

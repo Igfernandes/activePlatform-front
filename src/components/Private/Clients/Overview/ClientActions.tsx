@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { privateRoutes } from "@configs/routes/Web/navigation";
 import { Shared } from "@components/shared/others/Shared";
 import { PERMISSIONS } from "@constants/permissions";
-import { usePermissions } from "@hooks/usePermissions";
 import { useUserNavigationContext } from "@contexts/UserNavigation";
 
 type Props = {
@@ -19,8 +18,7 @@ type Props = {
 export function ClientActions({ handleToggleModal, id }: Props) {
   const router = useRouter();
   const { clients } = privateRoutes;
-  const { permissions } = useUserNavigationContext();
-  const { hasPermission } = usePermissions();
+  const { hasPermission } = useUserNavigationContext();
 
   return (
     <div className="flex">
@@ -39,7 +37,7 @@ export function ClientActions({ handleToggleModal, id }: Props) {
             handle: () => handleToggleModal("DELETE", id),
             permissions: [PERMISSIONS.clients.delete],
           },
-        ].filter((action) => hasPermission(permissions, action.permissions))}
+        ].filter((action) => hasPermission(action.permissions))}
       />
     </div>
   );
