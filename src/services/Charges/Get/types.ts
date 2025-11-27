@@ -3,7 +3,14 @@ import { Status } from "@type/status";
 
 export type GetChargesRequest = Omit<
   ChargeShape,
-  "id" | "title" | "status" | "amount" | "privacy" | "type" | "price" | "reference"
+  | "id"
+  | "title"
+  | "status"
+  | "amount"
+  | "privacy"
+  | "type"
+  | "price"
+  | "reference"
 > & {
   id?: number;
   title_contains?: string;
@@ -22,3 +29,5 @@ type Data = {
   name: string;
 };
 export type ServiceData = Data;
+export type ChargesResponse<T extends GetChargesRequest> =
+  T["id"] extends number ? ChargeShape : ChargeShape[];

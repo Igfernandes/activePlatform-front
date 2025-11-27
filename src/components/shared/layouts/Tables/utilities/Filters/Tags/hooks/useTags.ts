@@ -1,7 +1,7 @@
 import { useTableContext } from "@components/shared/layouts/Tables/contexts/Table";
 import { TagProps } from "../type";
 import { useCallback, useEffect, useState } from "react";
-import { TableDataShape } from "@components/shared/layouts/Seletor/contexts/types";
+import { TableDataShape } from "@components/shared/layouts/Selector/contexts/types";
 
 type Props<TableData> = TagProps<TableData>;
 

@@ -12,6 +12,7 @@ type Props = {
 export function FilledFormsTable(props: Props) {
   const { tDataFields, tHeadsFields, handleChangeColumn } = useFillFields(props);
 
+
   return (
     <>
       <SmartTable
@@ -32,7 +33,7 @@ export function FilledFormsTable(props: Props) {
             />
           ),
         }}
-        data={tDataFields}
+        data={tDataFields ?? []}
         title={i18n("Words.registers")}
         tHeads={{
           data: tHeadsFields.current,

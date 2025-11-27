@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import useGet from ".";
 import { GetClientsDispatchersRequest } from "./types";
+import { useQueryGuard } from "@hooks/useAxios";
 
 export default function useGetClientsDispatchers(
   request: GetClientsDispatchersRequest = {}
@@ -12,7 +12,7 @@ export default function useGetClientsDispatchers(
     return data ?? null;
   }
 
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQueryGuard({
     queryKey: ["clients/dispatchers"],
     queryFn: handle,
     enabled: true,

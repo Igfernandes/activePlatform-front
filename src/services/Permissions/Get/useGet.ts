@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import useGet from ".";
 import { GetPermissionsRequest } from "./types";
+import { useQueryGuard } from "@hooks/useAxios";
 
 export default function useGetPermissions(request: GetPermissionsRequest = {}) {
   const { getPermissions } = useGet();
@@ -10,7 +10,7 @@ export default function useGetPermissions(request: GetPermissionsRequest = {}) {
     return data ?? null;
   }
 
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQueryGuard({
     queryKey: ["permissions", request],
     queryFn: handle,
     enabled: true,

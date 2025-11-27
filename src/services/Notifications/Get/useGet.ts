@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import useGet from ".";
 import { GetNotificationsRequest } from "./types";
+import { useQueryGuard } from "@hooks/useAxios";
 
 export default function useGetNotifications(
   request: GetNotificationsRequest = {}
@@ -12,7 +12,7 @@ export default function useGetNotifications(
     return data ?? null;
   }
 
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQueryGuard({
     queryKey: ["notifications", request],
     queryFn: handle,
     enabled: true,

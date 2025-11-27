@@ -1,4 +1,4 @@
-import { Axios } from "axios";
+import { Axios, AxiosError } from "axios";
 import { useSnackbar } from "../useSnackbar";
 import { CustomAxiosError, ShapeError } from "./type";
 import i18n from "@configs/i18n";
@@ -8,14 +8,40 @@ import { AuthenticationsInterceptor } from "./interceptores/Authentication";
 import { DataInterceptor } from "./interceptores/Data";
 import { axiosConfig } from "@configs/axios";
 import { hasErrorAuthentication } from "./interceptores/hasErrorAuthentication";
+import {
+  DefaultError,
+  QueryClient,
+  QueryKey,
+  useQuery,
+  UseQueryOptions,
+  UseQueryResult,
+} from "@tanstack/react-query";
+
+const axios = new Axios({
+  ...axiosConfig,
+  validateStatus: (status: number) =>
+    status >= STATUS_SERVICE.OK && status < STATUS_SERVICE.REDIRECT,
+});
+
+export function useQueryGuard<
+  TQueryFnData = unknown,
+  TError = DefaultError,
+  TData = TQueryFnData,
+  TQueryKey extends QueryKey = QueryKey
+>(
+  options: UseQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
+  queryClient?: QueryClient
+): UseQueryResult<TData, TError> {
+  try {
+    return useQuery(options, queryClient);
+  } catch (error: unknown) {
+    if (error instanceof AxiosError) hasErrorAuthentication(error, false);
+    return error as UseQueryResult<TData, TError>;
+  }
+}
 
 export function useAxios() {
   const { dispatchSnackbar } = useSnackbar();
-  const axios = new Axios({
-    ...axiosConfig,
-    validateStatus: (status: number) =>
-      status >= STATUS_SERVICE.OK && status < STATUS_SERVICE.REDIRECT,
-  });
 
   axios.interceptors.request.use(AuthenticationsInterceptor, (error) => {
     return Promise.reject(error);

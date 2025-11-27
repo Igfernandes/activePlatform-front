@@ -28,7 +28,7 @@ export const Card = React.forwardRef<HTMLInputElement, GroupCardItemShape>(
             : "border-cross-black-secondary"
         }  ${
           disabled ? "bg-disabled opacity-60" : ""
-        } p-4 rounded-2xl mx-auto mb-4 cursor-pointer`}
+        } p-4 rounded-2xl mx-2 mb-4 cursor-pointer`}
         onClick={(ev) => {
           const div = ev.currentTarget;
           const input = div.querySelector("input");

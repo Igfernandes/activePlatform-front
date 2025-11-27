@@ -347,6 +347,7 @@ export const Api = {
     },
     invalid: {
       not_found: "A integração não foi encontrada",
+      not_found_bank: "Não há banco válido configurado no sistema",
     },
   },
   invites: {

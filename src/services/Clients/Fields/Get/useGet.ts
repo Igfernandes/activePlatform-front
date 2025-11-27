@@ -1,8 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
 import useGet from ".";
 import { GetClientsFieldsRequest } from "./types";
+import { useQueryGuard } from "@hooks/useAxios";
 
-export default function useGetClientsFields(request: GetClientsFieldsRequest = {}) {
+export default function useGetClientsFields(
+  request: GetClientsFieldsRequest = {}
+) {
   const { getClientsFields } = useGet();
 
   async function handle() {
@@ -10,7 +12,7 @@ export default function useGetClientsFields(request: GetClientsFieldsRequest = {
     return data ?? null;
   }
 
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQueryGuard({
     queryKey: ["clients/fields"],
     queryFn: handle,
     enabled: true,

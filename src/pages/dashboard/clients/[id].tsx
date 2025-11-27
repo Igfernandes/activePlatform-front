@@ -19,6 +19,7 @@ export default function ClientPerfil({ targetClient }: ClientPageProps) {
     client: targetClient,
   });
 
+
   return (
     <DashboardContainer>
       <FormHub

@@ -40,7 +40,8 @@ export function useClientModal({ client }: Props) {
       birthdate: birthdate
         ? dayjs(birthdate, i18n("Configs.format.date")).format("YYYY-MM-DD")
         : undefined,
-    }).then(() => router.reload());
+    })
+    .then(() => router.reload());
   };
 
   return {

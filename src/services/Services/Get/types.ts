@@ -1,3 +1,5 @@
+import { ServicesShape } from "@type/Services";
+
 export type GetServicesRequest = {
   id?: number;
   in_ids?: Array<number>;
@@ -9,3 +11,5 @@ export type GetServicesRequest = {
   created_at?: string;
   updated_at?: string;
 };
+export type ServicesResponse<T extends GetServicesRequest> =
+  T["id"] extends number ? ServicesShape : ServicesShape[];

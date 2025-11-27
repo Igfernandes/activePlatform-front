@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import { UserNavigationContextData, UserNavigationProps } from "./types";
 import { UsersShape } from "../../types/Users";
-import useGetGroupsPermissions from "@services/Permissions/Groups/Get/useGet";
 import { usePermissions } from "@hooks/usePermissions";
 import useGetUser from "@services/Users/Get/useGetUser";
 
@@ -17,37 +16,28 @@ export const UserNavigationContext = createContext(
 
 const UserNavigationProvider = ({ children, user }: UserNavigationProps) => {
   const [userAuth, setUserAuth] = useState<UsersShape>(user as UsersShape);
-  const { data } = useGetUser({
-    current: true,
-  });
-  const { data: groups, isFetched } = useGetGroupsPermissions({
-    id: userAuth?.groups ? userAuth?.groups[0].id : 0,
-  });
+  const { data: currentUser } = useGetUser({ current: true });
   const { permissions, setPermissions, hasPermission } = usePermissions();
 
+  // Atualiza usuário quando data chega
   useEffect(() => {
-    if (!isFetched || Object.values(user ?? {}).length > 0) return;
+    if (currentUser) {
+      setUserAuth(currentUser);
+      setPermissions(currentUser.permissions || []);
+    }
+  }, [currentUser, setPermissions]);
 
-    if (data) setUserAuth(data);
-  }, [data, isFetched]);
-
-  useEffect(() => {
-    if (!Array.isArray(groups) || groups.length == 0) return;
-
-    setPermissions(groups[0].permissions);
-  }, [groups, setPermissions]);
-
-  const userProps = useMemo(
+  const value = useMemo(
     () => ({
       userAuth,
       permissions,
       hasPermission,
     }),
-    [userAuth, permissions]
+    [userAuth, permissions, hasPermission]
   );
 
   return (
-    <UserNavigationContext.Provider value={userProps}>
+    <UserNavigationContext.Provider value={value}>
       {children}
     </UserNavigationContext.Provider>
   );
@@ -56,5 +46,5 @@ const UserNavigationProvider = ({ children, user }: UserNavigationProps) => {
 export default UserNavigationProvider;
 
 export function useUserNavigationContext() {
-  return useContext(UserNavigationContext) as UserNavigationContextData;
+  return useContext(UserNavigationContext);
 }

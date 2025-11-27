@@ -9,7 +9,6 @@ import { AmountInscribes } from "./AmountInscribes";
 import { useNavigator } from "@hooks/useNavigator";
 import useWindow from "@hooks/useWindow";
 import dayjs from "dayjs";
-import { usePermissions } from "@hooks/usePermissions";
 import { useUserNavigationContext } from "@contexts/UserNavigation";
 import { useState } from "react";
 import { FormStatus } from "@type/Forms";
@@ -27,8 +26,7 @@ export function FormsCard({ search, filterObjects }: FormsCardProps) {
   const { handleToggleModal, modal } =
     useModalContext<ModalFormsOperationType>();
   const { baseUrl } = useWindow();
-  const { hasPermission } = usePermissions();
-  const { permissions } = useUserNavigationContext();
+  const { hasPermission } = useUserNavigationContext();
   return (
     <>
       <div>
@@ -37,9 +35,8 @@ export function FormsCard({ search, filterObjects }: FormsCardProps) {
             <li
               onClick={() => setFormStatus("PUBLISHED")}
               className={` px-10 py-3 shadow-sm border-r-2 border-t-2 border-l-2 border-stone-400 
-            rounded-md rounded-b-none mr-2 cursor-pointer ${
-              formStatus == "PUBLISHED" ? "bg-red text-white" : "bg-white"
-            }  `}
+            rounded-md rounded-b-none mr-2 cursor-pointer ${formStatus == "PUBLISHED" ? "bg-red text-white" : "bg-white"
+                }  `}
             >
               <span>
                 <strong>{i18n("Words.active")}s</strong>
@@ -48,9 +45,8 @@ export function FormsCard({ search, filterObjects }: FormsCardProps) {
             <li
               onClick={() => setFormStatus("DRAFT")}
               className={` px-10 py-3 shadow-sm border-r-2 border-t-2 border-l-2 border-stone-400 
-            rounded-md rounded-b-none mr-2 cursor-pointer ${
-              formStatus == "DRAFT" ? "bg-red text-white" : "bg-white"
-            } `}
+            rounded-md rounded-b-none mr-2 cursor-pointer ${formStatus == "DRAFT" ? "bg-red text-white" : "bg-white"
+                } `}
             >
               <span>
                 <strong>{i18n("Words.inactive")}s</strong>
@@ -81,7 +77,7 @@ export function FormsCard({ search, filterObjects }: FormsCardProps) {
               ].filter(
                 (dotAction) =>
                   !dotAction.permissions ||
-                  hasPermission(permissions, dotAction.permissions)
+                  hasPermission(dotAction.permissions)
               ),
               foot: {
                 items: [<AmountInscribes key={"amountInscribes"} />],

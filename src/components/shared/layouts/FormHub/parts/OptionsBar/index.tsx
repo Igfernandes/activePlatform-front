@@ -22,7 +22,7 @@ export function OptionsBar({ handleUpdateClient }: Props) {
     useState<boolean>(false);
 
   useEffect(() => {
-    setIsAvailableUpdateClients(hasPermission(permissions, ["clients_update"]));
+    setIsAvailableUpdateClients(hasPermission(["clients_update"]));
   }, [permissions]);
 
   return (

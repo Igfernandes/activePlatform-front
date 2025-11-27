@@ -1,7 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-
 import { GetGroupsPermissionsRequest } from "./types";
 import useGetGroupsPermissionsService from ".";
+import { useQueryGuard } from "@hooks/useAxios";
 
 export default function useGetGroupsPermissions(
   request: GetGroupsPermissionsRequest = {}
@@ -13,7 +12,7 @@ export default function useGetGroupsPermissions(
     return data ?? null;
   }
 
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQueryGuard({
     queryKey: ["permissions/groups", request],
     queryFn: handle,
     enabled: true,

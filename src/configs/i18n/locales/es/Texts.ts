@@ -19,6 +19,7 @@ export const Texts = {
   users_manager: "Administrador de usuarios",
   apis_manager: "Administrador de APIs",
   enter_email: "Ingrese su correo electrónico",
+  has_event: "¿Tiene evento?",
   data_shared: "Compartir datos",
   category_alter: "Modificar categoría",
   continue_register: "Continuar registrando",
@@ -38,5 +39,6 @@ export const Texts = {
     "¡Confirmación realizada con éxito! Gracias por su colaboración; si desea cancelar, acceda al mismo enlace y haga clic en 'No'. Tenga un excelente día!",
   first_column: "Primera columna",
   viewer_file: "Ver adjunto",
+  view_event: "Ver evento",
   uploading_file_please_wait: "Subiendo archivo, por favor espere...",
 };

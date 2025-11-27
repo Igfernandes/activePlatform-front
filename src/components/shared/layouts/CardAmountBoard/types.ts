@@ -1,6 +1,7 @@
 export type CardAmountBoardProps = {
   viewLimit: number;
   items: Array<CardItemShape>;
+  isLoading?: boolean;
 };
 
 export type CardItemShape = {

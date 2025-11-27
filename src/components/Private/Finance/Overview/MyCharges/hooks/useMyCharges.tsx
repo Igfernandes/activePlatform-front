@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import i18n from "@configs/i18n";
 
-import { SelectorShape } from "@components/shared/layouts/Seletor/type";
+import { SelectorShape } from "@components/shared/layouts/Selector/type";
 import { HookFinancesProps } from "../../type";
 import { ChargeShape } from "@type/Charges";
 import dayjs from "dayjs";

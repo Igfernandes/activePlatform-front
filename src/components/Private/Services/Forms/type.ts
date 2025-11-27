@@ -1,4 +1,4 @@
 
 export type ServicePageProps = {
-  serviceId?: number;
+  serviceId: number;
 };

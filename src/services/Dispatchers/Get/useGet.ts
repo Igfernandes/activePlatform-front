@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import useGet from ".";
 import { GetMessagesDispatcherRequest } from "./types";
+import { useQueryGuard } from "@hooks/useAxios";
 
 export default function useGetMessagesDispatcher(
   request: GetMessagesDispatcherRequest = {}
@@ -12,7 +12,7 @@ export default function useGetMessagesDispatcher(
     return data ?? null;
   }
 
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQueryGuard({
     queryKey: ["messages-dispatcher", request],
     queryFn: handle,
     enabled: true,

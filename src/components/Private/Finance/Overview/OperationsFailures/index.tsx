@@ -1,4 +1,4 @@
-import SelectorProvider from "@components/shared/layouts/Seletor/contexts";
+import SelectorProvider from "@components/shared/layouts/Selector/contexts";
 import { SmartTable } from "@components/shared/layouts/Tables/presets/SmartTable";
 import { useOperationsFailures } from "./hooks/useOperationsFailures";
 import { OperationFailuresStructProps } from "../type";

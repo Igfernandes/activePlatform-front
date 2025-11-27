@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import useGet from ".";
 import { GetEventPreviewRequest } from "./types";
+import { useQueryGuard } from "@hooks/useAxios";
 
 export default function useGetEventsPreview(request: GetEventPreviewRequest) {
   const { getEvent } = useGet();
@@ -10,7 +10,7 @@ export default function useGetEventsPreview(request: GetEventPreviewRequest) {
     return data ?? null;
   }
 
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQueryGuard({
     queryKey: [`event/preview`, request],
     queryFn: handle,
     enabled: true,

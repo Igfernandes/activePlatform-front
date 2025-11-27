@@ -8,6 +8,7 @@ import { privateRoutes } from "@configs/routes/Web/navigation";
 import { Feeds } from "@components/shared/layouts/Feeds";
 import { PolarGraphic } from "@components/shared/others/Graphics/PolarGraphic";
 import { InvitesShape } from "@type/Invites";
+import { Skeleton } from "@components/utilities/Skeleton";
 
 const sampleOptions: ChartOptions<"doughnut"> = {
   responsive: true,
@@ -32,68 +33,91 @@ export function GraphicsClients({
     <div className="my-4">
       <div className="content flex flex-wrap justify-around">
         <div className="w-full md:w-[320px] my-4 md:my-0">
-          <CircleGraphic
-            title={i18n("Words.clients_categories")}
-            data={{
-              labels: categories.map((category) => category.name),
-              datasets: [
-                {
-                  data: categories.map((category) => category?.clients ?? 0),
-                  backgroundColor: categories.map(() => getRandomColor()),
-                },
-              ],
+          <Skeleton
+            settings={{
+              type: "board",
+              amount: 1,
             }}
-            options={sampleOptions}
-          />
+            isLoading={!categories}
+          >
+            <CircleGraphic
+              title={i18n("Words.clients_categories")}
+              data={{
+                labels: categories.map((category) => category.name),
+                datasets: [
+                  {
+                    data: categories.map((category) => category?.clients ?? 0),
+                    backgroundColor: categories.map(() => getRandomColor()),
+                  },
+                ],
+              }}
+              options={sampleOptions}
+            />
+          </Skeleton>
         </div>
         <div className="w-full md:w-[320px] my-4 md:my-0 ml-2">
-          <PolarGraphic
-            title={i18n("Words.clients_by_ddd")}
-            data={{
-              labels: clientsByDDD.slice(0, 3).map((client) => client.ddd),
-              datasets: [
-                {
-                  data: clientsByDDD.map((client) => client.amount ?? 0),
-                  backgroundColor: categories.map(() => getRandomColor()),
-                },
-              ],
+          <Skeleton
+            settings={{
+              type: "board",
+              amount: 1,
             }}
-            options={{
-              plugins: {
-                legend: {
-                  display: true, // ou false se quiser ocultar
-                  position: "top",
+            isLoading={!clientsByDDD}
+          >
+            <PolarGraphic
+              title={i18n("Words.clients_by_ddd")}
+              data={{
+                labels: clientsByDDD.slice(0, 3).map((client) => client.ddd),
+                datasets: [
+                  {
+                    data: clientsByDDD.map((client) => client.amount ?? 0),
+                    backgroundColor: categories.map(() => getRandomColor()),
+                  },
+                ],
+              }}
+              options={{
+                plugins: {
+                  legend: {
+                    display: true, // ou false se quiser ocultar
+                    position: "top",
+                  },
+                  decimation: {
+                    algorithm: "lttb",
+                  },
+                  tooltip: {
+                    enabled: true,
+                  },
                 },
-                decimation: {
-                  algorithm: "lttb",
-                },
-                tooltip: {
-                  enabled: true,
-                },
-              },
-            }}
-          />
+              }}
+            />
+          </Skeleton>
         </div>
         <div className="w-full md:w-[30%] ml-2">
-          <Feeds
-            title={i18n("Words.dependencies_historic")}
-            data={[
-              ...clients
-                ?.filter((client) => !client.email)
-                .map((client) => ({
-                  scape: `${clientsRoute}/${client.id}`,
-                  message: `${i18n("Words.not_fill_email")}:  ${client.name}`,
-                })),
-              ...invites
-                .filter((invite) => !!invite.is_valid)
-                ?.map((invite) => ({
-                  message: `${i18n(
-                    "Words.invite_pending"
-                  )}: ${invite.email.slice(0, 14)}...`,
-                  scape: usersManager,
-                })),
-            ]}
-          />
+          <Skeleton
+            isLoading={!clients || !invites}
+            settings={{
+              type: "board",
+            }}
+          >
+            <Feeds
+              title={i18n("Words.dependencies_historic")}
+              data={[
+                ...clients
+                  ?.filter((client) => !client.email)
+                  .map((client) => ({
+                    scape: `${clientsRoute}/${client.id}`,
+                    message: `${i18n("Words.not_fill_email")}:  ${client.name}`,
+                  })),
+                ...invites
+                  .filter((invite) => !!invite.is_valid)
+                  ?.map((invite) => ({
+                    message: `${i18n(
+                      "Words.invite_pending"
+                    )}: ${invite.email.slice(0, 14)}...`,
+                    scape: usersManager,
+                  })),
+              ]}
+            />
+          </Skeleton>
         </div>
       </div>
     </div>

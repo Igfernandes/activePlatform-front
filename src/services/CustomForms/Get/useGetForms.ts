@@ -1,19 +1,20 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQueryGuard } from "@hooks/useAxios";
 import useGet from ".";
-import { GetFormsRequest } from "./types";
+import { FormsResponse, GetFormsRequest } from "./types";
 
-export default function useGetForms(request: GetFormsRequest = {}) {
+export default function useGetForms<T extends GetFormsRequest>(
+  request: T = {} as T
+) {
   const { getForms } = useGet();
 
   async function handle() {
-    const { data } = await getForms(request);
+    const data = await getForms(request);
     return data ?? null;
   }
 
-  const { data, ...rest } = useQuery({
-    queryKey: ["forms"],
+  return useQueryGuard<FormsResponse<T>>({
+    queryKey: ["forms", request],
     queryFn: handle,
     enabled: true,
   });
-  return { data, ...rest };
 }

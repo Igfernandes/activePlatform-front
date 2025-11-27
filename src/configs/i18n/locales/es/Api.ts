@@ -292,6 +292,7 @@ export const Api = {
       not_found: {
         es: "La integración no fue encontrada",
         en: "Integration not found",
+        not_found_bank: "NNo hay un banco válido configurado en el sistema",
       },
     },
   },

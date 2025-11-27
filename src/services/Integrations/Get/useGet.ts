@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import useGet from ".";
 import { GetIntegrationsRequest } from "./types";
+import { useQueryGuard } from "@hooks/useAxios";
 
 export default function useGetIntegrations({
   type,
@@ -13,7 +13,7 @@ export default function useGetIntegrations({
     return data ?? null;
   }
 
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQueryGuard({
     queryKey: ["integrations", { type }],
     queryFn: handle,
     enabled: true,

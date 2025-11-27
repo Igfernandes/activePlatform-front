@@ -19,6 +19,7 @@ export const Texts = {
   sending_management: "Sending management",
   users_manager: "Users manager",
   apis_manager: "APIs manager",
+  has_event: "Has event?",
   enter_email: "Enter your email",
   data_shared: "Share data",
   category_alter: "Change category",
@@ -40,5 +41,6 @@ export const Texts = {
   first_column: "First column",
   field_required: "This field is required",
   viewer_file: "View attachment",
+  view_event: "View event",
   uploading_file_please_wait: "Uploading file, please wait...",
 };

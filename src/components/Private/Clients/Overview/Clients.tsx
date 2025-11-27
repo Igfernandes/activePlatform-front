@@ -1,18 +1,19 @@
 import { useClients } from "./hooks/useClients";
 import i18n from "@configs/i18n";
 import { Notice } from "@components/shared/others/Notice";
-import { Selector } from "@components/shared/layouts/Seletor";
+import { Selector } from "@components/shared/layouts/Selector";
 import { ModalFormCategories } from "./Modals/Categories";
 import { useModalContext } from "@contexts/Modal";
 import { ModalClientsOperationType, ClientsStructProps } from "../type";
 import { ClientCreateModal } from "./Modals/Clients";
-import SelectorProvider from "@components/shared/layouts/Seletor/contexts";
+import SelectorProvider from "@components/shared/layouts/Selector/contexts";
 import { SmartTable } from "@components/shared/layouts/Tables/presets/SmartTable";
 import { ClientCategoriesModal } from "./Modals/ClientCategories";
 import { Shared } from "@components/shared/others/Shared";
 import { PERMISSIONS } from "@constants/permissions";
 import { useUserNavigationContext } from "@contexts/UserNavigation";
 import { ImportModal } from "./Modals/Import";
+
 export function Clients({ search, filterObjects }: ClientsStructProps) {
   const {
     tDataClients,
@@ -29,7 +30,7 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
   });
   const { handleToggleModal, modal } =
     useModalContext<ModalClientsOperationType>();
-  const { permissions, hasPermission } = useUserNavigationContext();
+  const { hasPermission } = useUserNavigationContext();
 
   return (
     <>
@@ -55,9 +56,7 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
                   text: i18n("Words.exclude"),
                   permissions: [PERMISSIONS.clients.delete],
                 },
-              ].filter((action) =>
-                hasPermission(permissions, action.permissions)
-              ),
+              ].filter((action) => hasPermission(action.permissions)),
               buttons: (
                 <>
                   <Selector

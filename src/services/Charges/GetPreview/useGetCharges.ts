@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import useGet from ".";
 import { GetChargePreviewRequest } from "./types";
+import { useQueryGuard } from "@hooks/useAxios";
 
 export default function useGetCharges(request: GetChargePreviewRequest) {
   const { getCharge } = useGet();
@@ -10,7 +10,7 @@ export default function useGetCharges(request: GetChargePreviewRequest) {
     return data ?? null;
   }
 
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQueryGuard({
     queryKey: [`charge/${request.id}`, request],
     queryFn: handle,
     enabled: true,

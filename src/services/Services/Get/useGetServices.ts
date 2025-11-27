@@ -1,19 +1,20 @@
-import { useQuery } from "@tanstack/react-query";
 import useGet from ".";
-import { GetServicesRequest } from "./types";
+import { GetServicesRequest, ServicesResponse } from "./types";
+import { useQueryGuard } from "@hooks/useAxios";
 
-export default function useGetServices(request: GetServicesRequest = {}) {
+export default function useGetServices<T extends GetServicesRequest>(
+  request: T = {} as T
+) {
   const { getServices } = useGet();
 
   async function handle() {
-    const { data } = await getServices(request);
-    return data ?? null;
+    const data = await getServices(request);
+    return data;
   }
 
-  const { data, ...rest } = useQuery({
+  return useQueryGuard<ServicesResponse<T>>({
     queryKey: ["services", request],
     queryFn: handle,
     enabled: true,
   });
-  return { data, ...rest };
 }

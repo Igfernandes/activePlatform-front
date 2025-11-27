@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { ServicesShape } from "@type/Services";
 
 export default function UserProfile({ serviceId }: ServicePageProps) {
-  const { data, isFetched } = useGetServices({
+  const { data, isFetched } = useGetServices<{ id: number }>({
     id: serviceId,
   });
   const [service, setService] = useState<ServicesShape>();
@@ -26,7 +26,7 @@ export default function UserProfile({ serviceId }: ServicePageProps) {
       return;
     }
 
-    setService(data as ServicesShape);
+    setService(data);
   }, [data, isFetched, router]);
 
   return (
