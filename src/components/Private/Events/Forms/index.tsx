@@ -57,7 +57,7 @@ export function EventsForm({ event }: Props) {
         <div className="flex flex-wrap justify-between mb-6">
           <div>
             <h1 className="text-2xl">
-              <strong>{i18n(`Words.definition`)}</strong>
+              <strong>{i18n(`Screens.events.form.title`)}</strong>
             </h1>
           </div>
           <div className="flex ">
@@ -88,7 +88,7 @@ export function EventsForm({ event }: Props) {
             <form onSubmit={handleSubmit(submit)}>
               <DefinitionsForm forms={forms} />
 
-              <div className="my-6">
+              <div className="my-6 pt-6">
                 <Input
                   {...register("stock")}
                   type="number"
@@ -112,7 +112,7 @@ export function EventsForm({ event }: Props) {
                   errors={errors.alerts}
                 />
               </div>
-              <div className="flex flex-wrap lg:flex-none justify-between mt-12 items-center relative">
+              <div className="flex flex-wrap pt-6 lg:flex-none justify-between mt-12 items-center relative">
                 <When value={!event}>
                   <div className="w-full lg:w-auto mb-4 lg:mb-auto">
                     <span onClick={handleCleanForm} className="cursor-pointer">

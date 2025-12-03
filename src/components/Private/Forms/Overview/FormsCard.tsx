@@ -1,7 +1,7 @@
 import i18n from "@configs/i18n";
 import { Notice } from "@components/shared/others/Notice";
 import { useModalContext } from "@contexts/Modal";
-import { FormsCardProps, ModalFormsOperationType } from "../type";
+import { FormsCardProps, FormType, ModalFormsOperationType } from "../type";
 import { Cards } from "@components/shared/layouts/Cards";
 import { useFormsOverview } from "./hooks/useFormsOverview";
 import { privateRoutes, publicRoutes } from "@configs/routes/Web/navigation";
@@ -11,15 +11,14 @@ import useWindow from "@hooks/useWindow";
 import dayjs from "dayjs";
 import { useUserNavigationContext } from "@contexts/UserNavigation";
 import { useState } from "react";
-import { FormStatus } from "@type/Forms";
 
 export function FormsCard({ search, filterObjects }: FormsCardProps) {
-  const { forms, handleToggleStatusForm, isLoadingDeleteForm } =
+  const { forms, handleToggleStatusForm, isLoadingDeleteForm, handleFilterForms } =
     useFormsOverview({
       filter: search,
       handleFilter: filterObjects,
     });
-  const [formStatus, setFormStatus] = useState<FormStatus>("PUBLISHED");
+  const [formStatus, setFormStatus] = useState<FormType>("OPENED");
   const { forms: formsRoutePublic } = publicRoutes;
   const { handleCopy } = useNavigator();
   const { forms: formsRoute } = privateRoutes;
@@ -27,36 +26,48 @@ export function FormsCard({ search, filterObjects }: FormsCardProps) {
     useModalContext<ModalFormsOperationType>();
   const { baseUrl } = useWindow();
   const { hasPermission } = useUserNavigationContext();
+
+
   return (
     <>
       <div>
         <div className="tabs">
           <ul className="flex">
             <li
-              onClick={() => setFormStatus("PUBLISHED")}
+              onClick={() => setFormStatus("OPENED")}
               className={` px-10 py-3 shadow-sm border-r-2 border-t-2 border-l-2 border-stone-400 
-            rounded-md rounded-b-none mr-2 cursor-pointer ${formStatus == "PUBLISHED" ? "bg-red text-white" : "bg-white"
+            rounded-md rounded-b-none mr-2 cursor-pointer ${formStatus == "OPENED" ? "bg-red text-white" : "bg-white"
                 }  `}
             >
               <span>
-                <strong>{i18n("Words.active")}s</strong>
+                <strong>{i18n("Words.opened")}</strong>
               </span>
             </li>
             <li
-              onClick={() => setFormStatus("DRAFT")}
+              onClick={() => setFormStatus("TERMINATED")}
               className={` px-10 py-3 shadow-sm border-r-2 border-t-2 border-l-2 border-stone-400 
-            rounded-md rounded-b-none mr-2 cursor-pointer ${formStatus == "DRAFT" ? "bg-red text-white" : "bg-white"
+            rounded-md rounded-b-none mr-2 cursor-pointer ${formStatus == "TERMINATED" ? "bg-red text-white" : "bg-white"
                 } `}
             >
               <span>
-                <strong>{i18n("Words.inactive")}s</strong>
+                <strong>{i18n("Words.terminated")}</strong>
+              </span>
+            </li>
+            <li
+              onClick={() => setFormStatus("RELEASES")}
+              className={` px-10 py-3 shadow-sm border-r-2 border-t-2 border-l-2 border-stone-400 
+            rounded-md rounded-b-none mr-2 cursor-pointer ${formStatus == "RELEASES" ? "bg-red text-white" : "bg-white"
+                } `}
+            >
+              <span>
+                <strong>{i18n("Words.releases")}</strong>
               </span>
             </li>
           </ul>
         </div>
         <Cards
           items={forms
-            .filter((form) => form.status == formStatus)
+            .filter((form) => handleFilterForms(formStatus, form))
             .map((form) => ({
               description: form.name ?? "",
               alert: form.description ?? "",

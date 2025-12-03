@@ -9,9 +9,9 @@ export const Screens = {
     title: "Informe o seu e-mail cadastrado",
     text: "Se você tiver cadastro na plataforma, enviaremos um link para o e-mail cadastrado para que você possa recuperar a conta.",
   },
-  "confirmations": {
+  confirmations: {
     title: "Confira sua inscrição",
-    text: "Insira seu CPF para saber se você já está cadastrado em algum evento."
+    text: "Insira seu CPF para saber se você já está cadastrado em algum evento.",
   },
   "alter-password": {
     title: "Nova senha",
@@ -35,6 +35,9 @@ export const Screens = {
     selected_form: "Selecione um formulário",
   },
   events: {
+    form: {
+      title: "Informações do Evento",
+    },
     confirmation: {
       title: "Confirmação de Presença",
       text: "Ao clicar no botão abaixo, você estará confirmando oficialmente a sua presença e garantindo a sua reserva no evento. Você confirma sua presença?",
