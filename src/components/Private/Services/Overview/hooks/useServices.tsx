@@ -37,14 +37,14 @@ export function useServices({
     id,
     name,
     status,
-    created_at,
+    realized_at,
     expired_at,
   }: ServicesShape): TDataServices => {
     return {
       id,
       name,
       status: i18n(`Words.${status.toLowerCase()}`) as Status,
-      created_at: dayjs(created_at).format(i18n("Configs.format.date")),
+      realized_at: dayjs(realized_at).format(i18n("Configs.format.date")),
       expired_at:  expired_at ? dayjs(expired_at).format(i18n("Configs.format.date")) : "--",
       actions: (
         <ServicesActions handleToggleModal={handleToggleModal} id={id} />
