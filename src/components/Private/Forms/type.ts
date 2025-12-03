@@ -32,3 +32,5 @@ export type ComponentsProps = {
   form: FieldShape[];
   handleChangeFormFields: (fieldsForm: Array<FieldShape>) => void;
 };
+
+export type FormType = "OPENED" | "TERMINATED" | "RELEASES";

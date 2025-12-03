@@ -1,9 +1,9 @@
 export type FeedProps = {
   title: string;
-  data: Array<DataShape>;
+  data: Array<FeedDataShape>;
 };
 
-type DataShape = {
+export type FeedDataShape = {
   message: string;
   scape: string;
 };

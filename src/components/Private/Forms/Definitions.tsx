@@ -136,14 +136,14 @@ export function Definitions({ handleChangeFormFields, slug }: Props) {
         <div className="form-group w-full md:w-1/2 md:mr-2">
           <Datetime
             {...register("started_at")}
-            label={i18n("Words.started_at")}
+            label={i18n("Words.started_inscribed")}
             dataTestId="started_at"
           />
         </div>
         <div className="form-group w-full my-4 md:my-auto md:w-1/2 md:ml-2">
           <Datetime
             {...register("expired_at")}
-            label={i18n("Words.expired_at")}
+            label={i18n("Words.final_inscribed")}
             dataTestId="expired_at"
           />
         </div>
@@ -151,7 +151,7 @@ export function Definitions({ handleChangeFormFields, slug }: Props) {
       <div className="form-group my-6">
         <Select
           {...register("category")}
-          label={i18n("Words.category")}
+          label={i18n("Words.relation_category")}
           dataTestId="category"
           options={[
             {
