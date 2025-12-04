@@ -15,7 +15,7 @@ export function useFormsData({ formId }: Props = {}) {
   const { data: formsData } = useGetForms();
   const { data: categories } = useGetCategories();
   const { data: events } = useGetEvents({
-    form_id: formId,
+    form_id: formId ?? 0,
   });
   const [forms, setForms] = useState<Array<FormsShape>>([]);
 
