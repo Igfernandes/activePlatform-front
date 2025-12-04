@@ -24,7 +24,7 @@ export function Forms({
   return (
     <div className="mt-6 p-6 bg-white">
       <When value={step === 1}>
-        <Definitions slug={slug} handleChangeFormFields={onChangeFormFields} />
+        <Definitions slug={slug} formId={form?.id ?? 0} handleChangeFormFields={onChangeFormFields} />
         <div className="mt-4">
           <FilledFormsTable components={components} formId={form?.id ?? 0} />
         </div>

@@ -24,14 +24,18 @@ export function useFormsOverview({
   const handleFilterForms = (formType: FormType, form: FormsShape) => {
     switch (formType) {
       case "OPENED":
-        const notExpired =  form.expired_at && new Date(form.expired_at) > new Date()
-        const hasStarted = form.started_at && new Date(form.started_at) <= new Date()
+        if (form.status === "DRAFT") return false;
+        const notExpired =
+          form.expired_at && new Date(form.expired_at) > new Date();
+        const hasStarted =
+          form.started_at && new Date(form.started_at) <= new Date();
         return notExpired && hasStarted;
         break;
       case "TERMINATED":
         return form.expired_at && new Date(form.expired_at) < new Date();
         break;
       case "RELEASES":
+        if (form.status === "DRAFT") return false;
         return !form.started_at || new Date(form.started_at) >= new Date();
         break;
       default:

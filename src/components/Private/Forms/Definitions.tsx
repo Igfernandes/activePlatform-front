@@ -16,10 +16,11 @@ import Link from "next/link";
 
 type Props = Pick<ComponentsProps, "handleChangeFormFields"> & {
   slug?: string;
+  formId?: number;
 };
 
-export function Definitions({ handleChangeFormFields, slug }: Props) {
-  const { forms, services, categories, events } = useFormsData();
+export function Definitions({ handleChangeFormFields, slug, formId }: Props) {
+  const { forms, services, categories, events } = useFormsData({ formId });
   const {
     register,
     getValues,
@@ -85,30 +86,36 @@ export function Definitions({ handleChangeFormFields, slug }: Props) {
       </div>
       <div className="flex flex-wrap justify-between my-4">
         <div className="w-100 md:w-[49%]">
-          <Select
-            {...register("has_event")}
-            label={i18n("Texts.has_event")}
-            dataTestId="services"
-            defaultValue={events && events.length > 0 ? 1 : 0}
-            options={[
-              {
-                text: i18n("Words.not"),
-                value: 0,
-                selected: !events || events.length === 0
-              },
-              {
-                text: i18n("Words.yes"),
-                value: 1,
-                selected: events && events.length > 0
-              },
-            ]}
-          />
+
           <When value={events && events.length > 0}>
+            <div>
+              <Input disabled={true} dataTestId="event" label={i18n("Words.event")} value={events ? events[0].name : ""} name="event" />
+            </div>
             <div className="mt-2">
-              <Link className="text-red text-sm" href={events ? `/dashboard/events/${events[0].id}` : "#"} >
+              <Link className="text-red text-sm" href={events ? `/dashboard/events/${events[0]?.id}` : "#"} >
                 <u>{i18n("Texts.view_event")}</u>
               </Link>
             </div>
+          </When>
+          <When value={!events || events.length === 0}>
+            <Select
+              {...register("has_event")}
+              label={i18n("Texts.has_event")}
+              dataTestId="services"
+              defaultValue={events && events.length > 0 ? 1 : 0}
+              options={[
+                {
+                  text: i18n("Words.not"),
+                  value: 0,
+                  selected: !events || events.length === 0
+                },
+                {
+                  text: i18n("Words.yes"),
+                  value: 1,
+                  selected: events && events.length > 0
+                },
+              ]}
+            />
           </When>
         </div>
         <div className="w-100 md:w-[49%]">
