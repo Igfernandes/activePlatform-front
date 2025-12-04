@@ -89,7 +89,7 @@ export function Definitions({ handleChangeFormFields, slug, formId }: Props) {
 
           <When value={events && events.length > 0}>
             <div>
-              <Input disabled={true} dataTestId="event" label={i18n("Words.event")} value={events ? events[0].name : ""} name="event" />
+              <Input disabled={true} dataTestId="event" label={i18n("Words.event")} value={events && events[0] ? events[0]?.name : ""} name="event" />
             </div>
             <div className="mt-2">
               <Link className="text-red text-sm" href={events ? `/dashboard/events/${events[0]?.id}` : "#"} >
