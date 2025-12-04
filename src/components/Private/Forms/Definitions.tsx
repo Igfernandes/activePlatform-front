@@ -13,14 +13,15 @@ import { TopBar } from "./TopBar";
 import { TextEdit } from "@components/shared/forms/TextEdit";
 import { ClientCategoriesShape } from "@type/Clients/ClientCategories";
 import Link from "next/link";
+import { FormsShape } from "@type/Forms";
 
 type Props = Pick<ComponentsProps, "handleChangeFormFields"> & {
   slug?: string;
-  formId?: number;
+  targetForm: FormsShape;
 };
 
-export function Definitions({ handleChangeFormFields, slug, formId }: Props) {
-  const { forms, services, categories, events } = useFormsData({ formId });
+export function Definitions({ handleChangeFormFields, slug, targetForm }: Props) {
+  const { forms, services, categories, events } = useFormsData({ formId: targetForm.id });
   const {
     register,
     getValues,
@@ -101,7 +102,7 @@ export function Definitions({ handleChangeFormFields, slug, formId }: Props) {
             <Select
               {...register("has_event")}
               label={i18n("Texts.has_event")}
-              dataTestId="services"
+              dataTestId="events"
               defaultValue={events && events.length > 0 ? 1 : 0}
               options={[
                 {
@@ -131,6 +132,7 @@ export function Definitions({ handleChangeFormFields, slug, formId }: Props) {
               ...(services ?? [])?.map((service: ServicesShape) => ({
                 text: service.name,
                 value: service.id,
+                selected: targetForm.service_id === service.id,
               })),
             ]}
           />
