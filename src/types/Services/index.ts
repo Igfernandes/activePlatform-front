@@ -10,6 +10,7 @@ export type ServicesShape = {
   status: "ACTIVE" | "INACTIVE";
   address?: string;
   realized_at?: string;
+  has_available?: boolean;
   expired_at?: string;
   created_at: string;
   updated_at: string;
