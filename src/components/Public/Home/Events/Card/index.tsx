@@ -10,7 +10,7 @@ import { useCard } from "./hooks/useCard";
 
 type Props = Pick<
   ServicesShape,
-  "id" | "name" | "photo" | "snippet" | "realized_at" | "expired_at"
+  "id" | "name" | "photo" | "snippet" | "realized_at" | "expired_at" | "has_available"
 >;
 
 export function Card({
@@ -20,6 +20,7 @@ export function Card({
   realized_at,
   expired_at,
   snippet,
+  has_available,
 }: Props) {
   const { handleIsAvailableDate } = useCard();
 
@@ -80,12 +81,11 @@ export function Card({
         </div>
       </div>
       <div className="px-3 mt-5">
-        <When value={handleIsAvailableDate(realized_at, expired_at)}>
+        <When value={handleIsAvailableDate(realized_at, expired_at) && has_available}>
           <Link
             href={id > 0 ? `/services/?key=${id}` : "#"}
-            className={`block ${
-              id > 0 ? "bg-red" : "bg-disabled"
-            }  text-white p-2 text-center rounded-md`}
+            className={`block ${id > 0 ? "bg-red" : "bg-disabled"
+              }  text-white p-2 text-center rounded-md`}
           >
             <span>{"Inscrever-se"}</span>
           </Link>
@@ -95,6 +95,13 @@ export function Card({
             className={`block bg-disabled text-white p-2 text-center rounded-md`}
           >
             <span>{"Em breve"}</span>
+          </p>
+        </When>
+        <When value={!has_available}>
+          <p
+            className={`block bg-disabled text-white p-2 text-center rounded-md`}
+          >
+            <span>{"Vagas Esgotadas"}</span>
           </p>
         </When>
       </div>
