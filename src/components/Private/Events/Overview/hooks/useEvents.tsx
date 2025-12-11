@@ -28,7 +28,7 @@ export function useEvents({
     i18n("Words.name"),
     i18n("Words.inscribes"),
     i18n("Words.status"),
-    i18n("Words.data_initial"),
+    i18n("Words.updated_at"),
     i18n("Words.actions"),
   ]);
 
@@ -37,14 +37,14 @@ export function useEvents({
     name,
     status,
     inscribes,
-    created_at,
+    updated_at,
   }: EventShape): TDataEvents => {
     return {
       id,
       name,
       inscribes: inscribes?.length ?? 0,
       status: i18n(`Words.${status.toLowerCase()}`) as Status,
-      created_at: dayjs(created_at).format(i18n("Configs.format.date")),
+      updated_at: dayjs(updated_at).format(i18n("Configs.format.datetime")),
       actions: (
         <EventsActions handleToggleModal={handleToggleModal} id={id} />
       ),
