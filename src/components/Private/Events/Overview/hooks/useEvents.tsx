@@ -39,12 +39,13 @@ export function useEvents({
     inscribes,
     updated_at,
   }: EventShape): TDataEvents => {
+
     return {
       id,
       name,
       inscribes: inscribes?.length ?? 0,
       status: i18n(`Words.${status.toLowerCase()}`) as Status,
-      updated_at: dayjs(updated_at).format(i18n("Configs.format.datetime")),
+      last_updated: dayjs(updated_at).format(i18n("Configs.format.datetime")),
       actions: (
         <EventsActions handleToggleModal={handleToggleModal} id={id} />
       ),

@@ -8,8 +8,9 @@ export type HookEventsProps<EventType> = {
 
 export type TDataEvents = Omit<
   EventShape,
-  "created_at" | "description" | "banner" | "inscribes" | "stock"
+  "created_at" | "updated_at" | "description" | "banner" | "inscribes" | "stock"
 > & {
+  last_updated: string;
   inscribes: number;
   actions: JSX.Element;
 };
