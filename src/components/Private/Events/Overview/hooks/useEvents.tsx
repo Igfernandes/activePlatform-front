@@ -44,7 +44,7 @@ export function useEvents({
       name,
       inscribes: inscribes?.length ?? 0,
       status: i18n(`Words.${status.toLowerCase()}`) as Status,
-      updated_at: dayjs(updated_at).format(i18n("Configs.format.date")),
+      updated_at: dayjs(updated_at).format(i18n("Configs.format.datetime")),
       actions: (
         <EventsActions handleToggleModal={handleToggleModal} id={id} />
       ),
