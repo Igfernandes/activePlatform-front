@@ -26,12 +26,14 @@ export function useFormsOverview({
       case "OPENED":
         if (form.status === "DRAFT") return false;
         const notExpired =
-          form.expired_at && new Date(form.expired_at) > new Date();
+          !form.expired_at || new Date(form.expired_at) > new Date();
         const hasStarted =
-          form.started_at && new Date(form.started_at) <= new Date();
+          !form.started_at || new Date(form.started_at) <= new Date();
         return notExpired && hasStarted;
         break;
       case "TERMINATED":
+        if (form.status === "DRAFT") return true;
+
         return form.expired_at && new Date(form.expired_at) < new Date();
         break;
       case "RELEASES":
