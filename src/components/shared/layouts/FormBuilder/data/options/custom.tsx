@@ -21,6 +21,21 @@ export const optionsCustom = [
     icon: <Pen width={12} height={12} />,
   },
   {
+    id: "option",
+    field: "option",
+    editTabs: [
+      {
+        name: "settings",
+        component: SettingsGroupsTab,
+      },
+      {
+        name: "sizes",
+        component: SizesTab,
+      },
+    ],
+    icon: <Pen width={12} height={12} />,
+  },
+  {
     id: "list",
     field: "list",
     editTabs: [
