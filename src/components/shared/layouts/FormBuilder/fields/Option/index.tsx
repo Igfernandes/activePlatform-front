@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import { InputProps } from "./type";
 import { OptionShape } from "../../parts/Modal/tabs/Settings/GroupsTab/type";
 
-export function List({
+export function Option({
   className,
   errors,
   name,
@@ -22,8 +22,9 @@ export function List({
       setParsedOptions(JSON.parse(options));
     }
   }, [options]);
+
   return (
-    <div>
+    <div className="option-list">
       <div>
         <h4 style={rest.style}>
           {label}{" "}
@@ -46,10 +47,20 @@ export function List({
             </label>
             <input
               {...rest}
-              name={name}
-              type="radio"
+              type="checkbox"
               onChange={(ev) => {
-                if (setValue) setValue(name ?? "", ev.currentTarget.value);
+                const option = ev.currentTarget
+                const container = option.closest(".option-list")
+
+                if (!container) return
+
+                const options = container.querySelectorAll("input")
+                const value: string[] = []
+                options.forEach((opt) => {
+                  if (opt.checked) value.push(opt.value)
+                })
+
+                if (setValue) setValue(name ?? "", value.join(", "));
               }}
               value={option.value}
               className={`${className ?? ""} ${!!errors ? "border-amber-500 outline-amber-500" : ""
