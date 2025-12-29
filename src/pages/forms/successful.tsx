@@ -20,7 +20,7 @@ export default function Successful({ form }: FormSuccessfulPageProps) {
             </h2>
           </div>
           <div
-            className="text-justify text-sm mb-6"
+            className="text-justify text-sm mb-6 break-words"
             dangerouslySetInnerHTML={{
               __html:
                 form?.thanks_message ??
