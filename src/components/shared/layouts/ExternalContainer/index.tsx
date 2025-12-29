@@ -18,7 +18,7 @@ export function ExternalContainer({ children, className = "", footer = "LOGIN" }
         <Flags />
       </div>
       <div
-        className={`container w-[312px] sm:w-[424px] mx-auto shadow-sm border-secondary border-2 px-6 sm:py-6 py-6 mt-2 rounded-[1.5rem] mb-10`}
+        className={`container w-[90%] md:w-[424px] mx-auto shadow-sm border-secondary border-2 px-6 sm:py-6 py-6 mt-2 rounded-[1.5rem] mb-10`}
       >
         {children}
       </div>
