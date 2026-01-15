@@ -6,7 +6,7 @@ import { GetGalleriesRequest, GetGalleriesResponse } from "./types";
 export async function getGalleries(
   tokenNavigation: string,
   { id, ...request }: GetGalleriesRequest = {} as GetGalleriesRequest
-): Promise<GetGalleriesResponse> {
+) {
   const query = request ?? {};
 
   const { galleriesByPhotoPreview } = API_ROUTES;
@@ -27,9 +27,5 @@ export async function getGalleries(
     }
   );
 
-  return {
-    ...rest,
-    rows: data.rows ?? [],
-    count: data.count ?? 0,
-  };
+  return { data: (data ?? []) as GetGalleriesResponse, ...rest };
 }
