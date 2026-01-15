@@ -1,6 +1,4 @@
-import { BaseShape } from "@type/data";
-
-export type GalleryPhotoShape = BaseShape & {
+export type GalleryPhotoShape = {
   id: number;
   src: string;
   gallery_id: number;
