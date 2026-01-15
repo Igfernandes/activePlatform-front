@@ -1,72 +1,21 @@
-import {
-  capitalize,
-  handleMaskCEP,
-  handleMaskCPF,
-  handleMaskPhone,
-} from "@helpers/string";
+
 import { Input } from "../../fields/Input";
-import { FieldShape } from "../../type";
 import { Date } from "../../fields/Date";
 import { Dependents } from "../../fields/Dependents";
+import { Email } from "../../fields/Email";
+import { Password } from "../../fields/Password";
+import { Phone } from "../../fields/Phone";
+import { CPF } from "../../fields/CPF";
+import { CEP } from "../../fields/CEP";
 
-export const classNameDefault = "w-full h-7 py-1 px-2";
+export const classNameDefault = "";
 export const fieldsUser = {
-  name: ({ className, ...props }: FieldShape) => (
-    <Input
-      onChange={(ev) => {
-        const input = ev.currentTarget as HTMLInputElement;
-        ev.currentTarget.value = capitalize(input.value.toLowerCase());
-      }}
-      className={`${classNameDefault} ${className}`}
-      {...props}
-    />
-  ),
-  email: ({ className, ...props }: FieldShape) => (
-    <Input
-      type="email"
-      className={`${classNameDefault} ${className}`}
-      {...props}
-    />
-  ),
-  password: ({ className, ...props }: FieldShape) => (
-    <Input
-      type="password"
-      className={`${classNameDefault} py-1 px-2 ${className}`}
-      {...props}
-    />
-  ),
-  phone: ({ className, ...props }: FieldShape) => (
-    <Input
-      type="tel"
-      onChange={handleMaskPhone}
-      className={`${classNameDefault} ${className}`}
-      {...props}
-    />
-  ),
-  birthdate: ({ className, ...props }: FieldShape) => (
-    <Date className={`${classNameDefault} w-full ${className}`} {...props} />
-  ),
-  cpf: ({ className, ...props }: FieldShape) => (
-    <Input
-      type="text"
-      onChange={handleMaskCPF}
-      className={`${classNameDefault} ${className}`}
-      {...props}
-    />
-  ),
-  cep: ({ className, ...props }: FieldShape) => (
-    <Input
-      type="text"
-      onChange={handleMaskCEP}
-      className={`${classNameDefault} ${className}`}
-      {...props}
-    />
-  ),
-  dependents: ({ className, ...props }: FieldShape) => (
-    <Dependents
-      onChange={handleMaskCEP}
-      className={`${classNameDefault} ${className}`}
-      {...props}
-    />
-  ),
+  name: Input,
+  email: Email,
+  password: Password,
+  phone: Phone,
+  birthdate: Date,
+  cpf: CPF,
+  zipcode: CEP,
+  dependents: Dependents,
 };

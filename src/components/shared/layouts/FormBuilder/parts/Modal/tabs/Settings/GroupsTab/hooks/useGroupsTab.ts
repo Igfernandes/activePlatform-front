@@ -1,41 +1,69 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { OptionShape } from "../type";
+import { isEquals } from "@helpers/json";
 
-export function useGroupsTab() {
-  const defaultOption: OptionShape = { id: 1, text: "", value: "" };
+type Props = {
+  currentOptions: Array<OptionShape>;
+  onChange: ((name: string, value: string) => void) | undefined;
+};
+
+export function useGroupsTab({ currentOptions, onChange }: Props) {
+  const defaultOption: OptionShape = useMemo(() => ({ id: 1, value: "" }), []);
   const [options, setOptions] = useState<Array<OptionShape>>([]);
 
-  const handleRemoveOption = (id: number) => {
-    const filteredOptions = options.filter((option) => option.id !== id);
-    setOptions(filteredOptions);
-  };
+  const handleRemoveOption = useCallback(
+    (id: number, options: Array<OptionShape>) => {
+      const optionsUpdated = options.filter((option) => option.id !== id);
+      setOptions(optionsUpdated);
+      if (onChange) onChange("options", JSON.stringify(optionsUpdated));
+    },
+    [onChange]
+  );
 
-  const handleAddOption = () => {
-    setOptions([
-      ...options,
-      { ...defaultOption, id: new Date().getTime() },
-    ]);
-  };
+  const handleAddOption = useCallback(
+    (options: Array<OptionShape>) => {
+      const optionsUpdated: Array<OptionShape> = [
+        ...options,
+        { ...defaultOption, id: new Date().getTime() },
+      ];
+      setOptions(optionsUpdated);
 
-  const handleChangeOption = (
-    ev: ChangeEvent<HTMLInputElement>,
-    id: number,
-    prop: keyof OptionShape
-  ) => {
-    setOptions(
-      options.map((option) =>
+      if (onChange) onChange("options", JSON.stringify(optionsUpdated));
+    },
+    [onChange, defaultOption]
+  );
+
+  const handleChangeOption = useCallback(
+    (
+      ev: ChangeEvent<HTMLInputElement>,
+      id: number,
+      prop: keyof OptionShape,
+      options: Array<OptionShape>
+    ) => {
+      const optionsUpdated: Array<OptionShape> = options.map((option) =>
         option.id === id
-          ? { ...option, [prop]: ev.currentTarget.value }
+          ? { ...option, [prop]: ev?.currentTarget?.value }
           : option
-      )
-    );
-  };
+      );
+      setOptions(optionsUpdated);
+
+      if (onChange) onChange("options", JSON.stringify(optionsUpdated));
+    },
+    [onChange]
+  );
+
+  useEffect(() => {
+    setOptions((prev) => {
+      if (isEquals(prev, currentOptions)) return prev;
+      return currentOptions;
+    });
+  }, [currentOptions]);
 
   return {
     handleRemoveOption,
     handleAddOption,
     handleChangeOption,
     options,
-    setOptions
+    setOptions,
   };
 }

@@ -1,68 +1,66 @@
 import { When } from "@components/utilities/When";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useFieldsAnimation } from "@hooks/Forms/useFieldsAnimation";
 
 import { FieldProps } from "./type";
-import { useInput } from "./hooks/useInput";
+import { useFields } from "../../hooks/useFields";
+import ErrorMessage from "@components/shared/others/ErrorMessage";
 
-export function Textarea({
-  className,
-  id,
-  label,
-  errors,
-  name,
-  placeholder,
-  required,
-  setValue,
-  onChange,
-  ...rest
-}: FieldProps) {
-  const { labelStyledState, handleTransitionLabel, changeLabelClass } =
-    useFieldsAnimation();
-  const IdCurrent = id;
-  const { isUpLabel } = useInput();
+export const Textarea = React.forwardRef<HTMLTextAreaElement, FieldProps>(
+  function Textarea(
+    {
+      className,
+      id,
+      label,
+      required,
+      placeholder,
+      ...rest
+    }: FieldProps,
+    ref
+  ) {
+    const { labelStyledState, handleTransitionLabel } =
+      useFieldsAnimation();
+    const IdCurrent = id;
+    const { error, handleHasError } = useFields({ name: rest.name as string, required });
 
-  useEffect(() => {
-    changeLabelClass(isUpLabel({ placeholder }) ? "UP" : "DOWN");
-  }, [placeholder]);
-
-  return (
-    <>
-      <div
-        className={`relative ${
-          errors?.message ? "border-yellow" : ""
-        } w-full my-2`}
-      >
-        <label
-          htmlFor={IdCurrent}
-          className={`absolute transition-all duration-350 line-clamp-1`}
-          style={{
-            ...labelStyledState,
-          }}
+    return (
+      <>
+        <div
+          className={`relative ${error?.message ? "border-yellow" : ""
+            } w-full my-2`}
         >
-          {label}
-          <When value={!!required}>
-            <span className="text-red">*</span>
-          </When>
-        </label>
-        <textarea
-          {...rest}
-          name={name}
-          required={required === "true"}
-          onFocus={handleTransitionLabel}
-          onBlur={handleTransitionLabel}
-          onChange={(ev) => {
-            if (setValue) setValue(name ?? "", ev.currentTarget.value);
-            if (onChange) onChange(ev);
-          }}
-          placeholder={placeholder}
-          className={`${className ?? ""} ${
-            !!errors ? "border-amber-500 outline-amber-500" : ""
-          } w-full min-h-20 px-3 pt-8 pb-4 bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
-          id={IdCurrent}
-        />
-      </div>
-    </>
-  );
-}
+          <label
+            htmlFor={IdCurrent}
+            className={`absolute transition-all duration-350 line-clamp-1`}
+            style={{
+              ...labelStyledState,
+            }}
+          >
+            {label}
+            <When value={!!required}>
+              <span className="text-red">*</span>
+            </When>
+          </label>
+          <textarea
+            {...rest}
+            ref={ref}
+            onFocus={(ev) => {
+              handleTransitionLabel(ev)
+              handleHasError()
+            }}
+            onBlur={(ev) => {
+              handleTransitionLabel(ev)
+              handleHasError()
+            }}
+            placeholder={placeholder}
+            className={`${className ?? ""} ${!!error ? "border-amber-500 outline-amber-500" : ""
+              } w-full min-h-20 px-3 pt-8 pb-4 bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
+            id={IdCurrent}
+          />
+        </div>
+        <ErrorMessage errors={!!error ? error?.message as string : undefined} />
+      </>
+    );
+  }
+)

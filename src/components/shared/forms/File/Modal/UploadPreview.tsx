@@ -11,7 +11,7 @@ type Props = {
 export function UploadPreview({ file, onCleanFile, progress }: Props) {
   return (
     <div className="relative">
-      <label className="block max-h-[104px] w-[376px] rounded-lg border border-secondary py-2 pl-2 cursor-pointer">
+      <label className="block max-h-[104px] md:w-[376px] rounded-lg border border-secondary py-2 pl-2 cursor-pointer">
      
         <div className="flex">
           <div>
@@ -23,7 +23,7 @@ export function UploadPreview({ file, onCleanFile, progress }: Props) {
           "
             >
               {file?.name && file?.name.length > 40
-                ? file?.name.substring(0, 39) + "..." + file.type.split("/")[1]
+                ? file?.name.substring(0, 35) + "..." + file.type.split("/")[1]
                 : file?.name}
             </span>
             <span className="block text-xs">{formatFileSize(file)}</span>

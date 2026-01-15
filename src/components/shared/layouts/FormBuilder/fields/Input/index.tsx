@@ -1,41 +1,36 @@
 import { When } from "@components/utilities/When";
 
 import { RotateClockwise } from "@assets/Icons/white/RotateClockwise";
-import React, { useEffect } from "react";
+import React from "react";
 import { useFieldsAnimation } from "@hooks/Forms/useFieldsAnimation";
 
 import { InputProps } from "./type";
-import { useInput } from "./hooks/useInput";
+import ErrorMessage from "@components/shared/others/ErrorMessage";
+import { useFields } from "../../hooks/useFields";
 
-export function Input({
-  isLoading = false,
-  className,
-  id,
-  label,
-  errors,
-  name,
-  placeholder,
-  required,
-  type,
-  setValue,
-  onChange,
-  ...rest
-}: InputProps) {
-  const { labelStyledState, handleTransitionLabel, changeLabelClass } =
-    useFieldsAnimation();
-  const IdCurrent = id;
-  const { isUpLabel } = useInput();
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  function Input(
+    {
+      isLoading = false,
+      className,
+      id,
+      label,
+      placeholder,
+      required,
+      ...rest
+    }: InputProps,
+    ref
+  ) {
+    const { labelStyledState, handleTransitionLabel } =
+      useFieldsAnimation();
+    const IdCurrent = id;
+    const { error, handleHasError } = useFields({ name: rest.name as string, required });
 
-  useEffect(() => {
-    changeLabelClass(isUpLabel({ placeholder, ...rest }) ? "UP" : "DOWN");
-  }, [placeholder]);
+    return (
 
-  return (
-    <>
       <div
-        className={`relative ${
-          errors?.message ? "border-yellow" : ""
-        } w-full my-2`}
+        className={`relative ${!!error ? "border-yellow" : ""
+          } w-full my-2`}
       >
         <label
           htmlFor={IdCurrent}
@@ -51,19 +46,18 @@ export function Input({
         </label>
         <input
           {...rest}
-          name={name}
+          ref={ref}
           required={required === "true"}
-          onFocus={handleTransitionLabel}
-          onBlur={handleTransitionLabel}
-          onChange={(ev) => {
-            if (setValue) setValue(name ?? "", ev.currentTarget.value);
-            if (onChange) onChange(ev);
+          onFocus={(ev) => {
+            handleTransitionLabel(ev);
+            handleHasError(ev.currentTarget.value)
           }}
-          type={type}
-          placeholder={type == "date" ? " " : placeholder}
-          className={`${className ?? ""} ${
-            !!errors ? "border-amber-500 outline-amber-500" : ""
-          } w-full px-3 pt-8 pb-4 bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
+          onChangeCapture={() => handleHasError()}
+          onBlur={handleTransitionLabel}
+          type={rest.type}
+          placeholder={rest.type == "date" ? " " : placeholder}
+          className={`h-7 py-1 px-2 ${className ?? ""} ${!!error ? "border-amber-500 outline-amber-500" : ""
+            } w-full px-3 pt-8 pb-4 bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
           id={IdCurrent}
         />
         <When value={isLoading}>
@@ -72,7 +66,8 @@ export function Input({
             fill="black"
           />
         </When>
+        <ErrorMessage errors={!!error ? error?.message as string : undefined} />
       </div>
-    </>
-  );
-}
+    );
+  }
+);

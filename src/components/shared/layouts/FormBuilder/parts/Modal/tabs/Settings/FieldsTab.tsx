@@ -51,7 +51,6 @@ export function SettingsFieldsTab({ field, oChangeField, tabActive }: TabProps) 
           label="is_required"
           name="required"
           key={"required"}
-          defaultValue={field?.required}
           onChange={oChangeField}
         />
       </div>

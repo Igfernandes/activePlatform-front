@@ -7,18 +7,27 @@ import { DesktopDependentsViewer } from "./Desktop";
 import { When } from "@components/utilities/When";
 import useWindow from "@hooks/useWindow";
 import { MobileDependentsViewer } from "./Mobile";
+import { useFields } from "../../hooks/useFields";
 
-export function Dependents({ id, label, name, errors, setValue }: InputProps) {
+export
+  function Dependents(
+    {
+      id,
+      label,
+      required,
+      name,
+    }: InputProps,
+  ) {
   const IdCurrent = id;
-  const { rows, handleChanges, setRows } = useDependent({ setValue, name });
+  const { rows, handleChanges, setRows } = useDependent({ name });
+  const { error } = useFields({ name, required });
   const { screenType } = useWindow();
 
   return (
     <>
       <div
-        className={`relative ${
-          errors?.message ? "border-yellow" : ""
-        } w-full my-4`}
+        className={`relative ${error?.message ? "border-yellow" : ""
+          } w-full my-4`}
       >
         <div className="flex justify-between mb-4 items-center">
           <label
@@ -30,7 +39,7 @@ export function Dependents({ id, label, name, errors, setValue }: InputProps) {
           <div className="btn">
             <button
               type="button"
-              className="bg-red p-2 rounded-lg text-white"
+              className="bg-primary p-2 rounded-lg text-white"
               onClick={() => {
                 const rowsUpdated = [
                   ...rows,

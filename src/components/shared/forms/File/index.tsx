@@ -1,6 +1,6 @@
 import { When } from "@components/utilities/When";
 import { InputProps } from "./type";
-import React, { useEffect } from "react";
+import React from "react";
 import ErrorMessage from "@components/shared/others/ErrorMessage";
 import { Upload } from "@assets/Icons/black/Upload";
 import { textColors } from "@assets/colors/colors";
@@ -18,8 +18,6 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
       errors,
       name,
       required,
-      value,
-      defaultValue,
       handledChange,
       ...rest
     }: InputProps,
@@ -27,42 +25,24 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
   ) {
     const IdCurrent = id ?? dataTestId ?? `${name}_${new Date().getTime()}`;
     const {
-      currentValue,
       isShowModal,
-      setCurrentValue,
       setIsShowModal,
       setValue,
       watch,
     } = useFile();
-    const files = watch(`${name}`);
-
-    useEffect(() => {
-      if (value || defaultValue) {
-        setCurrentValue({
-          name: `${defaultValue ?? value}`,
-        } as File);
-        return;
-      }
-
-      if (!files) return;
-
-      setCurrentValue(files[0]);
-    }, [files, defaultValue, value]);
+    const currentValue = watch(`${name}`) as string;
 
     return (
       <>
         <div className="relative w-full">
           <label
-            className={`${
-              !!errors ? "border-amber-500 outline-amber-500" : ""
-            } ${
-              className ?? ""
-            }  w-full pl-3 pr-7 pb-3 pt-5 h-14  line-clamp-1 bg-white  border-secondary  cursor-pointer border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
+            className={`${!!errors ? "border-amber-500 outline-amber-500" : ""
+              } ${className ?? ""
+              }  w-full pl-3 pr-7 pb-3 pt-5 h-14  line-clamp-1 bg-white  border-secondary  cursor-pointer border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
             onClick={() => setIsShowModal(true)}
           >
             <span className="font-medium line-clamp-1">
-              {" "}
-              {currentValue?.name as string}
+              {currentValue as string}
             </span>
             <span
               className={`absolute transition-all duration-350`}
@@ -74,7 +54,7 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
             >
               {label}
               <When value={required}>
-                <i className="text-red">*</i>
+                <i className="text-primary">*</i>
               </When>
             </span>
             <When value={!currentValue}>
@@ -87,7 +67,6 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
               fill={textColors.red}
               onClick={() => {
                 setValue(`${name}`, undefined);
-                setCurrentValue(undefined);
               }}
             />
           </When>
@@ -95,7 +74,7 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
             {...rest}
             ref={ref}
             name={name}
-            type={"file"}
+            type={"text"}
             onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
               if (rest.onChange) rest.onChange(ev);
               if (handledChange) handledChange(ev);

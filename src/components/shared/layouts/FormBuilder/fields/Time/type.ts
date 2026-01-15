@@ -7,7 +7,7 @@ export type InputProps = Omit<
 > & {
   label?: string;
   errors?: FieldError;
-  required?: string | null;
+  required?: boolean;
   tooltip?: string;
   handledChange?: (ev: React.ChangeEvent<HTMLInputElement> | undefined) => void;
 };

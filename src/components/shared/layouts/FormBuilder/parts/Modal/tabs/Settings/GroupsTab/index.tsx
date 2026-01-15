@@ -5,6 +5,7 @@ import i18n from "@configs/i18n";
 import { Options } from "./Options";
 import { OptionShape } from "./type";
 import { TabProps } from "../../type";
+import { useMemo } from "react";
 
 export function SettingsGroupsTab({
   field,
@@ -12,6 +13,13 @@ export function SettingsGroupsTab({
   handleUpdateField,
   tabActive,
 }: TabProps) {
+  const parsedOptions = useMemo(() => {
+    try {
+      return JSON.parse(field?.options ?? "[]") as Array<OptionShape>;
+    } catch {
+      return [];
+    }
+  }, [field]);
   
   return (
     <When value={tabActive === "settings"}>
@@ -30,9 +38,7 @@ export function SettingsGroupsTab({
           onChange={oChangeField}
         />
         <Options
-          currentOptions={
-            JSON.parse(field?.options ?? "[]") as Array<OptionShape>
-          }
+          currentOptions={parsedOptions}
           onChange={handleUpdateField}
         />
         <FormSelect
@@ -49,7 +55,6 @@ export function SettingsGroupsTab({
           label="is_required"
           name="required"
           key={"required"}
-          defaultValue={field?.required}
           onChange={oChangeField}
         />
       </div>

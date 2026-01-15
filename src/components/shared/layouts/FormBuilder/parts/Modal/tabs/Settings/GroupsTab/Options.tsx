@@ -2,7 +2,6 @@ import i18n from "@configs/i18n";
 import { Option } from "./Option";
 import { useGroupsTab } from "./hooks/useGroupsTab";
 import { OptionShape } from "./type";
-import { useEffect } from "react";
 
 type Props = {
   currentOptions: Array<OptionShape>;
@@ -14,24 +13,15 @@ export function Options({ onChange, currentOptions }: Props) {
     handleAddOption,
     handleRemoveOption,
     handleChangeOption,
-    setOptions,
     options,
-  } = useGroupsTab();
-
-  useEffect(() => {
-    setOptions(currentOptions);
-  }, []);
-
-  useEffect(() => {
-    if (onChange) onChange("options", JSON.stringify(options));
-  }, [options]);
+  } = useGroupsTab({ currentOptions, onChange });
 
   return (
-    <div>
+    <div className="mb-6">
       <div className="text-end">
         <button
-          onClick={handleAddOption}
-          className="bg-red text-white p-2"
+          onClick={() => handleAddOption(options)}
+          className="bg-primary text-white p-2 rounded-md mb-1"
           type="button"
         >
           {i18n("Words.add")}
@@ -41,7 +31,6 @@ export function Options({ onChange, currentOptions }: Props) {
         <thead>
           <tr>
             <th className="bg-disabled border-2">{i18n("Words.text")}</th>
-            <th className="bg-disabled border-2">{i18n("Words.value")}</th>
             <th className="bg-disabled border-2"></th>
           </tr>
         </thead>
@@ -52,6 +41,7 @@ export function Options({ onChange, currentOptions }: Props) {
               handleRemoveOption={handleRemoveOption}
               handleChangeOption={handleChangeOption}
               option={option}
+              options={options}
             />
           ))}
         </tbody>

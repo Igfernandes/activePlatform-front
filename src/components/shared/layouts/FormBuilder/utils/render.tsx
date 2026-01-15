@@ -1,12 +1,11 @@
 import { fields } from "../data/fields";
-import { FieldShape } from "../type";
 
 export function getRenderer(type: string) {
   /** @ts-expect-error Por enquanto vai haver necessidade disso. */
-  const component = fields[type as string];
+  const Component = fields[type as string];
 
-  if (component)
-    return (props: Omit<FieldShape, "element">) => component(props);
+  if (Component)
+    return Component;
 
   return InvalidComponent;
 }

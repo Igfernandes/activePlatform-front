@@ -31,6 +31,7 @@ export const handleMaskDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     );
 
   event.target.value = value;
+  return value;
 };
 
 export const getDateWithMonthValid = (

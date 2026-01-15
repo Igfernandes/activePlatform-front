@@ -1,23 +1,25 @@
 import React from "react";
 import { InputProps } from "./type";
 
-export function Hidden({ id, name, setValue, onChange, ...rest }: InputProps) {
-  const IdCurrent = id;
+export const Hidden = React.forwardRef<HTMLInputElement, InputProps>(
+  function Hidden(
+    {
+      id,
+      ...rest
+    }: InputProps,
+    ref
+  ) {
+    const IdCurrent = id;
 
-  return (
-    <>
+    return (
       <div className={`relative w-full my-2`}>
         <input
           {...rest}
-          name={name}
-          onChange={(ev) => {
-            if (setValue) setValue(name ?? "", ev.currentTarget.value);
-            if (onChange) onChange(ev);
-          }}
+          ref={ref}
           type={"hidden"}
           id={IdCurrent}
         />
       </div>
-    </>
-  );
-}
+    );
+  }
+)
