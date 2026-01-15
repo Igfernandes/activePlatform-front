@@ -1,6 +1,7 @@
 import { GalleryFileShape } from "../type";
 import usePostFiles from "@services/Files/Post/usePost";
 import { HookUploadProps } from "../Modal/type";
+import { compressImage } from "@helpers/file";
 
 export function useUpload({
   galleryRef,
@@ -21,22 +22,25 @@ export function useUpload({
       return handleModal(false);
     }
 
-    for (let index = 0; index < filesNotUploaded.length; index++) {
-      const file = filesNotUploaded[index];
+    await postFiles({
+      files: await Promise.all(filesNotUploaded.map((file) => compressImage(file.ref))),
+      packageRef: galleryRef.current,
+    }).then(({ files: filesUploaded }) => {
+      const totalFiles =
+        filesUploaded.failed.length > filesUploaded.success.length
+          ? filesUploaded.failed.length
+          : filesUploaded.success.length;
 
-      await postFiles({
-        files: [file.ref],
-        packageRef: galleryRef.current,
-      }).then(({ files: filesUploaded }) => {
-        processedFiles[index] = {
-          ...file,
-          url: filesUploaded.success ? filesUploaded.success[0] : file.url,
-          status: filesUploaded.failed[0] ? "INVALIDED" : "UPLOADED",
-        };
+      for (let i = 0; i < totalFiles; i++) {
+        processedFiles.push({
+          ...filesNotUploaded[i],
+          url: filesUploaded.success[i],
+          status: filesUploaded.failed[i] ? "INVALIDED" : "UPLOADED",
+        });
+      }
 
-        isInvalidFile = filesUploaded.failed.length > 0;
-      });
-    }
+      isInvalidFile = filesUploaded.failed.length > 0;
+    });
 
     setFiles(processedFiles);
     if (isInvalidFile) return;

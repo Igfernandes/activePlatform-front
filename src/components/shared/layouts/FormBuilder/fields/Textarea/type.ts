@@ -11,7 +11,7 @@ export type FieldProps = Omit<
 > & {
   label?: string;
   errors?: FieldError;
-  required?: string | null;
+  required?: boolean;
   tooltip?: string;
   handledChange?: (
     ev: React.ChangeEvent<HTMLTextAreaElement> | undefined

@@ -9,7 +9,6 @@ export type FormBuilderContextData = {
   isShowModal: boolean;
   currentField: FieldShape | undefined;
   handleToggleModal: (isModal: boolean, fieldId?: string) => void;
-  handleToggleField: (field: FieldShape) => void;
   handleChangeFields: (fields: Array<FieldShape>) => void;
   handleRemoveField: (fieldId: string) => void;
   handleChangePositionField: (

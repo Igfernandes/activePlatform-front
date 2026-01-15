@@ -4,18 +4,21 @@ import React, { useEffect } from "react";
 
 import { InputProps } from "./type";
 import { OptionShape } from "../../parts/Modal/tabs/Settings/GroupsTab/type";
+import { useFields } from "../../hooks/useFields";
+import { useFormContext } from "react-hook-form";
 
-export function Option({
-  className,
-  errors,
-  name,
-  required,
-  options,
-  label,
-  setValue,
-  ...rest
-}: InputProps) {
+export function Checkboxes(
+  {
+    className,
+    label,
+    required,
+    options,
+    ...rest
+  }: InputProps,
+) {
+  const { setValue } = useFormContext();
   const [parsedOptions, setParsedOptions] = React.useState<OptionShape[]>([]);
+  const { error } = useFields({ name: rest.name as string, required });
 
   useEffect(() => {
     if (options) {
@@ -27,23 +30,23 @@ export function Option({
     <div className="option-list">
       <div>
         <h4 style={rest.style}>
-          {label}{" "}
+          {label}
           <When value={!!required}>
             <span className="text-red">*</span>
           </When>
         </h4>
       </div>
       <div
-        className={`flex flex-wrap  box-border ${errors?.message ? "border-yellow" : ""
-          } my-4`}
+        className={`flex flex-wrap  box-border ${error?.message ? "border-yellow" : ""
+          }`}
       >
         {parsedOptions.map((option, key) => (
           <div
             className="w-full md:w-auto flex flex-row-reverse md:block my-2 cursor-pointer"
-            key={`list_option_key`}
+            key={`list_${rest.name}_option_${key}_key`}
           >
-            <label htmlFor={`option_${key}`} className="w-[80%] md:w-auto ml-2">
-              {option.text}
+            <label htmlFor={`${rest.name}_option_${key}`} className="w-[80%] md:w-auto ml-2">
+              {option.value}
             </label>
             <input
               {...rest}
@@ -60,16 +63,16 @@ export function Option({
                   if (opt.checked) value.push(opt.value)
                 })
 
-                if (setValue) setValue(name ?? "", value.join(", "));
+                if (setValue) setValue(rest.name ?? "", value.join(", "));
               }}
               value={option.value}
-              className={`${className ?? ""} ${!!errors ? "border-amber-500 outline-amber-500" : ""
+              className={`${className ?? ""} ${!!error ? "border-amber-500 outline-amber-500" : ""
                 } w-[10%] min-w-4 md:w-full px-3 pt-8 pb-4  bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
-              id={`option_${key}`}
+              id={`${rest.name}_option_${key}`}
             />
           </div>
         ))}
       </div>
     </div>
   );
-}
+};

@@ -1,20 +1,18 @@
+import { useFormContext } from "react-hook-form";
 import { FieldShape } from "../type";
 import { getRenderer } from "../utils/render";
 
-export function Field({ element, required, ...rest }: FieldShape) {
+export function Field({ element, group, ...rest }: FieldShape) {
   const Component = getRenderer(element);
+  const { register, formState: { errors } } = useFormContext()
+  const name = `input_${rest.id}`
 
+  console.log(errors)
   return (
     <Component
-      type={element}
       {...rest}
-      required={required}
-      name={`input_${rest.id}`}
-      defaultValue={
-        ["button"].includes(element)
-          ? rest.label ?? rest.defaultValue
-          : rest.defaultValue
-      }
+      {...(group !== "layout" ? register(name) : {})}
+      type={element}
     />
   );
 }

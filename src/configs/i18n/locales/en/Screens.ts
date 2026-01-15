@@ -9,6 +9,11 @@ export const Screens = {
     title: "Enter your registered email",
     text: "If you have an account on the platform, we will send a link to the registered email so you can recover your account.",
   },
+  galleries: {
+    description:
+      "Discover the best moments with Matrilhas and their unforgettable experiences through our photo gallery.",
+    title: "Photo Gallery",
+  },
   "alter-password": {
     title: "New password",
     text: "Create a new password to access the platform.",

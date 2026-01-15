@@ -1,3 +1,5 @@
+import imageCompression from "browser-image-compression";
+
 // formatFileSize.js
 export const formatFileSize = (file?: File) => {
   if (!file || !file.size) return "0B";
@@ -40,4 +42,14 @@ export function bytesToMB(bytes: number, decimalPlaces: number = 4): string {
   if (bytes === 0) return "0 MB";
   const mb = bytes / (1024 * 1024);
   return `${mb.toFixed(decimalPlaces)} MB`;
+}
+export async function compressImage(file: File): Promise<File> {
+  const options = {
+    maxSizeMB: 1, // tamanho máximo
+    maxWidthOrHeight: 1080, // redimensionar proporcional
+    useWebWorker: true, // uso de web worker para desempenho
+  };
+
+  const compressedFile = await imageCompression(file, options);
+  return compressedFile;
 }

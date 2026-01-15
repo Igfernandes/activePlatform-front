@@ -17,8 +17,12 @@ export function isValidJSON(str: string) {
     const parsed = JSON.parse(str);
     // Verifica se o resultado é um objeto ou array válido
     return typeof parsed === "object" && parsed !== null;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e: unknown) {
     return false;
   }
+}
+
+export function isEquals(data: unknown, ref: unknown) {
+  return JSON.stringify(data) === JSON.stringify(ref);
 }

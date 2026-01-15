@@ -1,12 +1,15 @@
 import { createContext, useContext, useState, useMemo } from "react";
 import { i18nConfig, setLanguageToI18n } from "@configs/i18n";
 import { getCookie } from "cookies-next";
+import { Scope, TranslateOptions } from "i18n-js";
 
 type I18nContextType = {
   t: typeof i18nConfig.t;
   locale: string;
   setLocale: (lang: string) => void;
 };
+
+export type TFunction = <T = string>(scope: Scope, options?: TranslateOptions) => string | T
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 

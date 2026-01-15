@@ -15,16 +15,6 @@ export const optionsSimples = [
     icon: <Pen width={12} height={12} />,
   },
   {
-    id: "checkbox",
-    field: "checkbox",
-    icon: <Pen width={12} height={12} />,
-  },
-  // {
-  //   id: "select",
-  //   field: "select",
-  //   icon: <Pen width={12} height={12} />,
-  // },
-  {
     id: "datetime-local",
     field: "datetime-local",
     icon: <Pen width={12} height={12} />,

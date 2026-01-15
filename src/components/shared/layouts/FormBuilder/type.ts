@@ -32,8 +32,7 @@ export type FieldShape = {
   options?: string;
   labelColor?: string;
   labelWeight?: string;
-  required?: string;
-  setValue?: SetValue
+  required?: boolean ;
 };
 
 export type SetValue = (name: string, value: unknown) => void;

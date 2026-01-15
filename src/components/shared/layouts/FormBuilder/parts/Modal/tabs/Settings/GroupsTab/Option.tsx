@@ -3,19 +3,22 @@ import { ChangeEvent } from "react";
 import { OptionShape } from "./type";
 
 type Props = {
-  handleRemoveOption: (id: number) => void;
+  handleRemoveOption: (id: number, options: OptionShape[]) => void;
   handleChangeOption: (
     ev: ChangeEvent<HTMLInputElement>,
     id: number,
-    prop: keyof OptionShape
+    prop: keyof OptionShape,
+    options: OptionShape[]
   ) => void;
   option: OptionShape;
+  options: OptionShape[]
 };
 
 export function Option({
   option,
   handleChangeOption,
   handleRemoveOption,
+  options
 }: Props) {
   return (
     <tr>
@@ -23,20 +26,13 @@ export function Option({
         <input
           className="w-full p-1 border-2"
           type="text"
-          onChange={(ev) => handleChangeOption(ev, option.id, "text")}
-          value={option.text}
-        />
-      </td>
-      <td>
-        <input
-          className="w-full p-1 border-2"
-          type="text"
-          onChange={(ev) => handleChangeOption(ev, option.id, "value")}
-          value={option.value}
+          name="option"
+          onChange={(ev) => handleChangeOption(ev, option.id, "value", options)}
+          value={option.value ?? ""}
         />
       </td>
       <td className="text-center">
-        <button onClick={() => handleRemoveOption(option.id)} type="button">
+        <button onClick={() => handleRemoveOption(option.id, options)} type="button">
           <Close />
         </button>
       </td>

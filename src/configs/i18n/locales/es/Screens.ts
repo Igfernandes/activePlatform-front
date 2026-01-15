@@ -9,6 +9,11 @@ export const Screens = {
     title: "Ingrese su correo electrónico registrado",
     text: "Si está registrado en la plataforma, enviaremos un enlace al correo electrónico registrado para que pueda recuperar la cuenta.",
   },
+  galleries: {
+    description:
+      "Descubra los mejores momentos con Matrilhas y sus experiencias inolvidables a través de nuestra galería de fotos.",
+    title: "Galería de Fotos",
+  },
   "alter-password": {
     title: "Nueva contraseña",
     text: "Cree una nueva contraseña para acceder a la plataforma.",

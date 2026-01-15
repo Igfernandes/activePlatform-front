@@ -7,14 +7,10 @@ export type InputProps = Omit<
   "required"
 > &
   FieldShape & {
-    isLoading?: boolean;
     label?: string;
     errors?: FieldError;
     required?: string | null;
     tooltip?: string;
-    handledChange?: (
-      ev: React.ChangeEvent<HTMLInputElement> | undefined
-    ) => void;
   };
 
 export type DependentsData = {

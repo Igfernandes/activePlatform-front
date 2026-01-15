@@ -1,98 +1,121 @@
-import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  MouseEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { useFormBuilderContext } from "../../../context";
 import { FieldShape } from "../../../type";
+import { isEquals } from "@helpers/json";
 
 type Props = {
   currentField?: FieldShape;
 };
 
 export function useModal({ currentField }: Props) {
-  const [payload, setPayload] = useState<FieldShape>();
+  const [payload, setPayload] = useState<FieldShape>({} as FieldShape);
 
   const { handleChangeFields, fields, handleToggleModal } =
     useFormBuilderContext();
 
-  const getPayloadStyled = (fieldName: string, fieldValue: string) => {
-    let payloadUpdated: Record<string, unknown> = {
-      ...payload,
-    };
-    if (!payload) return {};
-
-    const fieldNameParts = fieldName.split(".");
-
-    if (fieldNameParts.length === 2) {
-      const style = payload.style as Record<string, unknown>;
-      payloadUpdated = {
-        style: {
-          ...style,
-          [fieldNameParts[1]]: fieldValue,
-        },
+  const getPayloadStyled = useCallback(
+    (fieldName: string, fieldValue: string) => {
+      let payloadUpdated: Record<string, unknown> = {
+        ...payload,
       };
-    } else {
-      payloadUpdated[fieldName] = fieldValue;
-    }
+      if (!payload) return {};
 
-    return payloadUpdated;
-  };
+      const fieldNameParts = fieldName.split(".");
 
-  const handleChangeField = (
-    ev: ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const field = ev.target;
-    const fieldName = field.getAttribute("name");
-    if (!fieldName || !payload) return;
-    let fieldValue = ev.target.value;
+      if (fieldNameParts.length === 2) {
+        const style = payload.style as Record<string, unknown>;
+        payloadUpdated = {
+          style: {
+            ...style,
+            [fieldNameParts[1]]: fieldValue,
+          },
+        };
+      } else {
+        payloadUpdated[fieldName] = fieldValue;
+      }
 
-    const { measure } = field.dataset;
+      return payloadUpdated;
+    },
+    [payload]
+  );
 
-    fieldValue = fieldValue + (measure ?? "");
+  const handleChangeField = useCallback(
+    (ev: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      const field = ev.target;
+      const fieldName = field.getAttribute("name");
+      if (!fieldName || !payload) return;
+      let fieldValue = ev.target.value;
 
-    const payloadUpdated: Record<string, unknown> = getPayloadStyled(
-      fieldName,
-      fieldValue
-    );
+      const { measure } = field.dataset;
 
-    setPayload({
-      ...payload,
-      ...payloadUpdated,
-    });
-  };
+      fieldValue = fieldValue + (measure ?? "");
 
-  const handleUpdateField = (name: string, value: string) => {
-    if (!name || !payload) return;
+      const payloadUpdated: Record<string, unknown> = getPayloadStyled(
+        fieldName,
+        fieldValue
+      );
 
-    const payloadUpdated: Record<string, unknown> = getPayloadStyled(
-      name,
-      value
-    );
+      setPayload((prev) => {
+        return {
+          ...prev,
+          ...(payloadUpdated as FieldShape),
+        };
+      });
+    },
+    [getPayloadStyled, payload]
+  );
 
-    setPayload({
-      ...payload,
-      ...payloadUpdated,
-    });
-  };
+  const handleUpdateField = useCallback(
+    (name: string, value: string) => {
+      if (!name || !payload) return;
 
-  const handleSubmit = (ev: MouseEvent) => {
-    const form = ev.currentTarget.closest("#form");
+      const payloadUpdated: Record<string, unknown> = getPayloadStyled(
+        name,
+        value
+      );
 
-    if (!currentField || !form) return;
+      setPayload((prev) => {
+        return {
+          ...prev,
+          ...(payloadUpdated as FieldShape),
+        };
+      });
+    },
+    [getPayloadStyled, payload]
+  );
 
-    const fieldUpdated = {
-      ...currentField,
-      ...payload,
-    };
+  const handleSubmit = useCallback(
+    (ev: MouseEvent) => {
+      const form = ev.currentTarget.closest("#form");
 
-    const filteredFields = fields.map((fieldItem) => {
-      return fieldItem.id === currentField.id ? fieldUpdated : fieldItem;
-    });
+      if (!currentField || !form) return;
 
-    handleChangeFields(filteredFields);
-    handleToggleModal(false);
-  };
+      const fieldUpdated = {
+        ...currentField,
+        ...payload,
+      };
+
+      const filteredFields = fields.map((fieldItem) => {
+        return fieldItem.id === currentField.id ? fieldUpdated : fieldItem;
+      });
+
+      handleChangeFields(filteredFields);
+      handleToggleModal(false);
+    },
+    [currentField, fields, handleChangeFields, handleToggleModal, payload]
+  );
+
   useEffect(() => {
-    if (!currentField) return;
-
-    if (!payload || currentField.id != payload.id) setPayload(currentField);
+    setPayload((prev) => {
+      if (isEquals(prev, currentField)) return prev;
+      return currentField || ({} as FieldShape);
+    });
   }, [currentField]);
 
   return {

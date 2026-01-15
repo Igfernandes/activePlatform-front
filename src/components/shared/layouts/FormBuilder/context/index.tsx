@@ -1,5 +1,6 @@
 import React, {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -26,14 +27,19 @@ const FormBuilderProvider = ({
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
   const [currentField, setCurrentField] = useState<FieldShape>();
 
-  const handleAddField = (newField: FieldShape) => {
+  const handleAddField = useCallback((newField: FieldShape) => {
     setFields((prevItems: Array<FieldShape>) => [...prevItems, newField]);
-  };
-  const handleChangeFields = (fields: Array<FieldShape>) => {
+  }, []);
+  const handleChangeFields = useCallback((fields: Array<FieldShape>) => {
     setFields(fields);
-  };
+  }, []);
 
-  const handleDragEnd = (ev: DragEndEvent) => {
+  const handleToggleModal = useCallback((isModal: boolean, fieldId?: string) => {
+    setIsShowModal(isModal);
+    if (isModal) setActiveFieldId(fieldId);
+  }, []);
+
+  const handleDragEnd = useCallback((ev: DragEndEvent) => {
     const data = ev.active.data.current;
 
     if (!data) return;
@@ -47,9 +53,9 @@ const FormBuilderProvider = ({
       handleToggleModal(true);
     }
     if (data.fromForm) handleDragEndForm(ev, handleChangeFields, fields);
-  };
+  }, [fields, handleAddField, handleChangeFields, handleToggleModal]);
 
-  const handleChangePositionField = (
+  const handleChangePositionField = useCallback((
     currentPosition: number,
     newPosition: number | "DOWN" | "UP"
   ) => {
@@ -74,26 +80,21 @@ const FormBuilderProvider = ({
       newFields.splice(newPosition, 0, item);
       return newFields;
     });
-  };
-  const handleToggleField = (field: FieldShape) => setCurrentField(field);
+  }, [fields]);
 
-  const handleToggleModal = (isModal: boolean, fieldId?: string) => {
-    setIsShowModal(isModal);
-    if (isModal) setActiveFieldId(fieldId);
-  };
 
-  const handleRemoveField = (fieldId: string) => {
-    setFields(fields.filter((field) => field.id !== fieldId));
+  const handleRemoveField = useCallback((fieldId: string) => {
+    setFields((prev) => prev.filter((field) => field.id !== fieldId));
     setIsShowModal(false);
-  };
+  }, []);
 
   useEffect(() => {
     onChangeForm(fields);
     const field = fields.find((field) => field.id === activeFieldId);
 
     if (!field) return;
-    handleToggleField(field);
-  }, [fields, activeFieldId]);
+    setCurrentField(field);
+  }, [fields, activeFieldId, onChangeForm]);
 
   const contextValue = useMemo(
     () => ({
@@ -105,7 +106,6 @@ const FormBuilderProvider = ({
       isShowModal,
       currentField,
       handleToggleModal,
-      handleToggleField,
       handleChangeFields,
       handleRemoveField,
       handleChangePositionField,
@@ -117,7 +117,11 @@ const FormBuilderProvider = ({
       activeFieldId,
       isShowModal,
       currentField,
+      handleToggleModal,
+      handleChangeFields,
+      handleRemoveField,
       handleChangePositionField,
+      handleCollapse
     ]
   );
 

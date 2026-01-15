@@ -1,42 +1,41 @@
 import { Close } from "@assets/Icons/black/CloseClean";
 import { When } from "@components/utilities/When";
 import { useFormBuilderContext } from "../../context";
-import i18n from "@configs/i18n";
 import { useModal } from "./hooks/useModal";
 import { HeaderTab } from "./tabs/HeaderTab";
 import { useTabs } from "./hooks/useTabs";
 import { StructsTab } from "./tabs/StructsTab";
 import { ColorsTab } from "./tabs/ColorsTab";
-import { useEffect, useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 import { OptionData } from "../../type";
 import { options } from "../../data/options";
+import { useI18n } from "@contexts/I18n";
 
 export function Modal() {
+  const { t } = useI18n()
   const { handleToggleModal, isShowModal, currentField, handleRemoveField } =
     useFormBuilderContext();
-  const { activeTab, handleChangeTab } = useTabs();
-  const { handleSubmit, handleChangeField, handleUpdateField, payload } =
-    useModal({
-      currentField: currentField,
-    });
-  const [fieldSettings, setFieldSettings] = useState<OptionData>();
+  const fieldSettings = useMemo<OptionData | undefined>(() => {
+    return options.find((option) => option.field === currentField?.element);
+  }, [currentField]);
   const defaultTabs = useRef<Array<string>>(["settings", "colors", "structs"]);
-  const [tabs, setTabs] = useState<Array<string>>(defaultTabs.current);
+  const tabs = useMemo<Array<string>>(() => {
+    if (!fieldSettings) return defaultTabs.current;
 
-  useEffect(() => {
-    setFieldSettings(
-      options.find((option) => option.field === currentField?.element)
-    );
     const fieldTabs = fieldSettings?.editTabs ?? [];
-    const tabsCurrent = [
+
+    return [
       ...fieldTabs.map((tab) => tab.name),
       "colors",
       "structs",
     ];
+  }, [fieldSettings]);
+  const { activeTab, handleChangeTab } = useTabs({ tabs });
+  const { handleSubmit, handleChangeField, handleUpdateField, payload } =
+    useModal({
+      currentField: currentField,
+    });
 
-    handleChangeTab(tabsCurrent[0]);
-    setTabs(tabsCurrent);
-  }, [payload?.group, fieldSettings?.editTabs]);
 
   return (
     <When value={isShowModal}>
@@ -46,7 +45,7 @@ export function Modal() {
             <div className="flex items-center border-b-2 border-b-secondary pb-3 mb-1">
               <div>
                 <h4 className="text-lg">
-                  {"Edição: "}
+                  {t("Words.edit") + ": "}
                   <strong>{currentField?.element.toLocaleUpperCase()}</strong>
                 </h4>
               </div>
@@ -64,7 +63,7 @@ export function Modal() {
             />
             {fieldSettings?.editTabs?.map(({ component: Component }, key) => (
               <Component
-                key={`form_builder_tabe_${key}`}
+                key={`form_builder_table_${key}`}
                 tabActive={activeTab}
                 field={payload}
                 oChangeField={handleChangeField}
@@ -84,13 +83,13 @@ export function Modal() {
             <div className="mt-8 text-right">
               <button
                 type="button"
-                className="border-2 border-red py-2 px-8 text-black font-semibold rounded-md mr-4"
+                className="border-2 border-rose-500 py-2 px-8 text-black font-semibold rounded-md mr-4"
                 onClick={() => {
                   handleRemoveField(currentField?.id ?? "");
                   handleChangeTab("settings");
                 }}
               >
-                {i18n(`Words.remove`)}
+                {t("Words.remove")}
               </button>
               <button
                 onClick={(ev) => {
@@ -98,9 +97,9 @@ export function Modal() {
                   handleChangeTab("settings");
                 }}
                 type="button"
-                className="bg-red border-2 border-red py-2 px-10 text-white rounded-md font-semibold"
+                className="bg-rose-500 border-2 border-rose-500 py-2 px-10 text-white rounded-md font-semibold"
               >
-                {i18n(`Words.save`)}
+                {t("Words.save")}
               </button>
             </div>
           </div>

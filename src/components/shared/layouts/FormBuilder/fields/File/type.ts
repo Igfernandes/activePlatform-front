@@ -7,7 +7,6 @@ export type InputProps = DetailedHTMLProps<
   HTMLInputElement
 > &
   FieldShape & {
-    dataTestId?: string;
     isLoading?: boolean;
     label?: string;
     errors?: FieldError;

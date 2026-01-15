@@ -67,7 +67,26 @@ export const Screens = {
   logout: {
     text: "Você saiu com segurança. A AGM te espera na próxima! 🐾",
   },
+  galleries: {
+    description:
+      "Descubra os melhores momentos com Matrilhas e suas experiências inesquecíveis através de nossa galeria de fotos.",
+    title: "Galeria de Fotos",
+  },
   dashboard: {
+    galleries: {
+      title_create: "Criar Galeria",
+      title_already_exclude: "Você deseja excluir esta galeria?",
+      text_already_exclude:
+        "Ao continuar, todas as fotos selecionadas serão excluídas, e elas não poderão mais acessar até que sejam recadastradas.",
+      text_about_filters:
+        "Utilize os filtros abaixo para refinar a busca de galerias",
+      text_filter_partial_title:
+        "Faça uma busca usando o valor parcial do titulo da galeria",
+      text_filter_created_at:
+        "Insira o valor completo da data de criação da galeria",
+      text_filter_status: "Selecione o status da galeria",
+      text_about_information: "Informações gerais da galeria.",
+    },
     clients: {
       category: {
         text_create_category:

@@ -21,8 +21,8 @@ export const optionsCustom = [
     icon: <Pen width={12} height={12} />,
   },
   {
-    id: "option",
-    field: "option",
+    id: "list",
+    field: "list",
     editTabs: [
       {
         name: "settings",
@@ -36,8 +36,8 @@ export const optionsCustom = [
     icon: <Pen width={12} height={12} />,
   },
   {
-    id: "list",
-    field: "list",
+    id: "checkboxes",
+    field: "checkboxes",
     editTabs: [
       {
         name: "settings",

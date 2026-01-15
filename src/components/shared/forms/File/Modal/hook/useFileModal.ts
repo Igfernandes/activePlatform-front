@@ -8,7 +8,7 @@ type Props = {
 export function useFileModal({ name }: Props) {
   const { setValue, watch } = useFormContext();
   const [progress, setProgress] = useState(0);
-  const [files, setFiles] = useState<FileList>();
+  const [files, setFiles] = useState<FileList | undefined>(watch(`${name}`) ?? undefined);
 
   const handleCleanFile = () => {
     setFiles(undefined);
@@ -40,11 +40,6 @@ export function useFileModal({ name }: Props) {
     // Limpa o intervalo se o componente desmontar ou se um novo arquivo for selecionado
     return () => clearInterval(interval);
   }, [files]);
-
-  useEffect(() => {
-    const value = watch(`${name}`);
-    if (!value) setFiles(undefined);
-  }, [watch(`${name}`)]);
 
   return {
     progress,

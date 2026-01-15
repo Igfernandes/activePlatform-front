@@ -1,99 +1,82 @@
 import { When } from "@components/utilities/When";
 
-import { RotateClockwise } from "@assets/Icons/white/RotateClockwise";
-import React, { useState } from "react";
+import React from "react";
 
 import { InputProps } from "./type";
-import { getMaskDate } from "@helpers/date";
+import { handleMaskDate } from "@helpers/date";
 import { Calendar } from "@assets/Icons/black/Calendar";
 import dayjs from "dayjs";
-import i18n from "@configs/i18n";
-import { FieldShape } from "../../type";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import { useDate } from "./hooks/useDate";
+import { useFormContext } from "react-hook-form";
+import ErrorMessage from "@components/shared/others/ErrorMessage";
+import { useFields } from "../../hooks/useFields";
 
 dayjs.extend(customParseFormat);
 
-export function Date({
-  isLoading = false,
-  className,
-  id,
-  label,
-  errors,
-  name,
-  required,
-  labelColor,
-  defaultValue,
-  labelWeight,
-  setValue,
-  ...rest
-}: InputProps & FieldShape) {
-  const IdCurrent = id;
-  const [date, setDate] = useState<string | undefined>(defaultValue);
+export const Date = React.forwardRef<HTMLInputElement, InputProps>(
+  function Date(
+    {
+      className,
+      id,
+      label,
+      required,
+      ...rest
+    }: InputProps,
+    ref
+  ) {
+    const IdCurrent = id;
+    const { setValue } = useFormContext();
+    const { setDate, date } = useDate()
+    const { error } = useFields({ name: rest.name as string, required });
+    const name = rest.name as string;
 
-  return (
-    <>
-      <div
-        className={`relative ${
-          errors?.message ? "border-yellow" : ""
-        } w-full my-4`}
-      >
-        <label
-          htmlFor={IdCurrent}
-          className={`absolute transition-all duration-350 line-clamp-1 left-4 top-2 text-[.75rem]`}
-          style={{
-            color: labelColor,
-            fontWeight: labelWeight,
-          }}
-        >
-          {label}
-          <When value={!!required}>
-            <span className="text-red">*</span>
-          </When>
-        </label>
-        <input
-          {...rest}
-          name={name}
-          required={required === "true"}
-          type={"text"}
-          value={date}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            const dateFormatted = getMaskDate(e);
-            if (setValue) setValue(name, dateFormatted);
-            setDate(dateFormatted);
-          }}
-          placeholder="Dia/Mes/Ano"
-          className={`${className ?? ""} ${
-            !!errors ? "border-amber-500 outline-amber-500" : ""
-          } w-full px-3 pt-8 pb-4 bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
-          id={IdCurrent}
-        />
-        <div className="absolute right-4 top-4">
-          <label htmlFor={`calendar_${name}`}>
-            <Calendar fill={labelColor} />
+    return (
+      <>
+        <div className={`relative w-full my-4 ${error?.message ? "border-yellow" : ""}`}>
+          <label
+            htmlFor={IdCurrent}
+            className={`absolute top-2 left-4 text-[.75rem] transition-all duration-350 line-clamp-1`}
+          >
+            {label}
+            <When value={!!required}>
+              <span className="text-red">*</span>
+            </When>
           </label>
-          <input
-            id={`calendar_${name}`}
-            type="date"
-            value={dayjs(date, "DD/MM/YYYY").format("YYYY-MM-DD")}
-            onChange={(ev) => {
-              const rawValue = ev.currentTarget.value;
+          <input placeholder={"DD/MM/AAAA"}
+            className={`${className ?? 'w-full'} ${!!error ? "border-amber-500 outline-amber-500" : ""
+              } px-3 pt-6 pb-2 bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
 
-              if (!rawValue) return; // <-- evita setar vazio
+            id={IdCurrent} type="text"
+            value={date}
+            onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
+              const value = ev.currentTarget.value
+              const currentValue = dayjs(value, "DD/MM/YYYY");
 
-              const value = dayjs(rawValue).format(i18n("Configs.format.date"));
-              setDate(value);
-              if (setValue) setValue(name, value);
-            }}
-            className="opacity-0 absolute w-4 h-full top-0"
-          />
+              if (currentValue.isValid()) {
+                setValue(name, currentValue.format("YYYY-MM-DD"))
+              }
+
+              setDate(handleMaskDate(ev as React.ChangeEvent<HTMLInputElement>));
+            }}  />
+          <div className="absolute right-3 top-5">
+            <Calendar />
+            <input
+              {...rest}
+              ref={ref}
+              type={"date"}
+              name={name}
+              onChange={(ev) => {
+                const value = ev.currentTarget.value;
+                setValue(name, value)
+                setDate(dayjs(value).format("DD/MM/YYYY"))
+              }}
+              className="opacity-0 absolute top-0 left-0 w-full h-full"
+            />
+          </div>
         </div>
-        <When value={isLoading}>
-          <RotateClockwise
-            className="absolute right-3 top-4 animate-spin"
-            fill="black"
-          />
-        </When>
-      </div>
-    </>
-  );
-}
+        <ErrorMessage errors={error?.message as string} />
+      </>
+    );
+  }
+);
