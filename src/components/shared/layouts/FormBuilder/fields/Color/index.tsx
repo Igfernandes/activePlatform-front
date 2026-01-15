@@ -41,7 +41,7 @@ export const Color = React.forwardRef<HTMLInputElement, InputProps>(
             onChangeCapture={() => handleHasError()}
             onFocus={() => handleHasError()}
             className={`${className ?? ""} ${!!error ? "border-amber-500 outline-amber-500" : ""
-              } block w-full h-12 p-[2px] bg-white border-secondary border-[1px] rounded-lg text-primary text-sm disabled:bg-disable`}
+              } block w-full h-12 p-[2px] bg-white border-secondary border-[1px] rounded-lg text-rose-500 text-sm disabled:bg-disable`}
             id={IdCurrent}
           />
         </div>

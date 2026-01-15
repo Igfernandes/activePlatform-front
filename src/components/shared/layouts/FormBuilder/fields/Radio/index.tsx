@@ -31,7 +31,7 @@ export function Radio({
           }}
           className={`${className ?? ""} ${
             !!errors ? "border-amber-500 outline-amber-500" : ""
-          } px-3 pt-8 pb-4  bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
+          } px-3 pt-8 pb-4  bg-white border-secondary border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
           id={IdCurrent}
         />
         <label htmlFor={IdCurrent} className="ml-2">

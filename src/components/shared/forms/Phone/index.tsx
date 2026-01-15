@@ -68,7 +68,7 @@ export const Phone = React.forwardRef<HTMLInputElement, PhoneProps>(
             placeholder={rest.type == "date" ? " " : placeholder}
             className={`${className} ${
               !!errors ? "border-amber-500 outline-amber-500" : ""
-            } w-full px-3 pt-6 pb-2 bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
+            } w-full px-3 pt-6 pb-2 bg-white border-secondary border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
             data-testid={dataTestId}
             id={IdCurrent}
           />

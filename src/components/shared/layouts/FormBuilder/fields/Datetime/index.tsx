@@ -65,7 +65,7 @@ export const Datetime = React.forwardRef<HTMLInputElement, InputProps>(
             value={datetime ?? ""}
             placeholder={"DD/MM/YYYY HH:mm"}
             className={`${className ?? 'w-full'} ${!!errors ? "border-amber-500 outline-amber-500" : ""
-              } px-3 pt-6 pb-2 bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
+              } px-3 pt-6 pb-2 bg-white border-secondary border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
             id={IdCurrent}
           />
           <div className="absolute right-1 bottom-4 md:right-3 md:bottom-4">

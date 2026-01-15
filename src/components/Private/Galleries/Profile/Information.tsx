@@ -18,7 +18,7 @@ export function Information({ register, errors, setValue, watch }: Props) {
             <div className="mb-4">
                 <div className="flex flex-wrap">
                     <div className="w-1/2">
-                        <h2 className="text-2xl font-semibold text-primary">
+                        <h2 className="text-2xl font-semibold text-rose-500">
                             {t("Words.information")}
                         </h2>
                         <p className="text-sm">

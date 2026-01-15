@@ -39,7 +39,7 @@ export const Color = React.forwardRef<HTMLInputElement, InputProps>(
             name={name}
             className={`${className} ${
               !!errors ? "border-amber-500 outline-amber-500" : ""
-            } w-full px-1 rounded-md bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
+            } w-full px-1 rounded-md bg-white border-secondary border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
             data-testid={dataTestId}
             id={IdCurrent}
           />

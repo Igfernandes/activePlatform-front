@@ -75,7 +75,7 @@ export const SelectSearch = React.forwardRef<HTMLInputElement, SelectProps>(
               className={`${className} ${
                 !!errors ? "border-amber-500 outline-amber-500" : ""
               } 
-              h-[3.5rem] w-full px-3 pt-6 pb-2 select-ref cursor-pointer bg-scroll-transparent bg-white border-secondary border-2 rounded-xl text-primary text-md font-medium`}
+              h-[3.5rem] w-full px-3 pt-6 pb-2 select-ref cursor-pointer bg-scroll-transparent bg-white border-secondary border-2 rounded-xl text-rose-500 text-md font-medium`}
             >
               {selected} <ArrowDownSimple className="absolute right-4 top-6" />
             </p>
@@ -90,7 +90,7 @@ export const SelectSearch = React.forwardRef<HTMLInputElement, SelectProps>(
                   id={IdCurrent}
                   type="search"
                   onChange={(ev) => handleSearch(ev.currentTarget.value)}
-                  className=" w-full px-3 py-1 cursor-pointer bg-scroll-transparent bg-white border-secondary border-2 rounded-lg text-primary text-md font-medium"
+                  className=" w-full px-3 py-1 cursor-pointer bg-scroll-transparent bg-white border-secondary border-2 rounded-lg text-rose-500 text-md font-medium"
                 />
               </div>
               <ul className=" h-[15vh] overflow-y-auto">

@@ -50,7 +50,7 @@ export const Time = React.forwardRef<HTMLInputElement, InputProps>(
               handleHasError();
             }}
             className={`h-7 py-1 px-2 ${className ?? ""} ${!!errors ? "border-amber-500 outline-amber-500" : ""
-              } w-full min-h-[3.5rem] px-3 pt-8 pb-4 bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
+              } w-full min-h-[3.5rem] px-3 pt-8 pb-4 bg-white border-secondary border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
             id={IdCurrent}
           />
           <div className="absolute w-[30px] h-4 right-2 top-5">

@@ -49,7 +49,7 @@ export const Gallery = React.forwardRef<HTMLInputElement, InputProps>(
               </ul>
               <button
                 onClick={() => handleModal(true)}
-                className="absolute bottom-0 right-0 bg-primary text-white p-2 rounded-md"
+                className="absolute bottom-0 right-0 bg-rose-500 text-white p-2 rounded-md"
                 type="button"
               >
                 {i18n("Words.add")}

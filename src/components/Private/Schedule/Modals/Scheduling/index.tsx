@@ -154,7 +154,7 @@ export function SchedulingModal({ schedules }: Props) {
                 <When value={!!schedule && step !== "USERS"}>
                   <Button
                     type="button"
-                    className="bg-primary border-tertiary  font-semibold border-2"
+                    className="bg-rose-500 border-tertiary  font-semibold border-2"
                     text={i18n(`Words.exclude`)}
                     onClick={handleDeleteSchedule}
                   />
@@ -162,7 +162,7 @@ export function SchedulingModal({ schedules }: Props) {
                 <When value={step === "USERS"}>
                   <Button
                     type="button"
-                    className="bg-primary border-tertiary  font-semibold border-2"
+                    className="bg-rose-500 border-tertiary  font-semibold border-2"
                     text={i18n(`Words.go_back`)}
                     onClick={() => handleSteps("PREV")}
                   />

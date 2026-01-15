@@ -27,7 +27,7 @@ const SnackbarMessage = ({ deleteSnackbar, snackbar }: Props) => {
               show ? "opacity-1" : "opacity-0"
             }
             flex pointer-events-auto overflow-hidden 
-            p-4 md:w-[400px] rounded-2xl text-primary-white bg-no-repeat ml-auto mt-8 mr-4`}
+            p-4 md:w-[400px] rounded-2xl text-primary bg-no-repeat ml-auto mt-8 mr-4`}
         style={{
           boxShadow: "0 0 10px #00000084",
           borderLeftColor: statusColors[typeSnackbar ?? "notice"],

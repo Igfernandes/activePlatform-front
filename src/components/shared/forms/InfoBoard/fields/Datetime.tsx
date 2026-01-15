@@ -38,7 +38,7 @@ export function TDatetime({
             placeholder="Dia/Mes/Ano"
             className={`${
               className ?? ""
-            }  w-full px-3 pt-8 pb-4 bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
+            }  w-full px-3 pt-8 pb-4 bg-white border-secondary border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
             id={currentId}
           />
           <div className="absolute right-4 top-4">
