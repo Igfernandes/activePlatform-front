@@ -1,7 +1,7 @@
-import { GalleryPhotoShape } from "@type/Galleries/photo";
 import useGet from ".";
 import { GetGalleriesRequest } from "./types";
 import { useQueryGuard } from "@hooks/useAxios";
+import { GalleryShape } from "@type/Galleries";
 
 export default function useGetGalleriesPreview(
   request: GetGalleriesRequest = {} as GetGalleriesRequest
@@ -18,5 +18,5 @@ export default function useGetGalleriesPreview(
     enabled: true,
   });
 
-  return { data: (data ?? []) as Array<GalleryPhotoShape>, ...rest };
+  return { data: (data ?? []) as Array<GalleryShape>, ...rest };
 }
