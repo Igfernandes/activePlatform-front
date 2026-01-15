@@ -5,9 +5,9 @@ import { useMemo, useState } from "react"
 export function useGalleries() {
     const { data: rows, isPending } = useGetGalleriesPreview()
     const galleries = useMemo(() => rows, [rows])
-    const [targetPhotos, setTargetPhotos] = useState<Array<GalleryPhotoShape>>([])
+    const [targetPhotos, setTargetPhotos] = useState<Array<Pick<GalleryPhotoShape, "src">>>([])
 
-    const handleChangeTargetPhotos = (photos: Array<GalleryPhotoShape> = [], galleryTitle?: string) => {
+    const handleChangeTargetPhotos = (photos: Array<Pick<GalleryPhotoShape, "src">> = [], galleryTitle?: string) => {
         setTargetPhotos(photos.map(photo => ({ src: photo.src, alt: `Photo da Galeria ${galleryTitle}` })))
     }
 
