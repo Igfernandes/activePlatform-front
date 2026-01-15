@@ -60,7 +60,7 @@ export function UploadModal({
             handleModal(false);
             handleDeleteAll();
           }}
-          className="w-1/2 block hover:scale-95 duration-300 border-primary text-primary border-2  py-2 rounded-md cursor-pointer mr-2"
+          className="w-1/2 block hover:scale-95 duration-300 border-primary text-rose-500 border-2  py-2 rounded-md cursor-pointer mr-2"
         >
           {i18n("Words.cancel")}
         </button>
@@ -68,7 +68,7 @@ export function UploadModal({
           type="button"
           disabled={isLoading}
           onClick={handleUploadFiles}
-          className="w-1/2 bg-primary text-white disabled:bg-disabled hover:scale-95 duration-300 py-2 md:px-16 rounded-md cursor-pointer ml-2"
+          className="w-1/2 bg-rose-500 text-white disabled:bg-disabled hover:scale-95 duration-300 py-2 md:px-16 rounded-md cursor-pointer ml-2"
         >
           {i18n(`Words.${isLoading ? "loading" : "save"}`)}
         </button>

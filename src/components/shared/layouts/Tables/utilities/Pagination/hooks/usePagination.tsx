@@ -4,7 +4,7 @@ import { useTableContext } from "../../../contexts/Table";
 export function usePagination() {
   const { handleChangePagination, pagination, tRows, amountRegisters } = useTableContext();
   const arrowStyled =
-    "bg-primary border-secondary border-2 px-2 text-center py-1 hover:bg-hover-secondary";
+    "bg-rose-500 border-secondary border-2 px-2 text-center py-1 hover:bg-hover-secondary";
   const amountGroups = (pagination.amount ?? 0) / pagination.max;
 
   const [displayedGroupPage, setDisplayedGroupPage] = useState<number>(1);

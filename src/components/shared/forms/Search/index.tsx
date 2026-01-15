@@ -38,7 +38,7 @@ export function Search({
             onBlur={handleTransitionLabel}
             onChange={(ev) => handleSearch(ev.currentTarget.value)}
             placeholder={placeholder}
-            className={`  w-full px-3 pt-6 pb-2 bg-white border-secondary border-2 rounded-lg text-primary text-sm`}
+            className={`  w-full px-3 pt-6 pb-2 bg-white border-secondary border-2 rounded-lg text-rose-500 text-sm`}
             data-testid={dataTestId}
             id={IdCurrent}
           />

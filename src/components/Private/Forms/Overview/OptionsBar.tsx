@@ -25,7 +25,7 @@ export function OptionsBar({ handleSearch }: Props) {
         <div className="w-full md:w-[55%] xl:w-[75%] flex justify-end mt-2 md:mt-0">
           <div className="mx-2 w-full md:w-auto">
             <Button
-              className="border border-zinc-300 px-3 font-bold rounded-xl bg-secondary text-primary"
+              className="border border-zinc-300 px-3 font-bold rounded-xl bg-secondary text-rose-500"
               text={i18n("Words.new_form")}
               type="button"
               onClick={() => route.push(`${forms}/create`)}

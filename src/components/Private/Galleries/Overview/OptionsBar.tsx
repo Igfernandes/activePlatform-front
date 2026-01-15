@@ -24,7 +24,7 @@ export function OptionsBar({ handleSearch }: Props) {
         <div className="w-full md:w-auto mx-0 md:mx-2 mb-3 lg:my-0">
           <AccessControl targetPermissions={[PERMISSIONS.galleries.create]}>
             <Button
-              className="border border-zinc-300 px-3 font-bold rounded-xl bg-secondary text-primary"
+              className="border border-zinc-300 px-3 font-bold rounded-xl bg-secondary text-rose-500"
               text={i18n("Words.register")}
               type="button"
               onClick={() => handleToggleModal("CREATE")}

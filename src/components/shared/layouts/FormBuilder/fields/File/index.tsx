@@ -30,7 +30,7 @@ export function File(
     <>
       <div className="relative w-full my-4">
         <label
-          className={`${className}  w-full pl-3 pr-7 pb-3 pt-5 h-14  line-clamp-1 bg-white  border-secondary  cursor-pointer border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
+          className={`${className}  w-full pl-3 pr-7 pb-3 pt-5 h-14  line-clamp-1 bg-white  border-secondary  cursor-pointer border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
         >
           <span className="font-medium line-clamp-1">
             {currentValue?.name as string}

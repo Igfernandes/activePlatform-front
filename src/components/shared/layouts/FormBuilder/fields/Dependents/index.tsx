@@ -39,7 +39,7 @@ export
           <div className="btn">
             <button
               type="button"
-              className="bg-primary p-2 rounded-lg text-white"
+              className="bg-rose-500 p-2 rounded-lg text-white"
               onClick={() => {
                 const rowsUpdated = [
                   ...rows,

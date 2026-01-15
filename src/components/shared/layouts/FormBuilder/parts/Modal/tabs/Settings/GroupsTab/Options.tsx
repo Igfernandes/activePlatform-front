@@ -21,7 +21,7 @@ export function Options({ onChange, currentOptions }: Props) {
       <div className="text-end">
         <button
           onClick={() => handleAddOption(options)}
-          className="bg-primary text-white p-2 rounded-md mb-1"
+          className="bg-rose-500 text-white p-2 rounded-md mb-1"
           type="button"
         >
           {i18n("Words.add")}

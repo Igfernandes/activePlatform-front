@@ -32,7 +32,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             placeholder={placeholder}
             className={`${className} ${
               !!errors ? "border-amber-500 outline-amber-500" : ""
-            } w-full px-2 py-1 bg-white border-secondary border-2 rounded-lg text-primary text-md`}
+            } w-full px-2 py-1 bg-white border-secondary border-2 rounded-lg text-rose-500 text-md`}
             data-testid={dataTestId}
             id={IdCurrent}
           />

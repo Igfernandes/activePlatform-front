@@ -17,7 +17,7 @@ export function Galleries() {
         <Section>
             <div className="min-h-[70vh] my-10">
                 <div className="text-center mb-10">
-                    <h1 className="text-3xl text-primary font-bold">{t("Screens.galleries.title")}</h1>
+                    <h1 className="text-3xl text-rose-500 font-bold">{t("Screens.galleries.title")}</h1>
                     <p>{t("Screens.galleries.description")}</p>
                 </div>
                 <div className="flex flex-wrap ">

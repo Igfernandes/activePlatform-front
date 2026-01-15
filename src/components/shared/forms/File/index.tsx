@@ -38,7 +38,7 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
           <label
             className={`${!!errors ? "border-amber-500 outline-amber-500" : ""
               } ${className ?? ""
-              }  w-full pl-3 pr-7 pb-3 pt-5 h-14  line-clamp-1 bg-white  border-secondary  cursor-pointer border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
+              }  w-full pl-3 pr-7 pb-3 pt-5 h-14  line-clamp-1 bg-white  border-secondary  cursor-pointer border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
             onClick={() => setIsShowModal(true)}
           >
             <span className="font-medium line-clamp-1">
@@ -54,7 +54,7 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
             >
               {label}
               <When value={required}>
-                <i className="text-primary">*</i>
+                <i className="text-rose-500">*</i>
               </When>
             </span>
             <When value={!currentValue}>

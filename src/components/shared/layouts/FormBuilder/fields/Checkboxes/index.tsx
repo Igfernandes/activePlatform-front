@@ -67,7 +67,7 @@ export function Checkboxes(
               }}
               value={option.value}
               className={`${className ?? ""} ${!!error ? "border-amber-500 outline-amber-500" : ""
-                } w-[10%] min-w-4 md:w-full px-3 pt-8 pb-4  bg-white border-secondary border-2 rounded-lg text-primary text-sm disabled:bg-disable`}
+                } w-[10%] min-w-4 md:w-full px-3 pt-8 pb-4  bg-white border-secondary border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
               id={`${rest.name}_option_${key}`}
             />
           </div>

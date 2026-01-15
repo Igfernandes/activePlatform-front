@@ -20,7 +20,7 @@ export function Gallery() {
         <div className="gallery flex flex-wrap mt-20">
           <div className="text-sm md:text-md text-center md:text-left w-full lg:w-[30%] md:pr-5">
             <span>{t("Screens.home.gallery.title")}</span>
-            <h1 className="text-lg md:text-2xl text-primary">
+            <h1 className="text-lg md:text-2xl text-rose-500">
               <strong>{t("Screens.home.gallery.subtitle")}</strong>
             </h1>
             <p className="text-justify mt-5">
