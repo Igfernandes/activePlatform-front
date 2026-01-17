@@ -79,7 +79,7 @@ export function FileModal({
           <Button
             type="button"
             text={i18n(`Words.save`)}
-            className="bg-rose-500  text-white font-semibold disabled:bg-disable"
+            className=" text-white font-semibold disabled:bg-disable"
             disabled={progress == 100 || !isLoading ? false : true}
             isLoading={isLoading}
             onClick={() => {

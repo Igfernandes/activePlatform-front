@@ -52,7 +52,7 @@ export function Pagination() {
               <When value={displayedPages.length == 0}>
                 <li
                   key={`pagination_key_${1}`}
-                  className={`bg-red text-white px-2 hover:bg-rose-800 hover:text-white cursor-pointer`}
+                  className={`bg-white text-white px-2 hover:bg-rose-800 hover:text-white cursor-pointer`}
                 >
                   <span>{1}</span>
                 </li>
