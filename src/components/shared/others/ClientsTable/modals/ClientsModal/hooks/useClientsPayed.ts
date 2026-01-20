@@ -5,8 +5,7 @@ import { useFormRules } from "@hooks/Forms/useFormRules";
 import { z } from "zod";
 import { useSearch } from "@components/shared/forms/Search/hooks/useSearch";
 import useGetCategories from "@services/Clients/Categories/Get/useGetCategories";
-import { useEffect, useState } from "react";
-import { ClientCategoriesShape } from "@type/Clients/ClientCategories";
+import { useMemo } from "react";
 
 type Props = {
   clients: ClientShape[];
@@ -23,16 +22,14 @@ export function useClientsPayed({ handleAddClients, clients }: Props) {
   const { handleSearch, filterObjects } = useSearch();
   const { handleToggleModal } = useModalContext();
   const { data: categoriesData } = useGetCategories();
-  const [categories, setCategories] = useState<Array<ClientCategoriesShape>>(
-    []
-  );
+  const categories = useMemo(() => categoriesData ?? [], [categoriesData]);
 
   const submit = async (payload: ClientsPayedPayload) => {
     const clientsId = payload.clients;
 
     formMethods.reset();
     await handleAddClients(
-      clients.filter((client) => clientsId.includes(String(client.id)))
+      clients.filter((client) => clientsId.includes(String(client.id))),
     );
     handleToggleModal(formMethods.getValues());
   };
@@ -47,15 +44,11 @@ export function useClientsPayed({ handleAddClients, clients }: Props) {
       return (
         filterObjects(client) &&
         client.categories.find(
-          (clientCategory) => clientCategory.id === +category
+          (clientCategory) => clientCategory.id === +category,
         )
       );
     });
   };
-
-  useEffect(() => {
-    setCategories(categoriesData ?? []);
-  }, [categoriesData]);
 
   return {
     formMethods,

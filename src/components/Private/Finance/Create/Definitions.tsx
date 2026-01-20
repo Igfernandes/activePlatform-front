@@ -1,13 +1,14 @@
 import { Input } from "@components/shared/forms/Input";
 import { Select } from "@components/shared/forms/Select";
-import i18n from "@configs/i18n";
 import { useDefinitions } from "./hooks/useDefinitions";
 import { useFormContext } from "react-hook-form";
 import { ChargesPayload } from "./schemas";
 import { When } from "@components/utilities/When";
+import { useI18n } from "@contexts/I18n";
 
 export function Definitions() {
   const { services } = useDefinitions();
+  const { t } = useI18n()
   const {
     watch,
     register,
@@ -18,26 +19,27 @@ export function Definitions() {
     <div className="bg-white  py-4 px-6 rounded-xl mb-6">
       <div className="form-title mt-3 mb-5">
         <h3 className="text-xl">
-          <strong>{i18n("Words.definitions")}</strong>
+          <strong>{t("Words.definitions")}</strong>
         </h3>
       </div>
       <div className="form-row flex flex-wrap mb-6 justify-between">
-        <div className="form-group w-full lg:w-[48%]">
+        <div className="form-group w-full lg:w-[48%] mb-4">
           <Input
             {...register("title")}
             dataTestId="title"
-            label={i18n("Words.charge_name")}
+            maxLength={100}
+            label={t("Words.charge_name")}
             errors={errors.title}
           />
         </div>
-        <div className="form-group w-full lg:w-[48%] mt-4 lg:mt-0">
+        <div className="form-group w-full lg:w-[48%] mb-4">
           <Select
             {...register("service_id")}
             dataTestId="service"
-            label={`${i18n("Words.event")} (${i18n("Words.optional")})`}
+            label={`${t("Words.event")} (${t("Words.optional")})`}
             options={[
               {
-                text: i18n("Texts.select_event"),
+                text: t("Texts.select_event"),
                 value: 0,
               },
               ...services.map((service) => ({
@@ -48,41 +50,21 @@ export function Definitions() {
             errors={errors.service_id}
           />
           <span className="text-xs text-red ml-2 block mt-1">
-            {i18n(`Screens.dashboard.finances.about_name_and_service`)}
-          </span>
-        </div>
-      </div>
-      <div className="form-row flex flex-wrap mb-6 justify-between">
-        <div className="form-group w-full lg:w-[48%]">
-          <Select
-            {...register("privacy")}
-            dataTestId="privacy"
-            label={i18n("Words.privacy")}
-            options={["PUBLIC", "PRIVATE"].map((type) => ({
-              text: i18n(`Words.${type.toLowerCase()}`),
-              value: type,
-            }))}
-            required={true}
-            errors={errors.privacy}
-          />
-          <span className="text-xs text-red ml-2 block mt-1">
-            {i18n(`Screens.dashboard.finances.about_privacy_and_services`)}
+            {t(`Screens.dashboard.finances.about_name_and_service`)}
           </span>
         </div>
         <div className="form-group w-full lg:w-[48%]">
           <Select
             {...register("type")}
             dataTestId="type"
-            label={i18n("Words.charge_type")}
+            label={t("Words.charge_type")}
             options={["APPELLANT", "PUNCTUAL"].map((type) => ({
-              text: i18n(`Words.${type.toLowerCase()}`),
+              text: t(`Words.${type.toLowerCase()}`),
               value: type,
             }))}
             errors={errors.type}
           />
         </div>
-      </div>
-      <div className="form-row flex flex-wrap mb-6 justify-between">
         <When value={watch("type") === "APPELLANT"}>
           <div className="w-full md:w-[48%] ">
             <Input
@@ -90,12 +72,12 @@ export function Definitions() {
               dataTestId="period"
               type="number"
               min={1}
-              label={`${i18n("Words.period")} (${i18n("Words.months")})`}
-              errors={errors.type}
+              label={`${t("Words.period")} (${t("Words.months")})`}
+              errors={errors.period}
               required={true}
             />
             <span className="text-xs text-red ml-2 block mt-1">
-              {i18n(`Screens.dashboard.finances.about_period`)}
+              {t(`Screens.dashboard.finances.about_period`)}
             </span>
           </div>
         </When>
@@ -105,21 +87,21 @@ export function Definitions() {
               {...register("amount")}
               type="number"
               dataTestId="amount"
-              label={`${i18n("Words.charge_amount")}`}
+              label={`${t("Words.charge_amount")}`}
               min={1}
               required={true}
               errors={errors.amount}
             />
           </div>
         </When>
-        <div className="form-group w-full lg:w-[48%] mt-4 lg:mt-0">
+        <div className="form-group w-full lg:w-[48%] mt-4 lg:mt-4">
           <Input
             {...register("expired_days")}
             type="number"
             placeholder=" "
             min="0"
             dataTestId="expired_days"
-            label={`${i18n("Words.expired_days")} (${i18n("Words.optional")})`}
+            label={`${t("Words.expired_days")} (${t("Words.optional")})`}
             errors={errors.expired_days}
           />
         </div>
@@ -132,7 +114,7 @@ export function Definitions() {
               dataTestId="started_at"
               type="datetime-local"
               placeholder=" "
-              label={`${i18n("Words.started_at")}`}
+              label={`${t("Words.started_at")}`}
               errors={errors.type}
               required={true}
             />
@@ -144,7 +126,7 @@ export function Definitions() {
           <Input
             {...register("price")}
             dataTestId="price"
-            label={i18n("Words.price")}
+            label={t("Words.price")}
             type="number"
             errors={errors.price}
           />
@@ -154,7 +136,7 @@ export function Definitions() {
             {...register("promotional_price")}
             dataTestId="promotional_price"
             errors={errors.promotional_price}
-            label={`${i18n("Texts.promotional_price")} (${i18n(
+            label={`${t("Texts.promotional_price")} (${t(
               "Words.optional"
             )})`}
             type="number"

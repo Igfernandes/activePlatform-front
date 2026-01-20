@@ -50,7 +50,7 @@ export function ClientsModal({
         clientsSelectedId.includes(client.id) ? String(client.id) : ""
       )
     );
-  }, [clientsSelected, clients]);
+  }, [clientsSelected, clients, formMethods]);
 
   return (
     <Modal

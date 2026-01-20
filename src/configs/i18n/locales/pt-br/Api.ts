@@ -61,6 +61,11 @@ export const Api = {
       post: "Agora você sempre estará conectado conosco!",
     },
   },
+  payments: {
+    success: {
+      post: "O pagamento foi processado com sucesso! Aguarde para ser redirecionado.",
+    },
+  },
   clients: {
     categories: {
       success: {

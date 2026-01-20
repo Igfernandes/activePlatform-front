@@ -1,7 +1,8 @@
 import { DotsOptions } from "@components/shared/others/DotsOptions";
-import i18n from "@configs/i18n";
 import { privateRoutes } from "@configs/routes/Web/navigation";
+import { useI18n } from "@contexts/I18n";
 import { useRouter } from "next/router";
+import { useMemo } from "react";
 
 type Props = {
   chargeId: number;
@@ -10,20 +11,22 @@ type Props = {
 
 export function PaymentActions({ chargeId, paymentId }: Props) {
   const router = useRouter();
+  const { t } = useI18n()
+  const paymentRoute = useMemo(() =>
+    privateRoutes.financePayments
+      .replace("{id}", String(chargeId))
+      .replace("{payment_id}", String(paymentId))
+    ,
+    [chargeId, paymentId])
 
   return (
     <div className="flex justify-end">
       <DotsOptions
         actions={[
           {
-            text: i18n("Words.more_details"),
-            handle: () =>
-              router.push(
-                privateRoutes.financePayments
-                  .replace("{id}", String(chargeId))
-                  .replace("{payment_id}", String(paymentId))
-              ),
-          },
+            text: t("Words.more_details"),
+            handle: () => router.push(paymentRoute)
+          }
         ]}
       />
     </div>

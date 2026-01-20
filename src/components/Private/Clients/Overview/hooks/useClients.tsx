@@ -73,8 +73,9 @@ export function useClients({
 
   const handleDeleteClient = () => {
     const payload = {} as DeleteClientPayload;
-    const IdString = modal.id.toLocaleString();
+    const IdString = modal.id.toString();
 
+    console.log("Deleting clients with IDs:", IdString);
     if (IdString.indexOf(","))
       payload["in_clients"] = IdString.split(",").map((clientId) =>
         parseInt(clientId)

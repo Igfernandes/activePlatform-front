@@ -78,7 +78,7 @@ export function useTableData<TableData extends Array<Record<string, unknown>>>({
       const keys = Object.keys(data[0]);
       setTHeads(keys.filter((key) => !excludes.includes(key)));
     }
-  }, [data, excludes]);
+  }, [data, excludes, tHeadsData]);
 
   return {
     tHeads,

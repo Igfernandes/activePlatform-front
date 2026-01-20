@@ -1,30 +1,30 @@
 import { CardItemShape } from "@components/shared/layouts/CardBoard/types";
 import useGetCharges from "@services/Charges/Get/useGetCharges";
-import { ChargeShape } from "@type/Charges";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { financeCardsBoard } from "../../../../../data/finance/cardsBoard";
 import useGetPayments from "@services/Payments/Get/useGet";
-import { PaymentShape } from "@type/Payments";
 import dayjs from "dayjs";
 
 export function useOverviewCharge() {
   const { data: chargesData } = useGetCharges();
-  const [charges, setCharges] = useState<Array<ChargeShape>>([]);
-  const [payments, setPayments] = useState<Array<PaymentShape>>([]);
-  const [cardsBoard, setCardsBoard] = useState<Array<CardItemShape>>([]);
   const { data: paymentsData } = useGetPayments();
+  const charges = useMemo(() => chargesData ?? [], [chargesData]);
+  const payments = useMemo(() => paymentsData ?? [], [paymentsData]);
+  const [cardsBoard, setCardsBoard] = useState<Array<CardItemShape>>([]);
 
-
-  const updateLinkedCustomers = (cardBoard: CardItemShape) => {
-    const clientsLinked = charges
-      .map((charge) => charge.clients?.length)
-      .reduce((acc: number, c) => acc + (c ?? 0), 0);
-    return {
-      ...cardBoard,
-      value: String(clientsLinked),
-    };
-  };
-  const getPaymentsExtract = () => {
+  const updateLinkedCustomers = useCallback(
+    (cardBoard: CardItemShape) => {
+      const clientsLinked = charges
+        .map((charge) => charge.clients?.length)
+        .reduce((acc: number, c) => acc + (c ?? 0), 0);
+      return {
+        ...cardBoard,
+        value: String(clientsLinked),
+      };
+    },
+    [charges],
+  );
+  const getPaymentsExtract = useCallback(() => {
     let monthlyIncome = 0;
     let revenueIncome = 0;
 
@@ -49,19 +49,7 @@ export function useOverviewCharge() {
       monthly: monthlyIncome,
       revenue: revenueIncome,
     };
-  };
-
-  useEffect(() => {
-    if (!chargesData) return;
-
-    setCharges(chargesData);
-  }, [chargesData]);
-
-  useEffect(() => {
-    if (!paymentsData) return;
-
-    setPayments(paymentsData);
-  }, [paymentsData]);
+  }, [payments]);
 
   useEffect(() => {
     const amountMonthly = getPaymentsExtract();
@@ -83,7 +71,7 @@ export function useOverviewCharge() {
     });
 
     setCardsBoard(updatedLinkedCostumers);
-  }, [charges, financeCardsBoard, payments]);
+  }, [charges, getPaymentsExtract, updateLinkedCustomers, payments]);
 
   return {
     charges,

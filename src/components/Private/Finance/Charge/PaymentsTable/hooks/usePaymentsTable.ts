@@ -1,16 +1,17 @@
-import i18n from "@configs/i18n";
+import { useI18n } from "@contexts/I18n";
 import { ClientShape } from "@type/Clients";
-import { useRef } from "react";
+import { useMemo } from "react";
 
 export function usePaymentsTable() {
-  const tHeadsPayment = useRef<Array<string>>([
+  const {t } = useI18n()
+  const tHeadsPayment = useMemo(() => [
     "ID",
-    i18n("Words.name"),
-    i18n("Words.paid_amount"),
-    i18n("Words.status"),
-    i18n("Words.bank"),
-    i18n("Words.actions"),
-  ]);
+    t("Words.name"),
+    t("Words.paid_amount"),
+    t("Words.status"),
+    t("Words.bank"),
+    t("Words.actions"),
+  ], [t]);
 
   const getClientName = (
     clients: Array<ClientShape>,

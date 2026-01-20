@@ -113,7 +113,6 @@ export const getServerSideProps: GetServerSideProps<
     charge: charge,
   };
 
-  console.log("SERVICE PAGE PAYLOAD:", payload);
 
   const service = await getServicePreview(payload);
 

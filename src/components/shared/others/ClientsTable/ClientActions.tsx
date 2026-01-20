@@ -1,6 +1,6 @@
 import { DotsOptions } from "@components/shared/others/DotsOptions";
-import i18n from "@configs/i18n";
 import { privateRoutes } from "@configs/routes/Web/navigation";
+import { useI18n } from "@contexts/I18n";
 import { useModalContext } from "@contexts/Modal";
 import { useRouter } from "next/router";
 
@@ -9,6 +9,7 @@ type Props = {
 };
 
 export function ClientActions({ id }: Props) {
+  const { t } = useI18n()
   const { handleToggleModal } = useModalContext();
   const router = useRouter();
 
@@ -17,11 +18,11 @@ export function ClientActions({ id }: Props) {
       <DotsOptions
         actions={[
           {
-            text: i18n("Words.exclude"),
+            text: t("Words.exclude"),
             handle: () => handleToggleModal("EXCLUDE", id),
           },
           {
-            text: i18n("Words.see_client"),
+            text: t("Words.see_client"),
             handle: () => router.push(`${privateRoutes.clients}/${id}`),
           },
         ]}

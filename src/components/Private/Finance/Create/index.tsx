@@ -1,5 +1,4 @@
 import { FormProvider } from "react-hook-form";
-import i18n from "@configs/i18n";
 import { privateRoutes } from "@configs/routes/Web/navigation";
 import { ClientsTable } from "@components/shared/others/ClientsTable";
 import { Definitions } from "@components/Private/Finance/Create/Definitions";
@@ -7,6 +6,7 @@ import { Button } from "@components/shared/layouts/Button";
 import { useCharge } from "./hooks/useCharge";
 import { ClientShape } from "@type/Clients";
 import { useRouter } from "next/router";
+import { useI18n } from "@contexts/I18n";
 
 type Props = {
   clientsSelected: Array<ClientShape>;
@@ -19,7 +19,8 @@ export function CreateCharge({
   clients,
   handleUpdateClients,
 }: Props) {
-  const { formMethods, submit, isPending } = useCharge({ clientsSelected });
+  const { t } = useI18n()
+  const { formMethods, submit, isLoading } = useCharge({ clientsSelected });
   const router = useRouter();
 
   return (
@@ -44,14 +45,14 @@ export function CreateCharge({
                   handleUpdateClients([]);
                 }}
               >
-                {i18n(`Words.clean`)}
+                {t(`Words.clean`)}
               </span>
             </div>
             <div className="flex justify-end w-full">
               <div className="lg:ml-8 w-[47%] lg:w-auto">
                 <Button
                   className="p-3 border-[1px] border-secondary rounded-xl w-full"
-                  text={i18n(`Words.cancel`)}
+                  text={t(`Words.cancel`)}
                   type="button"
                   onClick={() => router.push(privateRoutes.finance)}
                 />
@@ -59,8 +60,8 @@ export function CreateCharge({
               <div className="ml-4 w-[47%] lg:w-auto">
                 <Button
                   className="p-3 bg-red text-white rounded-xl w-full"
-                  text={true ? i18n(`Words.save`) : i18n(`Words.update`)}
-                  isLoading={isPending}
+                  text={true ? t(`Words.save`) : t(`Words.update`)}
+                  isLoading={isLoading}
                 />
               </div>
             </div>

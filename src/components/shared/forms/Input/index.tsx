@@ -20,6 +20,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       placeholder,
       defaultValue,
       required,
+      maxLength,
       handleChange,
       ...rest
     }: InputProps,
@@ -57,6 +58,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           </label>
           <input
             {...rest}
+            maxLength={maxLength}
             ref={ref}
             name={name}
             onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,9 +69,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             onFocus={handleTransitionLabel}
             onBlur={handleTransitionLabel}
             placeholder={rest.type == "date" ? " " : placeholder}
-            className={`${className} ${
-              !!errors ? "border-amber-500 outline-amber-500" : ""
-            } w-full px-3 pt-6 pb-2 bg-white border-secondary border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
+            className={`${className} ${!!errors ? "border-amber-500 outline-amber-500" : ""
+              } w-full px-3 pt-6 pb-2 bg-white border-secondary border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
             data-testid={dataTestId}
             id={IdCurrent}
           />
@@ -78,6 +79,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               className="absolute right-3 top-4 animate-spin"
               fill="black"
             />
+          </When>
+          <When value={!!maxLength}>
+            <span className="absolute right-4 bottom-[.65rem] text-xs">{value?.length ?? 0}/{maxLength}</span>
           </When>
         </div>
         <ErrorMessage errors={errors?.message} />

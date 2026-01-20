@@ -1,5 +1,6 @@
 import React, {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -42,19 +43,19 @@ const TableProvider = ({
   const [amountRegisters, setAmountRegisters] = useState<number>(0);
 
   // Atualiza os filtros
-  const handleChangeFilters = (callback: Record<string, FilterCallback>) => {
+  const handleChangeFilters = useCallback((callback: Record<string, FilterCallback>) => {
     setFilters((prevFilters) => ({
       ...prevFilters,
       ...callback,
     }));
-  };
+  }, []);
 
   // Aplica os filtros aos dados
-  const handleFilteredData = (data: TableDataShape) => {
+  const handleFilteredData = useCallback((data: TableDataShape) => {
     return Object.values(filters).reduce((filteredData, filter) => {
       return filter(filteredData);
     }, data);
-  };
+  }, [filters]);
 
   // Atualiza as linhas da tabela
   const handleChangePaginedTRows = (rows: Array<unknown[]>) => {
@@ -97,7 +98,7 @@ const TableProvider = ({
       amountHiddenCols,
       amountRegisters,
     }),
-    [sort, pagination, paginatedTRows, tRows, filters, amountHiddenCols, data]
+    [sort, pagination, paginatedTRows, tRows, filters, amountHiddenCols, data, amountRegisters, hasEvent]
   );
 
   return (
