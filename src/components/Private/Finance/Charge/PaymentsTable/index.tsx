@@ -1,10 +1,10 @@
 import { SmartTable } from "@components/shared/layouts/Tables/presets/SmartTable";
-import i18n from "@configs/i18n";
 import { usePaymentsTable } from "./hooks/usePaymentsTable";
 import { PaymentShape } from "@type/Payments";
 import { PaymentActions } from "./PaymentActions";
 import { ClientShape } from "@type/Clients";
 import { getMoneyBrFormatted } from "@helpers/string";
+import { useI18n } from "@contexts/I18n";
 
 type Props = {
   clients: Array<ClientShape>;
@@ -12,6 +12,7 @@ type Props = {
 };
 
 export function PaymentsTable({ payments, clients }: Props) {
+  const { t } = useI18n()
   const { tHeadsPayment, getClientName } = usePaymentsTable();
 
   return (
@@ -21,7 +22,7 @@ export function PaymentsTable({ payments, clients }: Props) {
           ID: payment.id,
           name: getClientName(clients, payment.client_id),
           paid_amount: getMoneyBrFormatted(payment.paid_amount),
-          status: i18n(`Words.${payment.status.toLocaleLowerCase()}`),
+          status: t(`Words.${payment.status.toLocaleLowerCase()}`),
           bank: payment?.bank?.name,
           action: (
             <PaymentActions
@@ -32,10 +33,10 @@ export function PaymentsTable({ payments, clients }: Props) {
         }))}
         options={{}}
         tHeads={{
-          data: tHeadsPayment.current,
+          data: tHeadsPayment,
           widths: [50, 200, 180, 100, 150, 30],
         }}
-        title={i18n("Words.payments")}
+        title={t("Words.payments")}
       />
     </div>
   );

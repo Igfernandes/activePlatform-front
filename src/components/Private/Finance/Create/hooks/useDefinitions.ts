@@ -1,17 +1,9 @@
 import useGetServices from "@services/Services/Get/useGetServices";
-import { ServicesShape } from "@type/Services";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 export function useDefinitions() {
   const { data: servicesData } = useGetServices({ status: "ACTIVE" });
-
-  const [services, setServices] = useState<Array<ServicesShape>>([]);
-
-  useEffect(() => {
-    if (!servicesData || !Array.isArray(servicesData)) return;
-
-    setServices(servicesData);
-  }, [servicesData]);
+  const services = useMemo(() => servicesData ?? [], [servicesData]);
 
   return {
     services,

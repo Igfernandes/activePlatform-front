@@ -4,14 +4,18 @@ import { ClientShape } from "@type/Clients";
 import usePostCreateCharge from "@services/Charges/Post/usePost";
 import { useRouter } from "next/router";
 import { privateRoutes } from "@configs/routes/Web/navigation";
+import { useI18n } from "@contexts/I18n";
+import { useMemo } from "react";
 
 type Props = {
   clientsSelected: Array<ClientShape>;
 };
 
 export function useCharge({ clientsSelected }: Props) {
+  const { t } = useI18n();
+  const schema = useMemo(() => ChargeSchema(t), [t]);
   const { formMethods, errors } = useFormRules<ChargesPayload>({
-    schema: ChargeSchema,
+    schema,
   });
   const { mutateAsync: postCharge, isPending } = usePostCreateCharge();
   const router = useRouter();
@@ -28,6 +32,7 @@ export function useCharge({ clientsSelected }: Props) {
       price: +payload.price,
       amount: amount ? +amount : undefined,
       period: period ? +period : undefined,
+      privacy: "PUBLIC",
       promotional_price: +payload.promotional_price,
       clients: clientsSelected.map((client) => client.id),
       expired_days: expired_days ? +expired_days : undefined,
@@ -42,6 +47,6 @@ export function useCharge({ clientsSelected }: Props) {
     formMethods,
     errors,
     submit,
-    isPending,
+    isLoading: isPending,
   };
 }

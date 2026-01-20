@@ -1,12 +1,12 @@
 import { SmartTable } from "@components/shared/layouts/Tables/presets/SmartTable";
-import i18n from "@configs/i18n";
-import { useClientsTable } from "../../../Private/Finance/Create/hooks/useClientsTable";
 import { ClientActions } from "./ClientActions";
 import { UserPlus } from "@assets/Icons/red/UserPlus";
 import { useModalContext } from "@contexts/Modal";
 import { ClientShape } from "@type/Clients";
 import { Notice } from "@components/shared/others/Notice";
 import { getNumberFormatted } from "@helpers/string";
+import { useClientsTable } from "./hooks/useClientsTable";
+import { useI18n } from "@contexts/I18n";
 
 type Props = {
   title?: string;
@@ -20,9 +20,10 @@ export function ClientsTable({
   clientsSelected,
   handleUpdateClients,
 }: Props) {
+  const { t } = useI18n()
   const { tHeadsClient } = useClientsTable();
   const { handleToggleModal, modal } = useModalContext();
-
+console.log('clientsSelected', clientsSelected);
   return (
     <div>
       <SmartTable
@@ -37,7 +38,7 @@ export function ClientsTable({
           action: <ClientActions id={client.id} />,
         }))}
         tHeads={{
-          data: tHeadsClient.current,
+          data: tHeadsClient,
           widths: [50, 200, 180, 100, 150, 30],
         }}
         options={{
@@ -48,17 +49,17 @@ export function ClientsTable({
             >
               <UserPlus />
               <span className="text-red font-semibold ml-2">
-                {i18n("Texts.clients_add")}
+                {t("Texts.clients_add")}
               </span>
             </a>
           ),
         }}
-        title={title ?? i18n("Texts.link_clients")}
+        title={title ?? t("Texts.link_clients")}
       />
       <Notice
-        headerTitle={i18n("Words.attention")}
-        title={i18n("Components.clients_table.title_already_exclude")}
-        text={i18n("Components.clients_table.text_already_exclude")}
+        headerTitle={t("Words.attention")}
+        title={t("Components.clients_table.title_already_exclude")}
+        text={t("Components.clients_table.text_already_exclude")}
         onSubmit={() => {
           handleToggleModal(false);
           handleUpdateClients(

@@ -1,12 +1,13 @@
 import { useFormRules } from "@hooks/Forms/useFormRules";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { useState } from "react";
-import { ChargeUpdatePayload, ChargeUpdateSchema } from "../schemas";
+import { useMemo, useState } from "react";
+import { ChargeProfileSchema, ChargeUpdatePayload } from "../schemas";
 import useGetServices from "@services/Services/Get/useGetServices";
 import usePutCharge from "@services/Charges/Put/usePut";
 import { ChargeShape } from "@type/Charges";
 import { ServicesShape } from "@type/Services";
+import { useI18n } from "@contexts/I18n";
 
 dayjs.extend(customParseFormat);
 
@@ -15,12 +16,13 @@ type Props = {
 };
 
 export function useForms({ charge }: Props) {
+  const { t } = useI18n()
+  const schema = useMemo(() => ChargeProfileSchema(t), [t]);
   const { formMethods, handleSubmit, errors } =
     useFormRules<ChargeUpdatePayload>({
-      schema: ChargeUpdateSchema,
+      schema,
       defaultValues: {
         status: charge.status,
-        privacy: charge.privacy,
         type: charge.type,
         amount: String(charge.amount) ?? "1",
         expired_days: String(charge.expired_days),
@@ -42,6 +44,7 @@ export function useForms({ charge }: Props) {
       id: charge.id,
       service_id: parseInt(payload?.service_id ?? ""),
       amount: amount ? +amount : undefined,
+      privacy: "PUBLIC",
       period: period ? +period : undefined,
       price: +payload.price,
       promotional_price: +payload.promotional_price,

@@ -4,11 +4,11 @@ import { useClientsPayed } from "./hooks/useClientsPayed";
 import { ClientsPayedPayload } from "./type";
 import { useModalContext } from "@contexts/Modal";
 import { FormProvider } from "react-hook-form";
-import i18n from "@configs/i18n";
 import { Button } from "@components/shared/layouts/Button";
 import { ClientShape } from "@type/Clients";
 import { useEffect } from "react";
 import { Search } from "@components/shared/forms/Search";
+import { useI18n } from "@contexts/I18n";
 
 type Props = {
   clients: ClientShape[];
@@ -21,6 +21,7 @@ export function ClientsPayedModal({
   handleAddClients,
   clientsSelected,
 }: Props) {
+  const { t } = useI18n()
   const {
     formMethods,
     handleSubmit,
@@ -41,11 +42,11 @@ export function ClientsPayedModal({
       "clients",
       clientsSelected.map((clientSelect) => String(clientSelect.id))
     );
-  }, [clientsSelected, clients]);
+  }, [clientsSelected, clients, formMethods]);
 
   return (
     <Modal
-      title={i18n("Texts.clients_add")}
+      title={t("Texts.clients_add")}
       isShowModal={modal.type == "ADD_CLIENT"}
       handleModal={handleToggleModal}
     >
@@ -53,7 +54,7 @@ export function ClientsPayedModal({
         <form onSubmit={handleSubmit(submit)}>
           <div className="w-full">
             <Search
-              label={i18n("Words.research")}
+              label={t("Words.research")}
               dataTestId="users"
               handleSearch={handleSearch}
               className="w-full"
@@ -62,7 +63,7 @@ export function ClientsPayedModal({
           <div>
             <div className="form-title mt-6 mb-4">
               <h4 className="text-lg w-[400px]">
-                <strong>{i18n("finances.modal.add_clients_text")}:</strong>
+                <strong>{t("finances.modal.add_clients_text")}:</strong>
               </h4>
             </div>
             <GroupChecks<ClientsPayedPayload>
@@ -77,7 +78,7 @@ export function ClientsPayedModal({
           <div>
             <Button
               type="submit"
-              text={i18n("Words.save")}
+              text={t("Words.save")}
               className="bg-red text-white"
             />
           </div>

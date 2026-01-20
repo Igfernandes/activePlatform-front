@@ -4,6 +4,7 @@ import { useModalContext } from "@contexts/Modal";
 import { useFormRules } from "@hooks/Forms/useFormRules";
 import { z } from "zod";
 import { useSearch } from "@components/shared/forms/Search/hooks/useSearch";
+import { useCallback } from "react";
 
 type Props = {
   clients: ClientShape[];
@@ -20,15 +21,18 @@ export function useClientsPayed({ handleAddClients, clients }: Props) {
   const { handleSearch, filterObjects } = useSearch();
   const { handleToggleModal } = useModalContext();
 
-  const submit = (payload: ClientsPayedPayload) => {
-    const clientsId = payload.clients;
-    handleAddClients(
-      clients.filter((client) => clientsId.includes(String(client.id)))
-    );
-    handleToggleModal(formMethods.getValues());
+  const submit = useCallback(
+    (payload: ClientsPayedPayload) => {
+      const clientsId = payload.clients;
+      handleAddClients(
+        clients.filter((client) => clientsId.includes(String(client.id))),
+      );
+      handleToggleModal(formMethods.getValues());
 
-    formMethods.reset();
-  };
+      formMethods.reset();
+    },
+    [clients, handleAddClients, handleToggleModal, formMethods],
+  );
 
   const getClientsFiltered = (clients: Array<ClientShape>) => {
     return clients.filter((client) => filterObjects(client));

@@ -1,16 +1,19 @@
-import i18n from "@configs/i18n";
-import { useRef } from "react";
+import { useI18n } from "@contexts/I18n";
+import { useMemo } from "react";
 
 export function useClientsTable() {
-  const tHeadsClient = useRef<Array<string>>([
-    "ID",
-    i18n("Words.name"),
-    i18n("Words.phone"),
-    i18n("Words.email"),
-    i18n("Words.category"),
-    i18n("Words.actions"),
-  ]);
-
+  const { t } = useI18n();
+  const tHeadsClient = useMemo(
+    () => [
+      "ID",
+      t("Words.name"),
+      t("Words.phone"),
+      t("Words.email"),
+      t("Words.category"),
+      t("Words.actions"),
+    ],
+    [t],
+  );
   return {
     tHeadsClient,
   };
