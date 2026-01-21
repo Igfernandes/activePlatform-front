@@ -38,6 +38,7 @@ export const Words = {
   time: "Hora",
   my_users: "Meus usuários",
   fill: "Preenchimento",
+  inscriptions: "Inscrições",
   go_out: "Sair",
   schedule: "Agenda",
   loading: "Carregando",

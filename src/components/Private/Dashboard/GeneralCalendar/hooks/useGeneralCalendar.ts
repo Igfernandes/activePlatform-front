@@ -32,7 +32,7 @@ export function useGeneralCalendar() {
         const date = serviceDate.year(thisYear);
 
         return {
-          title: i18n("Words.event") + "🎉",
+          title: i18n("Words.inscriptions") + "🎉",
           start: date.toDate(),
           end: date.toDate(),
           allDay: true,
