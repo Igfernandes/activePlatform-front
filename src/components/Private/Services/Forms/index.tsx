@@ -44,8 +44,7 @@ export function ServicesForm({ service }: Props) {
           <div className="">
             <Image
               src={
-                photo ??
-                service?.photo
+                service?.photo ?? photo
               }
               width={200}
               height={100}
