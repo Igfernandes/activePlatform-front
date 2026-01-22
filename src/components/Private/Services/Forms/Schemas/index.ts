@@ -14,3 +14,4 @@ export const ServicesModalSchema = z.object({
   photo: z.string().optional(),
 });
 
+export type ServicesPayload = z.infer<typeof ServicesModalSchema>;
