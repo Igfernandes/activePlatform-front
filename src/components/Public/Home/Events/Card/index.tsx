@@ -90,14 +90,14 @@ export function Card({
             <span>{"Inscrever-se"}</span>
           </Link>
         </When>
-        <When value={!handleIsAvailableDate(realized_at, expired_at)}>
+        <When value={!handleIsAvailableDate(realized_at, expired_at) && !!has_available}>
           <p
             className={`block bg-disabled text-white p-2 text-center rounded-md`}
           >
             <span>{"Em breve"}</span>
           </p>
         </When>
-        <When value={!has_available}>
+        <When value={!has_available && !handleIsAvailableDate(realized_at, expired_at)}>
           <p
             className={`block bg-disabled text-white p-2 text-center rounded-md`}
           >

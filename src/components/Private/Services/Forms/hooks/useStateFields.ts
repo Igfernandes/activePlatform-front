@@ -19,6 +19,7 @@ export function useStateFields({ formMethods }: Props) {
     setValue("name", service.name);
     setValue("description", service.description ?? "");
     setValue("alerts", service.alerts ?? "");
+    setValue("photo", service.photo ?? "");
     setValue("status", service.status);
     setValue("snippet", service.snippet ?? "");
     setValue("address", service.address);
