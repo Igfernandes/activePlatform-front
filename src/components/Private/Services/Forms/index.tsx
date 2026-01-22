@@ -8,7 +8,6 @@ import { When } from "@components/utilities/When";
 import { useRouter } from "next/navigation";
 import { privateRoutes } from "@configs/routes/Web/navigation";
 import { useStateFields } from "./hooks/useStateFields";
-import { getFileUrl } from "@helpers/file";
 import Image from "next/image";
 import { useNavigator } from "@hooks/useNavigator";
 import useWindow from "@hooks/useWindow";
@@ -45,7 +44,7 @@ export function ServicesForm({ service }: Props) {
           <div className="">
             <Image
               src={
-                getFileUrl(photo ? photo[0] : null, service?.photo) ??
+                photo ??
                 service?.photo
               }
               width={200}
