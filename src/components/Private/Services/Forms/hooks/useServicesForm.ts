@@ -38,10 +38,7 @@ export function useServicesForm({ service }: Props) {
     } else {
       putService({
         ...payload,
-        photo:
-          Array.from(formData.photo).length > 0
-            ? formData.photo
-            : service?.photo,
+        photo: formData.photo ?? service?.photo,
         id: service.id,
       });
     }

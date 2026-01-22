@@ -29,7 +29,7 @@ export function ServicesForm({ service }: Props) {
   const { watch, setValue } = formMethods;
   const { handleCopy } = useNavigator();
   const { baseUrl } = useWindow();
-  const photo = watch("photo") ?? [];
+  const photo = watch("photo") ?? "";
 
   useEffect(() => {
     if (!service) return;
