@@ -70,7 +70,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             onBlur={handleTransitionLabel}
             placeholder={rest.type == "date" ? " " : placeholder}
             className={`${className} ${!!errors ? "border-amber-500 outline-amber-500" : ""
-              } w-full px-3 pt-6 pb-2 bg-white border-secondary border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
+              } w-full pl-3 ${maxLength ? "pr-16" : "pr-3"} pt-6 pb-2 bg-white border-secondary border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
             data-testid={dataTestId}
             id={IdCurrent}
           />

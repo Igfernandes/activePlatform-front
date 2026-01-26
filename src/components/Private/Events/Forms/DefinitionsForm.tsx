@@ -27,6 +27,7 @@ export function DefinitionsForm({ forms }: Props) {
           dataTestId="name"
           label={i18n("Words.name")}
           required={true}
+          maxLength={200}
           errors={errors.name}
         />
       </div>
@@ -69,11 +70,14 @@ export function DefinitionsForm({ forms }: Props) {
           dataTestId="address"
           label={i18n(`Words.address`)}
           errors={errors.address}
+          maxLength={250}
         />
       </div>
       <div className="w-full my-4">
         <Input
-          {...register("confirmation_expired_time")}
+          {...register("confirmation_expired_time", {
+            valueAsNumber: true,
+          })}
           type={"number"}
           dataTestId="confirmation_expired_time"
           min={0}
@@ -83,7 +87,9 @@ export function DefinitionsForm({ forms }: Props) {
       </div>
       <div className="w-full my-4">
         <Select
-          {...register("form_id")}
+          {...register("form_id", {
+            valueAsNumber: true,
+          })}
           label={i18n("Words.form")}
           dataTestId="forms"
           options={[
@@ -94,14 +100,16 @@ export function DefinitionsForm({ forms }: Props) {
             ...(forms ?? [])?.map((form: FormsShape) => ({
               text: form.name,
               value: form.id,
-              selected: getValues("form_id") === String(form.id),
+              selected: getValues("form_id") === form.id,
             })),
           ]}
         />
       </div>
       <div className="w-full my-4">
         <Select
-          {...register("feedback_id")}
+          {...register("feedback_id", {
+            valueAsNumber: true,
+          })}
           label={'Feedback'}
           dataTestId="forms"
           options={[
@@ -112,7 +120,7 @@ export function DefinitionsForm({ forms }: Props) {
             ...(forms ?? [])?.map((form: FormsShape) => ({
               text: form.name,
               value: form.id,
-              selected: getValues("feedback_id") === String(form.id),
+              selected: getValues("feedback_id") === form.id,
             })),
           ]}
         />
@@ -124,6 +132,7 @@ export function DefinitionsForm({ forms }: Props) {
           label={i18n(`Words.describe`)}
           placeholder="Escreva detalhes sobre o passeio"
           errors={errors.description}
+          maxLength={12000}
         />
       </div>
     </>

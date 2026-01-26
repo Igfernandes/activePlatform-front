@@ -1,4 +1,3 @@
-import i18n from "@configs/i18n";
 import { FormProvider } from "react-hook-form";
 import { Button } from "@components/shared/layouts/Button";
 import { DefinitionsForm } from "./DefinitionsForm";
@@ -6,44 +5,37 @@ import { When } from "@components/utilities/When";
 import { useRouter } from "next/navigation";
 import { privateRoutes } from "@configs/routes/Web/navigation";
 import { useStateFields } from "./hooks/useStateFields";
-import { getFileUrl } from "@helpers/file";
 import Image from "next/image";
 import { ToggleSwitch } from "@components/shared/forms/ToggleSwitch";
 import { Input } from "@components/shared/forms/Input";
 import { InscribesTable } from "./InscribesTable";
 import { TextEdit } from "@components/shared/forms/TextEdit";
-import { useEffect } from "react";
 import { EventShape } from "@type/Events";
 import { useEventsForm } from "./hooks/useEventsForm";
+import { useI18n } from "@contexts/I18n";
 
 type Props = {
   event?: EventShape;
 };
 
 export function EventsForm({ event }: Props) {
+  const { t } = useI18n()
   const { formMethods, forms, register, handleSubmit, submit, errors, isLoading } =
     useEventsForm({ event });
   const router = useRouter();
-  const { handleCleanForm, handleUpdateForm } = useStateFields({ formMethods });
+  const { handleCleanForm } = useStateFields({ formMethods });
   const { watch, setValue } = formMethods;
-  const banner = watch("banner") ?? [];
-  const stock = +formMethods.watch("stock");
-
-  useEffect(() => {
-    if (!event) return;
-
-    handleUpdateForm(event);
-  }, [event]);
+  const banner = watch("banner");
+  const stock = formMethods.watch("stock");
 
   return (
     <>
-      <When value={banner.length > 0 || !!event?.banner}>
+      <When value={!!banner}>
         <div className="image mb-2 bg-white rounded-xl">
           <div className="">
             <Image
               src={
-                getFileUrl(banner ? banner[0] : null, event?.banner) ??
-                event?.banner
+                banner ?? ""
               }
               width={200}
               height={100}
@@ -57,7 +49,7 @@ export function EventsForm({ event }: Props) {
         <div className="flex flex-wrap justify-between mb-6">
           <div>
             <h1 className="text-2xl">
-              <strong>{i18n(`Screens.events.form.title`)}</strong>
+              <strong>{t(`Screens.events.form.title`)}</strong>
             </h1>
           </div>
           <div className="flex ">
@@ -66,15 +58,15 @@ export function EventsForm({ event }: Props) {
                 setValue={setValue}
                 name="status"
                 dataTestId="status"
-                label={i18n(`Words.service_status`)}
+                label={t(`Words.service_status`)}
                 defaultValue={event?.status}
                 options={{
                   left: {
-                    text: i18n("Words.active"),
+                    text: t("Words.active"),
                     value: "ACTIVE",
                   },
                   right: {
-                    text: i18n("Words.inactive"),
+                    text: t("Words.inactive"),
                     value: "INACTIVE",
                   },
                 }}
@@ -90,10 +82,13 @@ export function EventsForm({ event }: Props) {
 
               <div className="my-6 pt-6">
                 <Input
-                  {...register("stock")}
+                  {...register("stock", {
+                    valueAsNumber: true,
+                  })}
+                  required={true}
                   type="number"
                   dataTestId="limit_vacancies"
-                  label={i18n(
+                  label={t(
                     "Screens.dashboard.services.inform_limit_vacancies"
                   )}
                   max={99999}
@@ -105,10 +100,11 @@ export function EventsForm({ event }: Props) {
                 <TextEdit
                   {...register("alerts")}
                   dataTestId="alerts"
-                  label={i18n(`Screens.dashboard.services.inscribes_alert`)}
-                  placeholder={i18n(
+                  label={t(`Screens.dashboard.services.inscribes_alert`)}
+                  placeholder={t(
                     "Screens.dashboard.services.text_alert_about_alerts_inscribes"
                   )}
+                  maxLength={14000}
                   errors={errors.alerts}
                 />
               </div>
@@ -116,7 +112,7 @@ export function EventsForm({ event }: Props) {
                 <When value={!event}>
                   <div className="w-full lg:w-auto mb-4 lg:mb-auto">
                     <span onClick={handleCleanForm} className="cursor-pointer">
-                      <strong>{i18n("Words.clean")}</strong>
+                      <strong>{t("Words.clean")}</strong>
                     </span>
                   </div>
                 </When>
@@ -131,7 +127,7 @@ export function EventsForm({ event }: Props) {
                     <div className="lg:ml-8 w-[47%] lg:w-auto">
                       <Button
                         className="py-3 px-6  border-[1px] border-secondary rounded-xl w-full"
-                        text={i18n(`Words.cancel`)}
+                        text={t(`Words.cancel`)}
                         type="button"
                         onClick={() => router.push(privateRoutes.services)}
                       />
@@ -140,7 +136,7 @@ export function EventsForm({ event }: Props) {
                       <Button
                         className="py-3 px-8  bg-red text-white rounded-xl w-full"
                         text={
-                          !event ? i18n(`Words.save`) : i18n(`Words.update`)
+                          !event ? t(`Words.save`) : t(`Words.update`)
                         }
                         isLoading={isLoading}
                       />
@@ -157,10 +153,9 @@ export function EventsForm({ event }: Props) {
           <InscribesTable
             event={{
               ...(event as EventShape),
-              stock: stock,
+              stock,
             }}
-            stock={stock}
-            title={i18n("Words.inscribes")}
+            title={t("Words.inscribes")}
           />
         </div>
       </When>

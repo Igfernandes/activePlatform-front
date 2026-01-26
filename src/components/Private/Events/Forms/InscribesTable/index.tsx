@@ -1,5 +1,4 @@
 import { SmartTable } from "@components/shared/layouts/Tables/presets/SmartTable";
-import i18n from "@configs/i18n";
 import { useModalContext } from "@contexts/Modal";
 import { Notice } from "@components/shared/others/Notice";
 import { getNumberFormatted } from "@helpers/string";
@@ -11,10 +10,11 @@ import { ClientsModal } from "./ClientsModal";
 import { ActionsTable } from "./ActionsTable";
 import { EventShape } from "@type/Events";
 import { useInscribeEvent } from "../hooks/useInscribeService";
+import { useI18n } from "@contexts/I18n";
 
 type Props = {
   event: EventShape;
-  stock: number;
+  stock?: number;
   title?: string;
 };
 
@@ -26,6 +26,7 @@ export function InscribesTable({ title, event, stock }: Props) {
     handleUnsubscribe,
     isLoadingInscribes,
   } = useInscribeEvent({ event, stock });
+  const { t } = useI18n();
   const { baseUrl } = useWindow();
   const { handleToggleModal, modal } = useModalContext();
 
@@ -59,11 +60,11 @@ export function InscribesTable({ title, event, stock }: Props) {
         tHeads={{
           data: [
             "ID",
-            i18n("Words.name"),
-            i18n("Words.phone"),
-            i18n("Words.category"),
-            i18n("Texts.is_confirmation"),
-            i18n("Words.actions"),
+            t("Words.name"),
+            t("Words.phone"),
+            t("Words.category"),
+            t("Texts.is_confirmation"),
+            t("Words.actions"),
           ],
           widths: [50, 200, 180, 100, 150, 30],
         }}
@@ -83,12 +84,12 @@ export function InscribesTable({ title, event, stock }: Props) {
             />
           ),
         }}
-        title={title ?? i18n("Texts.link_clients")}
+        title={title ?? t("Texts.link_clients")}
       />
       <Notice
-        headerTitle={i18n("Words.attention")}
-        title={i18n("Components.clients_table.title_already_exclude")}
-        text={i18n("Components.clients_table.text_already_exclude")}
+        headerTitle={t("Words.attention")}
+        title={t("Components.clients_table.title_already_exclude")}
+        text={t("Components.clients_table.text_already_exclude")}
         onSubmit={() => {
           handleToggleModal(false);
 

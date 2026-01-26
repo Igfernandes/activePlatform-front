@@ -4,5 +4,5 @@ export type PostEventsPayload = Omit<
   EventShape,
   "id" | "banner" | "created_at" | "updated_at"
 > & {
-  banner?: FileList;
+  banner?: string;
 };
