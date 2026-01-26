@@ -2,6 +2,7 @@ import { z } from "zod";
 import { nameSchema } from "./nameSchema";
 import { descriptionSchema } from "./descriptionSchema";
 import { TFunction } from "@contexts/I18n";
+import { optionalNumber } from "@helpers/numbers";
 
 export const EventsModalSchema = (t: TFunction) =>
   z
@@ -10,12 +11,12 @@ export const EventsModalSchema = (t: TFunction) =>
       description: descriptionSchema,
       alerts: descriptionSchema,
       stock: z.number(),
-      confirmation_expired_time: z.number().optional().nullable(),
+      confirmation_expired_time: optionalNumber(),
       completed_at: z.string().optional(),
       realized_at: z.string().optional(),
       address: z.string().optional(),
       status: z.enum(["ACTIVE", "INACTIVE"]),
-      feedback_id: z.number().optional(),
+      feedback_id: optionalNumber(),
       form_id: z.number({
         message: t("Validations.required"),
       }),
