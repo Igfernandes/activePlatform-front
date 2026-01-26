@@ -4,5 +4,5 @@ export type PutEventsPayload = Omit<
   EventShape,
   "banner" | "created_at" | "updated_at"
 > & {
-  banner?: string;
+  banner?: string | null;
 };
