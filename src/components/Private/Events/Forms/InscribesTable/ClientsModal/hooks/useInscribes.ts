@@ -4,8 +4,7 @@ import { useFormRules } from "@hooks/Forms/useFormRules";
 import { z } from "zod";
 import { useSearch } from "@components/shared/forms/Search/hooks/useSearch";
 import useGetCategories from "@services/Clients/Categories/Get/useGetCategories";
-import { useEffect, useState } from "react";
-import { ClientCategoriesShape } from "@type/Clients/ClientCategories";
+import { useMemo } from "react";
 import { ClientShape } from "@type/Clients";
 import { ClientEventShape } from "@type/Clients/ClientEvent";
 
@@ -24,9 +23,7 @@ export function useInscribes({ handleAddClients, clientsSelected }: Props) {
   const { handleSearch, filterObjects } = useSearch();
   const { handleToggleModal } = useModalContext();
   const { data: categoriesData } = useGetCategories();
-  const [categories, setCategories] = useState<Array<ClientCategoriesShape>>(
-    []
-  );
+  const categories = useMemo(() => categoriesData ?? [], [categoriesData]);
 
   const submit = async (payload: ClientsPayedPayload) => {
     const clientsId = payload.clients.filter((clientId) => !!clientId);
@@ -35,7 +32,7 @@ export function useInscribes({ handleAddClients, clientsSelected }: Props) {
     handleToggleModal(formMethods.getValues());
     formMethods.setValue(
       "clients",
-      clientsSelected.map((client) => String(client.id))
+      clientsSelected.map((client) => String(client.id)),
     );
   };
 
@@ -49,15 +46,11 @@ export function useInscribes({ handleAddClients, clientsSelected }: Props) {
       return (
         filterObjects(client) &&
         client.categories.find(
-          (clientCategory) => clientCategory.id === +category
+          (clientCategory) => clientCategory.id === +category,
         )
       );
     });
   };
-
-  useEffect(() => {
-    setCategories(categoriesData ?? []);
-  }, [categoriesData]);
 
   return {
     formMethods,

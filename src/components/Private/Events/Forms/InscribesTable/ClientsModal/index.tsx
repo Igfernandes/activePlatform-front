@@ -37,6 +37,7 @@ export function ClientsModal({
     handleAddClients,
     clientsSelected,
   });
+  const { reset } = formMethods
   const { modal, handleToggleModal } = useModalContext();
 
   useEffect(() => {
@@ -45,13 +46,12 @@ export function ClientsModal({
     const clientsSelectedId = clientsSelected.map(
       (clientSelect) => clientSelect.id
     );
-    formMethods.setValue(
-      "clients",
-      clients.map((client) =>
+    reset({
+      clients: clients.map((client) =>
         clientsSelectedId.includes(client.id) ? String(client.id) : ""
       )
-    );
-  }, [clientsSelected, clients]);
+    });
+  }, [clientsSelected, clients, reset]);
 
   return (
     <Modal

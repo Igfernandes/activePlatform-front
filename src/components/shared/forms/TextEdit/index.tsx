@@ -52,12 +52,14 @@ export const TextEdit = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       required,
       defaultValue,
       placeholder,
+      maxLength,
       ...rest
     }: TextAreaProps,
     ref
   ) {
     const IdCurrent = id ?? dataTestId;
-    const { setValue: updateValue, getValues } = useFormContext();
+    const { setValue: updateValue, watch } = useFormContext();
+    const value = watch(rest.name);
 
     return (
       <>
@@ -74,8 +76,8 @@ export const TextEdit = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
               theme="snow"
               modules={modules}
               formats={formats}
-              value={getValues(rest.name)}
-              className="h-[30vh] md:h-60 "
+              value={value}
+              className="h-[30vh] md:h-60"
               defaultValue={String(defaultValue ?? "")}
               onChange={(value) => {
                 if (!rest.name) return;
@@ -85,6 +87,9 @@ export const TextEdit = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
               placeholder={placeholder}
             />
           </div>
+          <When value={!!maxLength}>
+            <span className="absolute right-4 top-[.65rem] text-xs">{value?.length ?? 0}/{maxLength}</span>
+          </When>
         </div>
         <ErrorMessage errors={errors?.message} />
       </>
