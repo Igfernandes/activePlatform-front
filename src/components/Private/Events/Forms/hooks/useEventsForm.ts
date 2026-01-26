@@ -55,7 +55,7 @@ export function useEventsForm({ event }: Props) {
     if (!event) return;
 
     reset(event);
-  }, [event]);
+  }, [event, reset]);
 
   return {
     formMethods,

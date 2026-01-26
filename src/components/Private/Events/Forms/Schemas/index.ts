@@ -20,7 +20,7 @@ export const EventsModalSchema = (t: TFunction) =>
       form_id: z.number({
         message: t("Validations.required"),
       }),
-      banner: z.string().optional(),
+      banner: z.string().nullable().optional(),
     })
     .superRefine((data, ctx) => {
       const stock = data.stock;
