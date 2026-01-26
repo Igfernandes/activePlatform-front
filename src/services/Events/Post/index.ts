@@ -8,16 +8,7 @@ export function usePostEventsService() {
   const { events } = API_ROUTES;
 
   async function postEvents(payload: PostEventsPayload) {
-    let banner = null;
-
-    if (
-      payload.banner instanceof FileList &&
-      Array.from(payload.banner).length > 0
-    )
-      banner = payload.banner[0];
-    else delete payload["banner"];
-
-    return axios.post(events, getPayloadFormData({ ...payload, banner }));
+    return axios.post(events, getPayloadFormData(payload));
   }
 
   return {
