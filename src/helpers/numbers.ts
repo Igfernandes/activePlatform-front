@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export function getOnlyNumberRange(value: number, start: number, end: number) {
   if (value <= start) return start;
 
@@ -12,3 +14,9 @@ export const formatNumber = (num: number, length: number) =>
 export function getOnlyNumbers(str: string) {
   return str.replace(/\D/g, "");
 }
+export const optionalNumber = (errorMessage?: string) =>
+  z.preprocess(
+    (val) =>
+      val === "" || val === null || Number.isNaN(val) ? undefined : val,
+    z.number({ invalid_type_error: errorMessage }).default(0),
+  );
