@@ -8,11 +8,10 @@ import { helperRemoveDuplicatesInArrayOfObjects } from "@helpers/array";
 import { Skeleton } from "@components/utilities/Skeleton";
 
 export function GeneralCalendar({
-  clients,
   charges,
   services,
 }: ManagerEntitiesProps) {
-  const { birthdate, chargesDates, servicesDates } = useGeneralCalendar({ services, charges });
+  const { birthdate, schedules, chargesDates, servicesDates } = useGeneralCalendar({ services, charges });
   const { handleToggleModal } = useModalContext();
 
   return (
@@ -21,7 +20,7 @@ export function GeneralCalendar({
         type: "board",
         amount: 1,
       }}
-      isLoading={!clients || !services || !charges}
+      isLoading={!schedules || !services || !charges}
     >
       <div className="relative z-0 h-[75vh] p-4 bg-white rounded-xl shadow mt-4">
         <h2 className="text-2xl font-bold mb-4">{i18n("Words.calendar")}</h2>
@@ -41,7 +40,7 @@ export function GeneralCalendar({
           }}
         />
       </div>
-      <ModalScheduled clients={clients} charges={charges} services={services} />
+      <ModalScheduled schedules={schedules} charges={charges} services={services} />
     </Skeleton>
   );
 }

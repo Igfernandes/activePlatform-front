@@ -12,10 +12,10 @@ type Props = {
 };
 
 export function useGeneralCalendar({ services, charges = [] }: Props) {
-  const { data: rows } = useGetSchedules();
+  const { data: schedules } = useGetSchedules();
 
   const birthdate = useMemo(() => {
-    return (rows ?? []).map((schedule: ScheduleShape) => {
+    return (schedules ?? []).map((schedule: ScheduleShape) => {
       const birthdate = moment(schedule.date);
       const thisYear = moment().year();
       const date = birthdate.year(thisYear);
@@ -28,7 +28,7 @@ export function useGeneralCalendar({ services, charges = [] }: Props) {
         resource: schedule.date ?? "",
       };
     });
-  }, [rows]);
+  }, [schedules]);
 
   const servicesDates = useMemo(
     () =>
@@ -77,5 +77,6 @@ export function useGeneralCalendar({ services, charges = [] }: Props) {
     birthdate,
     servicesDates,
     chargesDates,
+    schedules,
   };
 }
