@@ -12,7 +12,7 @@ export function GeneralCalendar({
   charges,
   services,
 }: ManagerEntitiesProps) {
-  const { getClientsBirthday, getServices, getCharges } = useGeneralCalendar();
+  const { birthdate, chargesDates, servicesDates } = useGeneralCalendar({ services, charges });
   const { handleToggleModal } = useModalContext();
 
   return (
@@ -28,9 +28,9 @@ export function GeneralCalendar({
         <Calendar
           events={helperRemoveDuplicatesInArrayOfObjects(
             [
-              ...getClientsBirthday(clients ?? []),
-              ...getServices(services ?? []),
-              ...getCharges(charges ?? []),
+              ...birthdate,
+              ...servicesDates,
+              ...chargesDates,
             ],
             "resource"
           )}
