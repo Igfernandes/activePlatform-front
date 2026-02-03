@@ -4,8 +4,7 @@ import { useRouter } from "next/navigation";
 import { privateRoutes } from "@configs/routes/Web/navigation";
 import { ModalFormsOperationType } from "./type";
 import { useFormContext } from "react-hook-form";
-import { useEffect, useState } from "react";
-import { ActionsData } from "@components/shared/others/DotsOptions/type";
+import { useMemo } from "react";
 import { useSnackbar } from "@hooks/useSnackbar";
 import { Shared } from "@components/shared/others/Shared";
 import usePostInscribesEvents from "@services/Forms/Events/Post/usePost";
@@ -31,40 +30,40 @@ export function FillFieldsActions({
   const { watch } = useFormContext();
   const serviceId = watch("service_id");
   const { dispatchSnackbar } = useSnackbar();
-  const [actions, setActions] = useState<Array<ActionsData>>([]);
   const { mutateAsync: postInscribeServices } = usePostInscribesEvents();
-
-  useEffect(() => {
-    const data = [
-      {
-        text: i18n("Words.edit") as string,
-        handle: () => {
-          router.push(`${forms}/${formId}/fill/${refPackage}`);
-        },
+  const data = useMemo(() => [
+    {
+      text: i18n("Words.edit") as string,
+      handle: () => {
+        router.push(`${forms}/${formId}/fill/${refPackage}`);
       },
-    ];
+    },
+  ], [formId, refPackage, forms, router]);
 
-    if (serviceId)
-      data.push({
-        text: i18n("Words.inscribe") as string,
-        handle: () => {
-          dispatchSnackbar({
-            message: i18n("Screens.dashboard.services.awaiting_inscribe"),
-            type: "notice",
-          });
-          postInscribeServices({
-            formPackage: refPackage,
-          });
-        },
-      });
-
+  const actions = useMemo(() => {
     data.push({
       text: i18n("Words.exclude") as string,
       handle: () => handleToggleModal("DELETE", refPackage),
     });
 
-    setActions(data);
-  }, [serviceId, formId, refPackage, forms]);
+    if (!serviceId)
+      return data;
+
+    data.push({
+      text: i18n("Words.inscribe") as string,
+      handle: () => {
+        dispatchSnackbar({
+          message: i18n("Screens.dashboard.services.awaiting_inscribe"),
+          type: "notice",
+        });
+        postInscribeServices({
+          formPackage: refPackage,
+        });
+      },
+    });
+
+    return data;
+  }, [serviceId, data, refPackage, handleToggleModal, dispatchSnackbar, postInscribeServices]);
 
   return (
     <div className="flex">

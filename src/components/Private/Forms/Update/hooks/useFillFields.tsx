@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import i18n from "@configs/i18n";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useModalContext } from "@contexts/Modal";
 import { ModalFormsOperationType, TDataForms } from "../type";
 import dayjs from "dayjs";
@@ -8,6 +7,7 @@ import { FillFieldsActions } from "../FillFieldsActions";
 import useGetFillFields from "@services/Forms/Fills/Get/useGetFillFields";
 import useDeleteFillField from "@services/Forms/Fills/Delete/useDelete";
 import { FieldShape } from "@components/shared/layouts/FormBuilder/type";
+import { useI18n } from "@contexts/I18n";
 
 type Props = {
   formId: number;
@@ -17,6 +17,7 @@ type Props = {
 };
 
 export function useFillFields({ formId, components }: Props) {
+  const { t } = useI18n()
   const [tDataFields, setTDataFields] = useState<
     Array<Record<string, unknown>>
   >([]);
@@ -27,13 +28,13 @@ export function useFillFields({ formId, components }: Props) {
     useDeleteFillField();
   const { data: fieldsData } = useGetFillFields({ formId });
 
-  const tHeadsFields = useRef<Array<string>>([
+  const tHeadsFields = useMemo<Array<string>>(() => [
     "ID",
-    i18n("Texts.first_column"),
-    i18n("Texts.inscribe_at"),
-    i18n("Words.created_at"),
-    i18n("Words.actions"),
-  ]);
+    t("Texts.first_column"),
+    t("Texts.inscribe_at"),
+    t("Words.created_at"),
+    t("Words.actions"),
+  ], [t]);
 
   const handleChangeColumn = (fieldId: string) => setFirstColumn(fieldId);
 
@@ -64,7 +65,7 @@ export function useFillFields({ formId, components }: Props) {
     [handleToggleModal]
   );
 
-  const handleDeleteFillField = () => {
+  const handleDeleteFillField = useCallback(() => {
     const IdString = modal.id.toLocaleString();
 
     deleteFillField({
@@ -73,7 +74,7 @@ export function useFillFields({ formId, components }: Props) {
     }).then(() => {
       handleToggleModal(false);
     });
-  };
+  }, [deleteFillField, formId, handleToggleModal, modal.id]);
 
   /** Adding news keys of table and the lasted column to table data users */
   useEffect(() => {
@@ -84,12 +85,12 @@ export function useFillFields({ formId, components }: Props) {
     );
 
     if (nameColumn && !firstColumnId) {
-      tHeadsFields.current[1] = i18n("Words.name");
+      tHeadsFields[1] = t("Words.name");
       setFirstColumn(nameColumn.id);
     } else if (firstColumnId) {
       const field = components.find((field) => field.id == firstColumnId);
-      tHeadsFields.current[1] = field?.label ?? "";
-    } else tHeadsFields.current[1] = i18n("Texts.first_column");
+      tHeadsFields[1] = field?.label ?? "";
+    } else tHeadsFields[1] = t("Texts.first_column");
 
     const tDataFields = fieldsData.map((FieldsProps) => {
       FieldsProps.sort((a, b) => a.field_id - b.field_id);
@@ -105,6 +106,8 @@ export function useFillFields({ formId, components }: Props) {
     updateFieldForTable,
     firstColumnId,
     components,
+    tHeadsFields,
+    t
   ]);
 
   return {

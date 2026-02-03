@@ -23,7 +23,7 @@ export function ClientsTable({
   const { t } = useI18n()
   const { tHeadsClient } = useClientsTable();
   const { handleToggleModal, modal } = useModalContext();
-console.log('clientsSelected', clientsSelected);
+  
   return (
     <div>
       <SmartTable
