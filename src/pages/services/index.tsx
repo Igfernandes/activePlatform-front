@@ -125,8 +125,6 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  console.log("SERVICE PAGE SERVICE:", service);
-
   return {
     props: {
       service, // Passa o ID para o componente

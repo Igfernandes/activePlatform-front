@@ -16,7 +16,7 @@ dayjs.extend(customParseFormat);
 
 export function useModal() {
   const [step, setStep] = useState<"INFORMATION" | "USERS">("INFORMATION");
-  const { formMethods, handleSubmit, errors } =
+  const { formMethods, handleSubmit } =
     useFormRules<ScheduleUpdatePayload>({
       schema: ScheduleSchema,
     });
@@ -39,7 +39,6 @@ export function useModal() {
   const watchDate = watch("date");
   const watchEndDate = watch("end_date");
 
-  console.log(errors);
   const handleSteps = async (action: "PREV" | "NEXT") => {
     let isValid = await trigger(["title", "date", "end_date"], {
       shouldFocus: true,
