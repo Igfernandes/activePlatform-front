@@ -3,7 +3,6 @@ import i18n from "@configs/i18n";
 import { useRouter } from "next/navigation";
 import { privateRoutes } from "@configs/routes/Web/navigation";
 import { ModalFormsOperationType } from "./type";
-import { useFormContext } from "react-hook-form";
 import { useMemo } from "react";
 import { useSnackbar } from "@hooks/useSnackbar";
 import { Shared } from "@components/shared/others/Shared";
@@ -27,8 +26,6 @@ export function FillFieldsActions({
 }: Props) {
   const router = useRouter();
   const { forms } = privateRoutes;
-  const { watch } = useFormContext();
-  const serviceId = watch("service_id");
   const { dispatchSnackbar } = useSnackbar();
   const { mutateAsync: postInscribeServices } = usePostInscribesEvents();
   const data = useMemo(() => [
@@ -46,9 +43,6 @@ export function FillFieldsActions({
       handle: () => handleToggleModal("DELETE", refPackage),
     });
 
-    if (!serviceId)
-      return data;
-
     data.push({
       text: i18n("Words.inscribe") as string,
       handle: () => {
@@ -63,7 +57,7 @@ export function FillFieldsActions({
     });
 
     return data;
-  }, [serviceId, data, refPackage, handleToggleModal, dispatchSnackbar, postInscribeServices]);
+  }, [data, refPackage, handleToggleModal, dispatchSnackbar, postInscribeServices]);
 
   return (
     <div className="flex">
