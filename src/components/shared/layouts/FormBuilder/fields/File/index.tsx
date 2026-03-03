@@ -88,6 +88,7 @@ export function File(
                 }));
             });
           }}
+          accept=".pdf,.xlsx,.png,.jpg,.jpeg"
           className={`${className} absolute top-4 w-[90%] h-full appearance-none opacity-0`}
           id={IdCurrent}
         />
