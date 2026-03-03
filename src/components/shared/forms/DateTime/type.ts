@@ -10,5 +10,6 @@ export type InputProps = DetailedHTMLProps<
   name: string;
   errors?: FieldError;
   tooltip?: string;
+  labelColor?: string;
   handledChange?: (ev: React.ChangeEvent<HTMLInputElement> | undefined) => void;
 };

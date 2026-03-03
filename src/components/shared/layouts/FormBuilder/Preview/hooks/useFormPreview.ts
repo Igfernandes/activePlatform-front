@@ -16,6 +16,7 @@ export function useFormPreview({ fields }: Props) {
       fields.reduce((acc: Record<string, z.ZodTypeAny>, field) => {
         if (field.group === "layout") return acc;
         const name = `input_${field.id}`;
+        console.log(name, field.label, field.required, field,"field--") // Log the field name and required status
         if (field.required) {
           acc[name] = z
             .string({ required_error: t("Validations.required") })
@@ -43,7 +44,7 @@ export function useFormPreview({ fields }: Props) {
     schema,
     defaultValues,
   });
-
+console.log(errors, "form preview errors")
   return {
     formMethods,
     errors,

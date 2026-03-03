@@ -35,10 +35,10 @@ export const Datetime = React.forwardRef<HTMLInputElement, InputProps>(
     useEffect(() => {
       setDatetime(currentDateValue ? dayjs(currentDateValue).format("DD/MM/YYYY HH:mm") : "");
     }, [currentDateValue, setDatetime]);
-
+    
     return (
       <>
-        <div className={`relative w-full my-4 ${error?.message ? "border-yellow" : ""}`}>
+        <div className={`relative w-full my-4 ${!!error ? "border-yellow" : ""}`}>
           <label
             htmlFor={IdCurrent}
             className={`absolute top-2 left-4 text-[.75rem] transition-all duration-350 line-clamp-1`}
@@ -51,6 +51,7 @@ export const Datetime = React.forwardRef<HTMLInputElement, InputProps>(
           <input
             type={"text"}
             name={`datetime_ref_${name}`}
+              required={required}
             onChange={(ev) => {
               const value = ev.currentTarget.value;
               const datetimeUpdated = dayjs(value, "DD/MM/YYYY HH:mm");
@@ -72,6 +73,7 @@ export const Datetime = React.forwardRef<HTMLInputElement, InputProps>(
             <input
               ref={ref}
               {...rest}
+              required={required}
               type="datetime-local"
               onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
                 const formatted = ev.currentTarget.value.replace("T", " ");
@@ -82,7 +84,6 @@ export const Datetime = React.forwardRef<HTMLInputElement, InputProps>(
             />
             <Schedule className="w-5" />
           </div>
-
         </div>
         <ErrorMessage errors={error?.message as string} />
       </>

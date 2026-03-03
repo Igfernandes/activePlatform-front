@@ -4,10 +4,9 @@ import { getRenderer } from "../utils/render";
 
 export function Field({ element, group, ...rest }: FieldShape) {
   const Component = getRenderer(element);
-  const { register, formState: { errors } } = useFormContext()
+  const { register } = useFormContext()
   const name = `input_${rest.id}`
 
-  console.log(errors)
   return (
     <Component
       {...rest}

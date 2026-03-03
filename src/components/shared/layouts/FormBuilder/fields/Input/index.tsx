@@ -25,7 +25,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       useFieldsAnimation();
     const IdCurrent = id;
     const { error, handleHasError } = useFields({ name: rest.name as string, required });
-
     return (
 
       <div
