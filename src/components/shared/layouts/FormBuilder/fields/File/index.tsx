@@ -1,5 +1,5 @@
 import { When } from "@components/utilities/When";
-import React from "react";
+import React, { useMemo } from "react";
 import { Upload } from "@assets/Icons/black/Upload";
 import { textColors } from "@assets/colors/colors";
 import { CircleRed } from "@assets/Icons/red/CircleRed";
@@ -10,6 +10,7 @@ import i18n from "@configs/i18n";
 import { RotateClockwise } from "@assets/Icons/white/RotateClockwise";
 import { InputProps } from "./type";
 import { useFormContext } from "react-hook-form";
+import ErrorMessage from "@components/shared/others/ErrorMessage";
 
 export function File(
   {
@@ -22,15 +23,16 @@ export function File(
 ) {
   const IdCurrent = id ?? `${rest.name}_${new Date().getTime()}`;
   const { currentValue, setCurrentValue } = useFile();
-  const { setValue } = useFormContext()
+  const { setValue, formState: { errors } } = useFormContext()
+  const error = useMemo(() => errors[rest.name as string], [errors, rest.name])
   const { dispatchSnackbar } = useSnackbar();
   const { mutateAsync: uploadFiles, isPending: isLoading } = usePostFiles();
 
   return (
     <>
-      <div className="relative w-full my-4">
+      <div className={`relative w-full my-4 ${!!error ? "border-yellow" : ""}`}>
         <label
-          className={`${className}  w-full pl-3 pr-7 pb-3 pt-5 h-14  line-clamp-1 bg-white  border-secondary  cursor-pointer border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
+          className={`${className ?? ""}  w-full pl-3 pr-7 pb-3 pt-5 h-14  line-clamp-1 bg-white  border-secondary  cursor-pointer border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
         >
           <span className="font-medium line-clamp-1">
             {currentValue?.name as string}
@@ -111,6 +113,7 @@ export function File(
           </div>
         </div>
       </When>
+      <ErrorMessage errors={error?.message as string} />
     </>
   );
 }
