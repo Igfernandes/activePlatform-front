@@ -34,7 +34,7 @@ export const BirthdayCalendar: React.FC<BirthdayCalendarProps> = ({
               const date = birth.year(thisYear);
 
               return {
-                title: i18n("Words.see_list") + " 🎉🎂",
+                title: i18n("Words.see_list") + " 🎉",
                 start: date.toDate(),
                 end: date.toDate(),
                 allDay: true,

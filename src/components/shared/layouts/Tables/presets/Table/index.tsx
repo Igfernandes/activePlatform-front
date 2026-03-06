@@ -56,7 +56,7 @@ export function Table<TableData extends Array<Record<string, unknown>>>({
       <div className="bg-white p-6 rounded-2xl">
         <div className=" mb-6">
           <div className="flex justify-between">
-            <div className="flex items-center w-[50%]">
+            <div className="flex items-center lg:w-[40%] xl:w-[50%]">
               <div className="mr-4">
                 <h2 className="text-2xl">
                   <strong>{title}</strong>
@@ -69,7 +69,7 @@ export function Table<TableData extends Array<Record<string, unknown>>>({
                 />
               </When>
             </div>
-            <div className="flex lg:w-[30%] justify-end">
+            <div className="flex w-[40%] xl:w-[30%] justify-end">
               {options.buttons}
               <When value={!!options.sort}>
                 <Sort />

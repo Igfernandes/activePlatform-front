@@ -13,7 +13,7 @@ export function Tags<TableData extends Array<Record<string, unknown>>>(
     useTags<TableData>(props);
 
   return (
-    <div className="relative z-0">
+    <div className="relative lg:max-w-[30vw] xl:max-w-[47vw] z-0">
       <Swiper spaceBetween={10} slidesPerView={"auto"}>
         <SwiperSlide
           style={{ width: "auto" }}
