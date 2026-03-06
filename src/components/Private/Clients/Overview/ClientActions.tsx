@@ -1,11 +1,11 @@
 import { DotsOptions } from "@components/shared/others/DotsOptions";
-import i18n from "@configs/i18n";
 import { ModalClientsOperationType } from "../type";
 import { useRouter } from "next/navigation";
 import { privateRoutes } from "@configs/routes/Web/navigation";
 import { Shared } from "@components/shared/others/Shared";
 import { PERMISSIONS } from "@constants/permissions";
 import { useUserNavigationContext } from "@contexts/UserNavigation";
+import { useI18n } from "@contexts/I18n";
 
 type Props = {
   handleToggleModal: (
@@ -17,6 +17,7 @@ type Props = {
 
 export function ClientActions({ handleToggleModal, id }: Props) {
   const router = useRouter();
+  const { t } = useI18n()
   const { clients } = privateRoutes;
   const { hasPermission } = useUserNavigationContext();
 
@@ -26,14 +27,14 @@ export function ClientActions({ handleToggleModal, id }: Props) {
       <DotsOptions
         actions={[
           {
-            text: i18n("Words.edit") as string,
+            text: t("Words.edit") as string,
             handle: () => {
               router.push(`${clients}/${id}`);
             },
             permissions: [PERMISSIONS.clients.update],
           },
           {
-            text: i18n("Words.exclude") as string,
+            text: t("Words.exclude") as string,
             handle: () => handleToggleModal("DELETE", id),
             permissions: [PERMISSIONS.clients.delete],
           },

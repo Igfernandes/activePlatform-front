@@ -1,9 +1,11 @@
 import { JSX } from "react";
 import { ClientShape } from "../../../types/Clients";
+import { Status } from "@type/status";
 
 export type HookClientsProps<ClientType> = {
   filter: string;
   handleFilter: (data: ClientType) => boolean;
+  status: Status
 };
 
 export type TDataClient = {
@@ -20,6 +22,7 @@ export type ClientsStructProps = {
     object: ObjectShape
   ) => boolean;
   search: string;
+  status: Status;
 };
 
 export type ModalClientsOperationType =

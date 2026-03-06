@@ -1,5 +1,4 @@
 import { useClients } from "./hooks/useClients";
-import i18n from "@configs/i18n";
 import { Notice } from "@components/shared/others/Notice";
 import { Selector } from "@components/shared/layouts/Selector";
 import { ModalFormCategories } from "./Modals/Categories";
@@ -13,8 +12,9 @@ import { Shared } from "@components/shared/others/Shared";
 import { PERMISSIONS } from "@constants/permissions";
 import { useUserNavigationContext } from "@contexts/UserNavigation";
 import { ImportModal } from "./Modals/Import";
+import { useI18n } from "@contexts/I18n";
 
-export function Clients({ search, filterObjects }: ClientsStructProps) {
+export function Clients({ search, filterObjects, status }: ClientsStructProps) {
   const {
     tDataClients,
     tHeadsClient,
@@ -27,7 +27,9 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
   } = useClients({
     filter: search,
     handleFilter: filterObjects,
+    status,
   });
+  const { t } = useI18n()
   const { handleToggleModal, modal } =
     useModalContext<ModalClientsOperationType>();
   const { hasPermission } = useUserNavigationContext();
@@ -44,7 +46,7 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
               actions: [
                 {
                   handle: () => handleToggleModal("CHANGE_CATEGORY"),
-                  text: i18n("Texts.category_alter"),
+                  text: t("Texts.category_alter"),
                   permissions: [PERMISSIONS.clients.update],
                 },
                 {
@@ -53,7 +55,7 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
                       "DELETE",
                       getSelectedClientsName(selectors)
                     ),
-                  text: i18n("Words.exclude"),
+                  text: t("Words.exclude"),
                   permissions: [PERMISSIONS.clients.delete],
                 },
               ].filter((action) => hasPermission(action.permissions)),
@@ -61,7 +63,7 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
                 <>
                   <Selector
                     value={"all"}
-                    label={i18n(`Words.select_all`)}
+                    label={t(`Words.select_all`)}
                     textSize="text-[0px] md:text-base"
                   />
                   <Shared
@@ -79,10 +81,10 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
               },
             }}
             data={tDataClients}
-            title={i18n("Words.clients")}
+            title={t("Words.clients")}
             excludes={["created_at", "updated_at"]}
             tHeads={{
-              data: tHeadsClient.current,
+              data: tHeadsClient,
               widths: [60, 250, 70, 200, 100, 48],
             }}
           />
@@ -91,15 +93,15 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
 
       <div>
         <ModalFormCategories
-          title={i18n("Words.category")}
+          title={t("Words.category")}
           isShowModal={modal.type === "CATEGORY"}
           onModal={handleToggleModal}
           categories={categories}
         />
         <Notice
-          headerTitle={i18n("Words.attention")}
-          title={i18n("Screens.dashboard.clients.client.title_already_exclude")}
-          text={i18n("Screens.dashboard.clients.client.text_already_exclude")}
+          headerTitle={t("Words.attention")}
+          title={t("Screens.dashboard.clients.client.title_already_exclude")}
+          text={t("Screens.dashboard.clients.client.text_already_exclude")}
           onSubmit={handleDeleteClient}
           isShowModal={modal.type === "DELETE"}
           onModal={handleToggleModal}
@@ -108,14 +110,14 @@ export function Clients({ search, filterObjects }: ClientsStructProps) {
         <ClientCategoriesModal
           isShowModal={modal.type === "CHANGE_CATEGORY"}
           onModal={handleToggleModal}
-          title={i18n("Texts.category_alter")}
+          title={t("Texts.category_alter")}
           categories={categories}
           selectors={selectors}
         />
         <ClientCreateModal
           isShowModal={modal.type === "CLIENT"}
           onModal={handleToggleModal}
-          title={i18n("Words.new_client")}
+          title={t("Words.new_client")}
           categories={categories ?? []}
         />
         <ImportModal

@@ -4,12 +4,16 @@ import usePostCreateClient from "../../../../../../../services/Clients/Post/useP
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { useModalContext } from "@contexts/Modal";
+import { useMemo } from "react";
+import { useI18n } from "@contexts/I18n";
 
 dayjs.extend(customParseFormat);
 
 export function useModalForm() {
+  const { t } = useI18n();
+  const schema = useMemo(() => ClientCreateSchema(t), [t]);
   const { formMethods, handleSubmit } = useFormRules<ClientCreatePayload>({
-    schema: ClientCreateSchema,
+    schema,
   });
   const { handleToggleModal } = useModalContext();
   const { mutateAsync: postCreateClient, isPending } = usePostCreateClient();

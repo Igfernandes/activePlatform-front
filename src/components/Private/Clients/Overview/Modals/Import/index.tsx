@@ -1,11 +1,12 @@
 import { Modal } from "@components/shared/layouts/Modal";
-import i18n from "@configs/i18n";
 import { Button } from "@components/shared/layouts/Button";
 import { CloudUpload } from "@assets/Icons/black/CloudUpload";
 import { ImportModalsProps } from "./type";
 import { useImportModal } from "./hook/useImportModal";
+import { useI18n } from "@contexts/I18n";
 
 export function ImportModal({ onModal, isShowModal }: ImportModalsProps) {
+  const { t } = useI18n()
   const { register, handleSubmit, onSubmit, fileName, isLoading } =
     useImportModal({
       onModal,
@@ -30,19 +31,19 @@ export function ImportModal({ onModal, isShowModal }: ImportModalsProps) {
               />
               <CloudUpload className="mx-auto mb-2" />
               <span className="text-sm">
-                {fileName ?? i18n("Texts.text_upload")}
+                {fileName ?? t("Texts.text_upload")}
               </span>
             </label>
           </div>
           <div className="flex justify-between mt-4">
             <div>
               <p className="text-[.63rem]">
-                {i18n(`Texts.allowed_formats_excel`)}
+                {t(`Texts.allowed_formats_excel`)}
               </p>
             </div>
             <div>
               <p className="text-[.63rem]">
-                {i18n(`Texts.allowed_size_image`)}
+                {t(`Texts.allowed_size_image`)}
               </p>
             </div>
           </div>
@@ -52,7 +53,7 @@ export function ImportModal({ onModal, isShowModal }: ImportModalsProps) {
             <Button
               type="button"
               className="border-secondary border-2 font-semibold"
-              text={i18n(`Words.cancel`)}
+              text={t(`Words.cancel`)}
               onClick={() => onModal(false)}
             />
           </div>
@@ -60,7 +61,7 @@ export function ImportModal({ onModal, isShowModal }: ImportModalsProps) {
             <Button
               type="submit"
               isLoading={isLoading}
-              text={i18n(`Words.save`)}
+              text={t(`Words.save`)}
               className="bg-red  text-white font-semibold disabled:bg-disable"
             />
           </div>

@@ -17,13 +17,11 @@ export function useGeneralCalendar({ services, charges = [] }: Props) {
   const birthdate = useMemo(() => {
     return (schedules ?? []).map((schedule: ScheduleShape) => {
       const birthdate = moment(schedule.date);
-      const thisYear = moment().year();
-      const date = birthdate.year(thisYear);
 
       return {
-        title: i18n("Words.see_list") + " 🎉🎂",
-        start: date.toDate(),
-        end: date.toDate(),
+        title: i18n("Words.see_list") + " 🎂",
+        start: birthdate.toDate(),
+        end: birthdate.toDate(),
         allDay: true,
         resource: schedule.date ?? "",
       };
@@ -36,13 +34,11 @@ export function useGeneralCalendar({ services, charges = [] }: Props) {
         .filter((service) => service.realized_at)
         .map((service) => {
           const serviceDate = moment(service.realized_at);
-          const thisYear = moment().year();
-          const date = serviceDate.year(thisYear);
 
           return {
-            title: i18n("Words.inscriptions") + "🎉",
-            start: date.toDate(),
-            end: date.toDate(),
+            title: i18n("Words.inscriptions") + " 📋",
+            start: serviceDate.toDate(),
+            end: serviceDate.toDate(),
             allDay: true,
             resource: service.realized_at ?? "",
           };
@@ -59,13 +55,11 @@ export function useGeneralCalendar({ services, charges = [] }: Props) {
             charge.expired_days,
             "days",
           );
-          const thisYear = moment().year();
-          const date = chargeDate.year(thisYear);
 
           return {
-            title: i18n("Words.charge") + "🎉",
-            start: date.toDate(),
-            end: date.toDate(),
+            title: i18n("Words.charge") + " 🎉",
+            start: chargeDate.toDate(),
+            end: chargeDate.toDate(),
             allDay: true,
             resource: String(charge.expired_days) ?? "",
           };

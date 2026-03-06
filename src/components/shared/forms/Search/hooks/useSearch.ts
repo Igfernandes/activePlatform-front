@@ -8,7 +8,7 @@ export function useSearch() {
   }, []);
 
   const filterObjects = <ObjectShape extends Record<string, unknown>>(
-    object: ObjectShape
+    object: ObjectShape,
   ) => {
     if (!search) return true;
 
@@ -26,6 +26,6 @@ export function useSearch() {
   return {
     search,
     handleSearch,
-    filterObjects,
+    filterObjects
   };
 }

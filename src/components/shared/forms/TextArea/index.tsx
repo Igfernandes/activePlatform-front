@@ -67,7 +67,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             placeholder={placeholder}
             className={`${className} ${
               !!errors ? "border-amber-500 outline-amber-500" : ""
-            } w-full px-3 pt-6 pb-2 bg-white border-secondary border-2 rounded-lg text-rose-500 text-sm`}
+            } w-full px-3 break-words pt-6 pb-2 bg-white border-secondary border-2 rounded-lg text-rose-500 text-sm`}
             data-testid={dataTestId}
             id={IdCurrent}
           />
