@@ -82,7 +82,7 @@ export function SmartTable<TableData extends Array<Record<string, unknown>>>({
                   />
                 </When>
               </div>
-              <div className="flex lg:w-[30%] justify-end">
+              <div className="flex xl:w-[30%] justify-end">
                 {options.buttons}
                 <When value={!!options.sort}>
                   <Sort />
@@ -92,7 +92,7 @@ export function SmartTable<TableData extends Array<Record<string, unknown>>>({
                 </When>
               </div>
             </div>
-            <div className="mt-2 md:mt-auto">
+            <div className="mt-2 lg:mt-auto">
               <When
                 value={!!options.filters?.tag?.key && windowSize.width <= 800}
               >
