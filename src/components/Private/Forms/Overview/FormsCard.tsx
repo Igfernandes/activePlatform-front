@@ -27,7 +27,6 @@ export function FormsCard({ search, filterObjects }: FormsCardProps) {
   const { baseUrl } = useWindow();
   const { hasPermission } = useUserNavigationContext();
 
-
   return (
     <>
       <div>

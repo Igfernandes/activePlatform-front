@@ -1,10 +1,10 @@
-import i18n from "@configs/i18n";
 import { useModalForm } from "./hooks/useModalForm";
 import { ModalFormProps } from "./type";
 import { Modal } from "../../../../../shared/layouts/Modal";
 import { FormProvider } from "react-hook-form";
 import { Button } from "@components/shared/layouts/Button";
 import { GroupFields } from "@components/shared/forms/GroupFields";
+import { useI18n } from "@contexts/I18n";
 
 export function ModalFormCategories({
   isShowModal,
@@ -12,6 +12,7 @@ export function ModalFormCategories({
   title,
   categories,
 }: ModalFormProps) {
+  const { t } = useI18n()
   const { formMethods, handleSubmit, submit, isLoading } = useModalForm();
 
   return (
@@ -21,13 +22,13 @@ export function ModalFormCategories({
           <div className="form-title mb-4">
             <h4 className="text-base text-justify lg:text-left xl:text-lg leading-6">
               <strong>
-                {i18n(
+                {t(
                   "Screens.dashboard.clients.category.text_create_category"
                 )}
               </strong>
             </h4>
             <span className="text-xs lg:text-base">
-              {i18n("Screens.dashboard.clients.category.text_organized_items")}
+              {t("Screens.dashboard.clients.category.text_organized_items")}
             </span>
           </div>
           <GroupFields
@@ -45,14 +46,14 @@ export function ModalFormCategories({
             <div>
               <Button
                 className="border-secondary border-2 px-4"
-                text={i18n("Words.cancel")}
+                text={t("Words.cancel")}
                 onClick={() => onModal(false)}
               />
             </div>
             <div className="w-1/2 md:w-[30%] ml-2 md:ml-5">
               <Button
                 className="bg-red text-white"
-                text={i18n("Words.save")}
+                text={t("Words.save")}
                 type="submit"
                 isLoading={isLoading}
               />

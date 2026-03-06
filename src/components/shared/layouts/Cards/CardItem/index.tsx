@@ -35,10 +35,10 @@ export function CardItem({
             <span className="text-xs">{createdAt ?? "00/00/0000"}</span>
           </div>
           <div>
-            <p className="font-bold line-clamp-3">{description}</p>
+            <p className="font-bold line-clamp-3 break-words">{description}</p>
           </div>
           <div className="mt-1">
-            <span className="text-xs line-clamp-3">{alert}</span>
+            <span className="text-xs line-clamp-3 break-words">{alert}</span>
           </div>
         </div>
       </div>

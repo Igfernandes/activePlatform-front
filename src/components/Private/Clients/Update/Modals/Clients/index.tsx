@@ -1,5 +1,4 @@
 import { Input } from "@components/shared/forms/Input";
-import i18n from "@configs/i18n";
 import { Modal } from "../../../../../shared/layouts/Modal";
 import { FormProvider } from "react-hook-form";
 import { Button } from "@components/shared/layouts/Button";
@@ -10,6 +9,7 @@ import { useClientModal } from "./hooks/useClientModal";
 import dayjs from "dayjs";
 import { SelectSearch } from "@components/shared/forms/SelectSearch";
 import { useEffect } from "react";
+import { useI18n } from "@contexts/I18n";
 
 export function ClientUpdateModal({
   isShowModal,
@@ -23,15 +23,16 @@ export function ClientUpdateModal({
     register,
     formState: { errors },
   } = formMethods;
+  const { t } = useI18n()
 
   useEffect(() => {
     if (client.categories.length > 0)
       setValue("category", String(client.categories[0].id));
-  }, [client]);
+  }, [client, setValue]);
 
   return (
     <Modal
-      title={i18n("Words.update_client")}
+      title={t("Words.update_client")}
       isShowModal={isShowModal}
       handleModal={onModal}
     >
@@ -40,7 +41,7 @@ export function ClientUpdateModal({
           <div className="form-title mb-4">
             <h4 className="text-sm md:text-lg">
               <strong>
-                {i18n("Screens.dashboard.clients.client.text_select_category")}
+                {t("Screens.dashboard.clients.client.text_select_category")}
               </strong>
             </h4>
           </div>
@@ -56,7 +57,7 @@ export function ClientUpdateModal({
                   ),
                 };
               })}
-              label={i18n("Words.category")}
+              label={t("Words.category")}
               dataTestId="category"
               required={true}
               errors={errors.category}
@@ -66,7 +67,7 @@ export function ClientUpdateModal({
             <div className="form-title mt-6 mb-4">
               <h4 className="text-xs md:text-lg">
                 <strong>
-                  {i18n(
+                  {t(
                     "Screens.dashboard.clients.client.text_fill_information"
                   )}
                 </strong>
@@ -81,7 +82,7 @@ export function ClientUpdateModal({
               <div className="form-group my-4">
                 <Input
                   {...register("name")}
-                  label={i18n("Words.name")}
+                  label={t("Words.name")}
                   dataTestId="name"
                   required={true}
                   defaultValue={client.name}
@@ -91,7 +92,7 @@ export function ClientUpdateModal({
               <div className="form-group my-4">
                 <Input
                   {...register("cpf")}
-                  label={i18n("Words.cpf")}
+                  label={t("Words.cpf")}
                   dataTestId="cpf"
                   defaultValue={getCPFFormatted(client.cpf)}
                   onChange={(ev) => {
@@ -105,9 +106,9 @@ export function ClientUpdateModal({
               <div className="form-group my-4">
                 <Input
                   {...register("birthdate")}
-                  label={i18n("Words.birthdate")}
+                  label={t("Words.birthdate")}
                   dataTestId="birthdate"
-                  placeholder={i18n(`Configs.format.date`)}
+                  placeholder={t(`Configs.format.date`)}
                   defaultValue={
                     client.birthdate
                       ? dayjs(client.birthdate).format("DD/MM/YYYY")
@@ -123,7 +124,7 @@ export function ClientUpdateModal({
               <div className="form-group my-4">
                 <Input
                   {...register("email")}
-                  label={i18n("Words.email")}
+                  label={t("Words.email")}
                   dataTestId="email"
                   errors={errors.email}
                   defaultValue={client.email}
@@ -132,7 +133,7 @@ export function ClientUpdateModal({
               <div className="form-group my-4">
                 <Input
                   {...register("phone")}
-                  label={i18n("Words.phone")}
+                  label={t("Words.phone")}
                   dataTestId="phone"
                   defaultValue={getNumberFormatted(client?.phone ?? "")}
                   onChange={(ev) => {
@@ -151,7 +152,7 @@ export function ClientUpdateModal({
                 <Button
                   type="submit"
                   className="bg-red text-white"
-                  text={i18n("Words.save")}
+                  text={t("Words.save")}
                   isLoading={isLoading}
                 />
               </div>
