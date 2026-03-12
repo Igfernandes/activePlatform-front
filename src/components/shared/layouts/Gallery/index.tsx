@@ -13,7 +13,7 @@ export function Gallery({ api, id }: GalleryProps) {
         <>
             <div className="w-full bg-secondary h-[60vh] overflow-y-auto p-1 border-2 border-zinc-300 mt-5">
                 <div className="relative flex flex-wrap justify-start items-start w-full h-full">
-                    <input ref={fileRef} onChange={handleUploadFiles} className="opacity-0 absolute top-0 left-0 w-full h-full" type="file" multiple />
+                    <input ref={fileRef} onChange={handleUploadFiles} accept=".png,.jpg,.jpge" className="opacity-0 absolute top-0 left-0 w-full h-full" type="file" multiple />
 
                     <When value={images.length > 0}>
                         {images.map((image, key) => (

@@ -9,7 +9,7 @@ export default function useGetPreview() {
   const { setParams, setQueries } = useRoutes();
 
   async function getGalleries(request?: GetGalleriesRequest) {
-    const { id } = request ?? {};
+    const { id, ...payload } = request ?? {};
     return await axios.get<GetGalleriesResponse>(
       setQueries({
         url: setParams({
@@ -18,7 +18,8 @@ export default function useGetPreview() {
             id: id ?? "",
           },
         }),
-      })
+        query: payload,
+      }),
     );
   }
 

@@ -49,7 +49,11 @@ export async function compressImage(file: File): Promise<File> {
     maxWidthOrHeight: 1080, // redimensionar proporcional
     useWebWorker: true, // uso de web worker para desempenho
   };
+  const compressedBlob = await imageCompression(file, options);
+  const uniqueName = `${Date.now()}-${file.name}`;
 
-  const compressedFile = await imageCompression(file, options);
-  return compressedFile;
+  return new File([compressedBlob], uniqueName, {
+    type: compressedBlob.type,
+    lastModified: Date.now(),
+  });
 }

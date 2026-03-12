@@ -2,7 +2,9 @@ import useGetGalleriesPhotoPreview from "@services/Galleries/photos/GetPreview/u
 import { useMemo } from "react";
 
 export function useGallery() {
-  const rows = useGetGalleriesPhotoPreview();
+  const rows = useGetGalleriesPhotoPreview({
+    limit: 3,
+  });
   const photos = useMemo(() => rows, [rows]);
 
   return {

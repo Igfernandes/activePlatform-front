@@ -28,7 +28,7 @@ export function Gallery() {
             </p>
             <div className="mt-5">
               <Link href={publicRoutes.galleries}>
-                <span className="bg-rose-500 inline-block px-6 py-1 rounded-md text-white font-semibold">Ver Galerias</span>
+                <span className="bg-rose-500 inline-block px-6 py-2 rounded-md text-white font-semibold">Ver todas Galerias</span>
               </Link>
             </div>
           </div>
