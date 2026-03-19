@@ -132,7 +132,7 @@ export function Definitions({ handleChangeFormFields, slug, targetForm }: Props)
               ...(services ?? [])?.map((service: ServicesShape) => ({
                 text: service.name,
                 value: service.id,
-                selected: targetForm.service_id === service.id,
+                selected: targetForm.service_id == service.id,
               })),
             ]}
           />
