@@ -21,6 +21,7 @@ export function useFormData({ targetForm }: Props) {
       category: String(targetForm?.category?.id),
       color_mark: String(targetForm?.color_mark),
       thanks_message: targetForm?.thanks_message,
+      service_id: String(targetForm.service_id)
     },
   });
 
