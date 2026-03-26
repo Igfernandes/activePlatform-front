@@ -8,9 +8,10 @@ const nextConfig: NextConfig = {
       },
       {
         hostname: "agm.companymarket.com.br/**",
-      },{
-        hostname: "192.168.1.2"
-      }
+      },
+      {
+        hostname: "192.168.1.2",
+      },
     ],
   },
 };
