@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps<GalleryPageProps> = async ({
           destination: `${privateRoutes.galleries}?alert=${i18n(
             "errors.system.not_found"
           )}`, // Redireciona para a página principal
-          permanent: true, // Define como redirecionamento temporário (status 307)
+          permanent: false, // Define como redirecionamento temporário (status 307)
         },
       };
     }

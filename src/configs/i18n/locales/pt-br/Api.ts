@@ -85,6 +85,14 @@ export const Api = {
           "Desvincule as categorias aos clientes antes de excluir-las",
       },
     },
+    status: {
+      success: {
+        patch: "O status do cliente foi alterada com sucesso",
+      },
+      invalid: {
+        client_id: "O cliente informado não existe ou está inválido",
+      },
+    },
     subscribes: {
       success: {
         post: "A AGM agradece a sua inscrição e manterá você informado sobre todas as novidades",

@@ -66,7 +66,7 @@ export function useClients({
           .map((category: UserCategoryData) => category.name)
           .join(", "),
         actions: (
-          <ClientActions handleToggleModal={handleToggleModal} id={id} />
+          <ClientActions handleToggleModal={handleToggleModal} status={status} id={id} />
         ),
       };
     },
