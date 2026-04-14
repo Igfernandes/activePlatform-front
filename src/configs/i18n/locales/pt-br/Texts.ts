@@ -36,6 +36,8 @@ export const Texts = {
   is_confirmation: "Está confirmado?",
   inscribe_at: "Inscrito em",
   event_page: "Página do evento",
+  client_inactive: "Inativar cliente",
+  client_active: "Ativar cliente",
   brief_description: "Breve descrição",
   max_length_40: "O máximo são 40 caracteres",
   confirm_expired_time: "Validade das confirmações (Minutos)",

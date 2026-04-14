@@ -9,11 +9,11 @@ export async function getGalleries(
 ) {
   const query = request ?? {};
 
-  const { galleries } = API_ROUTES;
+  const { galleriesById } = API_ROUTES;
   const { data } = await axios.get<GetGalleriesResponse>(
     setQueries({
       url: setParams({
-        url: galleries,
+        url: galleriesById,
         data: {
           id: id ?? "",
         },
