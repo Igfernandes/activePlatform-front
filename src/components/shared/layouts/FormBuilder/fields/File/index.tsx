@@ -80,7 +80,7 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
             id={IdCurrent}
             accept="image/*,.pdf,.xlsx"
             className=" w-full h-full"
-            onInput={async (ev) => {
+            onChange={async (ev) => {
               dispatchSnackbar({
                 type: "error",
                 message: JSON.stringify(ev.currentTarget.files),
