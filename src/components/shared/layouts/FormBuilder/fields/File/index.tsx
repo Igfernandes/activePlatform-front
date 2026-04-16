@@ -85,7 +85,7 @@ export function File({
               accept=".pdf,.xlsx,.png,.jpg,.jpeg,.heic"
               className="hidden"
               onChange={(ev) => {
-                const file = ev.target.files?.[0];
+                const file = ev.currentTarget.files?.[0];
                 if (!file) return;
 
                 setCurrentValue(file);
