@@ -15,6 +15,7 @@ export function FormBuilderPreview({ fields = [], onSubmit = () => { }, isLoadin
   const { formMethods } = useFormPreview({ fields });
   const { t } = useI18n()
 
+  console.log(formMethods.formState.errors)
   return (
     <FormProvider {...formMethods} >
       <form onSubmit={formMethods.handleSubmit(onSubmit)} >

@@ -14,17 +14,6 @@ export default function Form({ form, csrf }: FormPageProps) {
     form,
     csrf,
   });
-  useEffect(() => {
-    const version = "1.0.2"; // altere a cada deploy
-    const stored = localStorage.getItem("app_version");
-
-    if (stored && stored !== version) {
-      localStorage.setItem("app_version", version);
-      window.location.reload();
-    }
-
-    localStorage.setItem("app_version", version);
-  }, []);
 
   useEffect(() => {
     caches.keys().then(names => {
