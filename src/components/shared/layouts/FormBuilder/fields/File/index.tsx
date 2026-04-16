@@ -8,7 +8,7 @@ import { useSnackbar } from "@hooks/useSnackbar";
 import i18n from "@configs/i18n";
 import { RotateClockwise } from "@assets/Icons/white/RotateClockwise";
 import { InputProps } from "./type";
-import { Controller, useFormContext } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import ErrorMessage from "@components/shared/others/ErrorMessage";
 
 export function File({
@@ -21,17 +21,59 @@ export function File({
   const idRef = React.useRef(id ?? `${rest.name}_${Date.now()}`);
   const IdCurrent = idRef.current;
 
-  const [currentValue, setCurrentValue] = React.useState<File>();
+  const [currentValue, setCurrentValue] = React.useState<File | undefined>();
 
   const {
-    control,
+    register,
+    setValue,
     formState: { errors },
   } = useFormContext();
 
   const error = errors[rest.name as string];
+
   const inputRef = React.useRef<HTMLInputElement | null>(null);
+
   const { dispatchSnackbar } = useSnackbar();
   const { mutateAsync: uploadFiles, isPending: isLoading } = usePostFiles();
+
+  // register separado para combinar refs
+  const { ref, ...restRegister } = register(rest.name as string, {
+    onChange: async (ev: React.ChangeEvent<HTMLInputElement>) => {
+      const file = ev.target.files?.[0];
+      if (!file) return;
+
+      setCurrentValue(file);
+
+      try {
+        const { files: filesUploaded } = await uploadFiles({
+          files: [file],
+          packageRef: IdCurrent,
+        });
+
+        if (filesUploaded.failed.length > 0) {
+          dispatchSnackbar({
+            type: "error",
+            message: i18n("Validations.invalid_file"),
+          });
+          return;
+        }
+
+        setValue(
+          rest.name as string,
+          JSON.stringify({
+            package: IdCurrent,
+            file: filesUploaded.success[0],
+          }),
+          { shouldValidate: true }
+        );
+      } catch {
+        dispatchSnackbar({
+          type: "error",
+          message: i18n("Validations.invalid_file"),
+        });
+      }
+    },
+  });
 
   return (
     <>
@@ -39,9 +81,7 @@ export function File({
         className={`relative w-full my-4 ${!!error ? "border-yellow" : ""}`}
       >
         <label
-          htmlFor={IdCurrent}
           onClick={() => inputRef.current?.click()}
-
           className={`${className ?? ""} w-full pl-3 pr-7 pb-3 pt-5 h-14 line-clamp-1 bg-white border-secondary cursor-pointer border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
         >
           <span className="font-medium line-clamp-1">
@@ -73,49 +113,25 @@ export function File({
             fill={textColors.red}
             onClick={() => {
               setCurrentValue(undefined);
+              setValue(rest.name as string, undefined);
             }}
           />
         </When>
 
-        <Controller
-          name={rest.name as string}
-          control={control}
-          render={({ field }) => (
-            <input ref={inputRef}
-              type="file"
-              id={IdCurrent}
-              onChange={(ev) => {
-                const file = ev.currentTarget.files?.[0];
-                dispatchSnackbar({
-                  type: "error",
-                  message: JSON.stringify(ev.currentTarget.files),
-                });
-                if (!file) return;
-
-                setCurrentValue(file);
-
-                uploadFiles({
-                  files: [file],
-                  packageRef: IdCurrent,
-                }).then(({ files: filesUploaded }) => {
-                  if (filesUploaded.failed.length > 0) {
-                    dispatchSnackbar({
-                      type: "error",
-                      message: i18n("Validations.invalid_file"),
-                    });
-                    return;
-                  }
-
-                  field.onChange(
-                    JSON.stringify({
-                      package: IdCurrent,
-                      file: filesUploaded.success[0],
-                    })
-                  );
-                });
-              }}
-            />
-          )}
+        <input
+          type="file"
+          id={IdCurrent}
+          accept="image/*,.pdf,.xlsx"
+          className="absolute opacity-0 pointer-events-none"
+          ref={(e) => {
+            ref(e);
+            inputRef.current = e;
+          }}
+          onClick={(e) => {
+            // permite selecionar o mesmo arquivo novamente no iOS
+            (e.target as HTMLInputElement).value = "";
+          }}
+          {...restRegister}
         />
 
         <When value={isLoading}>
@@ -125,8 +141,6 @@ export function File({
           />
         </When>
       </div>
-
-
 
       <ErrorMessage errors={error?.message as string} />
     </>
