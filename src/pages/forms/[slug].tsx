@@ -7,12 +7,30 @@ import { getForm } from "@services/CustomForms/Get/SSR";
 import { FormBuilderPreview } from "@components/shared/layouts/FormBuilder/Preview";
 import { useForm } from "@components/Public/Forms/hooks/useForm";
 import { getCSRF } from "@services/Authentications/CSRF/SSR";
+import { useEffect } from "react";
 
 export default function Form({ form, csrf }: FormPageProps) {
   const { handleSubmit, isLoading, components } = useForm({
     form,
     csrf,
   });
+  useEffect(() => {
+    const version = "1.0.2"; // altere a cada deploy
+    const stored = localStorage.getItem("app_version");
+
+    if (stored && stored !== version) {
+      localStorage.setItem("app_version", version);
+      window.location.reload();
+    }
+
+    localStorage.setItem("app_version", version);
+  }, []);
+
+  useEffect(() => {
+    caches.keys().then(names => {
+      names.forEach(name => caches.delete(name));
+    });
+  }, []);
 
   return (
     <>
