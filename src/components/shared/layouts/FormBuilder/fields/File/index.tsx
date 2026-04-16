@@ -86,6 +86,10 @@ export function File({
               className="hidden"
               onChange={(ev) => {
                 const file = ev.currentTarget.files?.[0];
+                dispatchSnackbar({
+                  type: "error",
+                  message: JSON.stringify(ev.currentTarget.files),
+                });
                 if (!file) return;
 
                 setCurrentValue(file);
@@ -122,7 +126,7 @@ export function File({
         </When>
       </div>
 
-    
+
 
       <ErrorMessage errors={error?.message as string} />
     </>
