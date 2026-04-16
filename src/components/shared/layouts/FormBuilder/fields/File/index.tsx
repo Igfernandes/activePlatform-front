@@ -65,10 +65,12 @@ export function File(
         </When>
         <input
           type="file"
-          accept="image/*,application/pdf"
+          accept="image/*,.heic,.HEIC,application/pdf"
           onChange={(ev) => {
             const files = ev.target.files;
             if (!files || files.length === 0) return;
+
+            setCurrentValue(files[0]); // atualizar primeiro (importante)
 
             uploadFiles({
               files: Array.from(files),
