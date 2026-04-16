@@ -122,7 +122,7 @@ export function File({
           type="file"
           id={IdCurrent}
           accept="image/*,.pdf,.xlsx"
-          className="absolute opacity-0 pointer-events-none"
+          className="absolute opacity-0  h-full w-full pointer-events-none"
           ref={(e) => {
             ref(e);
             inputRef.current = e;
