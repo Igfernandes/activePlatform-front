@@ -25,13 +25,11 @@ export function File({
 
   const {
     control,
-    watch,
     formState: { errors },
   } = useFormContext();
-  const file = watch(rest.name)
 
   const error = errors[rest.name as string];
-
+  const inputRef = React.useRef<HTMLInputElement | null>(null);
   const { dispatchSnackbar } = useSnackbar();
   const { mutateAsync: uploadFiles, isPending: isLoading } = usePostFiles();
 
@@ -42,6 +40,8 @@ export function File({
       >
         <label
           htmlFor={IdCurrent}
+          onClick={() => inputRef.current?.click()}
+
           className={`${className ?? ""} w-full pl-3 pr-7 pb-3 pt-5 h-14 line-clamp-1 bg-white border-secondary cursor-pointer border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
         >
           <span className="font-medium line-clamp-1">
@@ -81,10 +81,9 @@ export function File({
           name={rest.name as string}
           control={control}
           render={({ field }) => (
-            <input
+            <input ref={inputRef}
               type="file"
               id={IdCurrent}
-              accept=".pdf,.xlsx,.png,.jpg,.jpeg,.heic"
               className="absolute opacity-0 w-full h-full"
               onChange={(ev) => {
                 const file = ev.currentTarget.files?.[0];
@@ -119,7 +118,6 @@ export function File({
             />
           )}
         />
-        <h1>{JSON.stringify(file)}</h1>
 
         <When value={isLoading}>
           <RotateClockwise
