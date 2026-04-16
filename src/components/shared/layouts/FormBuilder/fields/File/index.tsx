@@ -31,7 +31,7 @@ export function File(
   return (
     <>
       <div className={`relative w-full my-4 ${!!error ? "border-yellow" : ""}`}>
-        <label
+        <label htmlFor={IdCurrent}
           className={`${className ?? ""}  w-full pl-3 pr-7 pb-3 pt-5 h-14  line-clamp-1 bg-white  border-secondary  cursor-pointer border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
         >
           <span className="font-medium line-clamp-1">
@@ -64,11 +64,11 @@ export function File(
           />
         </When>
         <input
-          type={"file"}
-          onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
-            const files = ev.currentTarget.files;
-
-            if (!files) return;
+          type="file"
+          accept="image/*,application/pdf"
+          onChange={(ev) => {
+            const files = ev.target.files;
+            if (!files || files.length === 0) return;
 
             uploadFiles({
               files: Array.from(files),
@@ -81,15 +81,13 @@ export function File(
                 });
 
               setCurrentValue(files[0]);
-              if (setValue && filesUploaded.success.length > 0)
-                setValue(rest.name ?? "", JSON.stringify({
-                  package: IdCurrent,
-                  file: filesUploaded.success[0],
-                }));
+              setValue(rest.name ?? "", JSON.stringify({
+                package: IdCurrent,
+                file: filesUploaded.success[0],
+              }));
             });
           }}
-          accept=".pdf,.xlsx,.png,.jpg,.jpeg"
-          className={`${className} absolute top-4 w-[90%] h-full appearance-none opacity-0`}
+          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-50"
           id={IdCurrent}
         />
         <When value={isLoading}>
