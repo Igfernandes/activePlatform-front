@@ -85,7 +85,7 @@ export function File({
               type="file"
               id={IdCurrent}
               accept=".pdf,.xlsx,.png,.jpg,.jpeg,.heic"
-              
+              className="absolute opacity-0 w-full h-full"
               onChange={(ev) => {
                 const file = ev.currentTarget.files?.[0];
                 dispatchSnackbar({
