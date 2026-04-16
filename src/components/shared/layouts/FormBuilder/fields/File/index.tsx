@@ -122,22 +122,7 @@ export function File({
         </When>
       </div>
 
-      <When value={isLoading}>
-        <div className="flex items-center justify-center fixed z-50 top-0 left-0 w-full h-full gap-2">
-          <div className="bg-black absolute top-0 left-0 w-full h-full opacity-25"></div>
-
-          <div className="bg-white text-center relative py-14 px-2 w-[25rem] rounded-md">
-            <span className="block mb-5">
-              {i18n("Texts.uploading_file_please_wait")}
-            </span>
-
-            <RotateClockwise
-              className="w-[3rem] h-[3rem] animate-spin mx-auto"
-              fill="black"
-            />
-          </div>
-        </div>
-      </When>
+    
 
       <ErrorMessage errors={error?.message as string} />
     </>

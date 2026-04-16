@@ -220,6 +220,7 @@ export const Api = {
       created_at: "A data de criação do formulário está inválido",
       updated_at: "A data de atualização do formulário está inválida",
       not_found: "O formulário não foi encontrada",
+      not_stock: "Não há vagas disponíveis ou o formulário está desabilitado momentâneamente",
       client: "Operação inválida. O registro não contém um cliente vinculado.",
       color_mark:
         "A cor escolhida não atende o padrão hexadecimal permitido pelo sistema",
