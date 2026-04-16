@@ -85,38 +85,8 @@ export function File({
               type="file"
               id={IdCurrent}
               accept=".pdf,.xlsx,.png,.jpg,.jpeg,.heic"
-              className="hidden"
-              onChangeCapture={(ev) => {
-                const file = ev.currentTarget.files?.[0];
-                dispatchSnackbar({
-                  type: "error",
-                  message: JSON.stringify(ev.currentTarget.files),
-                });
-                if (!file) return;
-
-                setCurrentValue(file);
-
-                uploadFiles({
-                  files: [file],
-                  packageRef: IdCurrent,
-                }).then(({ files: filesUploaded }) => {
-                  if (filesUploaded.failed.length > 0) {
-                    dispatchSnackbar({
-                      type: "error",
-                      message: i18n("Validations.invalid_file"),
-                    });
-                    return;
-                  }
-
-                  field.onChange(
-                    JSON.stringify({
-                      package: IdCurrent,
-                      file: filesUploaded.success[0],
-                    })
-                  );
-                });
-              }}
-                onChange={(ev) => {
+              
+              onChange={(ev) => {
                 const file = ev.currentTarget.files?.[0];
                 dispatchSnackbar({
                   type: "error",
