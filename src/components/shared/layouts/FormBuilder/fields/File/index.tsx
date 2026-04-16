@@ -84,7 +84,6 @@ export function File({
             <input ref={inputRef}
               type="file"
               id={IdCurrent}
-              className="absolute opacity-0 w-full h-full"
               onChange={(ev) => {
                 const file = ev.currentTarget.files?.[0];
                 dispatchSnackbar({
