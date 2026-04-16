@@ -79,7 +79,7 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
             type="file"
             id={IdCurrent}
             accept="image/*,.pdf,.xlsx"
-            className="absolute opacity-0 w-full h-full"
+            className=" w-full h-full"
             onInput={async (ev) => {
               dispatchSnackbar({
                 type: "error",
