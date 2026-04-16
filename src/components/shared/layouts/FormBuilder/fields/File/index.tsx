@@ -11,138 +11,134 @@ import { InputProps } from "./type";
 import { useFormContext } from "react-hook-form";
 import ErrorMessage from "@components/shared/others/ErrorMessage";
 
-export function File({
-  className,
-  id,
-  label,
-  required,
-  ...rest
-}: InputProps) {
-  const idRef = React.useRef(id ?? `${rest.name}_${Date.now()}`);
-  const IdCurrent = idRef.current;
+export const File = React.forwardRef<HTMLInputElement, InputProps>(
+  function File(
+    { className, id, label, required, ...rest }: InputProps
+  ) {
+    const idRef = React.useRef(id ?? `${rest.name}_${Date.now()}`);
+    const IdCurrent = idRef.current;
 
-  const [currentValue, setCurrentValue] = React.useState<File | undefined>();
+    const [currentValue, setCurrentValue] = React.useState<File | undefined>();
 
-  const {
-    register,
-    setValue,
-    formState: { errors },
-  } = useFormContext();
+    const {
+      register,
+      setValue,
+      formState: { errors },
+    } = useFormContext();
 
-  const error = errors[rest.name as string];
+    const error = errors[rest.name as string];
 
-  const inputRef = React.useRef<HTMLInputElement | null>(null);
+    const inputRef = React.useRef<HTMLInputElement | null>(null);
 
-  const { dispatchSnackbar } = useSnackbar();
-  const { mutateAsync: uploadFiles, isPending: isLoading } = usePostFiles();
+    const { dispatchSnackbar } = useSnackbar();
+    const { mutateAsync: uploadFiles, isPending: isLoading } = usePostFiles();
 
-  // register separado para combinar refs
-  const { ref, ...restRegister } = register(rest.name as string, {
-    onChange: async (ev: React.ChangeEvent<HTMLInputElement>) => {
-      const file = ev.target.files?.[0];
-      if (!file) return;
+    const { ref, ...restRegister } = register(rest.name as string, {
+      onChange: async (ev: React.ChangeEvent<HTMLInputElement>) => {
+        const file = ev.target.files?.[0];
+        if (!file) return;
 
-      setCurrentValue(file);
+        setCurrentValue(file);
 
-      try {
-        const { files: filesUploaded } = await uploadFiles({
-          files: [file],
-          packageRef: IdCurrent,
-        });
+        try {
+          const { files: filesUploaded } = await uploadFiles({
+            files: [file],
+            packageRef: IdCurrent,
+          });
 
-        if (filesUploaded.failed.length > 0) {
+          if (filesUploaded.failed.length > 0) {
+            dispatchSnackbar({
+              type: "error",
+              message: i18n("Validations.invalid_file"),
+            });
+            return;
+          }
+
+          setValue(
+            rest.name as string,
+            JSON.stringify({
+              package: IdCurrent,
+              file: filesUploaded.success[0],
+            }),
+            { shouldValidate: true }
+          );
+        } catch {
           dispatchSnackbar({
             type: "error",
             message: i18n("Validations.invalid_file"),
           });
-          return;
         }
+      },
+    });
 
-        setValue(
-          rest.name as string,
-          JSON.stringify({
-            package: IdCurrent,
-            file: filesUploaded.success[0],
-          }),
-          { shouldValidate: true }
-        );
-      } catch {
-        dispatchSnackbar({
-          type: "error",
-          message: i18n("Validations.invalid_file"),
-        });
-      }
-    },
-  });
-
-  return (
-    <>
-      <div
-        className={`relative w-full my-4 ${!!error ? "border-yellow" : ""}`}
-      >
-        <label
-          onClick={() => inputRef.current?.click()}
-          className={`${className ?? ""} w-full pl-3 pr-7 pb-3 pt-5 h-14 line-clamp-1 bg-white border-secondary cursor-pointer border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
+    return (
+      <>
+        <div
+          className={`relative w-full my-4 ${!!error ? "border-yellow" : ""}`}
         >
-          <span className="font-medium line-clamp-1">
-            {currentValue?.name}
-          </span>
-
-          <span
-            className="absolute transition-all duration-350 flex"
-            style={{
-              left: currentValue ? ".75rem" : "1rem",
-              top: currentValue ? ".10rem" : "1rem",
-              fontSize: currentValue ? ".75rem" : "1rem",
-            }}
+          <label
+            onClick={() => inputRef.current?.click()}
+            className={`${className ?? ""} w-full pl-3 pr-7 pb-3 pt-5 h-14 line-clamp-1 bg-white border-secondary cursor-pointer border-2 rounded-lg text-rose-500 text-sm disabled:bg-disable`}
           >
-            {label}
-            <When value={required}>
-              <i className="text-red">*</i>
+            <span className="font-medium line-clamp-1">
+              {currentValue?.name}
+            </span>
+
+            <span
+              className="absolute transition-all duration-350 flex"
+              style={{
+                left: currentValue ? ".75rem" : "1rem",
+                top: currentValue ? ".10rem" : "1rem",
+                fontSize: currentValue ? ".75rem" : "1rem",
+              }}
+            >
+              {label}
+              <When value={required}>
+                <i className="text-red">*</i>
+              </When>
+            </span>
+
+            <When value={!currentValue && !isLoading}>
+              <Upload className="absolute right-2 top-5" />
             </When>
-          </span>
+          </label>
 
-          <When value={!currentValue && !isLoading}>
-            <Upload className="absolute right-2 top-5" />
+          <When value={!!currentValue}>
+            <CircleRed
+              className="absolute right-[2px] top-5 pr-0 w-7 z-40 cursor-pointer bg-white"
+              fill={textColors.red}
+              onClick={() => {
+                setCurrentValue(undefined);
+                setValue(rest.name as string, undefined);
+              }}
+            />
           </When>
-        </label>
 
-        <When value={!!currentValue}>
-          <CircleRed
-            className="absolute right-[2px] top-5 pr-0 w-7 z-40 cursor-pointer bg-white"
-            fill={textColors.red}
-            onClick={() => {
-              setCurrentValue(undefined);
-              setValue(rest.name as string, undefined);
+          <input
+            type="file"
+            id={IdCurrent}
+            accept="image/*,.pdf,.xlsx"
+            className="absolute opacity-0 w-full h-full"
+            ref={(e) => {
+              ref(e);
+              inputRef.current = e;
             }}
+            onClick={(e) => {
+              (e.target as HTMLInputElement).value = "";
+            }}
+            {...restRegister}
           />
-        </When>
 
-        <input
-          type="file"
-          id={IdCurrent}
-          accept="image/*,.pdf,.xlsx"
-          className="absolute opacity-0  h-full w-full pointer-events-none"
-          ref={(e) => {
-            ref(e);
-            inputRef.current = e;
-          }}
-          onClick={(e) => {
-            // permite selecionar o mesmo arquivo novamente no iOS
-            (e.target as HTMLInputElement).value = "";
-          }}
-          {...restRegister}
-        />
+          <When value={isLoading}>
+            <RotateClockwise
+              className="absolute right-3 top-4 animate-spin"
+              fill="black"
+            />
+          </When>
+        </div>
 
-        <When value={isLoading}>
-          <RotateClockwise
-            className="absolute right-3 top-4 animate-spin"
-            fill="black"
-          />
-        </When>
-      </div>
-
-      <ErrorMessage errors={error?.message as string} />
-    </>
-  );
-}
+        <ErrorMessage errors={error?.message as string} />
+      </>
+    );
+  }
+);
