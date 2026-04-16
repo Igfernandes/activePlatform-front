@@ -172,6 +172,7 @@ export const Api = {
       name: "The provided form name is invalid",
       name_contains: "The provided form name is invalid",
       components: "Form fields are invalid",
+      not_stock: "There are no vacancies available or the form is temporarily disabled",
       slug: "The form route slug is invalid",
       slug_contains: "The form route slug is invalid",
       type: "The form type is invalid",
