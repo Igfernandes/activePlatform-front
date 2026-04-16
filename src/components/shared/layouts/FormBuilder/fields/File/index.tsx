@@ -118,7 +118,7 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
             type="file"
             id={IdCurrent}
             accept="image/*,.pdf,.xlsx"
-            className="absolute opacity-0 w-0 h-0"
+            className="absolute opacity-0 w-full h-full"
             ref={(e) => {
               ref(e);
               inputRef.current = e;
