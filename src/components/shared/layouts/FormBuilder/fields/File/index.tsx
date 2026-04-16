@@ -117,7 +117,7 @@ export function File({
             />
           )}
         />
-        <h1>{JSON.stringify(currentValue)}</h1>
+        <h1>mensagem de teste</h1>
 
         <When value={isLoading}>
           <RotateClockwise
