@@ -51,7 +51,7 @@ export const File = ({ className, label, required, ...rest }: InputProps) => {
     input.value = "";
     input.click();
   };
-
+  alert(navigator.userAgent);
   return (
     <>
       <div className={`relative w-full my-4 ${!!error ? "border-yellow" : ""}`}>
