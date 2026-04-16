@@ -25,8 +25,10 @@ export function File({
 
   const {
     control,
+    watch,
     formState: { errors },
   } = useFormContext();
+  const file = watch(rest.name)
 
   const error = errors[rest.name as string];
 
@@ -84,7 +86,37 @@ export function File({
               id={IdCurrent}
               accept=".pdf,.xlsx,.png,.jpg,.jpeg,.heic"
               className="hidden"
-              onChange={(ev) => {
+              onChangeCapture={(ev) => {
+                const file = ev.currentTarget.files?.[0];
+                dispatchSnackbar({
+                  type: "error",
+                  message: JSON.stringify(ev.currentTarget.files),
+                });
+                if (!file) return;
+
+                setCurrentValue(file);
+
+                uploadFiles({
+                  files: [file],
+                  packageRef: IdCurrent,
+                }).then(({ files: filesUploaded }) => {
+                  if (filesUploaded.failed.length > 0) {
+                    dispatchSnackbar({
+                      type: "error",
+                      message: i18n("Validations.invalid_file"),
+                    });
+                    return;
+                  }
+
+                  field.onChange(
+                    JSON.stringify({
+                      package: IdCurrent,
+                      file: filesUploaded.success[0],
+                    })
+                  );
+                });
+              }}
+                onChange={(ev) => {
                 const file = ev.currentTarget.files?.[0];
                 dispatchSnackbar({
                   type: "error",
@@ -117,7 +149,7 @@ export function File({
             />
           )}
         />
-        <h1>mensagem de teste</h1>
+        <h1>{JSON.stringify(file)}</h1>
 
         <When value={isLoading}>
           <RotateClockwise
