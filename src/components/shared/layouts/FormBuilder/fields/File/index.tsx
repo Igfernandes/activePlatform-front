@@ -21,7 +21,6 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
     const [currentValue, setCurrentValue] = React.useState<File | undefined>();
 
     const {
-      register,
       setValue,
       formState: { errors },
     } = useFormContext();
@@ -32,44 +31,6 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
 
     const { dispatchSnackbar } = useSnackbar();
     const { mutateAsync: uploadFiles, isPending: isLoading } = usePostFiles();
-
-    const { ref, ...restRegister } = register(rest.name as string, {
-      onChange: async (ev: React.ChangeEvent<HTMLInputElement>) => {
-        const file = ev.target.files?.[0];
-        if (!file) return;
-
-        setCurrentValue(file);
-
-        try {
-          const { files: filesUploaded } = await uploadFiles({
-            files: [file],
-            packageRef: IdCurrent,
-          });
-
-          if (filesUploaded.failed.length > 0) {
-            dispatchSnackbar({
-              type: "error",
-              message: i18n("Validations.invalid_file"),
-            });
-            return;
-          }
-
-          setValue(
-            rest.name as string,
-            JSON.stringify({
-              package: IdCurrent,
-              file: filesUploaded.success[0],
-            }),
-            { shouldValidate: true }
-          );
-        } catch {
-          dispatchSnackbar({
-            type: "error",
-            message: i18n("Validations.invalid_file"),
-          });
-        }
-      },
-    });
 
     return (
       <>
@@ -119,14 +80,45 @@ export const File = React.forwardRef<HTMLInputElement, InputProps>(
             id={IdCurrent}
             accept="image/*,.pdf,.xlsx"
             className="absolute opacity-0 w-full h-full"
-            ref={(e) => {
-              ref(e);
-              inputRef.current = e;
+            onInput={async (ev: React.ChangeEvent<HTMLInputElement>) => {
+              dispatchSnackbar({
+                type: "error",
+                message: JSON.stringify(ev.currentTarget.files),
+              });
+              const file = ev.currentTarget.files?.[0];
+              if (!file) return;
+
+              setCurrentValue(file);
+
+              try {
+                const { files: filesUploaded } = await uploadFiles({
+                  files: [file],
+                  packageRef: IdCurrent,
+                });
+
+                if (filesUploaded.failed.length > 0) {
+                  dispatchSnackbar({
+                    type: "error",
+                    message: i18n("Validations.invalid_file"),
+                  });
+                  return;
+                }
+
+                setValue(
+                  rest.name as string,
+                  JSON.stringify({
+                    package: IdCurrent,
+                    file: filesUploaded.success[0],
+                  }),
+                  { shouldValidate: true }
+                );
+              } catch {
+                dispatchSnackbar({
+                  type: "error",
+                  message: i18n("Validations.invalid_file"),
+                });
+              }
             }}
-            onClick={(e) => {
-              (e.target as HTMLInputElement).value = "";
-            }}
-            {...restRegister}
           />
 
           <When value={isLoading}>
