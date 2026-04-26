@@ -11,7 +11,7 @@ export const Screens = {
   },
   galleries: {
     description:
-      "Descubra los mejores momentos con Matrilhas y sus experiencias inolvidables a través de nuestra galería de fotos.",
+      "Descubra los mejores momentos con AGM y sus experiencias inolvidables a través de nuestra galería de fotos.",
     title: "Galería de Fotos",
   },
   "alter-password": {
@@ -227,7 +227,7 @@ export const Screens = {
         {
           question: "¿Quién está en la presidencia de la AGM?",
           answer:
-            "Actualmente, el presidente es Alberto Matrilhas y la vicepresidenta es Thaís Bellotti.",
+            "Actualmente, el presidente es Alberto AGM y la vicepresidenta es Thaís Bellotti.",
         },
         {
           question: "¿Dónde se encuentra la sede de la AGM?",
