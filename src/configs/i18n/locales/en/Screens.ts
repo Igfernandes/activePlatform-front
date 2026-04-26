@@ -11,7 +11,7 @@ export const Screens = {
   },
   galleries: {
     description:
-      "Discover the best moments with Matrilhas and their unforgettable experiences through our photo gallery.",
+      "Discover the best moments with AGM and their unforgettable experiences through our photo gallery.",
     title: "Photo Gallery",
   },
   "alter-password": {
@@ -224,7 +224,7 @@ export const Screens = {
         {
           question: "Who is the president of AGM?",
           answer:
-            "Currently, the president is Alberto Matrilhas and the vice-president is Thaís Bellotti.",
+            "Currently, the president is Alberto AGM and the vice-president is Thaís Bellotti.",
         },
         {
           question: "Where is AGM’s headquarters?",
