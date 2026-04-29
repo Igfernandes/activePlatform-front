@@ -16,7 +16,7 @@ export function useForms() {
       ...formsPayload,
       components: JSON.stringify(components),
       category: getOnlyNumbers(formsPayload.category),
-      service:
+      service_id:
         formsPayload.service_id?.toString() == "null" ? null : formsPayload,
       status: formsPayload.status as "PUBLISHED" | "DRAFT",
     };
