@@ -11,18 +11,20 @@ export function useForms() {
     usePostCreateForm();
   const { mutateAsync: putForm, isPending: isLoadingPut } = usePutForm();
 
-  const submit = (FormsPayload: FormsPayload) => {
+  const submit = (formsPayload: FormsPayload) => {
     const payload = {
-      ...FormsPayload,
+      ...formsPayload,
       components: JSON.stringify(components),
-      category: getOnlyNumbers(FormsPayload.category),
-      status: FormsPayload.status as "PUBLISHED" | "DRAFT",
+      category: getOnlyNumbers(formsPayload.category),
+      service:
+        formsPayload.service_id?.toString() == "null" ? null : formsPayload,
+      status: formsPayload.status as "PUBLISHED" | "DRAFT",
     };
 
-    if (FormsPayload.id)
+    if (formsPayload.id)
       putForm({
         ...payload,
-        id: FormsPayload.id,
+        id: formsPayload.id,
       });
     else {
       postForm(payload);

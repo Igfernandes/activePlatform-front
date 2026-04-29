@@ -28,7 +28,6 @@ export function Definitions({ handleChangeFormFields, slug, targetForm }: Props)
     formState: { errors },
   } = useFormContext<FormsPayload>();
 
-  console.log(targetForm.service_id, services)
   return (
     <div className="form-definitions">
       <TopBar slug={slug} />
