@@ -15,7 +15,6 @@ export default function Form({ form, csrf }: FormPageProps) {
     csrf,
   });
 
-
   useEffect(() => {
     caches.keys().then(names => {
       names.forEach(name => caches.delete(name));
