@@ -19,7 +19,7 @@ export function useGeneralCalendar({ services, charges = [] }: Props) {
       const birthdate = moment(schedule.date);
 
       return {
-        title: i18n("Words.event") + " 🗓️",
+        title: i18n("Words.activity") + " 🗓️",
         start: birthdate.toDate(),
         end: birthdate.toDate(),
         allDay: true,
