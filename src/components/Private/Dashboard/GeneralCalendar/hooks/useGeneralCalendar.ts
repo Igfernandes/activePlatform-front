@@ -1,10 +1,13 @@
+import { CalendarEventShape } from "@components/shared/others/Calendar/type";
 import i18n from "@configs/i18n";
+import { helperRemoveDuplicatesInArrayOfObjects } from "@helpers/array";
 import useGetSchedules from "@services/Schedule/Get/useGet";
 import { ChargeShape } from "@type/Charges";
 import { ScheduleShape } from "@type/Schedule";
 import { ServicesShape } from "@type/Services";
+import dayjs from "dayjs";
 import moment from "moment";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 
 type Props = {
   services?: ServicesShape[];
@@ -19,7 +22,8 @@ export function useGeneralCalendar({ services, charges = [] }: Props) {
       const birthdate = moment(schedule.date);
 
       return {
-        title: i18n("Words.activity") + " 🗓️",
+        title: schedule.title,
+        alternative: i18n("Words.birthday") + " 🎂",
         start: birthdate.toDate(),
         end: birthdate.toDate(),
         allDay: true,
@@ -36,7 +40,8 @@ export function useGeneralCalendar({ services, charges = [] }: Props) {
           const serviceDate = moment(service.realized_at);
 
           return {
-            title: i18n("Words.inscriptions") + " 📋",
+            title: service.name,
+            alternative: i18n("Words.inscriptions") + " 📋",
             start: serviceDate.toDate(),
             end: serviceDate.toDate(),
             allDay: true,
@@ -57,7 +62,8 @@ export function useGeneralCalendar({ services, charges = [] }: Props) {
           );
 
           return {
-            title: i18n("Words.charge") + " 🎉",
+            title: charge.title,
+            alternative: i18n("Words.charge") + " 🎉",
             start: chargeDate.toDate(),
             end: chargeDate.toDate(),
             allDay: true,
@@ -67,10 +73,33 @@ export function useGeneralCalendar({ services, charges = [] }: Props) {
     [charges],
   );
 
+  const datesDuplicatesRemove = useCallback(
+    (dates: Array<CalendarEventShape>) => {
+      const datesUpdate = dates.map((event) => {
+        const hasDate = dates.find(
+          (eventRef) =>
+            dayjs(event.start).format("DD-MM-YYYY") ===
+            dayjs(eventRef.start).format("DD-MM-YYYY") && event.title != eventRef.title,
+        );
+
+        return {
+          ...event,
+          title: !hasDate
+            ? event.title
+            : (event?.alternative ?? i18n("Words.event") + " 📋"),
+        };
+      });
+
+      return helperRemoveDuplicatesInArrayOfObjects(datesUpdate, "resource");
+    },
+    [],
+  );
+
   return {
     birthdate,
     servicesDates,
     chargesDates,
     schedules,
+    datesDuplicatesRemove,
   };
 }
