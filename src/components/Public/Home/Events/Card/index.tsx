@@ -64,7 +64,7 @@ export function Card({
                 <li className="flex items-center text-xs">
                   <Ticket className="fill-slate-500 mr-2" />
                   <span className="font-semibold text-cyan-700">
-                    Vagas Disponíveis: {tickets?.toString().padStart(4, '0')}
+                    Vagas Disponíveis total: {tickets?.toString().padStart(4, '0')}
                   </span>
                 </li>
               </When>
