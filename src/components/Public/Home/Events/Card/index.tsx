@@ -7,10 +7,11 @@ import { ServicesShape } from "@type/Services";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { useCard } from "./hooks/useCard";
+import { Ticket } from "@assets/Icons/black/Ticket";
 
 type Props = Pick<
   ServicesShape,
-  "id" | "name" | "photo" | "snippet" | "realized_at" | "expired_at" | "has_available"
+  "id" | "name" | "photo" | "tickets" | "snippet" | "realized_at" | "expired_at" | "has_available"
 >;
 
 export function Card({
@@ -21,6 +22,7 @@ export function Card({
   expired_at,
   snippet,
   has_available,
+  tickets
 }: Props) {
   const { handleIsAvailableDate } = useCard();
 
@@ -58,6 +60,14 @@ export function Card({
                   </When>
                 </p>
               </li>
+              <When value={!!tickets && tickets > 0}>
+                <li className="flex items-center text-xs">
+                  <Ticket className="fill-slate-500 mr-2" />
+                  <span className="font-semibold text-cyan-700">
+                    Atividades Disponíveis: {tickets?.toString().padStart(4, '0')}
+                  </span>
+                </li>
+              </When>
               <When value={!!expired_at}>
                 <li className="flex my-2">
                   <CalendarExpired className="fill-slate-500 mr-2" />
@@ -72,7 +82,7 @@ export function Card({
           </div>
           <div>
             <p
-              className="line-clamp-3"
+              className="line-clamp-3 text-xs text-amber-700 text-center"
               dangerouslySetInnerHTML={{
                 __html: snippet ?? "",
               }}
@@ -90,7 +100,7 @@ export function Card({
             <span>{"Inscrever-se"}</span>
           </Link>
         </When>
-        <When value={!handleIsAvailableDate(realized_at, expired_at) }>
+        <When value={!handleIsAvailableDate(realized_at, expired_at)}>
           <p
             className={`block bg-disabled text-white p-2 text-center rounded-md`}
           >

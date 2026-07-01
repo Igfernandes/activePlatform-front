@@ -12,6 +12,7 @@ export type ServicesShape = {
   realized_at?: string;
   has_available?: boolean;
   expired_at?: string;
+  tickets?: number;
   created_at: string;
   updated_at: string;
 };
@@ -24,6 +25,7 @@ export type ServicePreviewShape = Pick<
   forms: {
     name: string;
     slug: string;
+    tickets: number;
   }[];
   charge: Pick<
     ChargeShape,
