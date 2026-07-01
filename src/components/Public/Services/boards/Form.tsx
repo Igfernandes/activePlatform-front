@@ -50,17 +50,16 @@ export function BoardForm({ name, address, realized_at, forms }: Props) {
               </option>
               {forms.map((form) => (
                 <option key={`${form.slug}`} value={form.slug}>
-                  {form.name}
+                  {form.name} <small>(Vagas: {form.tickets})</small>
                 </option>
               ))}
             </select>
             <div className="mt-4">
               <Link
-                className={`red py-2 px-6  rounded-md  shadow-md ${
-                  targetForm
+                className={`red py-2 px-6  rounded-md  shadow-md ${targetForm
                     ? "bg-red text-white hover:bg-rose-900"
                     : "text-black opacity-70 cursor-not-allowed bg-disabled"
-                }`}
+                  }`}
                 href={targetForm ?? "#none"}
               >
                 {i18n("Words.inscribe")}
